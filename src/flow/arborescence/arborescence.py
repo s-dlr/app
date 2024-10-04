@@ -1,0 +1,35 @@
+from dataclasses import dataclass
+
+import pandas as pd
+
+from src.flow.arborescence.question import Question
+from src.variables import *
+
+@dataclass
+class Arborescence:
+    arborescence: str
+
+    def __post_init__(self) -> None:
+        self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
+        self.load_data(num_question=1)
+
+    def load_data(self, num_question: int = 1) -> None:
+        """
+        Instantie l'étape de l'arboarescence correpondant à la question
+        """
+        data = self.df_arborescence[self.df_arborescence[NUM_QUESTION] == num_question]
+        question_data = data.iloc[0][[NUM_QUESTION, CONTEXTE_QUESTION, TEXTE_QUESTION]]
+        self.question = Question(**question_data.to_dict())
+        option_data = data[
+            [
+                NUMERO_OPTION,
+                TEXTE_OPTION,
+                PROCHAINE_QUESTION,
+                PREREQUIS,
+                EFFET_IMMEDIAT,
+                MODIFICATION_OBJET,
+                MODIFICATION_PROGRAMME,
+                OBJET
+            ]
+        ].fillna("")
+        self.question.create_options(option_data)

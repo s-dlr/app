@@ -7,7 +7,8 @@ from src.data.objet import MyObjet
 class ClientSQL:
 
     def __init__(self, connection_name: str, equipe: str) -> None:
-        self.connection = st.connection(connection_name)
+        # TODO
+        # self.connection = st.connection(connection_name)
         self.equipe = equipe
 
     def get_objet(self, objet: str):

@@ -90,6 +90,7 @@ if __name__ == "__main__":
     # TODO page acceuil
     st.session_state["equipe"] = "test"
     st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
-    st.session_state["sql_client"] = ClientSQL("sql")
+    st.session_state["sql_client"] = ClientSQL(
+        connection_name="sql", equipe=st.session_state.equipe)
     create_objets(arborescence="Programme exemple")
     show()

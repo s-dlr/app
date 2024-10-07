@@ -10,13 +10,6 @@ from src.variables import *
 from src.flow.arborescence.arborescence import Arborescence
 from src.data.objet import Objet
 
-def login():
-    st.header("Choix du nom de l'équipe")
-    team = st.text_input("équipe", "astrolabe")
-    if st.button("Log in"):
-        st.session_state["equipe"] = team
-        st.rerun()
-
 def start_game():
     st.session_state["sql_client"] = ClientSQL(
         connection_name="sql", equipe=st.session_state.equipe
@@ -33,11 +26,19 @@ def create_objets() -> None:
         st.session_state[row[NOM]] = new_objet
 
 
-page_dict = []
+# page_dict = [
+#     st.Page("pages/page_arborescence.py"),
+#     st.Page("pages/page_arborescence.py"),
+# ]
+# pg = st.navigation(page_dict, position="hidden")
+# pg.run()
+
 if "equipe" not in st.session_state:
-    pg = st.navigation([st.Page(login)])
+    st.switch_page("pages/page_login.py")
 else:
-    start_game()
-    page_dict.append(st.Page("streamlit_pages/page_arborescence.py"))
-    pg = st.navigation(page_dict)
-pg.run()
+    st.switch_page("pages/page_arborescence.py")
+
+start_game()
+#     page_dict.append(st.Page("streamlit_pages/page_arborescence.py"))
+#     pg = st.navigation(page_dict)
+# pg.run()

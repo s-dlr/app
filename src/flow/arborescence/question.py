@@ -1,10 +1,8 @@
 from dataclasses import dataclass
 
 import pandas as pd
-import streamlit as st
 
 from src.flow.arborescence.option import Option
-from src.data.objet import Objet
 from src.variables import *
 
 @dataclass
@@ -19,10 +17,6 @@ class QuestionAchat(AbstractQuestion):
     min_nb_unit: int = 0
     max_nb_unit: int = 1
     prochaine_question: int = 0
-
-    def get_next_question(self, texte_option: str) -> Option:
-        return self.prochaine_question
-
 
 @dataclass
 class QuestionOptions(AbstractQuestion):

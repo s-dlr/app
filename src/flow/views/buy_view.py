@@ -4,8 +4,6 @@ import streamlit as st
 
 from src.flow.views.abstract_view import AbstractView
 from src.flow.arborescence.question import *
-from src.flow.arborescence.option import Option
-
 
 class BuyView(AbstractView):
 

@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-import typing as T
 
 from src.data.modification import Modification
 

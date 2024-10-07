@@ -40,5 +40,5 @@ if __name__ == "__main__":
         pg = st.navigation([st.Page(login)])
     else:
         start_game()
-        pg = st.navigation([st.Page("pages/page_arborescence.py")])
+        pg = st.navigation([st.Page("streamlit_pages/page_arborescence.py")])
     pg.run()

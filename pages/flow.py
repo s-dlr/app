@@ -11,6 +11,11 @@ from src.flow.views.options_view import OptionsView
 from src.flow.views.buy_view import BuyView
 from src.data.objet import Objet
 
+def create_objets() -> None:
+    df_objets = pd.read_csv(FICHIER_OBJETS, sep=";")
+    for _, row in df_objets.iterrows():
+        new_objet = Objet(**row.to_dict())
+        st.session_state[row[NOM]] = new_objet
 
 def go_to_next_arborescence():
     prochaine_arborescence = "Programme exemple"  # TODO Prochain programme
@@ -58,7 +63,16 @@ def buy_unit():
 
 @st.fragment
 def show() -> None:
-    if st.session_state.arborescence.type_question == CHOIX_OPTION:
+    if "equipe" not in st.session_state:
+        st.header("Choix du nom de l'équipe")
+        team = st.text_input("équipe", "astrolabe")
+        if st.button("Log in"):
+            st.session_state["equipe"] = team
+            st.rerun(scope="fragment")
+            st.session_state["sql_client"] = ClientSQL(
+                connection_name="sql", equipe=st.session_state.equipe
+            )
+    elif st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.session_state["view"] = OptionsView()
         st.session_state.view.show()
         st.session_state.view.display_button(
@@ -72,10 +86,14 @@ def show() -> None:
         st.rerun(scope="fragment")
 
 if __name__ == "__main__":
+
     st.set_page_config(
         page_title="Arborescence",
         page_icon="🧊",
         layout="wide",
     )
+    # Initialisation objets et arborescence
+    create_objets()
     go_to_next_arborescence()
+    # Affichage
     show()

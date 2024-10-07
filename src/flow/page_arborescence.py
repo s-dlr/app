@@ -3,8 +3,6 @@ import sys
 import pandas as pd
 import streamlit as st
 
-sys.path.append(".")
-
 from src.sql_client import *
 from src.variables import *
 from src.flow.arborescence.arborescence import Arborescence

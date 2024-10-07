@@ -33,7 +33,7 @@ def go_to_next_question():
         go_to_next_arborescence()
     else:
         st.session_state.arborescence.load_data(prochaine_question)
-    st.rerun(scope="app")
+    st.rerun(scope="fragment")
 
 
 def start_programme():

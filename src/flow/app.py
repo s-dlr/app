@@ -18,7 +18,7 @@ def login():
     button_login = st.button("Log in")
     if button_login:
         st.session_state["equipe"] = team
-        st.rerun()
+        st.rerun(scope="app")
 
 def create_objets(arborescence: str) -> None:
     df_objets = pd.read_csv(FICHIER_OBJETS[arborescence], sep=";")
@@ -29,7 +29,6 @@ def create_objets(arborescence: str) -> None:
 if __name__ == "__main__":
     # TODO page accueil
     if "equipe" not in st.session_state:
-        st.session_state.equipe = None
         pg = st.navigation(
             [
                 st.Page(

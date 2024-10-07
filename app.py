@@ -15,7 +15,7 @@ def login():
     team = st.text_input("équipe", "astrolabe")
     if st.button("Log in"):
         st.session_state["equipe"] = team
-        st.rerun()
+        st.rerun(scope="app")
 
 def start_game():
     st.session_state["sql_client"] = ClientSQL(

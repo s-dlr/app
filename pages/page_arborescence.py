@@ -31,7 +31,6 @@ def go_to_next_question():
         go_to_next_arborescence()
     else:
         st.session_state.arborescence.load_data(prochaine_question)
-    st.rerun()
 
 
 def start_programme():
@@ -63,11 +62,12 @@ def show() -> None:
         st.session_state.view.display_button(
             on_click=go_to_next_question, disabled=(not st.session_state.radio_options)
         )
+        st.rerun()
     elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
         st.session_state["view"] = BuyView()
         st.session_state.view.show()
         st.session_state.view.display_button(on_click=buy_unit)
-
+        st.rerun()
 
 if __name__ == "__main__":
     st.set_page_config(

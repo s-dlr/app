@@ -10,12 +10,11 @@ from src.variables import *
 from src.flow.arborescence.arborescence import Arborescence
 from src.data.objet import Objet
 
-def start_game():
+
+def connect_to_sql():
     st.session_state["sql_client"] = ClientSQL(
         connection_name="sql", equipe=st.session_state.equipe
     )
-    st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
-    create_objets()
     # st.switch_page("pages/page_arborescence.py")
 
 
@@ -25,20 +24,23 @@ def create_objets() -> None:
         new_objet = Objet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet
 
+    # page_dict = [
+    #     st.Page("pages/page_arborescence.py"),
+    #     st.Page("pages/page_arborescence.py"),
+    # ]
+    # pg = st.navigation(page_dict, position="hidden")
+    # pg.run()
 
-# page_dict = [
-#     st.Page("pages/page_arborescence.py"),
-#     st.Page("pages/page_arborescence.py"),
-# ]
-# pg = st.navigation(page_dict, position="hidden")
-# pg.run()
+if __name__ == "__main__":
+    # Initialisation des objets
+    create_objets()
+    if "equipe" not in st.session_state:
+        st.switch_page("pages/login.py")
+    else:
+        st.switch_page("pages/flow.py")
+    # Connect to SQL
+    connect_to_sql()
 
-if "equipe" not in st.session_state:
-    st.switch_page("pages/page_login.py")
-else:
-    st.switch_page("pages/page_arborescence.py")
-
-start_game()
 #     page_dict.append(st.Page("streamlit_pages/page_arborescence.py"))
 #     pg = st.navigation(page_dict)
 # pg.run()

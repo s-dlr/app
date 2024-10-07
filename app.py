@@ -13,8 +13,7 @@ from src.data.objet import MyObjet
 def login():
     st.header("Choix du nom de l'équipe")
     team = st.text_input("équipe", "astrolabe")
-    button_login = st.button("Log in")
-    if button_login:
+    if st.button("Log in"):
         st.session_state["equipe"] = team
         st.rerun(scope="app")
 
@@ -41,5 +40,5 @@ if __name__ == "__main__":
         pg = st.navigation([st.Page(login)])
     else:
         start_game()
-        pg = st.navigation("pages/page_arborescence.py")
+        pg = st.navigation([st.Page("pages/page_arborescence.py")])
     pg.run()

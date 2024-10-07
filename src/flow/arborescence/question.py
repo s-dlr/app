@@ -41,4 +41,4 @@ class QuestionOptions(AbstractQuestion):
     def get_option_by_text(self, texte_option: str) -> Option:
         for opt in self.options:
             if opt.texte_option == texte_option:
-                return opt.prochaine_question
+                return opt

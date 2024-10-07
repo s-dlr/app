@@ -1,6 +1,6 @@
 import streamlit as st
 
-from src.flow.arborescence.question import Question
+from src.flow.arborescence.question import *
 
 from src.variables import *
 

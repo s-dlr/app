@@ -22,7 +22,7 @@ def start_game():
         connection_name="sql", equipe=st.session_state.equipe
     )
     st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
-    create_objets(arborescence="Programme exemple")
+    create_objets()
     # st.switch_page("pages/page_arborescence.py")
 
 

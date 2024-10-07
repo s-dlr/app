@@ -87,7 +87,7 @@ if __name__ == "__main__":
         page_icon="🧊",
         layout="wide",
     )
-    # TODO page acceuil
+    # TODO page accueil
     st.session_state["equipe"] = "test"
     st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
     st.session_state["sql_client"] = ClientSQL(

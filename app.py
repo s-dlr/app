@@ -1,4 +1,3 @@
-
 import sys
 
 import pandas as pd
@@ -63,8 +62,9 @@ def buy_unit():
     st.session_state.sql_client.update_sql_objet(objet_achete)
     go_to_next_arborescence()
 
+
 @st.fragment
-def show() -> None:
+def init_show() -> None:
     if "equipe" not in st.session_state:
         st.header("Choix du nom de l'équipe")
         team = st.text_input("équipe", "astrolabe")
@@ -74,8 +74,12 @@ def show() -> None:
                 connection_name="sql", equipe=st.session_state.equipe
             )
             st.rerun()
-
-    elif st.session_state.arborescence.type_question == CHOIX_OPTION:
+    else:
+        show()
+        
+@st.fragment
+def show() -> None:
+    if st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.session_state["view"] = OptionsView()
         st.session_state.view.show()
         st.session_state.view.display_button(
@@ -99,4 +103,4 @@ if __name__ == "__main__":
     create_objets()
     go_to_next_arborescence()
     # Affichage
-    show()
+    init_show()

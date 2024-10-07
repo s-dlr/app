@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from src.data.object import MyObject
+from src.data.objet import MyObject
 
 
 def update_sql_object(conn: st.connection, object: MyObject) -> None:

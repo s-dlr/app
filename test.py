@@ -1,4 +1,4 @@
-from src.sql_update import ClientGoogle
+from src.sql_client import ClientGoogle
 
 client = ClientGoogle()
 print(

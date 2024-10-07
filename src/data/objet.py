@@ -5,9 +5,9 @@ from src.data.modification import Modification
 
 
 @dataclass
-class MyObject:
+class MyObjet:
 
-    nom: str = "default_object"  # un nom unique par objet
+    nom: str = "default_objet"  # un nom unique par objet
     cout_unitaire: float = 0.0
     std_cout: float = 0.0
     cout_fixe: float = 0.0
@@ -27,20 +27,11 @@ class MyObject:
     def to_str(self):
         return str(self.to_dict())
 
-    def from_str(self, serialized_object: str = "{}"):
+    def from_str(self, serialized_objet: str = "{}"):
         """
-        Crée l'object depuis sa valeur sérialisée
+        Crée l'objet depuis sa valeur sérialisée
         """
-        self.__init__(*eval(serialized_object))
-
-    def from_api(self):
-        """
-        Récupère les valeurs de l'objet sur l'API
-        """
-        # TODO
-        # récupérer les valeurs via l'API
-        resp = "{'name': 'default_object', 'cout_unitaire': 0.0,'std_cout': 0.0,'cout_fixe': 0.0,'bonus_terre': 0,'bonus_mer': 0,'bonus_air': 0,'bonus_rens': 0,'max_nb_utile': 0,'unite_par_an': 0.0,'budget': 0.0,'dependance_export': '','niveau_techno': 0.0}"
-        self.from_str(resp)
+        self.__init__(*eval(serialized_objet))
 
     def apply_modification(self, modification: Modification) -> None:
         """

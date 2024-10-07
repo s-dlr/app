@@ -34,6 +34,7 @@ def create_objets() -> None:
 if __name__ == "__main__":
     # Initialisation des objets
     create_objets()
+    st.navigation(position='hidden')
     if "equipe" not in st.session_state:
         st.switch_page("pages/login.py")
     else:

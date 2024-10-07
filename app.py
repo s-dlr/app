@@ -119,10 +119,11 @@ def show() -> None:
         team = st.text_input("équipe", "astrolabe")
         if st.button("Log in"):
             st.session_state["equipe"] = team
-            st.rerun(scope="fragment")
             st.session_state["sql_client"] = ClientSQL(
                 connection_name="sql", equipe=st.session_state.equipe
             )
+            st.rerun(scope="fragment")
+
     elif st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.session_state["view"] = OptionsView()
         st.session_state.view.show()

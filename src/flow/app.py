@@ -27,6 +27,7 @@ def go_to_next_arborescence():
     )
     create_objets(arborescence=prochaine_arborescence)
 
+
 def go_to_next_question():
     """
     Fonction pour passer à la question suivante
@@ -43,13 +44,28 @@ def go_to_next_question():
         st.session_state.arborescence.load_data(prochaine_question)
     st.rerun()
 
+
+def start_programme():
+    """
+    Démarrage du programme
+    """
+    go_to_next_arborescence()
+    # écupérer le nom de l'objet que concerne le programme
+    nom_objet_programme = "default_object"
+    # Mise à jour de l'objet en cours de définition
+    objet_programme = st.session_state[nom_objet_programme]
+    st.session_state.sql_client.update_objet(objet_programme)
+    # Démarrage programme
+
+
 def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
     go_to_next_arborescence()
-    objet_to_buy = st.session_state[t.session_state.arborescence.question.objet]
-    st.session_state.sql_client.update_objet()
+    objet_achete = st.session_state[st.session_state.arborescence.question.objet]
+    st.session_state.sql_client.update_objet(objet_achete)
+
 
 @st.fragment
 def show() -> None:

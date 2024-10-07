@@ -39,6 +39,7 @@ def go_to_next_question():
         selected_option
     )
     if prochaine_question == 0:
+        start_programme()
         go_to_next_arborescence() 
     else:
         st.session_state.arborescence.load_data(prochaine_question)
@@ -49,7 +50,6 @@ def start_programme():
     """
     Démarrage du programme
     """
-    go_to_next_arborescence()
     # écupérer le nom de l'objet que concerne le programme
     nom_objet_programme = "default_object"
     # Mise à jour de l'objet en cours de définition
@@ -62,9 +62,9 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
-    go_to_next_arborescence()
     objet_achete = st.session_state[st.session_state.arborescence.question.objet]
     st.session_state.sql_client.update_objet(objet_achete)
+    go_to_next_arborescence()
 
 
 @st.fragment

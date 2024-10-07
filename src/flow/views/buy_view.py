@@ -14,7 +14,6 @@ class BuyView(AbstractView):
         Affichage de la page option
         """
         super().show()
-        st.divider()
         min_nb_unit = st.session_state.arborescence.question.nb_units.min_nb_unit
         max_nb_unit = st.session_state.arborescence.question.nb_units.max_nb_unit
         self.slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)

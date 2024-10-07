@@ -1,5 +1,7 @@
 DATA_DIR = "src/flow/files"
 
+EQUIPE = "equipe"
+
 # Colonnes arborescence
 NUM_QUESTION = "num_question"
 CONTEXTE_QUESTION = "contexte_question"

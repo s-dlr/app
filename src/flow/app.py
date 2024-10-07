@@ -5,12 +5,12 @@ import streamlit as st
 
 sys.path.append(".")
 
+from src.sql_update import *
 from src.variables import *
 from src.flow.arborescence.arborescence import Arborescence
 from src.flow.views.options_view import OptionsView
 from src.flow.views.buy_view import BuyView
 from src.data.object import MyObject
-
 
 def create_objects(arborescence: str) -> None:
     df_objects = pd.read_csv(FICHIER_OBJETS[arborescence], sep=";")
@@ -67,6 +67,11 @@ if __name__ == "__main__":
         page_icon="🧊",
         layout="wide",
     )
+    client = ClientGoogle()
+    df_indicateurs = client.get_indicateurs()
+    # TODO page acceuil
+    st.session_state["equipe"] = "test"
     st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
+    conn = st.connection["sql"]
     create_objects(arborescence="Programme exemple")
     show()

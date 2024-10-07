@@ -1,8 +1,12 @@
-from src.flow.arborescence.arborescence import Arborescence
-from src.variables import *
+from src.sql_update import ClientGoogle
 
-arb = Arborescence("Programme exemple")
-
-print(arb.question.options[0].prerequis.europeanisation <= 0.)
-print(arb.question.options[0].prerequis.niveau_techno)
-print(arb.question.options[0].prerequis.niveau_techno <= 0.)
+client = ClientGoogle()
+print(
+    f"{client.host}/{client.indicateurs_spredsheet}/values/R1C1:R100C100?key={client.api_key}"
+)
+print(client.get_indicateurs())
+client.update_values(
+    "A1:C2",
+    "USER_ENTERED",
+    [["A", "B"], ["C", "D"]],
+)

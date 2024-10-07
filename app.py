@@ -61,10 +61,9 @@ def buy_unit():
     objet_achete = st.session_state[st.session_state.arborescence.question.objet]
     st.session_state.sql_client.update_sql_objet(objet_achete)
     go_to_next_arborescence()
-
-
+     
 @st.fragment
-def init_show() -> None:
+def show() -> None:
     if "equipe" not in st.session_state:
         st.header("Choix du nom de l'équipe")
         team = st.text_input("équipe", "astrolabe")
@@ -74,12 +73,7 @@ def init_show() -> None:
                 connection_name="sql", equipe=st.session_state.equipe
             )
             st.rerun()
-    else:
-        show()
-        
-@st.fragment
-def show() -> None:
-    if st.session_state.arborescence.type_question == CHOIX_OPTION:
+    elif st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.session_state["view"] = OptionsView()
         st.session_state.view.show()
         st.session_state.view.display_button(
@@ -103,4 +97,4 @@ if __name__ == "__main__":
     create_objets()
     go_to_next_arborescence()
     # Affichage
-    init_show()
+    show()

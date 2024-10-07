@@ -15,7 +15,7 @@ def login():
     team = st.text_input("équipe", "astrolabe")
     if st.button("Log in"):
         st.session_state["equipe"] = team
-        st.rerun(scope="app")
+        st.rerun()
 
 def start_game():
     st.session_state["sql_client"] = ClientSQL(
@@ -40,5 +40,6 @@ if __name__ == "__main__":
         pg = st.navigation([st.Page(login)])
     else:
         start_game()
+        st.set_page_config(initial_sidebar_state="expanded")
         pg = st.navigation([st.Page("streamlit_pages/page_arborescence.py")])
     pg.run()

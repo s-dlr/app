@@ -10,7 +10,7 @@ from src.variables import *
 @dataclass
 class AbstractQuestion:
     contexte_question: str
-    num_question: str
+    num_question: int
     texte_question: str
 
 @dataclass

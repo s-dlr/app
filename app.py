@@ -35,11 +35,9 @@ def create_objets(arborescence: str) -> None:
 
 if __name__ == "__main__":
     # TODO page accueil
-    st.set_page_config(initial_sidebar_state="collapsed")
     if "equipe" not in st.session_state:
         pg = st.navigation([st.Page(login)])
     else:
         start_game()
-        st.set_page_config(initial_sidebar_state="expanded")
         pg = st.navigation([st.Page("streamlit_pages/page_arborescence.py")])
     pg.run()

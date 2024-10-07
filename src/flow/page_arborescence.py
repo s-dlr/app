@@ -72,9 +72,7 @@ def show() -> None:
 
 
 if __name__ == "__main__":
-    # st.set_page_config(
-    #     page_title="Arborescence",
-    #     page_icon="🧊",
-    #     layout="wide",
-    # )
+    st.set_page_config(
+        layout="wide",
+    )
     show()

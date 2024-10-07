@@ -50,8 +50,7 @@ if __name__ == "__main__":
                 st.Page(
                         "page_arborescence.py",
                         title="Arborescence",
-                        icon="🧊",
-                        layout="wide",
+                        icon="🧊"
                 )
             ]
        )

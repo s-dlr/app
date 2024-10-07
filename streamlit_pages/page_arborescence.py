@@ -69,10 +69,9 @@ def show() -> None:
         st.session_state.view.display_button(on_click=buy_unit)
         st.rerun()
 
-if __name__ == "__main__":
-    st.set_page_config(
-        page_title="Arborescence",
-        page_icon="🧊",
-        layout="wide",
-    )
-    show()
+st.set_page_config(
+    page_title="Arborescence",
+    page_icon="🧊",
+    layout="wide",
+)
+show()

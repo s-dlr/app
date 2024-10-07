@@ -73,7 +73,7 @@ def show() -> None:
             st.session_state["sql_client"] = ClientSQL(
                 connection_name="sql", equipe=st.session_state.equipe
             )
-            st.rerun(scope="fragment")
+            st.rerun()
 
     elif st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.session_state["view"] = OptionsView()
@@ -81,12 +81,12 @@ def show() -> None:
         st.session_state.view.display_button(
             on_click=go_to_next_question, disabled=(not st.session_state.radio_options)
         )
-        st.rerun(scope="fragment")
+        st.rerun()
     elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
         st.session_state["view"] = BuyView()
         st.session_state.view.show()
         st.session_state.view.display_button(on_click=buy_unit)
-        st.rerun(scope="fragment")
+        st.rerun()
 
 
 if __name__ == "__main__":

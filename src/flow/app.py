@@ -54,7 +54,7 @@ def start_programme():
     nom_objet_programme = "default_object"
     # Mise à jour de l'objet en cours de définition
     objet_programme = st.session_state[nom_objet_programme]
-    st.session_state.sql_client.update_objet(objet_programme)
+    st.session_state.sql_client.update_sql_objet(objet_programme)
     # Démarrage programme
 
 
@@ -63,7 +63,7 @@ def buy_unit():
     Achat d'un certain nombre d'unités
     """
     objet_achete = st.session_state[st.session_state.arborescence.question.objet]
-    st.session_state.sql_client.update_objet(objet_achete)
+    st.session_state.sql_client.update_sql_objet(objet_achete)
     go_to_next_arborescence()
 
 

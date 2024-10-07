@@ -12,6 +12,13 @@ from src.flow.views.options_view import OptionsView
 from src.flow.views.buy_view import BuyView
 from src.data.objet import MyObjet
 
+def login():
+    st.header("Choix du nom de l'équipe")
+    team = st.text_input("équipe", "astrolabe")
+    button_login = st.button("Log in")
+    if button_login:
+        st.session_state["equipe"] = team
+        st.rerun()
 
 def create_objets(arborescence: str) -> None:
     df_objets = pd.read_csv(FICHIER_OBJETS[arborescence], sep=";")
@@ -19,19 +26,26 @@ def create_objets(arborescence: str) -> None:
         new_objet = MyObjet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet
 
-
 if __name__ == "__main__":
     # TODO page accueil
-    st.session_state["sql_client"] = ClientSQL(
-        connection_name="sql", equipe=st.session_state.equipe
-    )
-    st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
-    create_objets(arborescence="Programme exemple")
+    if "equipe" not in st.session_state:
+        st.session_state.equipe = None
+        pg = st.Page(
+            login,
+            title="Choix équipe",
+            icon=":material/handyman:"
+        )
+    else:
+        st.session_state["sql_client"] = ClientSQL(
+            connection_name="sql", equipe=st.session_state.equipe
+        )
+        st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
+        create_objets(arborescence="Programme exemple")
+        pg = st.Page(
+                "page_arborescence.py",
+                title="Arborescence",
+                icon="🧊",
+                layout="wide",
+        )
 
-    pages = [
-        st.Page("login.py", title="Create your account"),
-        st.Page("page_arborescence.py", title="Create your account"),
-    ]
-
-    pg = st.navigation(pages)
     pg.run()

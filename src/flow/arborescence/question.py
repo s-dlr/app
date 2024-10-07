@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit as st
 
 from src.flow.arborescence.option import Option
-from src.flow.arborescence.number_units import NumberUnits
+from src.data.objet import Objet
 from src.variables import *
 
 @dataclass
@@ -38,7 +38,7 @@ class QuestionOptions(AbstractQuestion):
                 # TODO récupérer les seuils via l'API
                 self.options.append(option)
 
-    def get_next_question(self, texte_option: str) -> Option:
+    def get_option_by_text(self, texte_option: str) -> Option:
         for opt in self.options:
             if opt.texte_option == texte_option:
                 return opt.prochaine_question

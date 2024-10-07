@@ -5,7 +5,7 @@ from src.data.modification import Modification
 
 
 @dataclass
-class MyObjet:
+class Objet:
 
     nom: str = "default_objet"  # un nom unique par objet
     cout_unitaire: float = 0.0

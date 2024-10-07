@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from src.data.objet import MyObjet
+from src.data.objet import Objet
 
 
 class ClientSQL:
@@ -17,9 +17,9 @@ class ClientSQL:
         """
         # requete SQL
         # Objet depuis la requete
-        return MyObjet(objet)
+        return Objet(objet)
 
-    def update_sql_objet(self, objet: MyObjet) -> None:
+    def update_sql_objet(self, objet: Objet) -> None:
         """
         Efface la ligne correspondant à l'ancien objet dans la base SQL (si elle existe)
         Ajoute le nouvel objet

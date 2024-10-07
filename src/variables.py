@@ -44,4 +44,4 @@ CHOIX_NOMBRE_UNITE = "choix_nombre_unites"
 ARBORESCENCES = {
     "Programme exemple": f"{DATA_DIR}/arborescence_exemple/arborescence.csv"
 }
-FICHIER_OBJETS = {"Programme exemple": f"{DATA_DIR}/arborescence_exemple/objets.csv"}
+FICHIER_OBJETS = f"{DATA_DIR}/arborescence_exemple/objets.csv"

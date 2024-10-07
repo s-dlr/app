@@ -18,7 +18,7 @@ def start_game():
     )
     st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
     create_objets(arborescence="Programme exemple")
-    st.switch_page("page_arborescence.py", title="Arborescence", icon="🧊")
+    st.switch_page("page_arborescence.py")
 
 
 def create_objets(arborescence: str) -> None:

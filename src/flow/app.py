@@ -30,10 +30,14 @@ if __name__ == "__main__":
     # TODO page accueil
     if "equipe" not in st.session_state:
         st.session_state.equipe = None
-        pg = st.Page(
-            login,
-            title="Choix équipe",
-            icon=":material/handyman:"
+        pg = st.navigation(
+            [
+                st.Page(
+                    login,
+                    title="Choix équipe",
+                    icon=":material/handyman:"
+                )
+            ]
         )
     else:
         st.session_state["sql_client"] = ClientSQL(
@@ -41,11 +45,15 @@ if __name__ == "__main__":
         )
         st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
         create_objets(arborescence="Programme exemple")
-        pg = st.Page(
-                "page_arborescence.py",
-                title="Arborescence",
-                icon="🧊",
-                layout="wide",
-        )
+        pg = st.navigation(
+            [
+                st.Page(
+                        "page_arborescence.py",
+                        title="Arborescence",
+                        icon="🧊",
+                        layout="wide",
+                )
+            ]
+       )
 
     pg.run()

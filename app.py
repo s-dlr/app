@@ -1,51 +1,3 @@
-import sys
-
-import pandas as pd
-import streamlit as st
-
-sys.path.append(".")
-
-from src.sql_client import *
-from src.variables import *
-from src.flow.arborescence.arborescence import Arborescence
-from src.data.objet import Objet
-
-
-# def connect_to_sql():
-#     st.session_state["sql_client"] = ClientSQL(
-#         connection_name="sql", equipe=st.session_state.equipe
-#     )
-#     # st.switch_page("pages/page_arborescence.py")
-
-
-# def create_objets() -> None:
-#     df_objets = pd.read_csv(FICHIER_OBJETS, sep=";")
-#     for _, row in df_objets.iterrows():
-#         new_objet = Objet(**row.to_dict())
-#         st.session_state[row[NOM]] = new_objet
-
-#     # page_dict = [
-#     #     st.Page("pages/page_arborescence.py"),
-#     #     st.Page("pages/page_arborescence.py"),
-#     # ]
-#     # pg = st.navigation(page_dict, position="hidden")
-#     # pg.run()
-
-# if __name__ == "__main__":
-#     # Initialisation des objets
-#     create_objets()
-#     st.navigation(position='hidden')
-#     if "equipe" not in st.session_state:
-#         st.switch_page("pages/login.py")
-#     else:
-#         st.switch_page("pages/flow.py")
-#     # Connect to SQL
-#     connect_to_sql()
-
-# #     page_dict.append(st.Page("streamlit_pages/page_arborescence.py"))
-# #     pg = st.navigation(page_dict)
-# # pg.run()
-
 
 import sys
 
@@ -110,7 +62,6 @@ def buy_unit():
     objet_achete = st.session_state[st.session_state.arborescence.question.objet]
     st.session_state.sql_client.update_sql_objet(objet_achete)
     go_to_next_arborescence()
-
 
 @st.fragment
 def show() -> None:

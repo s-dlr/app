@@ -12,12 +12,13 @@ from src.data.objet import MyObjet
 
 
 def start_game():
+    st.write("Welcome")
     st.session_state["sql_client"] = ClientSQL(
         connection_name="sql", equipe=st.session_state.equipe
     )
     st.session_state["arborescence"] = Arborescence(arborescence="Programme exemple")
     create_objets(arborescence="Programme exemple")
-    st.switch_page("src/flow/page_arborescence.py", title="Arborescence", icon="🧊")
+    st.switch_page("page_arborescence.py", title="Arborescence", icon="🧊")
 
 
 def create_objets(arborescence: str) -> None:

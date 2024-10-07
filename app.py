@@ -103,4 +103,4 @@ if __name__ == "__main__":
     create_objets()
     go_to_next_arborescence()
     # Affichage
-    init_show()
+    show()

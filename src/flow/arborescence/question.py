@@ -21,9 +21,7 @@ class QuestionAchat(AbstractQuestion):
     prochaine_question: int = 0
 
     def get_next_question(self, texte_option: str) -> Option:
-        for opt in self.options:
-            if opt.texte_option == texte_option:
-                return opt.prochaine_question
+        return self.prochaine_question
 
 
 @dataclass

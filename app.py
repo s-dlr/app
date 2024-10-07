@@ -15,7 +15,7 @@ def login():
     team = st.text_input("équipe", "astrolabe")
     if st.button("Log in"):
         st.session_state["equipe"] = team
-        st.rerun(scope="app")
+        st.rerun()
 
 def start_game():
     st.session_state["sql_client"] = ClientSQL(
@@ -33,11 +33,11 @@ def create_objets(arborescence: str) -> None:
         st.session_state[row[NOM]] = new_objet
 
 
-if __name__ == "__main__":
-    # TODO page accueil
-    if "equipe" not in st.session_state:
-        pg = st.navigation([st.Page(login)])
-    else:
-        start_game()
-        pg = st.navigation([st.Page("streamlit_pages/page_arborescence.py")])
-    pg.run()
+page_dict = []
+if "equipe" not in st.session_state:
+    pg = st.navigation([st.Page(login)])
+else:
+    start_game()
+    page_dict.append(st.Page("streamlit_pages/page_arborescence.py"))
+    pg = st.navigation(page_dict)
+pg.run()

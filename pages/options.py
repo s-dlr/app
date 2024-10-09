@@ -50,7 +50,7 @@ def next_step():
     )
     if next_question_type == CHOIX_OPTION:
         go_to_next_question()
-    elif next_question_type == NOMBRE_UNITE:
+    else:
         go_to_next_question()
         st.switch_page("pages/buy.py")
 
@@ -95,6 +95,9 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         use_container_width=True,
         on_click=next_step,
         disabled=(st.session_state.select_option is None),
+    )
+    st.write(
+        st.session_state.arborescence.get_next_question(st.session_state.select_option)
     )
 
 else:

@@ -29,12 +29,12 @@ def go_to_next_question():
     1. Mise à jour  de l'état de l'arborecence (question et options courantes)
     2. Mise à jour de la vue
     """
-    selected_option_text = st.session_state.radio_options
     selected_option = st.session_state.arborescence.question.get_option_by_text(
-        selected_option_text
+        st.session_state.radio_options
     )
     # Mise à jour de l'objet
     # Mise à jour du programme
+    st.write("Go to " + selected_option.prochaine_question)
     if selected_option.prochaine_question == 0:
         start_programme(selected_option)
         go_to_next_arborescence()

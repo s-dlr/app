@@ -23,9 +23,8 @@ def go_to_next_question():
             st.session_state.radio_options
         )
         if selected_option.prochaine_question == 0:
-            st.session_state.arborescence.load_data(selected_option.prochaine_question)
-        else:
             load_next_arborescence()
+        else:
+            st.session_state.arborescence.load_data(selected_option.prochaine_question)
     else:
         load_next_arborescence()
-

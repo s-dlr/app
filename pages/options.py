@@ -68,6 +68,7 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
 
     # Liste des options
     list_options = st.session_state.arborescence.question.options
+    st.write(list_options)
 
     # Radio button for options
     st.radio(

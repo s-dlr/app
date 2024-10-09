@@ -36,6 +36,15 @@ def display_option_data(option):
         display_metrics(effets_immediat_dict, compteurs)
 
 def next_step():
+    # Application des modifications à l'objet
+    selected_option = st.session_state.arborescence.question.get_option_by_text(
+        st.session_state.radio_options
+    )
+    objet_option = st.session_state[selected_option.objet]
+    objet_option.apply_modification(selected_option.modification_objet)
+    # Application des modification au programme
+    # TODO
+    # Prochaine question
     go_to_next_question()
     if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
         st.switch_page("pages/buy.py")

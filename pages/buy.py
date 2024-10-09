@@ -8,9 +8,7 @@ def buy_unit():
     """
     st.session_state.sql_client.update_sql_objet(st.session_state.objet)
     # Aller à la prochaine arborescence
-    next_question_type = st.session_state.arborescence.get_next_question_type(
-        st.session_state.select_option
-    )
+    next_question_type = st.session_state.arborescence.get_next_question_type(None)
     go_to_next_question()
 
 st.set_page_config(
@@ -27,7 +25,7 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     st.markdown(f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**")
 
     # TODO Afficher les caractéristiques de l'objet
-    
+
     # Slider
     min_nb_unit = st.session_state.arborescence.question.min_nb_unit
     max_nb_unit = st.session_state.arborescence.question.max_nb_unit

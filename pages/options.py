@@ -48,6 +48,7 @@ def next_step():
     go_to_next_question()
     # if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
     #     st.switch_page("pages/buy.py")
+    st.write(st.session_state.arborescence.type_question)
 
 st.set_page_config(
     page_title="Options",

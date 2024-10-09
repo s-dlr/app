@@ -71,5 +71,5 @@ st.button(
     label="VALIDER",
     use_container_width=True,
     on_click=go_to_next_question,
-    disabled=bool(st.session_state.radio_options),
+    disabled=(not st.session_state.radio_options),
 )

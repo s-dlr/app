@@ -51,7 +51,7 @@ def next_step():
     if next_question_type == CHOIX_OPTION:
         go_to_next_question()
     else:
-        go_to_next_question()
+        # go_to_next_question()
         st.switch_page("pages/login.py")
 
 st.set_page_config(
@@ -105,3 +105,4 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
 
 else:
     st.write("Not available")
+    st.switch_page("pages/login.py")

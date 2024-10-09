@@ -48,14 +48,14 @@ class Arborescence:
             self.question.create_options(option_data)
             self.type_question = CHOIX_OPTION
 
-    def get_next_question(self, str_option: str = "") -> str:
+    def get_next_question(self) -> str:
         if self.type_question == CHOIX_OPTION:
             num_next_question = self.question.prochaine_question
         else:
-            num_next_question = self.question.get_next_question(texte_option)
+            num_next_question = self.question.get_next_question(st.session_state.option)
 
-    def get_next_question_type(self, str_option: str = "") -> str:
-        next_question = self.get_next_question_type(str_option)
+    def get_next_question_type(self) -> str:
+        next_question = self.get_next_question_type()
         data = self.df_arborescence[self.df_arborescence[NUM_QUESTION] == next_question]
         if data.iloc[0][NUMERO_OPTION] == NOMBRE_UNITE:
             return CHOIX_NOMBRE_UNITE

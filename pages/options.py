@@ -50,7 +50,7 @@ def next_step():
     )
     if next_question_type == CHOIX_OPTION:
         go_to_next_question()
-    elif next_question_type == CHOIX_OPTION:
+    elif next_question_type == NOMBRE_UNITE:
         st.switch_page("pages/buy.py")
         go_to_next_question()
 

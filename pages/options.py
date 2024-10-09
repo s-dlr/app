@@ -48,7 +48,6 @@ def next_step():
     go_to_next_question()
     # if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
     #     st.switch_page("pages/buy.py")
-    st.write(st.session_state.arborescence.type_question)
 
 st.set_page_config(
     page_title="Options",
@@ -94,5 +93,6 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         on_click=next_step,
         disabled=(not st.session_state.radio_options),
     )
+    st.write(st.session_state.arborescence.type_question)
 else:
     st.write("Not available")

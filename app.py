@@ -34,7 +34,7 @@ def go_to_next_question():
     )
     # Mise à jour de l'objet
     # Mise à jour du programme
-    st.write("Go to " + selected_option.prochaine_question)
+    st.write("Go to " + str(selected_option.prochaine_question))
     if selected_option.prochaine_question == 0:
         start_programme(selected_option)
         go_to_next_arborescence()
@@ -72,12 +72,12 @@ def update_view() -> None:
                 connection_name="astrolabedb", equipe=st.session_state.equipe
             )
             # Push indicateurs to SQL
-            st.session_state["sql_client"].insert_row(
+            st.session_state.sql_client.insert_row(
                 table="Indicateurs",
                 value_dict=st.session_state.indicateurs.to_dict(),
                 replace=True,
             )
-            st.session_state["sql_client"].insert_row(
+            st.session_state.sql_client.insert_row(
                 table="Armee", value_dict=st.session_state.armee.to_dict(), replace=True
             )
             st.rerun()

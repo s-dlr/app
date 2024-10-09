@@ -30,8 +30,8 @@ def go_to_next_question():
     else:
         load_next_arborescence()
     # Affichage
-    if current_type != st.session_state.arborescence.type_question:
-        if st.session_state.arborescence.type_question == CHOIX_OPTION:
-            st.switch_page("pages/options.py")
-        elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-            st.switch_page("pages/buy.py")
+    # if current_type != st.session_state.arborescence.type_question:
+    #     if st.session_state.arborescence.type_question == CHOIX_OPTION:
+    #         st.switch_page("pages/options.py")
+    #     elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+    #         st.switch_page("pages/buy.py")

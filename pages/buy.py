@@ -12,6 +12,12 @@ def buy_unit():
     # Aller à la prochaine arborescence
     go_to_next_question()
 
+st.set_page_config(
+    page_title="Achat",
+    page_icon="🧊",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
 
 # Contexte et question
 st.title(st.session_state.arborescence.arborescence)

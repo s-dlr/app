@@ -31,7 +31,7 @@ class ClientSQL:
         """
         Efface les lignes associées à l'équipe dans la table
         """
-        query = f"DELETE * FROM `{table}` WHERE equipe = '{self.equipe}'"
+        query = f"DELETE FROM `{table}` WHERE equipe = '{self.equipe}'"
         self.execute_query([query])
 
     def insert_row(self, table: str, value_dict: dict, replace: bool = False):

@@ -57,7 +57,3 @@ if st.button("Log in", type="primary"):
         st.switch_page("pages/options.py")
     elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
         st.switch_page("pages/buy.py")
-
-elif "arborescence" not in st.session_state:
-    st.write("Aucune partie en cours. Connectez vous d'abord.")
-    st.page_link("pages/login.py", label="Se connecter", icon="🏠")

@@ -48,17 +48,16 @@ def next_step():
     next_question_type = st.session_state.arborescence.get_next_question_type(
         st.session_state.select_option
     )
-    if next_question_type == CHOIX_OPTION:
-        go_to_next_question()
-    else:
-        go_to_next_question()
-        # st.switch_page("pages/login.py")
-        st.page_link("pages/login.py", label="Home", icon="🏠")
-        st.page_link("pages/buy.py", label="Buy", icon="🏠")
+    go_to_next_question()
+    if next_question_type == NOMBRE_UNITE:
+        st.header("Fin du programme")
+        st.page_link(
+            "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
+        )
 
 st.set_page_config(
-    page_title="Options",
-    page_icon="🧊",
+    page_title="Définition des besoins",
+    page_icon=":material/settings:",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -105,7 +104,6 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     except:
         st.write("")
 
-else:
-    st.write("Not available")
-    # TODO
-    # st.switch_page("pages/login.py")
+elif "arborescence" not in st.session_state:
+    st.write("Aucune partie en cours. Connectez vous d'abord.")
+    st.page_link("pages/login.py", label="Se connecter", icon="🏠")

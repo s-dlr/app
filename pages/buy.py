@@ -13,15 +13,14 @@ def buy_unit():
     next_question_type = st.session_state.arborescence.get_next_question_type(
         st.session_state.select_option
     )
+    go_to_next_question()
     if next_question_type == CHOIX_OPTION:
-        go_to_next_question()
-        st.switch_page("pages/options.py")
-    else:
-        go_to_next_question()
+        st.header("Commencer le prochain programme")
+        st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")
 
 st.set_page_config(
-    page_title="Achat",
-    page_icon="🧊",
+    page_title="Achat de matériel",
+    page_icon=":material/shopping_cart:",
     layout="wide",
     initial_sidebar_state="collapsed",
 )

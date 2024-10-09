@@ -22,17 +22,10 @@ def go_to_next_question():
         selected_option = st.session_state.arborescence.question.get_option_by_text(
             st.session_state.radio_options
         )
-        current_page = str(st.session_state.arborescence.type_question)
         if selected_option.prochaine_question == 0:
             st.session_state.arborescence.load_data(selected_option.prochaine_question)
         else:
             load_next_arborescence()
     else:
-        current_page = ""
         load_next_arborescence()
-    # Affichage
-    if current_page != st.session_state.arborescence.type_question:
-        if st.session_state.arborescence.type_question == CHOIX_OPTION:
-            st.switch_page("pages/options.py")
-        elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-            st.switch_page("pages/buy.py")
+

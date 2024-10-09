@@ -35,6 +35,10 @@ def display_option_data(option):
         st.markdown(f":blue[{EFFET_IMMEDIAT}]")
         display_metrics(effets_immediat_dict, compteurs)
 
+def next_step():
+    go_to_next_question()
+    if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+        st.switch_page("pages/buy.py")
 
 st.set_page_config(
     page_title="Options",
@@ -70,6 +74,6 @@ st.button(
     type="primary",
     label="VALIDER",
     use_container_width=True,
-    on_click=go_to_next_question,
+    on_click=next_step,
     disabled=(not st.session_state.radio_options),
 )

@@ -11,6 +11,8 @@ def buy_unit():
     st.session_state.sql_client.update_sql_objet(objet_achete)
     # Aller à la prochaine arborescence
     go_to_next_question()
+    if st.session_state.arborescence.type_question == CHOIX_OPTION:
+        st.switch_page("pages/options.py")
 
 st.set_page_config(
     page_title="Achat",

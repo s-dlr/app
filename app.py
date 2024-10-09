@@ -34,7 +34,6 @@ def go_to_next_question():
     )
     # Mise à jour de l'objet
     # Mise à jour du programme
-    st.write("Go to " + str(selected_option.prochaine_question))
     if selected_option.prochaine_question == 0:
         start_programme(selected_option)
         go_to_next_arborescence()

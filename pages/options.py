@@ -51,7 +51,7 @@ def next_step():
     if next_question_type == CHOIX_OPTION:
         go_to_next_question()
     else:
-        # go_to_next_question()
+        go_to_next_question()
         # st.switch_page("pages/login.py")
         st.page_link("pages/login.py", label="Home", icon="🏠")
         st.page_link("pages/buy.py", label="Buy", icon="🏠")

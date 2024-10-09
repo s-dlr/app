@@ -111,7 +111,10 @@
 #     update_view()
 
 import streamlit as st
+
 from src.variables import *
+
+st.navigation(position='hidden')
 
 if st.session_state.equipe:
     st.switch_page("pages/login.py")

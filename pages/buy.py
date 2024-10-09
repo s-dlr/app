@@ -6,12 +6,11 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
-    
+
     objet_achete = st.session_state[st.session_state.arborescence.question.objet]
     st.session_state.sql_client.update_sql_objet(objet_achete)
     # Aller à la prochaine arborescence
-    prochaine_arborescence = "Programme exemple"  # TODO Prochain programme
-    go_to_next_arborescence()
+    go_to_next_question()
 
 
 # Contexte et question

@@ -13,8 +13,7 @@ def init_session_state() -> None:
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet
-    # Arborescence initiale
-    go_to_next_arborescence()
+    # Indicateurs initiaux
     st.session_state["indicateurs"] = Indicateurs()
     st.session_state["armee"] = Armee()
 
@@ -51,7 +50,4 @@ team = st.text_input("équipe", "astrolabe")
 if st.button("Log in"):
     st.session_state["equipe"] = team
     init_team_in_db()
-    if st.session_state.arborescence.type_question == CHOIX_OPTION:
-        st.switch_page("pages/options.py")
-    elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-        st.switch_page("pages/buy.py")
+    go_to_next_question()

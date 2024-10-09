@@ -1,4 +1,6 @@
 import streamlit as st
+
+from src.flow.navigation import *
 from src.variables import *
 
 EFFET_IMMEDIAT: str = "Effets immédiats sur vos compteurs"
@@ -9,7 +11,7 @@ LABELS: dict = {
 
 def display_metrics(effets_dict: dict, compteurs: dict):
     """
-    Display effets with metrics components
+    Affiche des métriques
     """
     columns = st.columns(len(effets_dict))
     i = 0
@@ -20,7 +22,7 @@ def display_metrics(effets_dict: dict, compteurs: dict):
             delta=effet,
         )
         i += 1
-        
+
 def display_option_data(option):
     """
     Affiche toutes les informations correspondant
@@ -52,9 +54,10 @@ def display_list_options() -> None:
         if "radio_options" not in st.session_state:
             st.session_state["radio_options"] = False
         with col.container(
-            border=True  # (st.session_state.radio_options == option.texte_option)
+            border=(st.session_state.radio_options == option.texte_option)
         ):
             display_option_data(option)
+
 
 st.set_page_config(
     page_title="Options",
@@ -63,4 +66,18 @@ st.set_page_config(
 )
 
 st.divider()
+
+# Liste des options
 display_list_options()
+
+# Données correspondant aux options
+display_option_data()
+
+# Bouton
+st.button(
+    type="primary",
+    label="VALIDER",
+    use_container_width=True,
+    on_click=go_to_next_question,
+    disabled=st.session_state.radio_options,
+)

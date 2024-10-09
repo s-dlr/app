@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 import pandas as pd
-import streamlit as st
 
 from src.flow.arborescence.question import *
 from src.variables import *
@@ -49,16 +48,14 @@ class Arborescence:
             self.question.create_options(option_data)
             self.type_question = CHOIX_OPTION
 
-    def get_next_question(self) -> str:
+    def get_next_question(self, select_option) -> str:
         if self.type_question == NOMBRE_UNITE:
             num_next_question = self.question.prochaine_question
         else:
-            num_next_question = self.question.get_next_question(
-                st.session_state.select_option
-            )
+            num_next_question = self.question.get_next_question(select_option)
 
     def get_next_question_type(self) -> str:
-        next_question = self.get_next_question()
+        next_question = self.get_next_question(select_option)
         data = self.df_arborescence[self.df_arborescence[NUM_QUESTION] == next_question]
         if data.iloc[0][NUMERO_OPTION] == NOMBRE_UNITE:
             return CHOIX_NOMBRE_UNITE

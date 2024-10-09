@@ -45,7 +45,9 @@ def next_step():
     # Application des modification au programme
     # TODO
     # Prochaine question
-    next_question_type = st.session_state.arborescence.get_next_question_type()
+    next_question_type = st.session_state.arborescence.get_next_question_type(
+        st.session_state.select_option
+    )
     if next_question_type == CHOIX_OPTION:
         go_to_next_question()
     elif next_question_type == CHOIX_OPTION:

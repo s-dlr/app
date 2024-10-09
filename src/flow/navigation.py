@@ -20,7 +20,9 @@ def go_to_next_question():
     """
     # Etat de l'arborescence
     if st.session_state.arborescence:
-        next_question = st.session_state.arborescence.get_next_question()
+        next_question = st.session_state.arborescence.get_next_question(
+            st.session_state.select_option
+        )
         if next_question == 0:
             load_next_arborescence()
         else:

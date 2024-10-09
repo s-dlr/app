@@ -45,10 +45,6 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         disabled=False,
     )
 
-else:
-    st.write("Not available")
-    st.write(st.session_state.arborescence.type_question)
-    st.write(st.session_state.select_option)
-    st.write(
-        st.session_state.arborescence.get_next_question(st.session_state.select_option)
-    )
+elif "arborescence" not in st.session_state:
+    st.write("Aucune partie en cours. Connectez vous d'abord.")
+    st.page_link("pages/login.py", label="Se connecter", icon="🏠")

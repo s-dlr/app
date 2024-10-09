@@ -45,7 +45,9 @@ def next_step():
     # Application des modification au programme
     # TODO
     # Prochaine question
-    next_question_type = st.session_state.arborescence.get_next_question_type()
+    next_question_type = st.session_state.arborescence.get_next_question_type(
+        st.session_state.option
+    )
     if next_question_type == CHOIX_OPTION:
         go_to_next_question()
     elif next_question_type == CHOIX_OPTION:
@@ -97,11 +99,10 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
 
     # Debug
     st.write(st.session_state.arborescence.type_question)
-    selected_option = st.session_state.arborescence.question.get_option_by_text(
-        st.session_state.option
-    )
-    st.write(selected_option.prochaine_question)
+    st.write(st.session_state.option)
+    st.write(st.session_state.arborescence.get_next_question(st.session_state.option))
 else:
     st.write("Not available")
-    st.write(st.session_state.arborescence.question)
     st.write(st.session_state.arborescence.type_question)
+    st.write(st.session_state.option)
+    st.write(st.session_state.arborescence.get_next_question(st.session_state.option))

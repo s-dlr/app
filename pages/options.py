@@ -71,9 +71,6 @@ st.divider()
 # Liste des options
 display_list_options()
 
-# Données correspondant aux options
-display_option_data()
-
 # Bouton
 st.button(
     type="primary",

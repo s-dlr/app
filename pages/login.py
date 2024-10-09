@@ -46,13 +46,11 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Initialisation objets et arborescence
-init_session_state()
-
 # Affichage
 st.header("Choix du nom de l'équipe")
 team = st.text_input("équipe", "astrolabe")
 if st.button("Log in"):
     st.session_state["equipe"] = team
+    init_session_state()
     init_team_in_db()
     go_to_next_question()

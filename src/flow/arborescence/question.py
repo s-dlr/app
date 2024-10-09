@@ -36,3 +36,6 @@ class QuestionOptions(AbstractQuestion):
         for opt in self.options:
             if opt.texte_option == texte_option:
                 return opt
+
+    def get_next_question(self, texte_option: str) -> Option:
+        return self.get_option_by_text(texte_option).prochaine_question

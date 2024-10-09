@@ -43,3 +43,5 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
 
 else:
     st.write("Not available")
+    st.write(st.session_state.arborescence.question)
+    st.write(st.session_state.arborescence.type_question)

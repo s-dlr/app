@@ -21,6 +21,9 @@ def init_session_state() -> None:
     st.session_state["indicateurs"] = Indicateurs()
     st.session_state["armee"] = Armee()
     st.session_state.arborescence = False
+    # Init option
+    if "option" not in st.session_state:
+        st.session_state["option"] = ""
 
 def init_team_in_db() -> None:
     """

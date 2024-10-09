@@ -38,16 +38,19 @@ def display_option_data(option):
 def next_step():
     # Application des modifications à l'objet
     selected_option = st.session_state.arborescence.question.get_option_by_text(
-        st.session_state.radio_options
+        st.session_state.option
     )
     objet_option = st.session_state[selected_option.objet]
     objet_option.apply_modification(selected_option.modification_objet)
     # Application des modification au programme
     # TODO
     # Prochaine question
-    go_to_next_question()
-    # if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-    #     st.switch_page("pages/buy.py")
+    next_question_type = st.session_state.arborescence.get_next_question_type()
+    if next_question_type == CHOIX_OPTION:
+        go_to_next_question()
+    elif next_question_type == CHOIX_OPTION:
+        st.switch_page("pages/buy.py")
+        go_to_next_question()
 
 st.set_page_config(
     page_title="Options",
@@ -72,16 +75,14 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         options=[opt.texte_option for opt in list_options],
         index=None,
         label_visibility="collapsed",
-        key="radio_options",
+        key="option",
     )
-    if "radio_options" not in st.session_state:
-        st.session_state["radio_options"] = False
 
     # Affichage des données correspondant à chaque option
     columns = st.columns(len(list_options))
     for option, col in zip(list_options, columns):
         with col.container(
-            border=(st.session_state.radio_options == option.texte_option)
+            border=(st.session_state.option == option.texte_option)
         ):
             display_option_data(option)
 
@@ -91,13 +92,13 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         label="VALIDER",
         use_container_width=True,
         on_click=next_step,
-        disabled=(not st.session_state.radio_options),
+        disabled=(st.session_state.option == ""),
     )
 
     # Debug
     st.write(st.session_state.arborescence.type_question)
     selected_option = st.session_state.arborescence.question.get_option_by_text(
-        st.session_state.radio_options
+        st.session_state.option
     )
     st.write(selected_option.prochaine_question)
 else:

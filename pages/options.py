@@ -56,12 +56,12 @@ st.radio(
     label_visibility="collapsed",
     key="radio_options",
 )
+if "radio_options" not in st.session_state:
+    st.session_state["radio_options"] = False
 
 # Affichage des données correspondant à chaque option
 columns = st.columns(len(list_options))
 for option, col in zip(list_options, columns):
-    if "radio_options" not in st.session_state:
-        st.session_state["radio_options"] = False
     with col.container(border=(st.session_state.radio_options == option.texte_option)):
         display_option_data(option)
 
@@ -71,5 +71,5 @@ st.button(
     label="VALIDER",
     use_container_width=True,
     on_click=go_to_next_question,
-    disabled=st.session_state.radio_options,
+    disabled=bool(st.session_state.radio_options),
 )

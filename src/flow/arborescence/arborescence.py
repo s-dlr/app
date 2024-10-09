@@ -57,7 +57,7 @@ class Arborescence:
             )
 
     def get_next_question_type(self) -> str:
-        next_question = self.get_next_question_type()
+        next_question = self.get_next_question()
         data = self.df_arborescence[self.df_arborescence[NUM_QUESTION] == next_question]
         if data.iloc[0][NUMERO_OPTION] == NOMBRE_UNITE:
             return CHOIX_NOMBRE_UNITE

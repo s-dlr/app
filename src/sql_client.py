@@ -8,7 +8,6 @@ class ClientSQL:
     def __init__(self, connection_name: str, equipe: str) -> None:
         # TODO
         self.connection = st.connection(connection_name)
-        st.write("Connected to SQL")
         self.equipe = equipe
 
     def get_objet(self, objet: str):

@@ -76,7 +76,7 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         options=[opt.texte_option for opt in list_options],
         index=None,
         label_visibility="collapsed",
-        key="option",
+        key="select_option",
     )
 
     # Affichage des données correspondant à chaque option

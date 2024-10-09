@@ -10,7 +10,7 @@ def load_next_arborescence():
     prochaine_arborescence = "Programme exemple"  # TODO Prochain programme
     st.session_state["arborescence"] = Arborescence(arborescence=prochaine_arborescence)
     # Mise à jour des objets depuis SQL
-    st.session_state["select_option"] = False
+    st.session_state["select_option"] = None
 
 def go_to_next_question():
     """

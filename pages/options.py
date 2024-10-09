@@ -91,5 +91,5 @@ with st.form("my_form"):
         label="VALIDER",
         use_container_width=True,
         on_click=next_step,
-        disabled=(not st.session_state.radio_options),
+        # disabled=(not st.session_state.radio_options),
     )

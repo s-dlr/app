@@ -44,7 +44,7 @@ class Objet:
         """
         if attribute_name == "dependance_export":
             self.dependance_export = ",".join([self.dependance_export, increment])
-        elif current_value in self.__dataclass_fields__.keys():
+        elif attribute_name in self.__dataclass_fields__.keys():
             current_value = getattr(self, attribute_name)
             setattr(self, attribute_name, current_value + increment)
 

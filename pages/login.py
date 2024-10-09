@@ -46,6 +46,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+
 # Affichage
 st.header("Choix du nom de l'équipe")
 team = st.text_input("équipe", "astrolabe")

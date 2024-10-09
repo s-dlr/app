@@ -86,13 +86,16 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-display_question()
+try:
+    display_question()
 
-# Bouton validation
-st.button(
-    type="primary",
-    label="VALIDER",
-    use_container_width=True,
-    on_click=next_step,
-    disabled=(not st.session_state.radio_options),
-)
+    # Bouton validation
+    st.button(
+        type="primary",
+        label="VALIDER",
+        use_container_width=True,
+        on_click=next_step,
+        disabled=(not st.session_state.radio_options),
+    )
+except:
+    st.write("Not available")

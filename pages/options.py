@@ -47,6 +47,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Contexte et question
+st.title(st.session_state.arborescence.arborescence)
+st.write(st.session_state.arborescence.question.contexte_question)
+st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
 st.divider()
 
 # Liste des options

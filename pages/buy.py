@@ -6,9 +6,7 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
-
-    objet_achete = st.session_state[st.session_state.arborescence.question.objet]
-    st.session_state.sql_client.update_sql_objet(objet_achete)
+    st.session_state.sql_client.update_sql_objet(st.session_state.objet)
     # Aller à la prochaine arborescence
     next_question_type = st.session_state.arborescence.get_next_question_type(
         st.session_state.select_option
@@ -26,7 +24,7 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     # Contexte et question
     st.title(st.session_state.arborescence.arborescence)
     st.write(st.session_state.arborescence.question.contexte_question)
-    st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
+    st.markdown(f"**Combien de {st.session_state.objet} souhaitez vous acheter ?**")
 
     # Slider
     min_nb_unit = st.session_state.arborescence.question.min_nb_unit

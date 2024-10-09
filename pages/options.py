@@ -45,6 +45,7 @@ def next_step():
     # Application des modification au programme
     # TODO
     # Prochaine question
+    st.session_state['objet'] = objet_option  #  objet courant utilisé pour l'achat
     go_to_next_question()
 
 st.set_page_config(

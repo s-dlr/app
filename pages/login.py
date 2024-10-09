@@ -55,7 +55,7 @@ if st.button("Log in"):
     st.session_state["equipe"] = team
     init_session_state()
     init_team_in_db()
-    go_to_next_question()
+    load_next_arborescence()
     if st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.switch_page("pages/options.py")
     elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:

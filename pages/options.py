@@ -35,29 +35,6 @@ def display_option_data(option):
         st.markdown(f":blue[{EFFET_IMMEDIAT}]")
         display_metrics(effets_immediat_dict, compteurs)
 
-def display_list_options() -> None:
-    """
-    Affiche la liste des options
-    """
-    list_options = st.session_state.arborescence.question.options
-    # Radio button for options
-    st.radio(
-        label="Choix",
-        options=[opt.texte_option for opt in list_options],
-        index=None,
-        label_visibility="collapsed",
-        key="radio_options",
-    )
-    # Affichage des données correspondant à chaque option
-    columns = st.columns(len(list_options))
-    for option, col in zip(list_options, columns):
-        if "radio_options" not in st.session_state:
-            st.session_state["radio_options"] = False
-        with col.container(
-            border=(st.session_state.radio_options == option.texte_option)
-        ):
-            display_option_data(option)
-
 
 st.set_page_config(
     page_title="Options",
@@ -69,9 +46,26 @@ st.set_page_config(
 st.divider()
 
 # Liste des options
-display_list_options()
+list_options = st.session_state.arborescence.question.options
 
-# Bouton
+# Radio button for options
+st.radio(
+    label="Choix",
+    options=[opt.texte_option for opt in list_options],
+    index=None,
+    label_visibility="collapsed",
+    key="radio_options",
+)
+
+# Affichage des données correspondant à chaque option
+columns = st.columns(len(list_options))
+for option, col in zip(list_options, columns):
+    if "radio_options" not in st.session_state:
+        st.session_state["radio_options"] = False
+    with col.container(border=(st.session_state.radio_options == option.texte_option)):
+        display_option_data(option)
+
+# Bouton validation
 st.button(
     type="primary",
     label="VALIDER",

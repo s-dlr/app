@@ -96,9 +96,12 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         on_click=next_step,
         disabled=(st.session_state.select_option is None),
     )
-    st.write(
-        st.session_state.arborescence.get_next_question(st.session_state.select_option)
-    )
+    try:
+        st.write(
+            st.session_state.arborescence.get_next_question(st.session_state.select_option)
+        )
+    except:
+        st.write("")
 
 else:
     st.write("Not available")

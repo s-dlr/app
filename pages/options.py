@@ -45,18 +45,7 @@ def next_step():
     # Application des modification au programme
     # TODO
     # Prochaine question
-    next_question_type = st.session_state.arborescence.get_next_question_type(
-        st.session_state.select_option
-    )
-    if next_question_type == CHOIX_OPTION:
-        go_to_next_question()
-    else:
-        st.header("Fin du programme")
-        st.page_link(
-            "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
-        )
-        go_to_next_question()
-
+    go_to_next_question()
 
 st.set_page_config(
     page_title="Définition des besoins",
@@ -100,12 +89,15 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         on_click=next_step,
         disabled=(st.session_state.select_option is None),
     )
-    try:
-        st.write(
-            st.session_state.arborescence.get_next_question(st.session_state.select_option)
-        )
-    except:
-        st.write("")
+
+elif (
+    "arborescence" in st.session_state
+    and st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE
+):
+    st.header("Fin du programme")
+    st.page_link(
+        "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
+    )
 
 elif "arborescence" not in st.session_state:
     st.write("Aucune partie en cours. Connectez vous d'abord.")

@@ -14,9 +14,6 @@ def buy_unit():
         st.session_state.select_option
     )
     go_to_next_question()
-    if next_question_type == CHOIX_OPTION:
-        st.header("Commencer le prochain programme")
-        st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")
 
 st.set_page_config(
     page_title="Achat de matériel",
@@ -44,6 +41,13 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         on_click=buy_unit,
         disabled=False,
     )
+
+elif (
+    "arborescence" in st.session_state
+    and st.session_state.arborescence.type_question == CHOIX_OPTION
+):
+    st.header("Commencer le prochain programme")
+    st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")
 
 elif "arborescence" not in st.session_state:
     st.write("Aucune partie en cours. Connectez vous d'abord.")

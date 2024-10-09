@@ -52,7 +52,9 @@ class Arborescence:
         if self.type_question == CHOIX_OPTION:
             num_next_question = self.question.prochaine_question
         else:
-            num_next_question = self.question.get_next_question(st.session_state.option)
+            num_next_question = self.question.get_next_question(
+                st.session_state.select_option
+            )
 
     def get_next_question_type(self) -> str:
         next_question = self.get_next_question_type()

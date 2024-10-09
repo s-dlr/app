@@ -38,7 +38,7 @@ def display_option_data(option):
 def next_step():
     # Application des modifications à l'objet
     selected_option = st.session_state.arborescence.question.get_option_by_text(
-        st.session_state.option
+        st.session_state.select_option
     )
     objet_option = st.session_state[selected_option.objet]
     objet_option.apply_modification(selected_option.modification_objet)
@@ -83,7 +83,7 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     columns = st.columns(len(list_options))
     for option, col in zip(list_options, columns):
         with col.container(
-            border=(st.session_state.option == option.texte_option)
+            border=(st.session_state.select_option == option.texte_option)
         ):
             display_option_data(option)
 
@@ -93,15 +93,15 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         label="VALIDER",
         use_container_width=True,
         on_click=next_step,
-        disabled=(st.session_state.option == ""),
+        disabled=(st.session_state.select_option == ""),
     )
 
     # Debug
     st.write(st.session_state.arborescence.type_question)
-    st.write(st.session_state.option)
+    st.write(st.session_state.select_option)
     st.write(st.session_state.arborescence.get_next_question())
 else:
     st.write("Not available")
     st.write(st.session_state.arborescence.type_question)
-    st.write(st.session_state.option)
+    st.write(st.session_state.select_option)
     st.write(st.session_state.arborescence.get_next_question())

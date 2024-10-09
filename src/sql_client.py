@@ -23,8 +23,8 @@ class ClientSQL:
         Ecrit les indicateurs dans la base SQL
         """
         columns_list_str = ", ".join([f"`{k}`" for k in value_dict.keys()])
-        values_list_str = ", ".join([f"`{v}`" for v in value_dict.values()])
-        query = f"INSERT INTO {table}(`equipe`, {columns_list_str}) VALUES ({self.equipe}, {values_list_str})"
+        values_list_str = ", ".join([f"'{v}'" for v in value_dict.values()])
+        query = f"INSERT INTO `{table}`(`equipe`, {columns_list_str}) VALUES ('{self.equipe}', {values_list_str})"
         self.connection.query(query)
 
     def update_sql_objet(self, objet: Objet) -> None:

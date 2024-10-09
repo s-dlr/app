@@ -18,7 +18,7 @@ def go_to_next_question():
     2. Mise à jour de la vue
     """
     # Etat de l'arborescence
-    current_type = st.session_state.arborescence.type_question.copy()
+    current_type = str(st.session_state.arborescence.type_question)
     if st.session_state.arborescence:
         selected_option = st.session_state.arborescence.question.get_option_by_text(
             st.session_state.radio_options
@@ -30,8 +30,8 @@ def go_to_next_question():
     else:
         load_next_arborescence()
     # Affichage
-    # if current_type != st.session_state.arborescence.type_question:
-    #     if st.session_state.arborescence.type_question == CHOIX_OPTION:
-    #         st.switch_page("pages/options.py")
-    #     elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-    #         st.switch_page("pages/buy.py")
+    if current_type != st.session_state.arborescence.type_question:
+        if st.session_state.arborescence.type_question == CHOIX_OPTION:
+            st.switch_page("pages/options.py")
+        elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+            st.switch_page("pages/buy.py")

@@ -11,7 +11,7 @@ class Indicateurs:
 
     budget: float = 0.0
     europeanisation: float = 0.0
-    niveau_techno: float = 0.0
+    niveau_techno: float = 10.0
 
     def to_dict(self):
         return self.__dict__

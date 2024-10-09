@@ -43,6 +43,7 @@ def init_team_in_db() -> None:
 st.set_page_config(
     page_title="Home", page_icon="🧊", layout="wide", initial_sidebar_state="collapsed"
 )
+st.set_option("client.showSidebarNavigation", False)
 
 try:
     st.header(f'Bonjour {st.session_state.equipe} !')

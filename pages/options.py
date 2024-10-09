@@ -58,37 +58,38 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Contexte et question
-st.title(st.session_state.arborescence.arborescence)
-st.write(st.session_state.arborescence.question.contexte_question)
-st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
-st.divider()
+with st.form("my_form"):
+    # Contexte et question
+    st.title(st.session_state.arborescence.arborescence)
+    st.write(st.session_state.arborescence.question.contexte_question)
+    st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
+    st.divider()
 
-# Liste des options
-list_options = st.session_state.arborescence.question.options
+    # Liste des options
+    list_options = st.session_state.arborescence.question.options
 
-# Radio button for options
-st.radio(
-    label="Choix",
-    options=[opt.texte_option for opt in list_options],
-    index=None,
-    label_visibility="collapsed",
-    key="radio_options",
-)
-if "radio_options" not in st.session_state:
-    st.session_state["radio_options"] = False
+    # Radio button for options
+    st.radio(
+        label="Choix",
+        options=[opt.texte_option for opt in list_options],
+        index=None,
+        label_visibility="collapsed",
+        key="radio_options",
+    )
+    if "radio_options" not in st.session_state:
+        st.session_state["radio_options"] = False
 
-# Affichage des données correspondant à chaque option
-columns = st.columns(len(list_options))
-for option, col in zip(list_options, columns):
-    with col.container(border=(st.session_state.radio_options == option.texte_option)):
-        display_option_data(option)
+    # Affichage des données correspondant à chaque option
+    columns = st.columns(len(list_options))
+    for option, col in zip(list_options, columns):
+        with col.container(border=(st.session_state.radio_options == option.texte_option)):
+            display_option_data(option)
 
-# Bouton validation
-st.button(
-    type="primary",
-    label="VALIDER",
-    use_container_width=True,
-    on_click=next_step,
-    disabled=(not st.session_state.radio_options),
-)
+    # Bouton validation
+    st.form_submit_button(
+        type="primary",
+        label="VALIDER",
+        use_container_width=True,
+        on_click=next_step,
+        disabled=(not st.session_state.radio_options),
+    )

@@ -8,7 +8,6 @@ def buy_unit():
     """
     st.session_state.sql_client.update_sql_objet(st.session_state.objet)
     # Aller à la prochaine arborescence
-    next_question_type = st.session_state.arborescence.get_next_question_type(None)
     go_to_next_question()
 
 st.set_page_config(

@@ -49,7 +49,7 @@ class Arborescence:
             self.type_question = CHOIX_OPTION
 
     def get_next_question(self, select_option: str) -> str:
-        if self.type_question == NOMBRE_UNITE:
+        if self.type_question == CHOIX_NOMBRE_UNITE:
             return self.question.prochaine_question
         else:
             return self.question.get_next_question(select_option)

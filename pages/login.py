@@ -40,10 +40,7 @@ def init_team_in_db() -> None:
     )
 
 st.set_page_config(
-    page_title="Login",
-    page_icon="🧊",
-    layout="wide",
-    initial_sidebar_state="collapsed"
+    page_title="Login", page_icon="🏠", layout="wide", initial_sidebar_state="collapsed"
 )
 
 

@@ -52,7 +52,9 @@ def next_step():
         go_to_next_question()
     else:
         # go_to_next_question()
-        st.switch_page("pages/login.py")
+        # st.switch_page("pages/login.py")
+        st.page_link("pages/login.py", label="Home", icon="🏠")
+        st.page_link("pages/buy.py", label="Buy", icon="🏠")
 
 st.set_page_config(
     page_title="Options",
@@ -105,4 +107,5 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
 
 else:
     st.write("Not available")
-    st.switch_page("pages/login.py")
+    # TODO
+    # st.switch_page("pages/login.py")

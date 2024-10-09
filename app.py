@@ -59,16 +59,16 @@ def buy_unit():
     objet_achete = st.session_state[st.session_state.arborescence.question.objet]
     st.session_state.sql_client.update_sql_objet(objet_achete)
     go_to_next_arborescence()
-     
+
 @st.fragment
-def show() -> None:
-    if "equipe" not in st.session_state:
+def update_view() -> None:
+    if not st.session_state.equipe:
         st.header("Choix du nom de l'équipe")
         team = st.text_input("équipe", "astrolabe")
         if st.button("Log in"):
             st.session_state["equipe"] = team
             st.session_state["sql_client"] = ClientSQL(
-                connection_name="sql", equipe=st.session_state.equipe
+                connection_name="astrolabedb", equipe=st.session_state.equipe
             )
             st.rerun()
     elif st.session_state.arborescence.type_question == CHOIX_OPTION:
@@ -92,7 +92,8 @@ if __name__ == "__main__":
         layout="wide",
     )
     # Initialisation objets et arborescence
+    st.session_state["equipe"] = False
     create_objets()
     go_to_next_arborescence()
     # Affichage
-    show()
+    update_view()

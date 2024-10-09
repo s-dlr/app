@@ -4,3 +4,4 @@
 **/*.pyc
 **/*.cpython*
 test.py
+.streamlit

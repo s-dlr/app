@@ -24,8 +24,10 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     # Contexte et question
     st.title(st.session_state.arborescence.arborescence)
     st.write(st.session_state.arborescence.question.contexte_question)
-    st.markdown(f"**Combien de {st.session_state.objet} souhaitez vous acheter ?**")
+    st.markdown(f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**")
 
+    # TODO Afficher les caractéristiques de l'objet
+    
     # Slider
     min_nb_unit = st.session_state.arborescence.question.min_nb_unit
     max_nb_unit = st.session_state.arborescence.question.max_nb_unit

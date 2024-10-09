@@ -99,9 +99,9 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     # Debug
     st.write(st.session_state.arborescence.type_question)
     st.write(st.session_state.option)
-    st.write(st.session_state.arborescence.get_next_question(st.session_state.option))
+    st.write(st.session_state.arborescence.get_next_question())
 else:
     st.write("Not available")
     st.write(st.session_state.arborescence.type_question)
     st.write(st.session_state.option)
-    st.write(st.session_state.arborescence.get_next_question(st.session_state.option))
+    st.write(st.session_state.arborescence.get_next_question())

@@ -25,10 +25,10 @@ class Armee:
     Indicateurs armées
     """
 
-    bonus_terre: int = 0
-    bonus_mer: int = 0
-    bonus_air: int = 0
-    bonus_rens: int = 0
+    terre: int = 0
+    mer: int = 0
+    air: int = 0
+    rens: int = 0
 
     def to_dict(self):
         return self.__dict__

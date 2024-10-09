@@ -48,12 +48,18 @@ class Option:
         self.modification_programme = Modification(modification_programme)
         self.effet_immediat = Modification(effet_immediat)
 
-    def check_prerequis(self, europeanisation: float = 0., niveau_techno: float = 0.):
+    def check_prerequis(self):
         """
-        Vérifie si les niveaux d'auropéanisation et de technologie du pays \
+        Vérifie si les niveaux d'européanisation et de technologie du pays \
         permettent d'accéder à l'option
         """
-        # return (self.prerequis.europeanisation <= europeanisation) and (
-        #     self.prerequis.niveau_techno <= niveau_techno
-        # )
-        return True
+        if "indicateurs" in st.session_state:
+            return (
+                self.prerequis.europeanisation
+                <= st.session_state.indicateurs.europeanisation
+            ) and (
+                self.prerequis.niveau_techno
+                <= st.session_state.indicateurs.niveau_techno
+            )
+        else:
+            return True

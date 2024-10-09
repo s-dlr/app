@@ -75,6 +75,9 @@ def update_view() -> None:
             st.session_state["sql_client"].insert_row(
                 table="Indicateurs", value_dict=st.session_state["indicateurs"].to_dict(), replace=True
             )
+            st.session_state["sql_client"].insert_row(
+                table="Armee", value_dict=st.session_state["indicateurs"].to_dict(), replace=True
+            )
             st.rerun()
     # Arborescence
     else:
@@ -102,5 +105,6 @@ if __name__ == "__main__":
     create_objets()
     go_to_next_arborescence()
     st.session_state["indicateurs"] = Indicateurs()
+    st.session_state["armee"] = Armee()
     # Affichage
     update_view()

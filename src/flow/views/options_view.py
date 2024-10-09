@@ -63,7 +63,7 @@ class OptionsView(AbstractView):
             if "radio_options" not in st.session_state:
                 st.session_state["radio_options"] = False
             with col.container(
-                border=(st.session_state.radio_options == option.texte_option)
+                border=True #(st.session_state.radio_options == option.texte_option)
             ):
                 self.display_option_data(option)
 

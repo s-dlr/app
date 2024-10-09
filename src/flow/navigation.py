@@ -28,3 +28,4 @@ def go_to_next_question():
             st.session_state.arborescence.load_data(selected_option.prochaine_question)
     else:
         load_next_arborescence()
+    st.write(st.session_state.arborescence.type_question)

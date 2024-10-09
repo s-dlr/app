@@ -51,7 +51,7 @@ st.set_page_config(
 st.header("Choix du nom de l'équipe")
 team = st.text_input("équipe", "astrolabe")
 
-if st.button("Log in"):
+if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
     init_session_state()
     init_team_in_db()

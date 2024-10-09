@@ -94,7 +94,7 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         label="VALIDER",
         use_container_width=True,
         on_click=next_step,
-        disabled=(st.session_state.select_option == ""),
+        disabled=bool(st.session_state.select_option),
     )
 
 else:

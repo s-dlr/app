@@ -93,6 +93,12 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
         on_click=next_step,
         disabled=(not st.session_state.radio_options),
     )
+
+    # Debug
     st.write(st.session_state.arborescence.type_question)
+    selected_option = st.session_state.arborescence.question.get_option_by_text(
+        st.session_state.radio_options
+    )
+    st.write(selected_option.prochaine_question)
 else:
     st.write("Not available")

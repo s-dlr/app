@@ -102,3 +102,5 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     st.write(selected_option.prochaine_question)
 else:
     st.write("Not available")
+    st.write(st.session_state.arborescence.question)
+    st.write(st.session_state.arborescence.type_question)

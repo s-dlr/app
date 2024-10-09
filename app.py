@@ -62,7 +62,8 @@ def buy_unit():
 
 @st.fragment
 def update_view() -> None:
-    if not st.session_state.equipe:
+    # Login page
+    if "equipe" not in st.session_state:
         st.header("Choix du nom de l'équipe")
         team = st.text_input("équipe", "astrolabe")
         if st.button("Log in"):
@@ -75,18 +76,20 @@ def update_view() -> None:
                 table="Indicateurs", value_dict=st.session_state["indicateurs"].to_dict()
             )
             st.rerun()
-    elif st.session_state.arborescence.type_question == CHOIX_OPTION:
-        st.session_state["view"] = OptionsView()
-        st.session_state.view.show()
-        st.session_state.view.display_button(
-            on_click=go_to_next_question, disabled=(not st.session_state.radio_options)
-        )
-        st.rerun()
-    elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-        st.session_state["view"] = BuyView()
-        st.session_state.view.show()
-        st.session_state.view.display_button(on_click=buy_unit)
-        st.rerun()
+    # Arborescence
+    else:
+        if st.session_state.arborescence.type_question == CHOIX_OPTION:
+            st.session_state["view"] = OptionsView()
+            st.session_state.view.show()
+            st.session_state.view.display_button(
+                on_click=go_to_next_question, disabled=(not st.session_state.radio_options)
+            )
+            st.rerun()
+        elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+            st.session_state["view"] = BuyView()
+            st.session_state.view.show()
+            st.session_state.view.display_button(on_click=buy_unit)
+            st.rerun()
 
 
 if __name__ == "__main__":
@@ -96,7 +99,6 @@ if __name__ == "__main__":
         layout="wide",
     )
     # Initialisation objets et arborescence
-    st.session_state["equipe"] = False
     create_objets()
     go_to_next_arborescence()
     st.session_state["indicateurs"] = Indicateurs()

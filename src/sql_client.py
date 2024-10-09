@@ -1,3 +1,5 @@
+from typing import List
+
 import streamlit as st
 from sqlalchemy.sql import text
 
@@ -18,17 +20,30 @@ class ClientSQL:
         # requete SQL
         # Objet depuis la requete
         return Objet(objet)
+    
+    def execute_query(self, queries: List[str]):
+        with self.connection.session as session:
+            for query in queries:
+                session.execute(text(query))
+            session.commit()
 
-    def insert_row(self, table: str, value_dict: dict):
+    def delete_row(self, table: str):
+        """
+        Efface les lignes associées à l'équipe dans la table
+        """
+        query = f"DELETE * FROM `{table}` WHERE equipe = '{self.equipe}'"
+        self.execute_query([query])
+
+    def insert_row(self, table: str, value_dict: dict, replace: bool = False):
         """
         Ecrit les indicateurs dans la base SQL
         """
+        if replace:
+            self.delete_row(table)
         columns_list_str = ", ".join([f"`{k}`" for k in value_dict.keys()])
         values_list_str = ", ".join([f"'{v}'" for v in value_dict.values()])
         query = f"INSERT INTO `{table}`(`equipe`, {columns_list_str}) VALUES ('{self.equipe}', {values_list_str})"
-        with self.connection.session as session:
-            session.execute(text(query))
-            session.commit()
+        self.execute_query([query])
 
     def update_sql_objet(self, objet: Objet) -> None:
         """

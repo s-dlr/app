@@ -20,7 +20,15 @@ class ClientSQL:
         # requete SQL
         # Objet depuis la requete
         return Objet(objet)
-    
+
+    def get_table(self, table):
+        return self.connection.query(f"SELECT * FROM `{table}` WERE `equipe` = {self.equipe}")
+
+    def get_last_value(self, table):
+        return self.connection.query(
+            f"SELECT * FROM `{table}` WERE `equipe` = {self.equipe}"
+        )
+
     def execute_query(self, queries: List[str]):
         with self.connection.session as session:
             for query in queries:

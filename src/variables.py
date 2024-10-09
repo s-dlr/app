@@ -4,6 +4,7 @@ EQUIPE = "equipe"
 
 # Colonnes arborescence
 NUM_QUESTION = "num_question"
+ANNEE = "annee" 
 CONTEXTE_QUESTION = "contexte_question"
 TEXTE_QUESTION = "texte_question"
 NUMERO_OPTION = "numero_option"

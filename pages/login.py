@@ -11,16 +11,14 @@ from src.variables import *
 from src.sql_client import ClientSQL
 from src.flow.navigation import *
 
-def init_session_state() -> None:
-    # Objets
+def init_objets() -> None:
+    # Objets en local
     df_objets = pd.read_csv(FICHIER_OBJETS, sep=";")
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet
-    # Indicateurs initiaux
-    st.session_state["indicateurs"] = Indicateurs()
-    st.session_state["armee"] = Armee()
-    st.session_state.arborescence = False
+    # Objets SQL
+    # TODO: récupérer les objets existants
 
 def init_team_in_db() -> None:
     """
@@ -29,7 +27,18 @@ def init_team_in_db() -> None:
     st.session_state["sql_client"] = ClientSQL(
         connection_name="astrolabedb", equipe=st.session_state.equipe
     )
-    # Push indicateurs to SQL
+    df_indicateurs = st.session_state.sql_client.get_table("Indicateurs")
+    # Si l'équipe existe déjà
+    if df_indicateurs.shape[0] > 0:
+        # Récupérer les derniers indicateurs connus
+        # Appliquer les programmes et les constructions en cours
+
+        st.session_state["indicateurs"] = Indicateurs()
+    # Sinon initialisation
+    else:
+        st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
+        st.session_state["armee"] = Armee(annee=st.session_state.annee)
+    # Sauvegarde des indicateurs dans SQL
     st.session_state.sql_client.insert_row(
         table="Indicateurs",
         value_dict=st.session_state.indicateurs.to_dict(),
@@ -50,9 +59,9 @@ team = st.text_input("équipe", "astrolabe")
 
 if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
-    init_session_state()
-    init_team_in_db()
     load_next_arborescence()
+    init_team_in_db()
+    init_objets()
     if st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.switch_page("pages/options.py")
     elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:

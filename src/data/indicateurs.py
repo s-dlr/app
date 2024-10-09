@@ -12,6 +12,7 @@ class Indicateurs:
     budget: float = 0.0
     europeanisation: float = 0.0
     niveau_techno: float = 10.0
+    annee: int = 2000
 
     def to_dict(self):
         return self.__dict__
@@ -29,6 +30,7 @@ class Armee:
     mer: int = 0
     air: int = 0
     rens: int = 0
+    annee: int = 2000
 
     def to_dict(self):
         return self.__dict__

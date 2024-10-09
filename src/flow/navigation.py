@@ -11,6 +11,7 @@ def load_next_arborescence():
     st.session_state["arborescence"] = Arborescence(arborescence=prochaine_arborescence)
     # Mise à jour des objets depuis SQL
     st.session_state["select_option"] = None
+    st.session_state['annee'] =  st.session_state.arborescence.df_arborescence[ANNEE].iloc[0]
 
 def go_to_next_question():
     """

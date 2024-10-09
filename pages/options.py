@@ -76,8 +76,12 @@ def next_step():
     # TODO
     # Prochaine question
     go_to_next_question()
+    placeholder.empty()
     if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
         st.switch_page("pages/buy.py")
+    else:
+        with placeholder:
+            display_question()
 
 st.set_page_config(
     page_title="Options",
@@ -86,7 +90,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-display_question()
+placeholder = st.container()
+with placeholder:
+    display_question()
 
 # Bouton validation
 st.button(
@@ -95,5 +101,4 @@ st.button(
     use_container_width=True,
     on_click=next_step,
     disabled=(not st.session_state.radio_options),
-    key='click'
 )

@@ -20,7 +20,7 @@ def init_session_state() -> None:
     # Indicateurs initiaux
     st.session_state["indicateurs"] = Indicateurs()
     st.session_state["armee"] = Armee()
-
+    st.session_state.arborescence = False
 
 def init_team_in_db() -> None:
     """

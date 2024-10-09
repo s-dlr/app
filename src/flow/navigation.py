@@ -18,7 +18,7 @@ def go_to_next_question():
     2. Mise à jour de la vue
     """
     # Etat de l'arborescence
-    if "arborescence" in st.session_state:
+    if st.session_state.arborescence:
         selected_option = st.session_state.arborescence.question.get_option_by_text(
             st.session_state.radio_options
         )

@@ -73,10 +73,12 @@ def update_view() -> None:
             )
             # Push indicateurs to SQL
             st.session_state["sql_client"].insert_row(
-                table="Indicateurs", value_dict=st.session_state["indicateurs"].to_dict(), replace=True
+                table="Indicateurs",
+                value_dict=st.session_state.indicateurs.to_dict(),
+                replace=True,
             )
             st.session_state["sql_client"].insert_row(
-                table="Armee", value_dict=st.session_state["indicateurs"].to_dict(), replace=True
+                table="Armee", value_dict=st.session_state.armee.to_dict(), replace=True
             )
             st.rerun()
     # Arborescence

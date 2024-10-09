@@ -50,7 +50,7 @@ def next_step():
     )
     if next_question_type == CHOIX_OPTION:
         go_to_next_question()
-    if next_question_type == NOMBRE_UNITE:
+    else:
         st.header("Fin du programme")
         st.page_link(
             "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"

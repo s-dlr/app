@@ -23,11 +23,11 @@ class ClientSQL:
 
     def get_table(self, table):
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}'"
-        return self.connection.query(query).delete(columns=["equipe"])
+        return self.connection.query(query).set_index("equipe")
 
     def get_last_value(self, table):
         query = f"SELECT x.* FROM `{table}` x WHERE x.annee = (SELECT MAX(y.annee) FROM `{table}` y) AND x.equipe = '{self.equipe}'"
-        return self.connection.query(query).delete(columns=["equipe"])
+        return self.connection.query(query).set_index("equipe")
 
     def execute_query(self, queries: List[str]):
         with self.connection.session as session:

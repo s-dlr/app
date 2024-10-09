@@ -52,7 +52,7 @@ def next_step():
         go_to_next_question()
     else:
         go_to_next_question()
-        st.switch_page("pages/buy.py")
+        st.switch_page("pages/login.py")
 
 st.set_page_config(
     page_title="Options",

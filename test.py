@@ -1,5 +1,6 @@
 from src.flow.arborescence.arborescence import Arborescence
-from src.sql_client import ClientSQL
+from src.data.indicateurs import *
 
 # Arborescence(arborescence="Programme exemple")
-ClientSQL(connection_name="sql", equipe="test")
+indicateurs = Indicateurs()
+print(indicateurs.to_dict())

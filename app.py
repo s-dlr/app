@@ -8,7 +8,7 @@ from src.flow.arborescence.option import Option
 from src.flow.views.options_view import OptionsView
 from src.flow.views.buy_view import BuyView
 from src.data.objet import Objet
-
+from src.data.indicateurs import *
 
 def create_objets() -> None:
     df_objets = pd.read_csv(FICHIER_OBJETS, sep=";")
@@ -70,6 +70,10 @@ def update_view() -> None:
             st.session_state["sql_client"] = ClientSQL(
                 connection_name="astrolabedb", equipe=st.session_state.equipe
             )
+            # Push indicateurs to SQL
+            st.session_state["sql_client"].insert_row(
+                table="Indicateurs", value_dict=st.session_state["indicateurs"].to_dict()
+            )
             st.rerun()
     elif st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.session_state["view"] = OptionsView()
@@ -95,5 +99,6 @@ if __name__ == "__main__":
     st.session_state["equipe"] = False
     create_objets()
     go_to_next_arborescence()
+    st.session_state["indicateurs"] = Indicateurs()
     # Affichage
     update_view()

@@ -12,6 +12,9 @@ def load_next_arborescence():
     # Mise à jour des objets depuis SQL
     st.session_state["select_option"] = None
     st.session_state['annee'] =  st.session_state.arborescence.df_arborescence[ANNEE].iloc[0]
+    # TODO Si néccessaire
+    # Appliquer les programmes et les constructions en cours
+    # Sauvegarder les indicateurs dans SQL
 
 def go_to_next_question():
     """

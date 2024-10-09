@@ -27,26 +27,25 @@ def init_team_in_db() -> None:
     st.session_state["sql_client"] = ClientSQL(
         connection_name="astrolabedb", equipe=st.session_state.equipe
     )
-    df_indicateurs = st.session_state.sql_client.get_table("Indicateurs")
+    df_indicateurs = st.session_state.sql_client.get_last_value("Indicateurs")
     # Si l'équipe existe déjà
     if df_indicateurs.shape[0] > 0:
         # Récupérer les derniers indicateurs connus
-        # Appliquer les programmes et les constructions en cours
-
-        st.session_state["indicateurs"] = Indicateurs()
+        st.session_state["indicateurs"] = Indicateurs(**df_indicateurs.iloc[0].to_dict())
+        df_armee = st.session_state.sql_client.get_last_value("Armee")
+        st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())
     # Sinon initialisation
     else:
         st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
-    # Sauvegarde des indicateurs dans SQL
-    st.session_state.sql_client.insert_row(
-        table="Indicateurs",
-        value_dict=st.session_state.indicateurs.to_dict(),
-        replace=True,
-    )
-    st.session_state.sql_client.insert_row(
-        table="Armee", value_dict=st.session_state.armee.to_dict(), replace=True
-    )
+        # Sauvegarde des indicateurs dans SQL
+        st.session_state.sql_client.insert_row(
+            table="Indicateurs",
+            value_dict=st.session_state.indicateurs.to_dict(),
+        )
+        st.session_state.sql_client.insert_row(
+            table="Armee", value_dict=st.session_state.armee.to_dict()
+        )
 
 st.set_page_config(
     page_title="Login", page_icon="🏠", layout="wide", initial_sidebar_state="collapsed"

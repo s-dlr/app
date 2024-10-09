@@ -65,8 +65,6 @@ def display_question():
         ):
             display_option_data(option)
 
-
-@st.fragment
 def next_step():
     # Application des modifications à l'objet
     selected_option = st.session_state.arborescence.question.get_option_by_text(
@@ -78,12 +76,8 @@ def next_step():
     # TODO
     # Prochaine question
     go_to_next_question()
-    container_question.empty()
     if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
         st.switch_page("pages/buy.py")
-    else:
-        with container_question:
-            display_question()
 
 st.set_page_config(
     page_title="Options",
@@ -92,10 +86,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-container_question = st.container()
-
-with container_question:
-    display_question()
+display_question()
 
 # Bouton validation
 st.button(
@@ -104,4 +95,5 @@ st.button(
     use_container_width=True,
     on_click=next_step,
     disabled=(not st.session_state.radio_options),
+    key='click'
 )

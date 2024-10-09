@@ -48,12 +48,15 @@ def next_step():
     next_question_type = st.session_state.arborescence.get_next_question_type(
         st.session_state.select_option
     )
-    go_to_next_question()
+    if next_question_type == CHOIX_OPTION:
+        go_to_next_question()
     if next_question_type == NOMBRE_UNITE:
         st.header("Fin du programme")
         st.page_link(
             "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
         )
+        go_to_next_question()
+
 
 st.set_page_config(
     page_title="Définition des besoins",

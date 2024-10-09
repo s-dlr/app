@@ -80,8 +80,8 @@ def next_step():
     if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
         st.switch_page("pages/buy.py")
     else:
-        with placeholder:
-            display_question()
+        st.write("Next question")
+        st.write(st.session_state.arborescence.question.texte_question)
 
 st.set_page_config(
     page_title="Options",

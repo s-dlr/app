@@ -22,11 +22,13 @@ class ClientSQL:
         return Objet(objet)
 
     def get_table(self, table):
-        return self.connection.query(f"SELECT * FROM `{table}` WERE `equipe` = {self.equipe}")
+        return self.connection.query(
+            f"SELECT * FROM `{table}` WERE `equipe` = '{self.equipe}'"
+        )
 
     def get_last_value(self, table):
         return self.connection.query(
-            f"SELECT * FROM `{table}` WERE `equipe` = {self.equipe}"
+            f"SELECT * FROM `{table}` WERE `equipe` = '{self.equipe}'"
         )
 
     def execute_query(self, queries: List[str]):

@@ -43,8 +43,7 @@ st.set_page_config(
     page_title="Login",
     page_icon="🧊",
     layout="wide",
-    initial_sidebar_state="collapsed",
-    default=True,
+    initial_sidebar_state="collapsed"
 )
 
 # Affichage

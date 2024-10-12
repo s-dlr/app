@@ -9,7 +9,7 @@ def buy_unit():
     Achat d'un certain nombre d'unités
     """
     # Aller à la prochaine question ou arborescence
-    next_question = st.session_state.arborescence.get_next_question()
+    next_question = st.session_state.arborescence.get_next_question(select_option=0)
     st.session_state.objet.send_to_sql(st.session_state.sql_client)
     # TODO Lancer la construction
     if next_question != 0:

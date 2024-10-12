@@ -31,7 +31,7 @@ def init_programmes(fichier_programmes=FICHIER_PROGRAMMES) -> None:
     df_programmes = pd.read_csv(fichier_programmes, sep=";")
     for _, row in df_programmes.iterrows():
         new_programme = Programme(**row.to_dict())
-        st.session_state[row[NOM]] = new_programme
+        st.session_state["programme_"+row[NOM]] = new_programme
     # Programmes SQL
     get_programmes_from_sql()
 

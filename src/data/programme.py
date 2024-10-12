@@ -18,6 +18,9 @@ class Programme(AbstractClass):
     niveau_techno: float = 0.0
     duree: int = 1
 
+    def __post_init__(self):
+        self.nom = 'programme_' + self.nom
+
     @staticmethod
     def get_table():
         return "Programmes"

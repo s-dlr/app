@@ -28,7 +28,7 @@ def display_metrics(effets_dict: dict):
         i += 1
 
 def display_objet(objet_dict: dict):
-    st.dataframe(pd.DataFrame(objet_dict))
+    st.dataframe(pd.DataFrame([objet_dict]))
 
 def display_option_data(option):
     """
@@ -40,7 +40,7 @@ def display_option_data(option):
     if len(effets_immediat_dict) > 0:
         st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
         display_metrics(effets_immediat_dict)
-    st.markdown(f":blue[{EFFET_IMMEDIAT}]")
+    st.markdown(f":blue[{OBJET_DESC}]")
     display_objet(st.session_state[option.objet].to_dict())
 
 def next_step():

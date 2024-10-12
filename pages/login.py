@@ -36,6 +36,7 @@ def init_team_in_db() -> None:
         st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())
     # Sinon initialisation
     else:
+        st.session_state["annee"] = 2000
         st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         # Sauvegarde des indicateurs dans SQL

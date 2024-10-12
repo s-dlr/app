@@ -48,7 +48,7 @@ if st.session_state.arborescence:
             disabled=False,
         )
 
-    elif st.session_state.arborescence.type_question == CHOIX_OPTION
+    elif st.session_state.arborescence.type_question == CHOIX_OPTION:
         st.header("Commencer le prochain programme")
         st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")
 

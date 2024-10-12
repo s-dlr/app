@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import typing as T
 
 from src.data.modification import Modification
 from src.sql_client import ClientSQL
@@ -12,10 +13,10 @@ class AbstractClass:
     def get_table():
         pass
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return self.__dict__
 
-    def apply_modification(self, modification: Modification) -> None:
+    def apply_modification(self, modification: Modification) -> bool:
         """
         Applique une modification définie par un objet modification
         Renvoie un booléen indiquant si une modification a eu lieu
@@ -28,7 +29,7 @@ class AbstractClass:
                 self.update(key, value)
             return True
 
-    def update(self, attribute_name, increment):
+    def update(self, attribute_name: str, increment: T.Union[str, float]) -> None:
         """
         incrémente la valeur d'un attribut de l'objet
         """
@@ -38,7 +39,7 @@ class AbstractClass:
             current_value = getattr(self, attribute_name)
             setattr(self, attribute_name, current_value + increment)
 
-    def send_to_sql(self, sql_client: ClientSQL, replace=True):
+    def send_to_sql(self, sql_client: ClientSQL, replace=True) -> None:
         sql_client.insert_row(
             table=self.get_table(),
             value_dict=self.to_dict(),

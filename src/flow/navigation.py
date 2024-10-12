@@ -22,6 +22,8 @@ def go_to_next_question():
     1. Mise à jour  de l'état de l'arborecence (question et options courantes)
     2. Mise à jour de la vue
     """
+    if "select_option" not in st.session_state:
+        st.session_state["select_option"] = None
     # Etat de l'arborescence
     if st.session_state.arborescence:
         next_question = st.session_state.arborescence.get_next_question(

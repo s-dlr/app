@@ -1,6 +1,13 @@
 import streamlit as st
+import pandas as pd
 
 from src.flow.navigation import *
+
+
+def display_objet():
+    objet_dict = st.session_state.objet.to_dict()
+    st.dataframe(pd.DataFrame([objet_dict]))
+
 
 def buy_unit():
     """

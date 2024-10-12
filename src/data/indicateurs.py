@@ -42,7 +42,7 @@ class Armee(AbstractClass):
         """
         incrémente la valeur d'un attribut de l'objet
         """
-        armee_to_update = re.findall(r"bonus_([a-zA-Z]*)", attribute_name)
+        armee_to_update = re.findall(r"bonus_([a-zA-Z]*)", attribute_name)[0]
         if armee_to_update in self.__dataclass_fields__.keys():
             current_value = getattr(self, armee_to_update)
             setattr(self, armee_to_update, current_value + increment)

@@ -23,7 +23,7 @@ def init_team_in_db() -> None:
     st.session_state["sql_client"] = ClientSQL(
         connection_name="astrolabedb", equipe=st.session_state.equipe
     )
-    if st.session_state.sql_client:
+    if st.session_state.sql_client.check_team_exists():
         get_indicateurs_from_sql()
     else:
         st.session_state["annee"] = 2000

@@ -4,8 +4,7 @@ Module indicateurs
 from dataclasses import dataclass
 import re
 
-from src.data.modification import Modification
-from abstract_class import AbstractClass
+from src.data.abstract_class import AbstractClass
 
 @dataclass
 class Indicateurs(AbstractClass):
@@ -39,7 +38,7 @@ class Armee(AbstractClass):
     def get_table():
         return "Armee"
 
-    def update(self, attribute_name, increment):
+    def update(self, attribute_name: str, increment: float):
         """
         incrémente la valeur d'un attribut de l'objet
         """

@@ -63,60 +63,57 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-if (
-    st.session_state.arborescence
-    and st.session_state.arborescence.type_question == CHOIX_OPTION
-):
-    # Contexte et question
-    st.title(st.session_state.arborescence.arborescence)
-    st.write(st.session_state.arborescence.question.contexte_question)
-    st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
-    st.divider()
+if st.session_state.arborescence:
+    if st.session_state.arborescence.type_question == CHOIX_OPTION:
+        # Contexte et question
+        st.title(st.session_state.arborescence.arborescence)
+        st.write(st.session_state.arborescence.question.contexte_question)
+        st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
+        st.divider()
 
-    # Liste des options
-    list_options = st.session_state.arborescence.question.options
+        # Liste des options
+        list_options = st.session_state.arborescence.question.options
 
-    # Radio button for options
-    if "select_option" not in st.session_state:
-        st.session_state["select_option"] = False
-    st.radio(
-        label="Choix",
-        options=[opt.texte_option for opt in list_options],
-        index=None,
-        label_visibility="collapsed",
-        key="select_option",
-    )
+        # Radio button for options
+        if "select_option" not in st.session_state:
+            st.session_state["select_option"] = False
+        st.radio(
+            label="Choix",
+            options=[opt.texte_option for opt in list_options],
+            index=None,
+            label_visibility="collapsed",
+            key="select_option",
+        )
 
-    # Affichage des données correspondant à chaque option
-    columns = st.columns(len(list_options))
-    for option, col in zip(list_options, columns):
-        with col.container(
-            border=(st.session_state.select_option == option.texte_option)
-        ):
-            display_option_data(option)
+        # Affichage des données correspondant à chaque option
+        columns = st.columns(len(list_options))
+        for option, col in zip(list_options, columns):
+            with col.container(
+                border=(st.session_state.select_option == option.texte_option)
+            ):
+                display_option_data(option)
 
-    # Bouton validation
-    st.button(
-        type="primary",
-        label="VALIDER",
-        use_container_width=True,
-        on_click=next_step,
-        disabled=(st.session_state.select_option is None),
-    )
+        # Bouton validation
+        st.button(
+            type="primary",
+            label="VALIDER",
+            use_container_width=True,
+            on_click=next_step,
+            disabled=(st.session_state.select_option is None),
+        )
 
-elif (
-    st.session_state.arborescence
-    and st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE
-):
-    st.header("Fin du programme")
-    st.page_link(
-        "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
-    )
-
-elif not st.session_state.arborescence and "equipe" in st.session_state:
-    st.header("Commencer le prochain programme")
-    st.page_link("pages/load_data.py", label="Commencer", icon=":material/settings:")
+    elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+        st.header("Fin du programme")
+        st.page_link(
+            "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
+        )
 
 else:
-    st.write("Aucune partie en cours. Connectez vous d'abord.")
-    st.page_link("pages/login.py", label="Se connecter", icon="🏠")
+    if "equipe" in st.session_state:
+        st.header("Commencer le prochain programme")
+        st.page_link(
+            "pages/load_data.py", label="Commencer", icon=":material/settings:"
+        )
+    else:
+        st.write("Aucune partie en cours. Connectez vous d'abord.")
+        st.page_link("pages/login.py", label="Se connecter", icon="🏠")

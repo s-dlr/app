@@ -24,43 +24,39 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-if (
-    st.session_state.arborescence
-    and st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE
-):
-    # Contexte et question
-    st.title(st.session_state.arborescence.arborescence)
-    st.write(st.session_state.arborescence.question.contexte_question)
-    st.markdown(f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**")
+if st.session_state.arborescence:
+    if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
 
-    # TODO Afficher les caractéristiques de l'objet
+        # Contexte et question
+        st.title(st.session_state.arborescence.arborescence)
+        st.write(st.session_state.arborescence.question.contexte_question)
+        st.markdown(f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**")
 
-    # Slider
-    min_nb_unit = st.session_state.arborescence.question.min_nb_unit
-    max_nb_unit = st.session_state.arborescence.question.max_nb_unit
-    slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
+        # TODO Afficher les caractéristiques de l'objet
 
-    # Bouton
-    st.button(
-        type="primary",
-        label="VALIDER",
-        use_container_width=True,
-        on_click=buy_unit,
-        disabled=False,
-    )
+        # Slider
+        min_nb_unit = st.session_state.arborescence.question.min_nb_unit
+        max_nb_unit = st.session_state.arborescence.question.max_nb_unit
+        slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
 
-elif (
-    st.session_state.arborescence
-    and st.session_state.arborescence.type_question == CHOIX_OPTION
-):
-    st.header("Commencer le prochain programme")
-    st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")
+        # Bouton
+        st.button(
+            type="primary",
+            label="VALIDER",
+            use_container_width=True,
+            on_click=buy_unit,
+            disabled=False,
+        )
 
+    elif st.session_state.arborescence.type_question == CHOIX_OPTION
+        st.header("Commencer le prochain programme")
+        st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")
 
-elif not st.session_state.arborescence and "equipe" in st.session_state:
-    st.header("Commencer le prochain programme")
-    st.page_link("pages/load_data.py", label="Commencer", icon=":material/settings:")
 
 else:
-    st.write("Aucune partie en cours. Connectez vous d'abord.")
-    st.page_link("pages/login.py", label="Se connecter", icon="🏠")
+    if "equipe" in st.session_state:
+        st.header("Commencer le prochain programme")
+        st.page_link("pages/load_data.py", label="Commencer", icon=":material/settings:")
+    else:
+        st.write("Aucune partie en cours. Connectez vous d'abord.")
+        st.page_link("pages/login.py", label="Se connecter", icon="🏠")

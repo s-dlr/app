@@ -41,7 +41,7 @@ def display_option_data(option):
         st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
         display_metrics(effets_immediat_dict)
     st.markdown(f":blue[{EFFET_IMMEDIAT}]")
-    display_objet()
+    display_objet(st.session_state[option.objet].to_dict())
 
 def next_step():
     # Application des modifications à l'objet

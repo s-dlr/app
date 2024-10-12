@@ -1,18 +1,22 @@
 import streamlit as st
+import pandas as pd
 
 from src.flow.navigation import *
 from src.variables import *
 
-EFFET_IMMEDIAT: str = "Effets immédiats sur vos compteurs"
+OBJET_DESC: str = "Objet concerné"
+EFFET_IMMEDIAT_DESC: str = "Effets immédiats sur vos compteurs"
 LABELS: dict = {
     EUROPEANISATION: "Européanisation",
     NIVEAU_TECHNO: "Niveau technologique",
+    BUDGET: 'Budget'
 }
 
-def display_metrics(effets_dict: dict, compteurs: dict):
+def display_metrics(effets_dict: dict):
     """
     Affiche des métriques
     """
+    compteurs = st.session_state.indicateurs.to_dict()
     columns = st.columns(len(effets_dict))
     i = 0
     for compteur, effet in effets_dict.items():
@@ -23,6 +27,9 @@ def display_metrics(effets_dict: dict, compteurs: dict):
         )
         i += 1
 
+def display_objet(objet_dict: dict):
+    st.dataframe(pd.DataFrame(objet_dict))
+
 def display_option_data(option):
     """
     Affiche toutes les informations correspondant
@@ -32,8 +39,10 @@ def display_option_data(option):
     # Effet immédiat
     effets_immediat_dict = option.effet_immediat.to_dict()
     if len(effets_immediat_dict) > 0:
-        st.markdown(f":blue[{EFFET_IMMEDIAT}]")
+        st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
         display_metrics(effets_immediat_dict, compteurs)
+    st.markdown(f":blue[{EFFET_IMMEDIAT}]")
+    display_objet()
 
 def next_step():
     # Application des modifications à l'objet
@@ -66,6 +75,8 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     list_options = st.session_state.arborescence.question.options
 
     # Radio button for options
+    if "select_option" not in st.session_state:
+        st.session_state["select_option"] = False
     st.radio(
         label="Choix",
         options=[opt.texte_option for opt in list_options],

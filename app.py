@@ -14,15 +14,6 @@ st.set_page_config(
 )
 st.set_option("client.showSidebarNavigation", False)
 
-with st.sidebar:
-    uploaded_arborescence = st.file_uploader(
-        "Choisir une arborescence", key="arborescence_file"
-    )
-    uploaded_objets = st.file_uploader(
-        "Choisir un fichier objet",
-        key="objets_file"
-    )
-
 try:
     st.header(f'Bonjour {st.session_state.equipe} !')
     go_to_next_question()

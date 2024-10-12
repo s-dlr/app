@@ -102,7 +102,7 @@ if "arborescence" in st.session_state and st.session_state.arborescence.type_que
     )
 
 elif (
-    "arborescence" in st.session_state
+    st.session_state.arborescence
     and st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE
 ):
     st.header("Fin du programme")
@@ -110,6 +110,10 @@ elif (
         "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
     )
 
-elif "arborescence" not in st.session_state:
+elif not st.session_state.arborescence and "equipe" in st.session_state:
+    st.header("Commencer le prochain programme")
+    st.page_link("pages/load_data.py", label="Commencer", icon=":material/settings:")
+
+else:
     st.write("Aucune partie en cours. Connectez vous d'abord.")
     st.page_link("pages/login.py", label="Se connecter", icon="🏠")

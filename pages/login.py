@@ -11,11 +11,9 @@ from src.variables import *
 from src.sql_client import ClientSQL
 from src.flow.navigation import *
 
-def init_objets() -> None:
+def init_objets(fichier_objets=FICHIER_OBJETS) -> None:
     # Objets en local
-    # TODO FIchier objets
-    # df_objets = pd.read_csv(FICHIER_OBJETS, sep=";")
-    df_objets = pd.read_csv("objets_file", sep=";")
+    df_objets = pd.read_csv(fichier_objets, sep=";")
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet
@@ -60,10 +58,13 @@ team = st.text_input("équipe", "astrolabe")
 
 if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
-    load_next_arborescence()
     init_team_in_db()
-    init_objets()
-    if st.session_state.arborescence.type_question == CHOIX_OPTION:
-        st.switch_page("pages/options.py")
-    elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-        st.switch_page("pages/buy.py")
+    st.switch_page("pages/load_data.py")
+    st.session_state["arborescence"] = False
+    # load_next_arborescence()
+    # init_team_in_db()
+    # init_objets()
+    # if st.session_state.arborescence.type_question == CHOIX_OPTION:
+    #     st.switch_page("pages/options.py")
+    # elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+    #     st.switch_page("pages/buy.py")

@@ -31,9 +31,10 @@ def go_to_next_question():
         next_question = st.session_state.arborescence.get_next_question(
             st.session_state.select_option
         )
-        if next_question == 0:
-            load_next_arborescence()
-        else:
+        if next_question != 0:
             st.session_state.arborescence.load_data(next_question)
+        else:
+            st.session_state.arborescence = False
     else:
-        load_next_arborescence()
+        st.session_state.arborescence = False
+

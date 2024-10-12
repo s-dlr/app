@@ -35,12 +35,11 @@ def display_option_data(option):
     Affiche toutes les informations correspondant
     """
     # TODO Récupérer les valeurs des compteurs
-    compteurs = {EUROPEANISATION: 3, NIVEAU_TECHNO: 2}
     # Effet immédiat
     effets_immediat_dict = option.effet_immediat.to_dict()
     if len(effets_immediat_dict) > 0:
         st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
-        display_metrics(effets_immediat_dict, compteurs)
+        display_metrics(effets_immediat_dict)
     st.markdown(f":blue[{EFFET_IMMEDIAT}]")
     display_objet()
 

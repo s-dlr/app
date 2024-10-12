@@ -11,7 +11,7 @@ def buy_unit():
     st.session_state.sql_client.update_sql_objet(st.session_state.objet)
     # Aller à la prochaine question ou arborescence
     next_question = st.session_state.arborescence.get_next_question()
-    st.session_state.objet.send_to_sql(st.session_state.client_sql)
+    st.session_state.objet.send_to_sql(st.session_state.sql_client)
     # TODO Lancer la construction
     if next_question != 0:
         st.session_state.arborescence.load_data(next_question)

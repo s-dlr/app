@@ -14,6 +14,12 @@ st.set_page_config(
 )
 st.set_option("client.showSidebarNavigation", False)
 
+with st.sidebar:
+    uploaded_file = st.file_uploader("Choose a file")
+    # Can be used wherever a "file-like" object is accepted:
+    dataframe = pd.read_csv(uploaded_file)
+
+
 try:
     st.header(f'Bonjour {st.session_state.equipe} !')
     go_to_next_question()

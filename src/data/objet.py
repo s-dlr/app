@@ -4,7 +4,7 @@ from src.data.abstract_class import AbstractClass
 
 
 @dataclass
-class Objet:
+class Objet(AbstractClass):
 
     nom: str = None  # un nom unique par objet
     cout_unitaire: float = 0.0

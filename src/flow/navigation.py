@@ -6,8 +6,9 @@ import streamlit as st
 from src.variables import *
 from src.flow.arborescence.arborescence import Arborescence
 
-def load_next_arborescence():
-    prochaine_arborescence = "Programme exemple"  # TODO Prochain programme
+
+def load_next_arborescence(prochaine_arborescence="Programme exemple"):
+    # TODO Prochain programme
     st.session_state["arborescence"] = Arborescence(
         arborescence=st.session_state["arborescence_file"]
     )
@@ -17,6 +18,7 @@ def load_next_arborescence():
     # TODO Si néccessaire
     # Appliquer les programmes et les constructions en cours
     # Sauvegarder les indicateurs dans SQL
+
 
 def go_to_next_question():
     """
@@ -37,4 +39,3 @@ def go_to_next_question():
             st.session_state.arborescence = False
     else:
         st.session_state.arborescence = False
-

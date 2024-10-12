@@ -11,5 +11,6 @@ uploaded_objets = st.file_uploader("Choisir un fichier objet")
 if st.button("Charger les données", type="primary"):
     load_next_arborescence(uploaded_arborescence)
     init_objets(uploaded_objets)
+    st.write("L'arborescence et les objets ont été créés")
 
 st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")

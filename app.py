@@ -15,10 +15,13 @@ st.set_page_config(
 st.set_option("client.showSidebarNavigation", False)
 
 with st.sidebar:
-    uploaded_file = st.file_uploader("Choose a file")
-    # Can be used wherever a "file-like" object is accepted:
-    dataframe = pd.read_csv(uploaded_file)
-
+    uploaded_arborescence = st.file_uploader(
+        "Choisir une arborescence", key="arborescence_file"
+    )
+    uploaded_objets = st.file_uploader(
+        "Choisir un fichier objet",
+        key="objets_file"
+    )
 
 try:
     st.header(f'Bonjour {st.session_state.equipe} !')

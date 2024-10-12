@@ -13,7 +13,9 @@ from src.flow.navigation import *
 
 def init_objets() -> None:
     # Objets en local
-    df_objets = pd.read_csv(FICHIER_OBJETS, sep=";")
+    # TODO FIchier objets
+    # df_objets = pd.read_csv(FICHIER_OBJETS, sep=";")
+    df_objets = pd.read_csv("objets_file", sep=";")
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet

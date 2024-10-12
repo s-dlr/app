@@ -10,7 +10,9 @@ class Arborescence:
     arborescence: str
 
     def __post_init__(self) -> None:
-        self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
+        self.df_arborescence = pd.read_csv(self.arborescence, sep=";")
+        # TODO: Fichier local
+        # self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
         self.load_data(num_question=1)
 
     def load_data(self, num_question: int = 1) -> None:

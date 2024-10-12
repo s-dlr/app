@@ -32,12 +32,12 @@ if st.session_state.arborescence:
         st.title(st.session_state.arborescence.arborescence)
         st.write(st.session_state.arborescence.question.contexte_question)
         st.markdown(f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**")
-        st.divide()
+        st.divider()
 
         # Caractéristiques de l'objet courant
         st.header(f"Caractéristiques de {st.session_state.objet.nom}")
         display_objet(st.session_state.objet.to_dict())
-        st.divide()
+        st.divider()
 
         # Slider
         min_nb_unit = st.session_state.arborescence.question.min_nb_unit

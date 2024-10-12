@@ -1,0 +1,39 @@
+"""
+Fonctions pour afficher des données
+"""
+import pandas as pd
+import streamlit as st
+
+from src.variables import *
+
+#############
+#   Labels  #
+#############
+
+OBJET_DESC: str = "Objet concerné"
+EFFET_IMMEDIAT_DESC: str = "Effets immédiats sur vos compteurs"
+LABELS: dict = {
+    EUROPEANISATION: "Européanisation",
+    NIVEAU_TECHNO: "Niveau technologique",
+    BUDGET: "Budget",
+}
+
+
+def display_metrics(effets_dict: dict):
+    """
+    Affiche des métriques
+    """
+    compteurs = st.session_state.indicateurs.to_dict()
+    columns = st.columns(len(effets_dict))
+    i = 0
+    for compteur, effet in effets_dict.items():
+        columns[i].metric(
+            label=LABELS[compteur],
+            value=compteurs.get(compteur, 0) + effet,
+            delta=effet,
+        )
+        i += 1
+
+
+def display_objet(objet_dict: dict):
+    st.dataframe(pd.DataFrame([objet_dict]))

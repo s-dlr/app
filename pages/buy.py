@@ -1,12 +1,7 @@
 import streamlit as st
-import pandas as pd
 
-from src.flow.navigation import *
-
-
-def display_objet():
-    objet_dict = st.session_state.objet.to_dict()
-    st.dataframe(pd.DataFrame([objet_dict]))
+from streamlit_utils.display_functions import *
+from streamlit_utils.navigation import *
 
 
 def buy_unit():
@@ -14,8 +9,14 @@ def buy_unit():
     Achat d'un certain nombre d'unités
     """
     st.session_state.sql_client.update_sql_objet(st.session_state.objet)
-    # Aller à la prochaine arborescence
-    go_to_next_question()
+    # Aller à la prochaine question ou arborescence
+    next_question = st.session_state.arborescence.get_next_question()
+    st.session_state.objet.send_to_sql(st.session_state.client_sql)
+    # TODO Lancer la construction
+    if next_question != 0:
+        st.session_state.arborescence.load_data(next_question)
+    else:
+        st.session_state.arborescence = False
 
 st.set_page_config(
     page_title="Achat de matériel",
@@ -31,8 +32,12 @@ if st.session_state.arborescence:
         st.title(st.session_state.arborescence.arborescence)
         st.write(st.session_state.arborescence.question.contexte_question)
         st.markdown(f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**")
+        st.divide()
 
-        # TODO Afficher les caractéristiques de l'objet
+        # Caractéristiques de l'objet courant
+        st.header(f"Caractéristiques de {st.session_state.objet.nom}")
+        display_objet(st.session_state.objet.to_dict())
+        st.divide()
 
         # Slider
         min_nb_unit = st.session_state.arborescence.question.min_nb_unit

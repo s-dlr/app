@@ -15,6 +15,7 @@ EFFET_IMMEDIAT = "effet_immediat"
 MODIFICATION_OBJET = "modification_objet"
 MODIFICATION_PROGRAMME = "modification_programme"
 OBJET = "objet"  # objet concerné par l'option. Un des objet de l'arbrescence
+PROGRAMME = "programme" # programme concerné par l'option
 
 # Attributs objets
 NOM = "nom"
@@ -46,3 +47,4 @@ ARBORESCENCES = {
     "Programme exemple": f"{DATA_DIR}/arborescence_exemple/arborescence.csv",
 }
 FICHIER_OBJETS = f"{DATA_DIR}/arborescence_exemple/objets.csv"
+FICHIER_PROGRAMMES = f"{DATA_DIR}/arborescence_exemple/programmes.csv"

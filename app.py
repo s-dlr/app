@@ -7,7 +7,7 @@ from src.data.indicateurs import *
 from src.data.objet import Objet
 from src.variables import *
 from src.sql_client import ClientSQL
-from src.flow.navigation import *
+from streamlit_utils.navigation import *
 
 st.set_page_config(
     page_title="Home", page_icon="🧊", layout="wide", initial_sidebar_state="collapsed"

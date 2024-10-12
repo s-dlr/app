@@ -6,19 +6,15 @@ import pandas as pd
 import streamlit as st
 
 from src.data.indicateurs import *
-from src.data.objet import Objet
+from streamlit_utils.manage_state import *
 from src.variables import *
 from src.sql_client import ClientSQL
-from src.flow.navigation import *
+from streamlit_utils.navigation import *
 
-def init_objets(fichier_objets=FICHIER_OBJETS) -> None:
-    # Objets en local
-    df_objets = pd.read_csv(fichier_objets, sep=";")
-    for _, row in df_objets.iterrows():
-        new_objet = Objet(**row.to_dict())
-        st.session_state[row[NOM]] = new_objet
-    # Objets SQL
-    # TODO: récupérer les objets existants
+st.set_page_config(
+    page_title="Login", page_icon="🏠", layout="wide", initial_sidebar_state="collapsed"
+)
+
 
 def init_team_in_db() -> None:
     """
@@ -27,30 +23,14 @@ def init_team_in_db() -> None:
     st.session_state["sql_client"] = ClientSQL(
         connection_name="astrolabedb", equipe=st.session_state.equipe
     )
-    df_indicateurs = st.session_state.sql_client.get_last_value("Indicateurs")
-    # Si l'équipe existe déjà
-    if df_indicateurs.shape[0] > 0:
-        # Récupérer les derniers indicateurs connus
-        st.session_state["indicateurs"] = Indicateurs(**df_indicateurs.iloc[0].to_dict())
-        df_armee = st.session_state.sql_client.get_last_value("Armee")
-        st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())
-    # Sinon initialisation
+    if st.session_state.sql_client:
+        get_indicateurs_from_sql()
     else:
         st.session_state["annee"] = 2000
         st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
-        # Sauvegarde des indicateurs dans SQL
-        st.session_state.sql_client.insert_row(
-            table="Indicateurs",
-            value_dict=st.session_state.indicateurs.to_dict(),
-        )
-        st.session_state.sql_client.insert_row(
-            table="Armee", value_dict=st.session_state.armee.to_dict()
-        )
-
-st.set_page_config(
-    page_title="Login", page_icon="🏠", layout="wide", initial_sidebar_state="collapsed"
-)
+        st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
+        st.session_state.armee.send_to_sql(st.session_state.sql_client)
 
 
 # Affichage

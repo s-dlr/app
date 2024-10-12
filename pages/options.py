@@ -1,60 +1,48 @@
 import streamlit as st
 import pandas as pd
 
-from src.flow.navigation import *
+from streamlit_utils.display_functions import *
+from streamlit_utils.manage_state import *
+from streamlit_utils.navigation import *
 from src.variables import *
 
-OBJET_DESC: str = "Objet concerné"
-EFFET_IMMEDIAT_DESC: str = "Effets immédiats sur vos compteurs"
-LABELS: dict = {
-    EUROPEANISATION: "Européanisation",
-    NIVEAU_TECHNO: "Niveau technologique",
-    BUDGET: 'Budget'
-}
-
-def display_metrics(effets_dict: dict):
-    """
-    Affiche des métriques
-    """
-    compteurs = st.session_state.indicateurs.to_dict()
-    columns = st.columns(len(effets_dict))
-    i = 0
-    for compteur, effet in effets_dict.items():
-        columns[i].metric(
-            label=LABELS[compteur],
-            value=compteurs.get(compteur, 0) + effet,
-            delta=effet,
-        )
-        i += 1
-
-def display_objet(objet_dict: dict):
-    st.dataframe(pd.DataFrame([objet_dict]))
-
-def display_option_data(option):
-    """
-    Affiche toutes les informations correspondant
-    """
-    # TODO Récupérer les valeurs des compteurs
-    # Effet immédiat
-    effets_immediat_dict = option.effet_immediat.to_dict()
-    if len(effets_immediat_dict) > 0:
-        st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
-        display_metrics(effets_immediat_dict)
-    st.markdown(f":blue[{OBJET_DESC}]")
-    display_objet(st.session_state[option.objet].to_dict())
-
 def next_step():
-    # Application des modifications à l'objet
+    """
+    Passage à la prochaine étape du programme
+    Seuls les effets immédiats ont un caractère définitif
+    Les autres modifications ne sont pas envoyés à SQL
+    """
     selected_option = st.session_state.arborescence.question.get_option_by_text(
         st.session_state.select_option
     )
-    objet_option = st.session_state[selected_option.objet]
-    objet_option.apply_modification(selected_option.modification_objet)
+    # Application des effets immédiats
+    if st.session_state.indicateurs.apply_modification(selected_option.effet_immediat):
+        st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
+    if st.session_state.armee.apply_modification(selected_option.effet_immediat):
+        st.session_state.armee.send_to_sql(st.session_state.sql_client)
     # Application des modification au programme
-    # TODO
-    # Prochaine question
-    st.session_state['objet'] = objet_option  #  objet courant utilisé pour l'achat
-    go_to_next_question()
+    if selected_option.programme:
+        programme_option = st.session_state[selected_option.programme]
+        programme_option.apply_modification(selected_option.modification_objet)
+    # Application des modifications à l'objet
+    if selected_option.objet:
+        objet_option = st.session_state[selected_option.objet]
+        objet_option.apply_modification(selected_option.modification_objet)
+    # Objet courant utilsé pour le prochain achat
+    st.session_state['objet'] = objet_option
+    # Passage à la prochaine question
+    if "select_option" not in st.session_state:
+        st.session_state["select_option"] = None
+    next_question = st.session_state.arborescence.get_next_question(
+        st.session_state.select_option
+    )
+    st.session_state.objet.send_to_sql(st.session_state.client_sql)
+    if next_question != 0:
+        st.session_state.arborescence.load_data(next_question)
+    else:
+        if selected_option.programme:
+            launch_programme(selected_option.programme)
+        st.session_state.arborescence = False
 
 st.set_page_config(
     page_title="Définition des besoins",
@@ -91,7 +79,14 @@ if st.session_state.arborescence:
             with col.container(
                 border=(st.session_state.select_option == option.texte_option)
             ):
-                display_option_data(option)
+                # Effet immédiat
+                effets_immediat_dict = option.effet_immediat.to_dict()
+                if len(effets_immediat_dict) > 0:
+                    st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
+                    display_metrics(effets_immediat_dict)
+                # Objet
+                st.markdown(f":blue[{OBJET_DESC}]")
+                display_objet(st.session_state[option.objet].to_dict())
 
         # Bouton validation
         st.button(

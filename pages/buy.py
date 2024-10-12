@@ -24,7 +24,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-if "arborescence" in st.session_state and st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+if (
+    st.session_state.arborescence
+    and st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE
+):
     # Contexte et question
     st.title(st.session_state.arborescence.arborescence)
     st.write(st.session_state.arborescence.question.contexte_question)

@@ -8,7 +8,6 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
-    st.session_state.sql_client.update_sql_objet(st.session_state.objet)
     # Aller à la prochaine question ou arborescence
     next_question = st.session_state.arborescence.get_next_question()
     st.session_state.objet.send_to_sql(st.session_state.sql_client)

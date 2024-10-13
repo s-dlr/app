@@ -28,15 +28,14 @@ def next_step():
     if selected_option.objet:
         objet_option = st.session_state[selected_option.objet]
         objet_option.apply_modification(selected_option.modification_objet)
-    # Objet courant utilsé pour le prochain achat
-    st.session_state['objet'] = objet_option
+        # Objet courant utilsé pour le prochain achat
+        st.session_state['objet'] = objet_option
     # Passage à la prochaine question
     if "select_option" not in st.session_state:
         st.session_state["select_option"] = None
     next_question = st.session_state.arborescence.get_next_question(
         st.session_state.select_option
     )
-    st.session_state.objet.send_to_sql(st.session_state.sql_client)
     if next_question != 0:
         st.session_state.arborescence.load_data(next_question)
     else:

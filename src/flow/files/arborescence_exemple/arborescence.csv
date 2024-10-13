@@ -1,9 +1,9 @@
-﻿num_question;annee;contexte_question;texte_question;numero_option;texte_option;prochaine_question;prerequis;effet_immediat;modification_programme;modification_objet;objet;programme;commandes
-1;2000;La France souhaite des munir d'un drône…;Quel option souhaitez vous choisir ?;A;Collaboration. Vous décider de faire un drône en collaboration. L'étude coûte 1 million d'€ mais vous permet de développer vos compétences technologiques;2;europeanisation:0;"europeanisation:+1
+﻿num_question;annee;contexte_question;texte_question;image;numero_option;texte_option;prochaine_question;prerequis;effet_immediat;modification_programme;modification_objet;objet;programme;commandes
+1;2000;La France souhaite des munir d'un drône…;Quel option souhaitez vous choisir ?;eurodrone.jpg;A;Collaboration. Vous décider de faire un drône en collaboration. L'étude coûte 1 million d'€ mais vous permet de développer vos compétences technologiques;2;europeanisation:0;"europeanisation:+1
 niveau_techno:+2";"cout:+1
 niveau_techno:+1";;eurodrone;eurodrone;launch_programme
-1;2000;La France souhaite des munir d'un drône…;Quel option souhaitez vous choisir ?;B;Franco-Français;0;niveau_techno: 10;;"cout:+1
+1;2000;La France souhaite des munir d'un drône…;Quel option souhaitez vous choisir ?;;B;Franco-Français;0;niveau_techno: 10;;"cout:+1
 niveau_techno:+2";;male_in;male_in;launch_programme
-1;2000;La France souhaite des munir d'un drône…;Quel option souhaitez vous choisir ?;C;Sur étagère;0;;europeanisation:-1;;;reaper;;
-2;2001;Les Anglais sont perfides, les Allemands sont très forts;Avec qui ?;A;Allemagne. Les infrastructures allemande permetent de produire moins d'unité par an;0;niveau_techno: 10;;;cout:+1;eurodrone;;
-2;2001;Les Anglais sont perfides, les Allemands sont très forts;Avec qui ?;B;Angleterre :( ;0;niveau_techno: 15;;;unite_par_an:-0.5;eurodrone;;
+1;2000;La France souhaite des munir d'un drône…;Quel option souhaitez vous choisir ?;;C;Sur étagère;0;;europeanisation:-1;;;reaper;;
+2;2001;Les Anglais sont perfides, les Allemands sont très forts;Avec qui ?;;A;Allemagne. Les infrastructures allemande permetent de produire moins d'unité par an;0;niveau_techno: 10;;;cout:+1;eurodrone;;
+2;2001;Les Anglais sont perfides, les Allemands sont très forts;Avec qui ?;;B;Angleterre :( ;0;niveau_techno: 15;;;unite_par_an:-0.5;eurodrone;;

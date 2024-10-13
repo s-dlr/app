@@ -26,6 +26,7 @@ def next_step():
         programme_option.apply_modification(selected_option.modification_objet)
     # Application des modifications à l'objet
     if selected_option.objet:
+        # Save object
         objet_option = st.session_state[selected_option.objet]
         objet_option.apply_modification(selected_option.modification_objet)
         objet_option.send_to_sql(st.session_state.sql_client)
@@ -89,7 +90,7 @@ if st.session_state.arborescence:
                     st.markdown(f":blue[{OBJET_DESC}]")
                     display_objet(st.session_state[option.objet].to_dict())
                 # Programme
-                if option.programm:
+                if option.programme:
                     st.markdown(f":blue[{PROGRAMME_DESC}]")
                     display_programme(st.session_state[option.programme].to_dict())
 

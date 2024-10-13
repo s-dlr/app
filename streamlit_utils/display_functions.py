@@ -11,6 +11,7 @@ from src.variables import *
 #############
 
 OBJET_DESC: str = "Objet concerné"
+PROGRAMME_DESC: str = "Programme concerné"
 EFFET_IMMEDIAT_DESC: str = "Effets immédiats sur vos compteurs"
 LABELS: dict = {
     EUROPEANISATION: "Européanisation",
@@ -37,3 +38,7 @@ def display_metrics(effets_dict: dict):
 
 def display_objet(objet_dict: dict):
     st.dataframe(pd.DataFrame([objet_dict]))
+
+
+def display_programme(programme_dict: dict):
+    st.dataframe(pd.DataFrame([programme_dict]))

@@ -85,8 +85,13 @@ if st.session_state.arborescence:
                     st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
                     display_metrics(effets_immediat_dict)
                 # Objet
-                st.markdown(f":blue[{OBJET_DESC}]")
-                display_objet(st.session_state[option.objet].to_dict())
+                if option.objet:
+                    st.markdown(f":blue[{OBJET_DESC}]")
+                    display_objet(st.session_state[option.objet].to_dict())
+                # Programme
+                if option.programm:
+                    st.markdown(f":blue[{PROGRAMME_DESC}]")
+                    display_programme(st.session_state[option.programme].to_dict())
 
         # Bouton validation
         st.button(

@@ -24,6 +24,9 @@ st.set_page_config(
 if "annee" in st.session_state:
     display_annee()
 
+if "arborescence" not in st.session_state:
+    st.session_state["arborescence"] = False
+
 if "equipe" in st.session_state:
 
     list_objets_disponibles = get_objets_disponibles()

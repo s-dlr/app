@@ -45,7 +45,8 @@ class Arborescence:
                     MODIFICATION_OBJET,
                     MODIFICATION_PROGRAMME,
                     OBJET,
-                    PROGRAMME
+                    PROGRAMME,
+                    COMMANDES
                 ]
             ].fillna("")
             self.question = QuestionOptions(**question_data.to_dict())

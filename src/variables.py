@@ -16,6 +16,7 @@ MODIFICATION_OBJET = "modification_objet"
 MODIFICATION_PROGRAMME = "modification_programme"
 OBJET = "objet"  # objet concerné par l'option. Un des objet de l'arbrescence
 PROGRAMME = "programme" # programme concerné par l'option
+COMMANDES = "commandes" # "launch_programme" ou "send_to_store"
 
 # Attributs objets
 NOM = "nom"

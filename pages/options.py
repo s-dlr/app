@@ -24,6 +24,9 @@ def next_step():
     if selected_option.programme:
         programme_option = st.session_state[selected_option.programme]
         programme_option.apply_modification(selected_option.modification_objet)
+        if 'launch_programme' in selected_option.commandes:
+            launch_programme(selected_option.programme)
+        programme_option.send_to_sql(st.session_state.sql_client)
     # Application des modifications à l'objet
     if selected_option.objet:
         # Save object
@@ -32,6 +35,7 @@ def next_step():
         objet_option.send_to_sql(st.session_state.sql_client)
         # Objet courant utilsé pour le prochain achat
         st.session_state['objet'] = objet_option
+        # TODO envoi de l'objet au store
     # Passage à la prochaine question
     if "select_option" not in st.session_state:
         st.session_state["select_option"] = None
@@ -41,8 +45,6 @@ def next_step():
     if next_question != 0:
         st.session_state.arborescence.load_data(next_question)
     else:
-        if selected_option.programme:
-            launch_programme(selected_option.programme)
         st.session_state.arborescence = False
 
 st.set_page_config(

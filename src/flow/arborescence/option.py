@@ -37,6 +37,7 @@ class Option:
         modification_programme: str,
         objet: str,
         programme: str,
+        commandes: str = ""
     ):
         self.numero_option = numero_option
         self.texte_option = texte_option
@@ -47,6 +48,7 @@ class Option:
         self.modification_objet = Modification(modification_objet)
         self.modification_programme = Modification(modification_programme)
         self.effet_immediat = Modification(effet_immediat)
+        self.commandes = commandes.split("\n")
 
     def check_prerequis(self):
         """

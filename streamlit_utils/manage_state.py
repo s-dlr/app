@@ -44,8 +44,8 @@ def get_programmes_from_sql() -> None:
     """
     df_objets = st.session_state.sql_client.get_table("Programmes")
     for _, row in df_objets.iterrows():
-        new_objet = Objet(**row.to_dict())
-        st.session_state[row[NOM]] = new_objet
+        new_objet = Programme(**row.to_dict())
+        st.session_state["programme_" + row[NOM]] = new_objet
 
 
 def get_objets_from_sql() -> None:
@@ -94,5 +94,5 @@ def update_indicateurs() -> None:
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
 
 def launch_programme(programme) -> None:
-    st.session_state[programme].create_start_end(st.session_state.annee)
-    st.session_state[programme].send_to_sql(st.session_state.sql_client)
+    st.session_state["programme_" + programme].create_start_end(st.session_state.annee)
+    st.session_state["programme_" + programme].send_to_sql(st.session_state.sql_client)

@@ -66,6 +66,8 @@ if st.session_state.arborescence:
     st.title(st.session_state.arborescence.arborescence)
     st.write(st.session_state.arborescence.question.contexte_question)
     st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
+    if st.session_state.arborescence.question.image:
+        st.image(st.session_state.arborescence.question.image)
     st.divider()
 
     # Liste des options

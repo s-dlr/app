@@ -17,6 +17,7 @@ MODIFICATION_PROGRAMME = "modification_programme"
 OBJET = "objet"  # objet concerné par l'option. Un des objet de l'arbrescence
 PROGRAMME = "programme" # programme concerné par l'option
 COMMANDES = "commandes" # "launch_programme" ou "send_to_store"
+IMAGE = "image"
 
 # Attributs objets
 NOM = "nom"
@@ -54,3 +55,4 @@ ARBORESCENCES = {
 }
 FICHIER_OBJETS = f"{DATA_DIR}/arborescence_exemple/objets.csv"
 FICHIER_PROGRAMMES = f"{DATA_DIR}/arborescence_exemple/programmes.csv"
+IMAGE_DIR = f"{DATA_DIR}/images/"

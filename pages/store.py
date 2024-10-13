@@ -55,7 +55,7 @@ if "equipe" in st.session_state:
 
             # Slider
             min_nb_unit = 0
-            max_nb_unit = st.session_state[st.session_state.selected_objet].max_nb_unit
+            max_nb_unit = st.session_state[st.session_state.selected_objet].max_nb_utile
             slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
 
             # TODO gain en fonction du nombre d'unités

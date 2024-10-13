@@ -17,6 +17,7 @@ class QuestionAchat(AbstractQuestion):
     min_nb_unit: int = 0
     max_nb_unit: int = 1
     prochaine_question: int = 0
+    annee: int
 
 @dataclass
 class QuestionOptions(AbstractQuestion):

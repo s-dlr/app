@@ -64,7 +64,7 @@ if st.session_state.arborescence:
 
     # Contexte et question
     st.title(st.session_state.arborescence.arborescence)
-    if st.session_state.arborescence.question.image:
+    if st.session_state.arborescence.question.image is not None:
         st.image(IMAGE_DIR + st.session_state.arborescence.question.image)
     st.write(st.session_state.arborescence.question.contexte_question)
     st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")

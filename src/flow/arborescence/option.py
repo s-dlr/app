@@ -41,10 +41,8 @@ class Option:
         self.numero_option = numero_option
         self.texte_option = texte_option
         self.prochaine_question = prochaine_question
-        if objet:
-            self.objet = objet
-        if programme:
-            self.programme = programme
+        self.objet = objet if objet else False
+        self.programme = programme if programme else False
         self.prerequis = Prerequis(prerequis)
         self.modification_objet = Modification(modification_objet)
         self.modification_programme = Modification(modification_programme)

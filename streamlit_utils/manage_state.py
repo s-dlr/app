@@ -7,6 +7,7 @@ import streamlit as st
 from src.data.objet import Objet
 from src.data.programme import Programme
 from src.data.indicateurs import *
+from src.data.modification import Modification
 from src.variables import *
 
 
@@ -67,14 +68,29 @@ def get_indicateurs_from_sql() -> None:
     st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())
 
 def update_indicateurs() -> None:
+    """
+    Mise à jour des indicateurs
+    """
     get_indicateurs_from_sql()
-    # TODO Si nécessaire
     # Appliquer les programmes et les constructions en cours
+    df_programmes = st.session_state.sql_client.get_table("Programmes")
+    df_programmes_en_cours = df_programmes[
+        (df_programmes[DEBUT] <= st.session_state.annee)
+        & (df_programmes[FIN] <= st.session_state.annee)
+    ]
     if st.session_state.annee > st.session_state.indicateurs.annee:
-        # TODO if modification
+        for modif in df_programmes_en_cours.iterrows():
+            modification = Modification(**modif[[BUDGET, EUROPEANISATION, NIVEAU_TECHNO]].to_dict())
+            st.session_state.indicateurs.apply_modification(modification)
+        # TODO contructions
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
     if st.session_state.annee > st.session_state.armee.annee:
-        # TODO if modification
+        for modif in df_programmes_en_cours.iterrows():
+            modification = Modification(
+                **modif[[BONUS_TERRE, BONUS_MER, BONUS_AIR, BONUS_RENS]].to_dict()
+            )
+            st.session_state.armee.apply_modification(modification)
+        # TODO contructions
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
 
 def launch_programme(programme) -> None:

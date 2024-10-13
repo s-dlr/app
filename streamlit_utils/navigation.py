@@ -12,7 +12,7 @@ def load_next_arborescence(prochaine_arborescence="Programme exemple"):
     # TODO Prochain programme
     st.session_state["arborescence"] = Arborescence(arborescence=prochaine_arborescence)
     st.session_state["select_option"] = None
-    st.session_state['annee'] =  st.session_state.arborescence.df_arborescence[ANNEE].iloc[0]
+    st.session_state['annee'] =  int(st.session_state.arborescence.question.annee)
     # Sauvegarder les indicateurs dans SQL
     # TODO récupérer les objets et les programmes
     # Mise à jour des objets depuis SQL
@@ -35,6 +35,11 @@ def go_to_next_question():
         )
         if next_question != 0:
             st.session_state.arborescence.load_data(next_question)
+            if (
+                st.session_state.arborescence.question.annee
+                != st.session_state.annee
+            ):
+                update_indicateurs()
         else:
             st.session_state.arborescence = False
     else:

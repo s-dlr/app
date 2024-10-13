@@ -21,7 +21,7 @@ class Arborescence:
         Instantie l'étape de l'arboarescence correpondant à la question
         """
         data = self.df_arborescence[self.df_arborescence[NUM_QUESTION] == num_question]
-        question_data = data.iloc[0][[NUM_QUESTION, CONTEXTE_QUESTION, TEXTE_QUESTION]]
+        question_data = data.iloc[0][[NUM_QUESTION, CONTEXTE_QUESTION, TEXTE_QUESTION, ANNEE]]
         if data.iloc[0][NUMERO_OPTION] == NOMBRE_UNITE:
             option_data = data.iloc[0]
             self.question = QuestionAchat(

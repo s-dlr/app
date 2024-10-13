@@ -23,6 +23,7 @@ class QuestionOptions(AbstractQuestion):
     contexte_question: str
     num_question: str
     texte_question: str
+    annee: int
 
     def create_options(self, options_df: pd.DataFrame):
         self.options = []

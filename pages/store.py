@@ -7,8 +7,10 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
-   # TODO Lancer la construction
-    pass
+    # TODO Lancer la construction
+    st.success(
+        f"Vous avez commandé {st.session_state.nb_unites} {st.session_state.selected_objet}s"
+    )
 
 
 st.set_page_config(
@@ -49,14 +51,14 @@ if "equipe" in st.session_state:
 
         if st.session_state.selected_objet:
             # Caractéristiques de l'objet courant
-            st.header(f"Caractéristiques de {st.session_state.objet.nom}")
+            st.header(f"Caractéristiques de {st.session_state.selected_objet}")
             display_objet(st.session_state[st.session_state.selected_objet].to_dict())
             st.divider()
 
             # Slider
             min_nb_unit = 0
             max_nb_unit = st.session_state[st.session_state.selected_objet].max_nb_utile
-            slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
+            slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1, key="nb_unites")
 
             # TODO gain en fonction du nombre d'unités
 

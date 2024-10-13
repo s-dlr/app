@@ -98,3 +98,11 @@ def update_indicateurs() -> None:
 def launch_programme(programme) -> None:
     st.session_state[programme].create_start_end(st.session_state.annee)
     st.session_state[programme].send_to_sql(st.session_state.sql_client)
+
+def get_objets_disponibles():
+    """
+    Récupère les noms des objets disponibles à l'achat
+    """
+    df_objets = st.session_state.sql_client.get_table("Objets")
+    df_objets_disponibles = df_objets[df_objets[ANNEE] <= st.session_state.annee]
+    return list(df_objets_disponibles[NOM].unique())

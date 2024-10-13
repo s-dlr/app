@@ -49,6 +49,8 @@ if st.session_state.arborescence:
         max_nb_unit = st.session_state.arborescence.question.max_nb_unit
         slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
 
+        # TODO gain en fonction du nombre d'unités
+
         # Bouton
         st.button(
             type="primary",

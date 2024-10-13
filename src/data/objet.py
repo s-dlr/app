@@ -19,6 +19,8 @@ class Objet(AbstractClass):
     budget: float = 0.0
     dependance_export: str = ""  # virgule entre pays
     niveau_techno: float = 0.0
+    annee: int = 2000
+    demande_armee: int = 0  # Nombre d'unités demandées par l'EM
 
     @staticmethod
     def get_table():

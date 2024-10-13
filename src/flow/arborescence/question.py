@@ -6,23 +6,12 @@ from src.flow.arborescence.option import Option
 from src.variables import *
 
 @dataclass
-class AbstractQuestion:
-    contexte_question: str
-    num_question: int
-    texte_question: str
-
-@dataclass
-class QuestionAchat(AbstractQuestion):
-    objet: str
-    min_nb_unit: int = 0
-    max_nb_unit: int = 1
-    prochaine_question: int = 0
-
-@dataclass
-class QuestionOptions(AbstractQuestion):
+class QuestionOptions:
     contexte_question: str
     num_question: str
     texte_question: str
+    annee: int
+    image: str = ""
 
     def create_options(self, options_df: pd.DataFrame):
         self.options = []

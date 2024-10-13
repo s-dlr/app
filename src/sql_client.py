@@ -3,9 +3,6 @@ from typing import List
 import streamlit as st
 from sqlalchemy.sql import text
 
-from src.data.objet import Objet
-from src.data.indicateurs import *
-
 class ClientSQL:
 
     def __init__(self, connection_name: str, equipe: str) -> None:
@@ -13,20 +10,25 @@ class ClientSQL:
         self.connection = st.connection(connection_name, autocommit=False)
         self.equipe = equipe
 
-    def get_objet(self, objet: str):
+    def check_team_exists(self):
         """
-        Récupère un objet à partir de son nom dans la base sql
+        Teste si une éiupe existe déjà dans la base SQL
         """
-        # requete SQL
-        # Objet depuis la requete
-        return Objet(objet)
+        df_indicateurs = self.get_last_value("Indicateurs")
+        return df_indicateurs.shape[0] > 0
 
     def get_table(self, table):
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}'"
         return self.connection.query(query).set_index("equipe")
 
     def get_last_value(self, table):
-        query = f"SELECT x.* FROM `{table}` x WHERE x.annee = (SELECT MAX(y.annee) FROM `{table}` y) AND x.equipe = '{self.equipe}'"
+        """
+        Récupère la valeur la plus à jour d'une table (date la plus récente)
+        """
+        query_max_anee = (
+            f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe = '{self.equipe}'"
+        )
+        query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe = '{self.equipe}'"
         return self.connection.query(query).set_index("equipe")
 
     def execute_query(self, queries: List[str]):
@@ -42,22 +44,15 @@ class ClientSQL:
         query = f"DELETE FROM `{table}` WHERE equipe = '{self.equipe}'"
         self.execute_query([query])
 
-    def insert_row(self, table: str, value_dict: dict, replace: bool = False):
+    def insert_row(self, table: str, value_dict: dict, replace: bool = True):
         """
         Ecrit les indicateurs dans la base SQL
         """
         if replace:
-            self.delete_row(table)
+            command = "REPLACE"
+        else:
+            command = "INSERT"
         columns_list_str = ", ".join([f"`{k}`" for k in value_dict.keys()])
         values_list_str = ", ".join([f"'{v}'" for v in value_dict.values()])
-        query = f"INSERT INTO `{table}`(`equipe`, {columns_list_str}) VALUES ('{self.equipe}', {values_list_str})"
+        query = f"{command} INTO `{table}`(`equipe`, {columns_list_str}) VALUES ('{self.equipe}', {values_list_str})"
         self.execute_query([query])
-
-    def update_sql_objet(self, objet: Objet) -> None:
-        """
-        Efface la ligne correspondant à l'ancien objet dans la base SQL (si elle existe)
-        Ajoute le nouvel objet
-        """
-        # delete old objet
-        # add new objet
-        pass

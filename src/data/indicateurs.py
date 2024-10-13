@@ -2,9 +2,12 @@
 Module indicateurs
 """
 from dataclasses import dataclass
+import re
+
+from src.data.abstract_class import AbstractClass
 
 @dataclass
-class Indicateurs:
+class Indicateurs(AbstractClass):
     """
     Indicateurs macro
     """
@@ -14,14 +17,13 @@ class Indicateurs:
     niveau_techno: float = 10.0
     annee: int = 2000
 
-    def to_dict(self):
-        return self.__dict__
+    @staticmethod
+    def get_table():
+        return "Indicateurs"
 
-    def to_str(self):
-        return str(self.to_dict())
 
 @dataclass
-class Armee:
+class Armee(AbstractClass):
     """
     Indicateurs armées
     """
@@ -32,8 +34,18 @@ class Armee:
     rens: int = 0
     annee: int = 2000
 
-    def to_dict(self):
-        return self.__dict__
+    @staticmethod
+    def get_table():
+        return "Armee"
 
-    def to_str(self):
-        return str(self.to_dict())
+    def update(self, attribute_name: str, increment: float):
+        """
+        incrémente la valeur d'un attribut de l'objet
+        """
+        armee_to_update = re.findall(r"bonus_([a-zA-Z]*)", attribute_name)
+        if len(armee_to_update) != 1:
+            return
+        armee_to_update = armee_to_update[0]
+        if armee_to_update in self.__dataclass_fields__.keys():
+            current_value = getattr(self, armee_to_update)
+            setattr(self, armee_to_update, current_value + increment)

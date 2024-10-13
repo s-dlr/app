@@ -15,6 +15,9 @@ EFFET_IMMEDIAT = "effet_immediat"
 MODIFICATION_OBJET = "modification_objet"
 MODIFICATION_PROGRAMME = "modification_programme"
 OBJET = "objet"  # objet concerné par l'option. Un des objet de l'arbrescence
+PROGRAMME = "programme" # programme concerné par l'option
+COMMANDES = "commandes" # "launch_programme" ou "send_to_store"
+IMAGE = "image"
 
 # Attributs objets
 NOM = "nom"
@@ -28,6 +31,11 @@ BONUS_RENS = "bonus_rens"
 MAX_NB_UTILE = "max_nb_utile"
 UNITE_PAR_AN = "unite_par_an"
 DEPENDANCE_EXPORT = "dependance_export"
+
+# Attributs programmes
+COUT = "cout"
+DEBUT = "debut"
+FIN = "fin"
 
 # Compteurs
 EUROPEANISATION = "europeanisation"
@@ -46,3 +54,5 @@ ARBORESCENCES = {
     "Programme exemple": f"{DATA_DIR}/arborescence_exemple/arborescence.csv",
 }
 FICHIER_OBJETS = f"{DATA_DIR}/arborescence_exemple/objets.csv"
+FICHIER_PROGRAMMES = f"{DATA_DIR}/arborescence_exemple/programmes.csv"
+IMAGE_DIR = f"{DATA_DIR}/images/"

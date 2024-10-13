@@ -1,10 +1,6 @@
-
 """
 Module option
 """
-
-from dataclasses import dataclass
-
 import streamlit as st
 
 from src.data.prerequis import Prerequis
@@ -27,6 +23,7 @@ class Option:
         modification_programme: Modification de l'objet \
             Cette modification est appliquée au programme courant de l'arborescence
         objet: Nom de l'objet concerné par l'option
+        programme: Nom du programme concerné par l'option
     """
 
     def __init__(
@@ -39,15 +36,19 @@ class Option:
         modification_objet: str,
         modification_programme: str,
         objet: str,
+        programme: str,
+        commandes: str = ""
     ):
         self.numero_option = numero_option
         self.texte_option = texte_option
         self.prochaine_question = prochaine_question
-        self.objet = objet
+        self.objet = objet if objet else False
+        self.programme = programme if programme else False
         self.prerequis = Prerequis(prerequis)
         self.modification_objet = Modification(modification_objet)
         self.modification_programme = Modification(modification_programme)
         self.effet_immediat = Modification(effet_immediat)
+        self.commandes = commandes.split("\n")
 
     def check_prerequis(self):
         """

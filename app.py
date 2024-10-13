@@ -7,16 +7,18 @@ from src.data.indicateurs import *
 from src.data.objet import Objet
 from src.variables import *
 from src.sql_client import ClientSQL
-from src.flow.navigation import *
+from streamlit_utils.navigation import *
 
 st.set_page_config(
     page_title="Home", page_icon="🧊", layout="wide", initial_sidebar_state="collapsed"
 )
 st.set_option("client.showSidebarNavigation", False)
 
-try:
-    st.header(f'Bonjour {st.session_state.equipe} !')
-    go_to_next_question()
-except:
-    st.header("Créer une équipe our cmmencer à jouer")
-    st.switch_page("pages/login.py")
+if "equipe" in st.session_state:
+    st.header("Commencer le prochain programme")
+    st.page_link(
+        "pages/load_data.py", label="Commencer", icon=":material/settings:"
+    )
+else:
+    st.write("Aucune partie en cours. Connectez vous d'abord.")
+    st.page_link("pages/login.py", label="Se connecter", icon="🏠")

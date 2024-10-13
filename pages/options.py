@@ -1,60 +1,53 @@
 import streamlit as st
 import pandas as pd
 
-from src.flow.navigation import *
+from streamlit_utils.display_functions import *
+from streamlit_utils.manage_state import *
+from streamlit_utils.navigation import *
 from src.variables import *
 
-OBJET_DESC: str = "Objet concerné"
-EFFET_IMMEDIAT_DESC: str = "Effets immédiats sur vos compteurs"
-LABELS: dict = {
-    EUROPEANISATION: "Européanisation",
-    NIVEAU_TECHNO: "Niveau technologique",
-    BUDGET: 'Budget'
-}
-
-def display_metrics(effets_dict: dict):
-    """
-    Affiche des métriques
-    """
-    compteurs = st.session_state.indicateurs.to_dict()
-    columns = st.columns(len(effets_dict))
-    i = 0
-    for compteur, effet in effets_dict.items():
-        columns[i].metric(
-            label=LABELS[compteur],
-            value=compteurs.get(compteur, 0) + effet,
-            delta=effet,
-        )
-        i += 1
-
-def display_objet(objet_dict: dict):
-    st.dataframe(pd.DataFrame([objet_dict]))
-
-def display_option_data(option):
-    """
-    Affiche toutes les informations correspondant
-    """
-    # TODO Récupérer les valeurs des compteurs
-    # Effet immédiat
-    effets_immediat_dict = option.effet_immediat.to_dict()
-    if len(effets_immediat_dict) > 0:
-        st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
-        display_metrics(effets_immediat_dict)
-    st.markdown(f":blue[{OBJET_DESC}]")
-    display_objet(st.session_state[option.objet].to_dict())
-
 def next_step():
-    # Application des modifications à l'objet
+    """
+    Passage à la prochaine étape du programme
+    Seuls les effets immédiats ont un caractère définitif
+    Les autres modifications ne sont pas envoyés à SQL
+    """
     selected_option = st.session_state.arborescence.question.get_option_by_text(
         st.session_state.select_option
     )
-    objet_option = st.session_state[selected_option.objet]
-    objet_option.apply_modification(selected_option.modification_objet)
+    # Application des effets immédiats
+    if st.session_state.indicateurs.apply_modification(selected_option.effet_immediat):
+        st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
+    if st.session_state.armee.apply_modification(selected_option.effet_immediat):
+        st.session_state.armee.send_to_sql(st.session_state.sql_client)
     # Application des modification au programme
-    # TODO
-    # Prochaine question
-    st.session_state['objet'] = objet_option  #  objet courant utilisé pour l'achat
-    go_to_next_question()
+    if selected_option.programme:
+        programme_option = st.session_state[selected_option.programme]
+        if programme_option.apply_modification(selected_option.modification_programme):
+            programme_option.send_to_sql(st.session_state.sql_client)
+        if 'launch_programme' in selected_option.commandes:
+            launch_programme("programme " + selected_option.programme)
+    # Application des modifications à l'objet
+    if selected_option.objet:
+        # Save object
+        objet_option = st.session_state[selected_option.objet]
+        if objet_option.apply_modification(selected_option.modification_objet):
+            objet_option.send_to_sql(st.session_state.sql_client)
+        # Objet courant utilsé pour le prochain achat
+        st.session_state['objet'] = objet_option
+        # TODO envoi de l'objet au store
+    # Passage à la prochaine question
+    if "select_option" not in st.session_state:
+        st.session_state["select_option"] = None
+    next_question = st.session_state.arborescence.get_next_question(
+        st.session_state.select_option
+    )
+    if next_question != 0:
+        st.session_state.arborescence.load_data(next_question)
+        st.session_state.annee = st.session_state.arborescence.question.annee
+        update_indicateurs()
+    else:
+        st.session_state.arborescence = False
 
 st.set_page_config(
     page_title="Définition des besoins",
@@ -63,56 +56,75 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Timeline
+if "annee" in st.session_state:
+    display_annee()
+
+if "arborescence" not in st.session_state:
+    st.session_state["arborescence"] = False
+
+
 if st.session_state.arborescence:
-    if st.session_state.arborescence.type_question == CHOIX_OPTION:
-        # Contexte et question
-        st.title(st.session_state.arborescence.arborescence)
-        st.write(st.session_state.arborescence.question.contexte_question)
-        st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
-        st.divider()
 
-        # Liste des options
-        list_options = st.session_state.arborescence.question.options
+    # Contexte et question
+    st.title(st.session_state.arborescence.arborescence)
+    if st.session_state.arborescence.question.image != "":
+        st.image(IMAGE_DIR + st.session_state.arborescence.question.image)
+    st.write(st.session_state.arborescence.question.contexte_question)
+    st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
+    st.divider()
 
-        # Radio button for options
-        if "select_option" not in st.session_state:
-            st.session_state["select_option"] = False
-        st.radio(
-            label="Choix",
-            options=[opt.texte_option for opt in list_options],
-            index=None,
-            label_visibility="collapsed",
-            key="select_option",
-        )
+    # Liste des options
+    list_options = st.session_state.arborescence.question.options
 
-        # Affichage des données correspondant à chaque option
-        columns = st.columns(len(list_options))
-        for option, col in zip(list_options, columns):
-            with col.container(
-                border=(st.session_state.select_option == option.texte_option)
-            ):
-                display_option_data(option)
+    # Radio button for options
+    if "select_option" not in st.session_state:
+        st.session_state["select_option"] = False
+    st.radio(
+        label="Choix",
+        options=[opt.texte_option for opt in list_options],
+        index=None,
+        label_visibility="collapsed",
+        key="select_option",
+    )
 
-        # Bouton validation
-        st.button(
-            type="primary",
-            label="VALIDER",
-            use_container_width=True,
-            on_click=next_step,
-            disabled=(st.session_state.select_option is None),
-        )
+    # Affichage des données correspondant à chaque option
+    columns = st.columns(len(list_options))
+    for option, col in zip(list_options, columns):
+        with col.container(
+            border=(st.session_state.select_option == option.texte_option)
+        ):
+            # Effet immédiat
+            effets_immediat_dict = option.effet_immediat.to_dict()
+            if len(effets_immediat_dict) > 0:
+                st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
+                display_metrics(effets_immediat_dict)
+            # Objet
+            if option.objet:
+                st.markdown(f":blue[{OBJET_DESC}]")
+                display_objet(st.session_state[option.objet].to_dict())
+            # Programme
+            if option.programme:
+                st.markdown(f":blue[{PROGRAMME_DESC}]")
+                display_programme(st.session_state[option.programme].to_dict())
 
-    elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-        st.header("Fin du programme")
-        st.page_link(
-            "pages/buy.py", label="Acheter des unités", icon=":material/shopping_cart:"
-        )
+    # Bouton validation
+    st.button(
+        type="primary",
+        label="VALIDER",
+        use_container_width=True,
+        on_click=next_step,
+        disabled=(st.session_state.select_option is None),
+    )
 
 else:
     if "equipe" in st.session_state:
-        st.header("Commencer le prochain programme")
+        st.header("Fin du programme")
         st.page_link(
-            "pages/load_data.py", label="Commencer", icon=":material/settings:"
+            "pages/load_data.py", label="Commencer un autre programme", icon=":material/settings:"
+        )
+        st.page_link(
+            "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
         )
     else:
         st.write("Aucune partie en cours. Connectez vous d'abord.")

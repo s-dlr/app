@@ -44,8 +44,8 @@ def get_programmes_from_sql() -> None:
     """
     df_objets = st.session_state.sql_client.get_table("Programmes")
     for _, row in df_objets.iterrows():
-        new_objet = Programme(**row.to_dict())
-        st.session_state[row[NOM]] = new_objet
+        new_programme = Programme(**row.to_dict())
+        st.session_state[row[NOM]] = new_programme
 
 
 def get_objets_from_sql() -> None:

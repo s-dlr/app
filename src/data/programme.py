@@ -19,7 +19,7 @@ class Programme(AbstractClass):
     duree: int = 1
 
     def __post_init__(self):
-        self.nom = 'programme_' + self.nom
+        self.nom = "programme " + self.nom
 
     @staticmethod
     def get_table():

@@ -8,9 +8,7 @@ def buy_unit():
     Achat d'un certain nombre d'unités
     """
     # TODO Lancer la construction
-    st.success(
-        f"Vous avez commandé {st.session_state.nb_unites} {st.session_state.selected_objet}s"
-    )
+    pass
 
 
 st.set_page_config(
@@ -66,13 +64,16 @@ if "equipe" in st.session_state:
             # TODO gain en fonction du nombre d'unités
 
             # Bouton
-            st.button(
+            if st.button(
                 type="primary",
-                label="VALIDER",
+                label="ACHETER",
                 use_container_width=True,
                 on_click=buy_unit,
                 disabled=False,
-            )
+            ):
+                st.success(
+                    f"Vous avez commandé {st.session_state.nb_unites} {st.session_state.selected_objet}s"
+                )
 
     else:
         st.header("Vous n'avez aucun objet disponible à l'achat")

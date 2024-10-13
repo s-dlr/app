@@ -23,16 +23,16 @@ def next_step():
     # Application des modification au programme
     if selected_option.programme:
         programme_option = st.session_state[selected_option.programme]
-        programme_option.apply_modification(selected_option.modification_objet)
+        if programme_option.apply_modification(selected_option.modification_programme):
+            programme_option.send_to_sql(st.session_state.sql_client)
         if 'launch_programme' in selected_option.commandes:
             launch_programme("programme " + selected_option.programme)
-        programme_option.send_to_sql(st.session_state.sql_client)
     # Application des modifications à l'objet
     if selected_option.objet:
         # Save object
         objet_option = st.session_state[selected_option.objet]
-        objet_option.apply_modification(selected_option.modification_objet)
-        objet_option.send_to_sql(st.session_state.sql_client)
+        if objet_option.apply_modification(selected_option.modification_objet):
+            objet_option.send_to_sql(st.session_state.sql_client)
         # Objet courant utilsé pour le prochain achat
         st.session_state['objet'] = objet_option
         # TODO envoi de l'objet au store
@@ -56,10 +56,12 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Timeline
+if "annee" in st.session_state:
+    display_annee()
+
 if st.session_state.arborescence:
     if st.session_state.arborescence.type_question == CHOIX_OPTION:
-        # Timeline
-        display_annee()
         # Contexte et question
         st.title(st.session_state.arborescence.arborescence)
         st.write(st.session_state.arborescence.question.contexte_question)

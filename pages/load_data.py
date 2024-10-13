@@ -3,6 +3,12 @@ import streamlit as st
 from streamlit_utils.manage_state import init_objets, init_programmes
 from streamlit_utils.navigation import load_next_arborescence
 
+st.set_page_config(
+    page_title="Chargement des aroborescences",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
+
 if "equipe" in st.session_state:
     st.header("Charger les donneés du prochain programme")
 

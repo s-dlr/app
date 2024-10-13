@@ -32,12 +32,14 @@ class Arborescence:
                 min_nb_unit=int(option_data[TEXTE_OPTION].split("a")[0]),
                 max_nb_unit=int(option_data[TEXTE_OPTION].split("a")[1]),
                 prochaine_question=int(option_data[PROCHAINE_QUESTION]),
+                annee=int(option_data[ANNEE]),
             )
             self.type_question = CHOIX_NOMBRE_UNITE
         else:
             option_data = data[
                 [
                     NUMERO_OPTION,
+                    ANNEE,
                     TEXTE_OPTION,
                     PROCHAINE_QUESTION,
                     PREREQUIS,
@@ -46,7 +48,7 @@ class Arborescence:
                     MODIFICATION_PROGRAMME,
                     OBJET,
                     PROGRAMME,
-                    COMMANDES
+                    COMMANDES,
                 ]
             ].fillna("")
             self.question = QuestionOptions(**question_data.to_dict())

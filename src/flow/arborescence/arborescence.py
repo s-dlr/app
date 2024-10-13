@@ -39,7 +39,6 @@ class Arborescence:
             option_data = data[
                 [
                     NUMERO_OPTION,
-                    ANNEE,
                     TEXTE_OPTION,
                     PROCHAINE_QUESTION,
                     PREREQUIS,

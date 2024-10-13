@@ -34,6 +34,8 @@ if "equipe" in st.session_state:
         st.markdown(
             f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**"
         )
+        if "selected_objet" not in st.session_state:
+            st.session_state["selected_objet"] = None
         select_objets = st.selectbox(
             "Quel objet souhaitez vous acheter ?",
             options=list_objets_disponibles,
@@ -45,15 +47,16 @@ if "equipe" in st.session_state:
 
         # TODO afficher les objets déjà en construction et leur terme
 
-        # Caractéristiques de l'objet courant
-        st.header(f"Caractéristiques de {st.session_state.objet.nom}")
-        display_objet(st.session_state.objet.to_dict())
-        st.divider()
+        if st.session_state.selected_objet:
+            # Caractéristiques de l'objet courant
+            st.header(f"Caractéristiques de {st.session_state.objet.nom}")
+            display_objet(st.session_state["selected_objet"].to_dict())
+            st.divider()
 
-        # Slider
-        min_nb_unit = 0
-        max_nb_unit = st.session_state["select_objet"].max_nb_unit
-        slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
+            # Slider
+            min_nb_unit = 0
+            max_nb_unit = st.session_state["selected_objet"].max_nb_unit
+            slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
 
         # TODO gain en fonction du nombre d'unités
 

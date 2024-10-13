@@ -115,7 +115,7 @@ else:
     if "equipe" in st.session_state:
         st.header("Fin du programme")
         st.page_link(
-            "pages/load_data.py", label="Commencer", icon=":material/settings:"
+            "pages/load_data.py", label="Commencer un autre programme", icon=":material/settings:"
         )
         st.page_link(
             "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"

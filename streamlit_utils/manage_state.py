@@ -76,7 +76,7 @@ def update_indicateurs() -> None:
     df_programmes = st.session_state.sql_client.get_table("Programmes")
     df_programmes_en_cours = df_programmes[
         (df_programmes[DEBUT] <= st.session_state.annee)
-        & (df_programmes[FIN] <= st.session_state.annee)
+        & (df_programmes[FIN] >= st.session_state.annee)
     ]
     if st.session_state.annee > st.session_state.indicateurs.annee:
         for modif in df_programmes_en_cours.iterrows():

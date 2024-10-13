@@ -14,6 +14,8 @@ def buy_unit():
     # TODO Lancer la construction
     if next_question != 0:
         st.session_state.arborescence.load_data(next_question)
+        st.session_state.annee = st.session_state.arborescence.questin.annee
+        update_indicateurs()
     else:
         st.session_state.arborescence = False
 

@@ -50,24 +50,24 @@ if "equipe" in st.session_state:
         if st.session_state.selected_objet:
             # Caractéristiques de l'objet courant
             st.header(f"Caractéristiques de {st.session_state.objet.nom}")
-            display_objet(st.session_state["selected_objet"].to_dict())
+            display_objet(st.session_state[st.session_state.selected_objet].to_dict())
             st.divider()
 
             # Slider
             min_nb_unit = 0
-            max_nb_unit = st.session_state["selected_objet"].max_nb_unit
+            max_nb_unit = st.session_state[st.session_state.selected_objet].max_nb_unit
             slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1)
 
-        # TODO gain en fonction du nombre d'unités
+            # TODO gain en fonction du nombre d'unités
 
-        # Bouton
-        st.button(
-            type="primary",
-            label="VALIDER",
-            use_container_width=True,
-            on_click=buy_unit,
-            disabled=False,
-        )
+            # Bouton
+            st.button(
+                type="primary",
+                label="VALIDER",
+                use_container_width=True,
+                on_click=buy_unit,
+                disabled=False,
+            )
 
     else:
         st.header("Vous n'avez aucun objet disponible à l'achat")

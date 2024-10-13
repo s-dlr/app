@@ -20,7 +20,7 @@ if "equipe" in st.session_state:
         load_next_arborescence(uploaded_arborescence)
         init_objets(uploaded_objets)
         init_programmes(uploaded_programmes)
-        st.write("L'arborescence et les objets ont été créés")
+        st.success("L'arborescence et les objets ont été créés")
 
     st.page_link("pages/options.py", label="Commencer", icon=":material/settings:")
 else:

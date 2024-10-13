@@ -25,7 +25,9 @@ class ClientSQL:
         """
         Récupère la valeur la plus à jour d'une table (date la plus récente)
         """
-        query_max_anee = f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe  {self.equipe}"
+        query_max_anee = (
+            f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe = {self.equipe}"
+        )
         query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe = '{self.equipe}'"
         return self.connection.query(query).set_index("equipe")
 

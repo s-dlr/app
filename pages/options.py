@@ -58,6 +58,8 @@ st.set_page_config(
 
 if st.session_state.arborescence:
     if st.session_state.arborescence.type_question == CHOIX_OPTION:
+        # Timeline
+        display_annee()
         # Contexte et question
         st.title(st.session_state.arborescence.arborescence)
         st.write(st.session_state.arborescence.question.contexte_question)

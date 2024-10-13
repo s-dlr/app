@@ -28,6 +28,8 @@ st.set_page_config(
 
 if st.session_state.arborescence:
     if st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+        # Annee
+        display_annee()
 
         # Contexte et question
         st.title(st.session_state.arborescence.arborescence)

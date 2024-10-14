@@ -45,7 +45,7 @@ class Armee(AbstractClass):
         armee_to_update = re.findall(r"bonus_([a-zA-Z]*)", attribute_name)
         if len(armee_to_update) != 1:
             return
-        armee_to_update = armee_to_update[0]
-        if armee_to_update in self.__dataclass_fields__.keys():
-            current_value = getattr(self, armee_to_update)
-            setattr(self, armee_to_update, current_value + increment)
+        armee = armee_to_update[0]
+        if armee in self.__dataclass_fields__.keys():
+            current_value = getattr(self, armee)
+            setattr(self, armee, current_value + increment)

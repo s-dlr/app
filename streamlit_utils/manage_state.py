@@ -83,18 +83,18 @@ def update_indicateurs() -> None:
         for _, modif in df_programmes_en_cours.iterrows():
             nb_years = st.session_state.annee - st.session_state.indicateurs.annee
             modification_indicateurs = Modification()
-            modification_indicateurs.europeanisation = (
-                nb_years * modif.get(EUROPEANISATION, 0),
+            modification_indicateurs.europeanisation = nb_years * modif.get(
+                EUROPEANISATION, 0
             )
             modification_indicateurs.niveau_techno = nb_years * modif.get(
                 NIVEAU_TECHNO, 0
             )
             nb_years = st.session_state.annee - st.session_state.armee.annee
             modification_armee = Modification()
-            modification_armee.bonus_mer = (nb_years * modif.get(BONUS_MER, 0),)
-            modification_armee.bonus_air = (nb_years * modif.get(BONUS_AIR, 0),)
-            modification_armee.bonus_rens = (nb_years * modif.get(BONUS_RENS, 0),)
-            modification_armee.bonus_terre = (nb_years * modif.get(BONUS_TERRE, 0),)
+            modification_armee.bonus_mer = nb_years * modif.get(BONUS_MER, 0)
+            modification_armee.bonus_air = nb_years * modif.get(BONUS_AIR, 0)
+            modification_armee.bonus_rens = nb_years * modif.get(BONUS_RENS, 0)
+            modification_armee.bonus_terre = nb_years * modif.get(BONUS_TERRE, 0)
             st.session_state.armee.apply_modification(modification_armee)
             st.session_state.indicateurs.apply_modification(modification_indicateurs)
         # Applicationdes couts de construction

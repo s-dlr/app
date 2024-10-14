@@ -80,7 +80,7 @@ def update_indicateurs() -> None:
     ]
     if st.session_state.annee > st.session_state.indicateurs.annee:
         # Application des programmes
-        for modif in df_programmes_en_cours.iterrows():
+        for _, modif in df_programmes_en_cours.iterrows():
             nb_years = st.session_state.annee - st.session_state.indicateurs.annee
             modification_indicateurs = Modification(
                 europeanisation=nb_years * modif.get(EUROPEANISATION, 0),

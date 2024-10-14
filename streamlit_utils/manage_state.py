@@ -80,16 +80,14 @@ def update_indicateurs() -> None:
     ]
     if st.session_state.annee > st.session_state.indicateurs.annee:
         for modif in df_programmes_en_cours.iterrows():
-            modification = Modification(**modif[[BUDGET, EUROPEANISATION, NIVEAU_TECHNO]].to_dict())
+            modification = Modification(**modif.to_dict())
             st.session_state.indicateurs.apply_modification(modification)
         # TODO contructions
         st.session_state.indicateurs.annee = int(st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
     if st.session_state.annee > st.session_state.armee.annee:
         for modif in df_programmes_en_cours.iterrows():
-            modification = Modification(
-                **modif[[BONUS_TERRE, BONUS_MER, BONUS_AIR, BONUS_RENS]].to_dict()
-            )
+            modification = Modification(**modif.to_dict())
             st.session_state.armee.apply_modification(modification)
         # TODO contructions
         st.session_state.armee.annee = int(st.session_state.annee)

@@ -76,20 +76,30 @@ def update_indicateurs() -> None:
     df_programmes = st.session_state.sql_client.get_table("Programmes")
     df_programmes_en_cours = df_programmes[
         (df_programmes[DEBUT] <= st.session_state.annee)
-        & (df_programmes[FIN] >= st.session_state.annee)
+        & (df_programmes[FIN]+1 >= st.session_state.annee)
     ]
     if st.session_state.annee > st.session_state.indicateurs.annee:
+        # Application des programmes
         for modif in df_programmes_en_cours.iterrows():
-            modification = Modification(**modif.to_dict())
-            st.session_state.indicateurs.apply_modification(modification)
+            nb_years = st.session_state.annee - st.session_state.indicateurs.annee
+            modification_indicateurs = Modification(
+                europeanisation=nb_years * modif.get(EUROPEANISATION, 0),
+                niveau_techno=nb_years*modif.get(NIVEAU_TECHNO, 0)
+            )
+            nb_years = st.session_state.annee - st.session_state.armee.annee
+            modification_armee = Modification(
+                bonus_mer=nb_years * modif.get(BONUS_MER, 0),
+                bonus_air=nb_years * modif.get(BONUS_AIR, 0),
+                bonus_rens=nb_years * modif.get(BONUS_RENS, 0),
+                bonus_terre=nb_years * modif.get(BONUS_TERRE, 0),
+            )
+            st.session_state.armee.apply_modification(modification_armee)
+            st.session_state.indicateurs.apply_modification(modification_indicateurs)
+        # Applicationdes couts de construction
         # TODO contructions
+        # Mise à jour dans SQL
         st.session_state.indicateurs.annee = int(st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
-    if st.session_state.annee > st.session_state.armee.annee:
-        for modif in df_programmes_en_cours.iterrows():
-            modification = Modification(**modif.to_dict())
-            st.session_state.armee.apply_modification(modification)
-        # TODO contructions
         st.session_state.armee.annee = int(st.session_state.annee)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
 

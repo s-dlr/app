@@ -31,7 +31,7 @@ class ClientSQL:
         query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe = '{self.equipe}'"
         return self.connection.query(query).set_index("equipe")
 
-    def execute_qu(self, queries: List[str]):
+    def execute_query(self, queries: List[str]):
         with self.connection.session as session:
             for query in queries:
                 session.execute(text(query))

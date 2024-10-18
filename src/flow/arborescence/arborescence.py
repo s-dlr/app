@@ -13,6 +13,13 @@ class Arborescence:
         # TODO remove programme test
         self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
         self.arborescence = "Programme test"
+        self.df_arborescence.fillna("", inplace=True)
+        self.df_arborescence[NUM_QUESTION] = self.df_arborescence[NUM_QUESTION].astype(
+            int
+        )
+        self.df_arborescence[PROCHAINE_QUESTION] = self.df_arborescence[
+            PROCHAINE_QUESTION
+        ].astype(int)
         self.load_data(num_question=1)
 
     def load_data(self, num_question: int = 1) -> None:

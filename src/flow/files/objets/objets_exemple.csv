@@ -1,0 +1,4 @@
+nom;cout_unitaire;std_cout;cout_fixe;bonus_terre;bonus_mer;bonus_air;bonus_rens;max_nb_utile;unite_par_an;budget;dependance_export;niveau_techno;demande_armee;annee
+eurodrone;1;1;1;0;0;5;2;12;2;2;Allemagne, Angleterre;2;5;2000
+reaper;1;1;1;0;0;5;2;12;2;2;;0;5;2000
+male_in;1;1;1;0;0;5;2;12;2;2;;4;5;2002

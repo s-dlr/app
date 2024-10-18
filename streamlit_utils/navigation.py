@@ -8,13 +8,14 @@ from src.variables import *
 from src.flow.arborescence.arborescence import Arborescence
 
 
-def load_next_arborescence(prochaine_arborescence="Programme exemple"):
-    # TODO Prochain programme
+def load_next_arborescence(prochaine_arborescence):
+    # Prochain programme
     st.session_state["arborescence"] = Arborescence(arborescence=prochaine_arborescence)
     st.session_state["select_option"] = None
     st.session_state['annee'] =  int(st.session_state.arborescence.question.annee)
-    # Sauvegarder les indicateurs dans SQL
-    # TODO récupérer les objets et les programmes
+    # Création des objets de l'arborescence
+    init_objets(FICHIERS_OBJETS[prochaine_arborescence])
+    init_programmes(FICHIERS_OBJETS[prochaine_arborescence])
     # Mise à jour des objets depuis SQL
     update_indicateurs()
     get_objets_from_sql()

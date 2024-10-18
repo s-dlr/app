@@ -11,7 +11,7 @@ from src.data.modification import Modification
 from src.variables import *
 
 
-def init_objets(fichier_objets=FICHIER_OBJETS) -> None:
+def init_objets(fichier_objets=FICHIERS_OBJETS) -> None:
     """
     Récupération des objets
     """
@@ -24,7 +24,7 @@ def init_objets(fichier_objets=FICHIER_OBJETS) -> None:
     get_objets_from_sql()
 
 
-def init_programmes(fichier_programmes=FICHIER_PROGRAMMES) -> None:
+def init_programmes(fichier_programmes=FICHIERS_PROGRAMMES) -> None:
     """
     Récupération des objets
     """

@@ -47,7 +47,6 @@ def next_step():
         st.session_state.annee = st.session_state.arborescence.question.annee
         update_indicateurs()
     else:
-        st.session_state["next"] = PROCHAINES_ARBORESCENCE[st.session_stae]
         st.session_state.arborescence = False
 
 st.set_page_config(
@@ -64,71 +63,75 @@ if "annee" in st.session_state:
 if "arborescence" not in st.session_state:
     st.session_state["arborescence"] = False
 
-
-if st.session_state.arborescence:
-
-    # Contexte et question
-    st.title(st.session_state.arborescence.arborescence)
-    if st.session_state.arborescence.question.image != "":
-        st.image(IMAGE_DIR + st.session_state.arborescence.question.image)
-    st.write(st.session_state.arborescence.question.contexte_question)
-    st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
-    st.divider()
-
-    # Liste des options
-    list_options = st.session_state.arborescence.question.options
-
-    # Radio button for options
-    if "select_option" not in st.session_state:
-        st.session_state["select_option"] = False
-    st.radio(
-        label="Choix",
-        options=[opt.texte_option for opt in list_options],
-        index=None,
-        label_visibility="collapsed",
-        key="select_option",
-    )
-
-    # Affichage des données correspondant à chaque option
-    columns = st.columns(len(list_options))
-    for option, col in zip(list_options, columns):
-        with col.container(
-            border=(st.session_state.select_option == option.texte_option)
-        ):
-            # Effet immédiat
-            effets_immediat_dict = option.effet_immediat.to_dict()
-            if len(effets_immediat_dict) > 0:
-                st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
-                display_metrics(effets_immediat_dict)
-            # Objet
-            if option.objet:
-                st.markdown(f":blue[{OBJET_DESC}]")
-                display_objet(st.session_state[option.objet].to_dict())
-            # Programme
-            if option.programme:
-                st.markdown(f":blue[{PROGRAMME_DESC}]")
-                display_programme(st.session_state[option.programme].to_dict())
-
-    # Bouton validation
-    st.button(
-        type="primary",
-        label="VALIDER",
-        use_container_width=True,
-        on_click=next_step,
-        disabled=(st.session_state.select_option is None),
-    )
+if "equipe" not in st.session_state:
+    st.write("Aucune partie en cours. Connectez vous d'abord.")
+    st.page_link("pages/login.py", label="Se connecter", icon="🏠")
 
 else:
-    if "equipe" in st.session_state:
-        st.header("Fin du programme")
-        def button_action():
-            load_next_arborescence(PROCHAINE_QUESTION[])
-        st.button(
-            "pages/load_data.py", label="Commencer un autre programme", icon=":material/settings:"
+    if st.session_state.arborescence:
+
+        # Contexte et question
+        st.title(st.session_state.arborescence.arborescence)
+        if st.session_state.arborescence.question.image != "":
+            st.image(IMAGE_DIR + st.session_state.arborescence.question.image)
+        st.write(st.session_state.arborescence.question.contexte_question)
+        st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")
+        st.divider()
+
+        # Liste des options
+        list_options = st.session_state.arborescence.question.options
+
+        # Radio button for options
+        if "select_option" not in st.session_state:
+            st.session_state["select_option"] = False
+        st.radio(
+            label="Choix",
+            options=[opt.texte_option for opt in list_options],
+            index=None,
+            label_visibility="collapsed",
+            key="select_option",
         )
+
+        # Affichage des données correspondant à chaque option
+        columns = st.columns(len(list_options))
+        for option, col in zip(list_options, columns):
+            with col.container(
+                border=(st.session_state.select_option == option.texte_option)
+            ):
+                # Effet immédiat
+                effets_immediat_dict = option.effet_immediat.to_dict()
+                if len(effets_immediat_dict) > 0:
+                    st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
+                    display_metrics(effets_immediat_dict)
+                # Objet
+                if option.objet:
+                    st.markdown(f":blue[{OBJET_DESC}]")
+                    display_objet(st.session_state[option.objet].to_dict())
+                # Programme
+                if option.programme:
+                    st.markdown(f":blue[{PROGRAMME_DESC}]")
+                    display_programme(st.session_state[option.programme].to_dict())
+
+        # Bouton validation
+        st.button(
+            type="primary",
+            label="VALIDER",
+            use_container_width=True,
+            on_click=next_step,
+            disabled=(st.session_state.select_option is None),
+        )
+
+    else :
+        if st.session_state.prochaine_arborescence:
+            st.header("Fin du programme")
+            def button_action():
+                prochaine_arborescence = PROCHAINES_ARBORESCENCE.get(st.session_state.prochaine_arborescence)
+                load_next_arborescence(prochaine_arborescence)
+            st.button(
+                "pages/load_data.py", label="Commencer un autre programme", icon=":material/settings:"
+            )
+        else:
+            st.header("Fin du jeu")
         st.page_link(
             "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
         )
-    else:
-        st.write("Aucune partie en cours. Connectez vous d'abord.")
-        st.page_link("pages/login.py", label="Se connecter", icon="🏠")

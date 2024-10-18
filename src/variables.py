@@ -49,11 +49,21 @@ NOMBRE_UNITE = "nombre_unites"
 CHOIX_OPTION = "choix_option"
 CHOIX_NOMBRE_UNITE = "choix_nombre_unites"
 
-# Arborescences
-PROCHAINES_ARBORESCENCE = {"Programme exemple": "Programme exemple"}
-ARBORESCENCES = {
-    "Programme exemple": f"{DATA_DIR}/arborescence_exemple/arborescence.csv",
+# Fichiers
+PROCHAINES_ARBORESCENCE = {
+    "Programme exemple": "Programme exemple",
+    "Programme FIA": None,
 }
-FICHIER_OBJETS = f"{DATA_DIR}/arborescence_exemple/objets.csv"
-FICHIER_PROGRAMMES = f"{DATA_DIR}/arborescence_exemple/programmes.csv"
+ARBORESCENCES = {
+    "Programme exemple": f"{DATA_DIR}/arborescences/arborescence_exemple.csv",
+    "Programme FIA": f"{DATA_DIR}/arborescences/arborescence_FIA.csv",
+}
+FICHIERS_OBJETS = {
+    "Programme exemple": f"{DATA_DIR}/objets/objets_exemple.csv",
+    "Programme FIA": f"{DATA_DIR}/objets/objets_FIA.csv",
+}
+FICHIERS_PROGRAMMES = {
+    "Programme exemple": f"{DATA_DIR}/programmes/programmes_exemple.csv",
+    "Programme FIA": f"{DATA_DIR}/programmes/programmes_FIA.csv",
+}
 IMAGE_DIR = f"{DATA_DIR}/images/"

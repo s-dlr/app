@@ -14,7 +14,7 @@ class Arborescence:
         # self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
         self.df_arborescence = pd.read_csv(self.arborescence, sep=";", dtype=str)
         self.arborescence = "Programme test"
-        self.df_arborescence.fillna("")
+        self.df_arborescence.fillna("", inplace=True)
         self.df_arborescence[NUM_QUESTION] = self.df_arborescence[NUM_QUESTION].astype(
             int
         )

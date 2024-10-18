@@ -39,7 +39,6 @@ class Arborescence:
                 COMMANDES,
             ]
         ].fillna("")
-        option
         self.question = QuestionOptions(**question_data.to_dict())
         self.question.create_options(option_data)
 

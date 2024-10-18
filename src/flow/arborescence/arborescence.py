@@ -10,9 +10,7 @@ class Arborescence:
     arborescence: str = "test"
 
     def __post_init__(self) -> None:
-        # TODO remove programme test
         self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
-        self.arborescence = "Programme test"
         self.df_arborescence.fillna("", inplace=True)
         self.df_arborescence[NUM_QUESTION] = self.df_arborescence[NUM_QUESTION].astype(
             int

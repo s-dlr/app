@@ -7,7 +7,7 @@ class ClientSQL:
 
     def __init__(self, connection_name: str, equipe: str) -> None:
         # TODO
-        self.connection = st.connection(connection_name)
+        self.connection = st.connection(connection_name, autocommit=False)
         self.equipe = equipe
 
     def check_team_exists(self):

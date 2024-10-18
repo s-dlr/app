@@ -17,6 +17,9 @@ class Arborescence:
         self.df_arborescence[NUM_QUESTION] = self.df_arborescence[NUM_QUESTION].astype(
             int
         )
+        self.df_arborescence[PROCHAINE_QUESTION] = self.df_arborescence[
+            PROCHAINE_QUESTION
+        ].astype(int)
         self.load_data(num_question=1)
 
     def load_data(self, num_question: int = 1) -> None:

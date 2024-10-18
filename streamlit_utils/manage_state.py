@@ -65,9 +65,11 @@ def get_indicateurs_from_sql() -> None:
     Mise à jour ou créations des indicateurs à partir de SQL
     """
     df_indicateurs = st.session_state.sql_client.get_last_value("Indicateurs")
-    st.session_state["indicateurs"] = Indicateurs(**df_indicateurs.iloc[0].to_dict())
+    if df_indicateurs.shape[0] > 0:
+        st.session_state["indicateurs"] = Indicateurs(**df_indicateurs.iloc[0].to_dict())
     df_armee = st.session_state.sql_client.get_last_value("Armee")
-    st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())
+    if df_armee.shape[0] > 0:
+        st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())
 
 def apply_programmes() -> None:
     """

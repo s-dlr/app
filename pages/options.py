@@ -35,7 +35,6 @@ def next_step():
             objet_option.send_to_sql(st.session_state.sql_client)
         # Objet courant utilsé pour le prochain achat
         st.session_state['objet'] = objet_option
-        # TODO envoi de l'objet au store
     # Passage à la prochaine question
     if "select_option" not in st.session_state:
         st.session_state["select_option"] = None
@@ -68,6 +67,7 @@ if "equipe" not in st.session_state:
     st.page_link("pages/login.py", label="Se connecter", icon="🏠")
 
 else:
+
     if st.session_state.arborescence:
 
         # Contexte et question
@@ -125,8 +125,7 @@ else:
         if st.session_state.prochaine_arborescence:
             st.header("Fin du programme")
             def button_action():
-                prochaine_arborescence = PROCHAINES_ARBORESCENCE.get(st.session_state.prochaine_arborescence)
-                load_next_arborescence(prochaine_arborescence)
+                load_next_arborescence(st.session_state.prochaine_arborescence)
             st.button(
                 "pages/load_data.py", label="Commencer un autre programme", icon=":material/settings:"
             )

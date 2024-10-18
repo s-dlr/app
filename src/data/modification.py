@@ -27,7 +27,7 @@ class Modification:
         for modification in modification_str.split("\n"):
             if len(modification.split(":")) == 2:
                 attr, value = modification.split(":")
-                setattr(self, attr.strip(), float(value))
+                setattr(self, attr.strip(), float(value.stip()))
 
     def to_dict(self):
         return self.__dict__

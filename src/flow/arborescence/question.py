@@ -11,7 +11,7 @@ class QuestionOptions:
     num_question: str
     texte_question: str
     annee: int
-    image: str | None = None
+    image: str = ""
 
     def create_options(self, options_df: pd.DataFrame):
         self.options = []

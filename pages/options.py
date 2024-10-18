@@ -72,6 +72,8 @@ if st.session_state.arborescence:
         st.session_state.arborescence.question.image is not None
         and st.session_state.arborescence.question.image != ""
     ):
+        st.write(IMAGE_DIR)
+        st.write(st.session_state.arborescence.question.image)
         st.image(IMAGE_DIR + st.session_state.arborescence.question.image)
     st.write(st.session_state.arborescence.question.contexte_question)
     st.markdown(f"**{st.session_state.arborescence.question.texte_question}**")

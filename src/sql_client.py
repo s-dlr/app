@@ -21,6 +21,13 @@ class ClientSQL:
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}'"
         return self.connection.query(query).set_index("equipe")
 
+    def get_running_rows(self, table, annee=int):
+        """
+        Récupération des lignes en cours
+        """
+        query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}' AND `debut` >= '{annee}' AND `fin` >= '{annee-1}'"
+        return self.connection.query(query).set_index("equipe")
+
     def get_last_value(self, table):
         """
         Récupère la valeur la plus à jour d'une table (date la plus récente)

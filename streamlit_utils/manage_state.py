@@ -67,38 +67,82 @@ def get_indicateurs_from_sql() -> None:
     df_armee = st.session_state.sql_client.get_last_value("Armee")
     st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())
 
+def apply_programmes() -> None:
+    """
+    Mise à jour des indicateurs à partir des programmes en cours
+    """
+    # Récupération des programmes en cours dans SQL
+    df_programmes = st.session_state.sql_client.get_running_rows(
+        "Programmes", annee=st.session_state.annee
+    )
+    # Application des modifications
+    for _, modif in df_programmes.iterrows():
+        nb_years = st.session_state.annee - st.session_state.indicateurs.annee
+        modification_indicateurs = Modification()
+        modification_indicateurs.europeanisation = nb_years * modif.get(
+            EUROPEANISATION, 0
+        )
+        modification_indicateurs.niveau_techno = nb_years * modif.get(
+            NIVEAU_TECHNO, 0
+        )
+        nb_years = st.session_state.annee - st.session_state.armee.annee
+        modification_armee = Modification()
+        modification_armee.bonus_mer = nb_years * modif.get(BONUS_MER, 0)
+        modification_armee.bonus_air = nb_years * modif.get(BONUS_AIR, 0)
+        modification_armee.bonus_rens = nb_years * modif.get(BONUS_RENS, 0)
+        modification_armee.bonus_terre = nb_years * modif.get(BONUS_TERRE, 0)
+        st.session_state.armee.apply_modification(modification_armee)
+        st.session_state.indicateurs.apply_modification(modification_indicateurs)
+
+
+def apply_constructions() -> None:
+    """
+    Mise à jour des indicateurs à partir des programmes en cours
+    """
+    # Récupération des programmes en cours dans SQL
+    df_constructions = st.session_state.sql_client.get_table("Constructions")
+    df_constructions_en_cours = df_constructions[
+        (df_constructions[DEBUT] <= st.session_state.annee)
+        & (df_constructions[FIN] + 1 >= st.session_state.annee)
+    ]
+    """
+    SELECT * FROM `Constructions`
+    INNER JOIN (
+        SELECT * FROM Objets
+        ON Objets.equipe = Constructions.equipe AND Objets.nom = Constructions.objet
+    )
+    """
+    # Application des modifications
+    for _, modif in df_constructions_en_cours.iterrows():
+        # nb_years = st.session_state.annee - st.session_state.indicateurs.annee
+        # modification_indicateurs = Modification()
+        # modification_indicateurs.europeanisation = nb_years * modif.get(
+        #     EUROPEANISATION, 0
+        # )
+        # modification_indicateurs.niveau_techno = nb_years * modif.get(NIVEAU_TECHNO, 0)
+        # nb_years = st.session_state.annee - st.session_state.armee.annee
+        # modification_armee = Modification()
+        # modification_armee.bonus_mer = nb_years * modif.get(BONUS_MER, 0)
+        # modification_armee.bonus_air = nb_years * modif.get(BONUS_AIR, 0)
+        # modification_armee.bonus_rens = nb_years * modif.get(BONUS_RENS, 0)
+        # modification_armee.bonus_terre = nb_years * modif.get(BONUS_TERRE, 0)
+        # st.session_state.armee.apply_modification(modification_armee)
+        # st.session_state.indicateurs.apply_modification(modification_indicateurs)
+
+        # TODO
+        pass
+
+
 def update_indicateurs() -> None:
     """
     Mise à jour des indicateurs
     """
     get_indicateurs_from_sql()
     # Appliquer les programmes et les constructions en cours
-    df_programmes = st.session_state.sql_client.get_table("Programmes")
-    df_programmes_en_cours = df_programmes[
-        (df_programmes[DEBUT] <= st.session_state.annee)
-        & (df_programmes[FIN]+1 >= st.session_state.annee)
-    ]
     if st.session_state.annee > st.session_state.indicateurs.annee:
-        # Application des programmes
-        for _, modif in df_programmes_en_cours.iterrows():
-            nb_years = st.session_state.annee - st.session_state.indicateurs.annee
-            modification_indicateurs = Modification()
-            modification_indicateurs.europeanisation = nb_years * modif.get(
-                EUROPEANISATION, 0
-            )
-            modification_indicateurs.niveau_techno = nb_years * modif.get(
-                NIVEAU_TECHNO, 0
-            )
-            nb_years = st.session_state.annee - st.session_state.armee.annee
-            modification_armee = Modification()
-            modification_armee.bonus_mer = nb_years * modif.get(BONUS_MER, 0)
-            modification_armee.bonus_air = nb_years * modif.get(BONUS_AIR, 0)
-            modification_armee.bonus_rens = nb_years * modif.get(BONUS_RENS, 0)
-            modification_armee.bonus_terre = nb_years * modif.get(BONUS_TERRE, 0)
-            st.session_state.armee.apply_modification(modification_armee)
-            st.session_state.indicateurs.apply_modification(modification_indicateurs)
-        # Applicationdes couts de construction
-        # TODO contructions
+        # Application des couts des programmes et des constructions
+        apply_programmes()
+        apply_constructions()
         # Mise à jour dans SQL
         st.session_state.indicateurs.annee = int(st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
@@ -106,6 +150,9 @@ def update_indicateurs() -> None:
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
 
 def launch_programme(programme) -> None:
+    """
+    Lance un programme
+    """
     st.session_state[programme].create_start_end(st.session_state.annee)
     st.session_state[programme].send_to_sql(st.session_state.sql_client)
 

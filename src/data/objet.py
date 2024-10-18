@@ -25,3 +25,16 @@ class Objet(AbstractClass):
     @staticmethod
     def get_table():
         return "Objets"
+
+
+@dataclass
+class Construction(AbstractClass):
+
+    objet: str = None  # un nom unique par objet
+    debut: int = 2000
+    fin: int = 2000
+    nombre_unites: int = 0
+
+    @staticmethod
+    def get_table():
+        return "Constructions"

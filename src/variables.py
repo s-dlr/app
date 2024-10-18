@@ -45,10 +45,6 @@ NIVEAU_TECHNO = "niveau_techno"
 # Variable
 NOMBRE_UNITE = "nombre_unites"
 
-# Types de question
-CHOIX_OPTION = "choix_option"
-CHOIX_NOMBRE_UNITE = "choix_nombre_unites"
-
 # Fichiers
 PROCHAINES_ARBORESCENCE = {
     "Programme exemple": "Programme exemple",

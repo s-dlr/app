@@ -1,5 +1,7 @@
+import math
 import streamlit as st
 
+from src.data.objet import Construction
 from streamlit_utils.display_functions import *
 from streamlit_utils.navigation import *
 
@@ -7,8 +9,15 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
-    # TODO Lancer la construction
-    pass
+    objet = st.session_state[st.session_state[st.session_state.selected_objet]]
+    duree_construction = math.ceil(st.session_state.nb_unites / objet.unite_par_an)
+    construction = Construction(
+        objet=objet.nom,
+        debut=st.session_state.annee,
+        fin=st.session_state.annee + duree_construction - 1,
+        nombre_unites=st.session_state.nb_unites,
+    )
+    construction.send_to_sql(st.session_state.sql_client)
 
 
 st.set_page_config(

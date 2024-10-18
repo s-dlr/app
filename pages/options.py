@@ -47,6 +47,7 @@ def next_step():
         st.session_state.annee = st.session_state.arborescence.question.annee
         update_indicateurs()
     else:
+        st.session_state["next"] = PROCHAINES_ARBORESCENCE[st.session_stae]
         st.session_state.arborescence = False
 
 st.set_page_config(
@@ -120,7 +121,9 @@ if st.session_state.arborescence:
 else:
     if "equipe" in st.session_state:
         st.header("Fin du programme")
-        st.page_link(
+        def button_action():
+            load_next_arborescence(PROCHAINE_QUESTION[])
+        st.button(
             "pages/load_data.py", label="Commencer un autre programme", icon=":material/settings:"
         )
         st.page_link(

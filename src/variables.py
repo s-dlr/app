@@ -50,6 +50,7 @@ CHOIX_OPTION = "choix_option"
 CHOIX_NOMBRE_UNITE = "choix_nombre_unites"
 
 # Arborescences
+PROCHAINES_ARBORESCENCE = {"Programme exemple": "Programme exemple"}
 ARBORESCENCES = {
     "Programme exemple": f"{DATA_DIR}/arborescence_exemple/arborescence.csv",
 }

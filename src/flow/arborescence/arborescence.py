@@ -11,8 +11,7 @@ class Arborescence:
 
     def __post_init__(self) -> None:
         # TODO remove programme test
-        # self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
-        self.df_arborescence = pd.read_csv(self.arborescence, sep=";")
+        self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
         self.arborescence = "Programme test"
         self.load_data(num_question=1)
 

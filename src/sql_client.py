@@ -16,25 +16,25 @@ class ClientSQL:
         return self.get_table("Etat").shape[0] > 0
 
     def get_table(self, table):
-        query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}'"
-        return self.connection.query(text(query)).drop(columns="equipe")
+        query = f"SELECT * FROM `{table}` WHERE `equipe` LIKE '{self.equipe}'"
+        return self.connection.query(query).drop(columns="equipe")
 
     def get_running_rows(self, table, annee=int):
         """
         Récupération des lignes en cours
         """
-        query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}' AND `debut` >= '{annee}' AND `fin` >= '{annee-1}'"
-        return self.connection.query(text(query)).drop(columns="equipe")
+        query = f"SELECT * FROM `{table}` WHERE `equipe` LIKE '{self.equipe}' AND `debut` >= '{annee}' AND `fin` >= '{annee-1}'"
+        return self.connection.query(query).drop(columns="equipe")
 
     def get_last_value(self, table):
         """
         Récupère la valeur la plus à jour d'une table (date la plus récente)
         """
         query_max_anee = (
-            f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe = '{self.equipe}'"
+            f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe LIKE '{self.equipe}'"
         )
-        query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe = '{self.equipe}'"
-        return self.connection.query(text(query)).drop(columns="equipe")
+        query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe LIKE '{self.equipe}'"
+        return self.connection.query(query).drop(columns="equipe")
 
     def execute_query(self, queries: List[str]):
         with self.connection.session as session:
@@ -46,7 +46,7 @@ class ClientSQL:
         """
         Efface les lignes associées à l'équipe dans la table
         """
-        query = f"DELETE FROM `{table}` WHERE equipe = '{self.equipe}'"
+        query = f"DELETE FROM `{table}` WHERE equipe LIKE '{self.equipe}'"
         self.execute_query([query])
 
     def insert_row(self, table: str, value_dict: dict, replace: bool = True):

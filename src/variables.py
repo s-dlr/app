@@ -31,12 +31,13 @@ BONUS_RENS = "bonus_rens"
 MAX_NB_UTILE = "max_nb_utile"
 UNITE_PAR_AN = "unite_par_an"
 DEPENDANCE_EXPORT = "dependance_export"
+DEMANDE_ARMEE = "demande_armee"
 
 # Attributs programmes
 COUT = "cout"
 DEBUT = "debut"
 FIN = "fin"
-
+DUREE = "duree"
 # Compteurs
 EUROPEANISATION = "europeanisation"
 BUDGET = "budget"

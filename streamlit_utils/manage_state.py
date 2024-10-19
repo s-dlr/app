@@ -15,14 +15,36 @@ def init_objets(fichier_objets=FICHIERS_OBJETS["Programme exemple"]) -> None:
     """
     Récupération des objets
     """
-    # Objets en local
-    df_objets = pd.read_csv(fichier_objets, sep=";")
-    for _, row in df_objets.iterrows():
-        new_objet = Objet(**row.to_dict())
-        st.session_state[row[NOM]] = new_objet
     # Objets SQL
     get_objets_from_sql()
-
+    # Objets en local
+    df_objets = pd.read_csv(
+        fichier_objets,
+        sep=";",
+        dtype={  
+            NOM: str,
+            COUT_UNITAIRE: float,
+            STD_COUT: float,
+            COUT_FIXE: float,
+            BONUS_TERRE: int,
+            BONUS_MER: int,
+            BONUS_RENS: int,
+            BONUS_AIR: int,
+            MAX_NB_UTILE: int,
+            UNITE_PAR_AN: float,
+            BUDGET: float,
+            DEPENDANCE_EXPORT: str,
+            NIVEAU_TECHNO: float,
+            ANNEE: int,
+            DEMANDE_ARMEE: int
+        }
+    )
+    for _, row in df_objets.iterrows():
+        new_objet = Objet(**row.to_dict())
+        # Save and send to SQL if new objet
+        if row[NOM] not in st.session_state:
+            st.session_state[row[NOM]] = new_objet
+            new_objet.send_to_sql(st.session_state.sql_client)
 
 def init_programmes(
     fichier_programmes=FICHIERS_PROGRAMMES["Programme exemple"],
@@ -31,7 +53,24 @@ def init_programmes(
     Récupération des objets
     """
     # Programmes en local
-    df_programmes = pd.read_csv(fichier_programmes, sep=";")
+    df_programmes = pd.read_csv(
+        fichier_programmes,
+        sep=";",
+        dtype={
+            NOM: str,
+            COUT: float,
+            STD_COUT: float,
+            BONUS_TERRE: int,
+            BONUS_MER: int,
+            BONUS_RENS: int,
+            BONUS_AIR: int,
+            BUDGET: float,
+            DEPENDANCE_EXPORT: str,
+            NIVEAU_TECHNO: float,
+            ANNEE: int,
+            DUREE: int,
+        },
+    )
     for _, row in df_programmes.iterrows():
         new_programme = Programme(**row.to_dict())
         st.session_state["programme " + row[NOM]] = new_programme
@@ -60,13 +99,16 @@ def get_objets_from_sql() -> None:
         new_objet = Objet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet
 
+
 def get_indicateurs_from_sql() -> None:
     """
     Mise à jour ou créations des indicateurs à partir de SQL
     """
     df_indicateurs = st.session_state.sql_client.get_last_value("Indicateurs")
     if df_indicateurs.shape[0] > 0:
-        st.session_state["indicateurs"] = Indicateurs(**df_indicateurs.iloc[0].to_dict())
+        st.session_state["indicateurs"] = Indicateurs(
+            **df_indicateurs.iloc[0].to_dict()
+        )
     df_armee = st.session_state.sql_client.get_last_value("Armee")
     if df_armee.shape[0] > 0:
         st.session_state["armee"] = Armee(**df_armee.iloc[0].to_dict())

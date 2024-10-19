@@ -2,6 +2,11 @@ DATA_DIR = "src/flow/files"
 
 EQUIPE = "equipe"
 
+# Etat de l'équipe
+ETAT = "Etat"
+ARBORESCENCE = "arborescence"
+QUESTION = "question"
+
 # Colonnes arborescence
 NUM_QUESTION = "num_question"
 ANNEE = "annee" 

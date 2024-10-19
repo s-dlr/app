@@ -13,8 +13,7 @@ class ClientSQL:
         """
         Teste si une équipe existe déjà dans la base SQL
         """
-        df_indicateurs = self.get_last_value("Indicateurs")
-        return df_indicateurs.shape[0] > 0
+        return self.get_table("Etat").shape[0] > 0
 
     def get_table(self, table):
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}'"

@@ -23,7 +23,8 @@ def init_team_in_db() -> None:
     st.session_state["sql_client"] = ClientSQL(
         connection_name="astrolabedb", equipe=st.session_state.equipe
     )
-    if st.session_state.sql_client.check_team_exists():
+    df_etat_equipe = st.session_state.sql_client.get_table("Etat")
+    if df_etat_equipe.shape[0] > 0:
         get_indicateurs_from_sql()
     else:
         st.session_state["annee"] = 2000
@@ -31,7 +32,9 @@ def init_team_in_db() -> None:
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-
+        df_etat_equipe[ARBORESCENCE] = ARBORESCENCES.keys()[0]
+        df_etat_equipe[QUESTION] = 1
+    return df_etat_equipe.iloc[0]
 
 # Affichage
 st.header("Choix du nom de l'équipe")
@@ -39,6 +42,6 @@ team = st.text_input("équipe", "astrolabe")
 
 if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
-    init_team_in_db()
-    load_next_arborescence("Programme exemple")
+    etat_equipe = init_team_in_db()
+    load_next_arborescence(etat_equipe[ARBORESCENCE], etat_equipe[QUESTION])
     st.switch_page("pages/options.py")

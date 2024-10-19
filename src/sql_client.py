@@ -3,6 +3,7 @@ from typing import List
 import streamlit as st
 from sqlalchemy.sql import text
 
+
 class ClientSQL:
 
     def __init__(self, connection_name: str, equipe: str) -> None:

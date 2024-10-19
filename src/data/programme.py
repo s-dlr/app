@@ -17,8 +17,8 @@ class Programme(AbstractClass):
     dependance_export: str = ""  # virgule entre pays
     niveau_techno: float = 0.0
     duree: int = 1
-    debut: int = None # intialisés au lancement
-    fin: int = None # initialisés au lancement
+    debut: int = 0 # intialisés au lancement
+    fin: int = 0 # initialisés au lancement
 
     def __post_init__(self):
         self.nom = "programme " + self.nom

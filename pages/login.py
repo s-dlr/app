@@ -25,6 +25,10 @@ def init_team_in_db() -> None:
     )
     df_etat_equipe = st.session_state.sql_client.get_table("Etat")
     if df_etat_equipe.shape[0] > 0:
+        etat_equipe = df_etat_equipe.iloc[0].to_dict()
+        st.success(
+            f"Chargement du jeu là où vous vous étiez arrêtés ({etat_equipe[ARBORESCENCE]}, question {etat_equipe[QUESTION]})"
+        )
         get_indicateurs_from_sql()
         return df_etat_equipe.iloc[0].to_dict()
     else:

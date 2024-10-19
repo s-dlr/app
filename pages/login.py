@@ -42,6 +42,9 @@ team = st.text_input("équipe", "astrolabe")
 if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
     etat_equipe = init_team_in_db()
-    load_next_arborescence(etat_equipe[ARBORESCENCE], etat_equipe[QUESTION])
+    load_next_arborescence(
+        prochaine_arborescence=etat_equipe[ARBORESCENCE],
+        num_question=int(etat_equipe[QUESTION]),
+    )
     push_etat_to_sql(etat_equipe[ARBORESCENCE], etat_equipe[QUESTION])
     st.switch_page("pages/options.py")

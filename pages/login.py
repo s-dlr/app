@@ -26,15 +26,14 @@ def init_team_in_db() -> None:
     df_etat_equipe = st.session_state.sql_client.get_table("Etat")
     if df_etat_equipe.shape[0] > 0:
         get_indicateurs_from_sql()
+        return df_etat_equipe.iloc[0].to_dict()
     else:
         st.session_state["annee"] = 2000
         st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-        df_etat_equipe[ARBORESCENCE] = list(ARBORESCENCES.keys())[0]
-        df_etat_equipe[QUESTION] = 1
-    return df_etat_equipe.iloc[0]
+        return {ARBORESCENCES: list(ARBORESCENCES.keys())[0], QUESTION: 1}
 
 # Affichage
 st.header("Choix du nom de l'équipe")

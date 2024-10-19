@@ -33,7 +33,7 @@ def init_team_in_db() -> None:
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-        return {ARBORESCENCES: list(ARBORESCENCES.keys())[0], QUESTION: 1}
+        return {ARBORESCENCE: list(ARBORESCENCES.keys())[0], QUESTION: 1}
 
 # Affichage
 st.header("Choix du nom de l'équipe")

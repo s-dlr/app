@@ -45,9 +45,10 @@ def next_step():
         st.session_state.arborescence.load_data(next_question)
         st.session_state.annee = st.session_state.arborescence.question.annee
         update_indicateurs()
-        push_etat_to_sql()
+        push_etat_to_sql(st.session_state.arborescence.arborescence, next_question)
     else:
         st.session_state.arborescence = False
+        push_etat_to_sql(st.session_state.prochaine_arborescence, 1)
 
 st.set_page_config(
     page_title="Définition des besoins",

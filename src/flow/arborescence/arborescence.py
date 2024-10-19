@@ -31,7 +31,6 @@ class Arborescence:
                 COMMANDES: str,
             },
         )
-        self.arborescence = "Programme test"
         self.df_arborescence.fillna("", inplace=True)
         self.load_data(num_question=1)
 

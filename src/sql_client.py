@@ -17,14 +17,14 @@ class ClientSQL:
 
     def get_table(self, table):
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}'"
-        return self.connection.query(query)  # .drop(columns="equipe")
+        return self.connection.query(text(query)).drop(columns="equipe")
 
     def get_running_rows(self, table, annee=int):
         """
         Récupération des lignes en cours
         """
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}' AND `debut` >= '{annee}' AND `fin` >= '{annee-1}'"
-        return self.connection.query(query).drop(columns="equipe")
+        return self.connection.query(text(query)).drop(columns="equipe")
 
     def get_last_value(self, table):
         """
@@ -34,7 +34,7 @@ class ClientSQL:
             f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe = '{self.equipe}'"
         )
         query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe = '{self.equipe}'"
-        return self.connection.query(query).drop(columns="equipe")
+        return self.connection.query(text(query)).drop(columns="equipe")
 
     def execute_query(self, queries: List[str]):
         with self.connection.session as session:

@@ -32,7 +32,7 @@ def init_team_in_db() -> None:
             f"Chargement du jeu là où vous vous étiez arrêtés ({etat_equipe[ARBORESCENCE]}, question {etat_equipe[QUESTION]})"
         )
         get_indicateurs_from_sql()
-        return df_etat_equipe.iloc[0].to_dict()
+        return etat_equipe
     else:
         st.session_state["annee"] = 2000
         st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
@@ -48,9 +48,10 @@ team = st.text_input("équipe", "astrolabe")
 if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
     etat_equipe = init_team_in_db()
+    st.write(etat_equipe)
     load_next_arborescence(
         prochaine_arborescence=etat_equipe[ARBORESCENCE],
-        num_question=int(etat_equipe[QUESTION]),
+        num_question=etat_equipe[QUESTION],
     )
     push_etat_to_sql(etat_equipe[ARBORESCENCE], etat_equipe[QUESTION])
     st.switch_page("pages/options.py")

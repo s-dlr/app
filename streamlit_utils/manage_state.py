@@ -15,6 +15,8 @@ def init_objets(fichier_objets=FICHIER_OBJETS) -> None:
     """
     Récupération des objets
     """
+    # Objets SQL
+    get_objets_from_sql()
     # Objets en local
     df_objets = pd.read_csv(
         fichier_objets,
@@ -39,10 +41,10 @@ def init_objets(fichier_objets=FICHIER_OBJETS) -> None:
     )
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())
-        st.session_state[row[NOM]] = new_objet
-    # Objets SQL
-    get_objets_from_sql()
-
+        # Save and send to SQL if new objet
+        if row[NOM] not in st.session_state:
+            st.session_state[row[NOM]] = new_objet
+            new_objet.send_to_sql(st.session_state.sql_client)
 
 def init_programmes(fichier_programmes=FICHIER_PROGRAMMES) -> None:
     """

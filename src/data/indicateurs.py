@@ -5,6 +5,7 @@ from dataclasses import dataclass
 import re
 
 from src.data.abstract_class import AbstractClass
+from src.variables import *
 
 @dataclass
 class Indicateurs(AbstractClass):
@@ -20,6 +21,16 @@ class Indicateurs(AbstractClass):
     @staticmethod
     def get_table():
         return "Indicateurs"
+
+    def update(self, attribute_name: str, increment: T.Union[str, float]) -> None:
+        """
+        incrémente la valeur d'un attribut de l'objet
+        """
+        if attribute_name in [COUT_FIXE, COUT_UNITAIRE, COUT]:
+            attribute_name = BUDGET
+        elif attribute_name in self.__dataclass_fields__.keys():
+            current_value = getattr(self, attribute_name)
+            setattr(self, attribute_name, current_value + increment)
 
 
 @dataclass

@@ -18,7 +18,8 @@ class ClientSQL:
 
     def get_table(self, table):
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}';"
-        return self.connection.query(query)  # .drop(columns="equipe")
+        df_results = self.connection.query(query)
+        return df_results.drop(columns="equipe")
 
     def get_running_rows(self, table, annee=int):
         """

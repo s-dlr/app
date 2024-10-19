@@ -96,7 +96,7 @@ if "equipe" in st.session_state:
             label="Commencer un autre programme",
             icon=":material/settings:",
             type="secondary",
-            on_clik=button_action,
+            on_click=button_action,
         )
 
 else:

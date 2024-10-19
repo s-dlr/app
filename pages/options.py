@@ -130,7 +130,7 @@ else:
                 label="Commencer un autre programme",
                 icon=":material/settings:",
                 type="secondary",
-                on_clik=button_action
+                on_click=button_action,
             )
         else:
             st.header("Fin du jeu")

@@ -7,8 +7,7 @@ from sqlalchemy.sql import text
 class ClientSQL:
 
     def __init__(self, connection_name: str, equipe: str) -> None:
-        self.connection_name = connection_name
-        # self.connection = st.connection(connection_name, autocommit=True)
+        self.connection = st.connection(connection_name, autocommit=True)
         self.equipe = equipe
 
     def check_team_exists(self):
@@ -18,9 +17,8 @@ class ClientSQL:
         return self.get_table("Etat").shape[0] > 0
 
     def get_table(self, table):
-        connection = st.connection(self.connection_name, autocommit=True)
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}';"
-        df_results = connection.query(query)
+        df_results = self.connection.query(query)
         return df_results.drop(columns="equipe")
 
     def get_running_rows(self, table, annee=int):

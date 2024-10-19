@@ -32,7 +32,7 @@ def init_team_in_db() -> None:
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-        df_etat_equipe[ARBORESCENCE] = ARBORESCENCES.keys()[0]
+        df_etat_equipe[ARBORESCENCE] = list(ARBORESCENCES.keys())[0]
         df_etat_equipe[QUESTION] = 1
     return df_etat_equipe.iloc[0]
 

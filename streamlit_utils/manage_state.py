@@ -16,7 +16,27 @@ def init_objets(fichier_objets=FICHIER_OBJETS) -> None:
     Récupération des objets
     """
     # Objets en local
-    df_objets = pd.read_csv(fichier_objets, sep=";")
+    df_objets = pd.read_csv(
+        fichier_objets,
+        sep=";",
+        dtype={  
+            NOM: str,
+            COUT_UNITAIRE: float,
+            STD_COUT: float,
+            COUT_FIXE: float,
+            BONUS_TERRE: int,
+            BONUS_MER: int,
+            BONUS_RENS: int,
+            BONUS_AIR: int,
+            MAX_NB_UTILE: int,
+            UNITE_PAR_AN: float,
+            BUDGET: float,
+            DEPENDANCE_EXPORT: str,
+            NIVEAU_TECHNO: float,
+            ANNEE: int,
+            DEMANDE_ARMEE: int
+        }
+    )
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())
         st.session_state[row[NOM]] = new_objet
@@ -29,7 +49,24 @@ def init_programmes(fichier_programmes=FICHIER_PROGRAMMES) -> None:
     Récupération des objets
     """
     # Programmes en local
-    df_programmes = pd.read_csv(fichier_programmes, sep=";")
+    df_programmes = pd.read_csv(
+        fichier_programmes,
+        sep=";",
+        dtype={
+            NOM: str,
+            COUT: float,
+            STD_COUT: float,
+            BONUS_TERRE: int,
+            BONUS_MER: int,
+            BONUS_RENS: int,
+            BONUS_AIR: int,
+            BUDGET: float,
+            DEPENDANCE_EXPORT: str,
+            NIVEAU_TECHNO: float,
+            ANNEE: int,
+            DUREE: int,
+        },
+    )
     for _, row in df_programmes.iterrows():
         new_programme = Programme(**row.to_dict())
         st.session_state["programme " + row[NOM]] = new_programme

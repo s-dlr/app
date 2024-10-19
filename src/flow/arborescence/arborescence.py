@@ -11,7 +11,7 @@ class Arborescence:
 
     def __post_init__(self) -> None:
         self.df_arborescence = pd.read_csv(
-            ARBORESCENCES[self.arborescence],
+            self.arborescence,
             sep=";",
             dtype={
                 NUM_QUESTION: int,
@@ -31,6 +31,7 @@ class Arborescence:
                 COMMANDES: str,
             },
         )
+        self.arborescence = "Programme test"
         self.df_arborescence.fillna("", inplace=True)
         self.load_data(num_question=1)
 

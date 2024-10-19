@@ -40,5 +40,12 @@ team = st.text_input("équipe", "astrolabe")
 if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
     init_team_in_db()
-    load_next_arborescence("Programme exemple")
-    st.switch_page("pages/options.py")
+    st.session_state["arborescence"] = False
+    st.switch_page("pages/load_data.py")
+    # load_next_arborescence()
+    # init_team_in_db()
+    # init_objets()
+    # if st.session_state.arborescence.type_question == CHOIX_OPTION:
+    #     st.switch_page("pages/options.py")
+    # elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
+    #     st.switch_page("pages/buy.py")

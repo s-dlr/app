@@ -90,13 +90,10 @@ if "equipe" in st.session_state:
     if st.session_state.arborescence:
         st.page_link("pages/options.py", label="Continuer", icon=":material/settings:")
     else:
-        def button_action():
-            load_next_arborescence(st.session_state.prochaine_arborescence)
-        st.button(
+        st.page_link(
+            "pages/load_data.py",
             label="Commencer un autre programme",
             icon=":material/settings:",
-            type="secondary",
-            on_click=button_action,
         )
 
 else:

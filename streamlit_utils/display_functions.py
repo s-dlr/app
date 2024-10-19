@@ -17,6 +17,10 @@ LABELS: dict = {
     EUROPEANISATION: "Européanisation",
     NIVEAU_TECHNO: "Niveau technologique",
     BUDGET: "Budget",
+    BONUS_AIR: "Bonus air",
+    BONUS_MER: "Bonus mer",
+    BONUS_RENS: "Bonus renseignement",
+    BONUS_TERRE: "Bonus terre",
 }
 
 

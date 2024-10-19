@@ -127,7 +127,10 @@ else:
             def button_action():
                 load_next_arborescence(st.session_state.prochaine_arborescence)
             st.button(
-                "pages/load_data.py", label="Commencer un autre programme", icon=":material/settings:"
+                label="Commencer un autre programme",
+                icon=":material/settings:",
+                type="secondary",
+                on_clik=button_action
             )
         else:
             st.header("Fin du jeu")

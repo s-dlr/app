@@ -48,7 +48,7 @@ NOMBRE_UNITE = "nombre_unites"
 
 # Fichiers
 PROCHAINES_ARBORESCENCE = {
-    "Programme exemple": "Programme exemple",
+    "Programme exemple": "Programme FIA",
     "Programme FIA": None,
 }
 ARBORESCENCES = {

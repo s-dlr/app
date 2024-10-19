@@ -3,6 +3,7 @@ Module indicateurs
 """
 from dataclasses import dataclass
 import re
+import typing as T
 
 from src.data.abstract_class import AbstractClass
 from src.variables import *

@@ -10,9 +10,8 @@ class Arborescence:
     arborescence: str = "test"
 
     def __post_init__(self) -> None:
-        self.df_arborescence = pd.read_csv(ARBORESCENCES[self.arborescence], sep=";")
         self.df_arborescence = pd.read_csv(
-            self.arborescence,
+            ARBORESCENCES[self.arborescence],
             sep=";",
             dtype={
                 NUM_QUESTION: int,

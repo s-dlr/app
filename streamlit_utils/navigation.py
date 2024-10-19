@@ -21,5 +21,3 @@ def load_next_arborescence(prochaine_arborescence):
     init_programmes(FICHIERS_PROGRAMMES[prochaine_arborescence])
     # Mise à jour des objets depuis SQL
     update_indicateurs()
-    get_objets_from_sql()
-    get_programmes_from_sql()

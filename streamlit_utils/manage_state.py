@@ -15,8 +15,6 @@ def init_objets(fichier_objets=FICHIERS_OBJETS["Programme exemple"]) -> None:
     """
     Récupération des objets
     """
-    # Objets SQL
-    get_objets_from_sql()
     # Objets en local
     df_objets = pd.read_csv(
         fichier_objets,
@@ -52,6 +50,8 @@ def init_programmes(
     """
     Récupération des objets
     """
+    # Programmes SQL
+    get_programmes_from_sql()
     # Programmes en local
     df_programmes = pd.read_csv(
         fichier_programmes,
@@ -73,10 +73,10 @@ def init_programmes(
     )
     for _, row in df_programmes.iterrows():
         new_programme = Programme(**row.to_dict())
-        st.session_state["programme " + row[NOM]] = new_programme
-    # Programmes SQL
-    get_programmes_from_sql()
-
+        # Save and send to SQL if new objet
+        if "programme " + row[NOM] not in st.session_state:
+            st.session_state["programme " + row[NOM]] = new_programme
+            new_programme.send_to_sql(st.session_state.sql_client)
 
 def get_programmes_from_sql() -> None:
     """

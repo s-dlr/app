@@ -211,4 +211,4 @@ def push_etat_to_sql():
         ARBORESCENCE: st.session_state.arborescence.arborescence,
         NUM_QUESTION: st.session_state.arborescence.question.num_question,
     }
-    st.session_state.insert_row(table=ETAT, value_dict=etat_courant)
+    st.session_state.sql_client.insert_row(table=ETAT, value_dict=etat_courant)

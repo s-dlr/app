@@ -24,7 +24,7 @@ def init_team_in_db() -> None:
         connection_name="astrolabedb", equipe=st.session_state.equipe
     )
     df_etat_equipe = st.session_state.sql_client.get_table("Etat")
-    st.write(f"SELECT * FROM `Etat` WHERE `equipe` LIKE '{st.session_state.equipe}'")
+    st.write(f"SELECT * FROM `Etat` WHERE `equipe` = '{st.session_state.equipe}'")
     st.write(df_etat_equipe)
     if df_etat_equipe.shape[0] > 0:
         etat_equipe = df_etat_equipe.iloc[0].to_dict()

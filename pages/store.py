@@ -9,7 +9,7 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
-    objet = st.session_state[st.session_state[st.session_state.selected_objet]]
+    objet = st.session_state[st.session_state.selected_objet]
     duree_construction = math.ceil(st.session_state.nb_unites / objet.unite_par_an)
     construction = Construction(
         objet=objet.nom,

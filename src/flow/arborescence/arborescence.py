@@ -18,7 +18,7 @@ class Arborescence:
             dtype={
                 NUM_QUESTION: int,
                 ANNEE: int,
-                CONTEXTE_QUESTION: int,
+                CONTEXTE_QUESTION: str,
                 TEXTE_QUESTION: str,
                 IMAGE: str,
                 NUMERO_OPTION: str,

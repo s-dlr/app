@@ -207,8 +207,7 @@ def get_objets_disponibles():
 
 def push_etat_to_sql():
     etat_courant = {
-        EQUIPE: st.session_state.equipe,
         ARBORESCENCE: st.session_state.arborescence.arborescence,
-        NUM_QUESTION: st.session_state.arborescence.question.num_question,
+        QUESTION: st.session_state.arborescence.question.num_question,
     }
     st.session_state.sql_client.insert_row(table=ETAT, value_dict=etat_courant)

@@ -204,3 +204,11 @@ def get_objets_disponibles():
     df_objets = st.session_state.sql_client.get_table("Objets")
     df_objets_disponibles = df_objets[df_objets[ANNEE].astype(int) <= st.session_state.annee]
     return list(df_objets_disponibles[NOM].unique())
+
+def push_etat_to_sql():
+    etat_courant = {
+        EQUIPE: st.session_state.equipe,
+        ARBORESCENCE: st.session_state.arborescence.arborescence,
+        NUM_QUESTION: st.session_state.arborescence.arborescence.question.num_question
+    }
+    st.session_state.insert_row(table=ETAT, value_dict=etat_courant)

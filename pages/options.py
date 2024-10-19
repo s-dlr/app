@@ -45,6 +45,7 @@ def next_step():
         st.session_state.arborescence.load_data(next_question)
         st.session_state.annee = st.session_state.arborescence.question.annee
         update_indicateurs()
+        push_etat_to_sql()
     else:
         st.session_state.arborescence = False
 

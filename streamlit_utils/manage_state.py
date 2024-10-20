@@ -126,20 +126,18 @@ def apply_programmes() -> None:
         modif_year_dict = modif_per_year.to_dict()
         # Indicateurs
         nb_years = st.session_state.annee - st.session_state.indicateurs.annee
-        modif = {
+        modification_indicateurs = {
             key: nb_years * modif_year_dict.get(key, 0)
             for key in [COUT, NIVEAU_TECHNO, EUROPEANISATION]
         }
-        modification_indicateurs = Modification(**modif)
         # Armées
         nb_years = st.session_state.annee - st.session_state.armee.annee
-        modif = {
+        modification_armee = {
             key: nb_years * modif_year_dict.get(key, 0)
             for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]
         }
-        modification_armee = Modification(**modif)
-        st.session_state.armee.apply_modification(modification_armee)
-        st.session_state.indicateurs.apply_modification(modification_indicateurs)
+        st.session_state.armee.apply_modification_dict(modification_armee)
+        st.session_state.indicateurs.apply_modification_dict(modification_indicateurs)
 
 
 def apply_constructions() -> None:
@@ -166,21 +164,20 @@ def apply_constructions() -> None:
         objet_dict = st.session_state[modif[OBJET]].to_dict()
         # Indicateurs
         nb_unites_ajoutes = get_nb(st.session_state.indicateurs.annee)
-        modif = {
+        modification_indicateurs = {
             key: nb_unites_ajoutes * objet_dict.get(key, 0)
             for key in [COUT_UNITAIRE, NIVEAU_TECHNO, EUROPEANISATION]
         }
         modification_indicateurs = Modification(**modif)
         # Armées
         nb_unites_ajoutes = get_nb(st.session_state.armee.annee)
-        modif = {
+        modification_armee = {
             key: nb_unites_ajoutes * objet_dict.get(key, 0)
             for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]
         }
-        modification_armee = Modification(**modif)
         # Apply modifications
-        st.session_state.armee.apply_modification(modification_armee)
-        st.session_state.indicateurs.apply_modification(modification_indicateurs)
+        st.session_state.armee.apply_modification_dict(modification_armee)
+        st.session_state.indicateurs.apply_modification_dict(modification_indicateurs)
 
 
 def update_indicateurs() -> None:

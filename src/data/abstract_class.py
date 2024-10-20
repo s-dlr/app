@@ -22,9 +22,16 @@ class AbstractClass:
         Renvoie un booléen indiquant si une modification a eu lieu
         """
         modification_dict = modification.to_dict()
+        self.apply_modification_dict(modification_dict)
+
+    def apply_modification_dict(self, modification_dict: dict) -> bool:
+        """
+        Applique une modification définie par un objet modification
+        Renvoie un booléen indiquant si une modification a eu lieu
+        """
         if len(modification_dict) == 0:
             return False
-        else:    
+        else:
             for key, value in modification_dict.items():
                 self.update(key, value)
             return True

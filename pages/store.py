@@ -20,8 +20,9 @@ def buy_unit():
         construction_en_cours = df_constructions.iloc[0].to_dict()
     else:
         # Application du cout fixe
-        cout_fixe = Modification(cout_fixe=objet.cout_fixe)
-        st.session_state.indicateurs.apply_modification(cout_fixe)
+        st.session_state.indicateurs.apply_modification_dict(
+            {COUT_FIXE: objet.cout_fixe}
+        )
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         construction_en_cours = {DEBUT: st.session_state.annee, NOMBRE_UNITE: 0}
     # Concaténer les constructions

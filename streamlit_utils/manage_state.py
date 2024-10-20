@@ -168,7 +168,6 @@ def apply_constructions() -> None:
             key: nb_unites_ajoutes * objet_dict.get(key, 0)
             for key in [COUT_UNITAIRE, NIVEAU_TECHNO, EUROPEANISATION]
         }
-        modification_indicateurs = Modification(**modif)
         # Armées
         nb_unites_ajoutes = get_nb(st.session_state.armee.annee)
         modification_armee = {

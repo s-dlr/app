@@ -2,14 +2,13 @@
 Module prérequis
 """
 
-import json
 import numpy as np
 
 class Prerequis:
     """
     Permet de modéliser un prérequis
     Les attributs europeanisation et niveau_techno correspodent
-    aux seuils minimaux pour que le prérequi soit vérifié
+    aux seuils minimaux pour que le prérequis soit vérifié
     """
 
     europeanisation: float = -np.inf

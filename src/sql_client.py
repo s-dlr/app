@@ -21,6 +21,10 @@ class ClientSQL:
         df_results = self.connection.query(query, ttl=1)
         return df_results.drop(columns="equipe")
 
+    def get_custom_query(self, query):
+        df_results = self.connection.query(query, ttl=1)
+        return df_results.drop(columns="equipe")
+
     def get_running_rows(self, table, annee=int):
         """
         Récupération des lignes en cours

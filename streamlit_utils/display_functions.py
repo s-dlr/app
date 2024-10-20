@@ -41,7 +41,7 @@ def display_metrics(effets_dict: dict):
         i += 1
 
 
-def display_objet(objet_dict: dict):
+def display_objet(objet_dict: dict, key: str):
     fig = px.box(
         [
             objet_dict[COUT_UNITAIRE],
@@ -49,7 +49,7 @@ def display_objet(objet_dict: dict):
             objet_dict[COUT_UNITAIRE] + objet_dict[STD_COUT],
         ]
     )
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, key=key)
     st.dataframe(pd.DataFrame([objet_dict]))
 
 

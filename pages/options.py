@@ -108,7 +108,10 @@ else:
                 # Objet
                 if option.objet:
                     st.markdown(f":blue[{OBJET_DESC}]")
-                    display_objet(st.session_state[option.objet].to_dict())
+                    display_objet(
+                        st.session_state[option.objet].to_dict(),
+                        key=f"{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
+                    )
                 # Programme
                 if option.programme:
                     st.markdown(f":blue[{PROGRAMME_DESC}]")

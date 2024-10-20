@@ -119,7 +119,9 @@ def apply_programmes() -> None:
     """
     # Récupération des programmes en cours dans SQL
     df_programmes = st.session_state.sql_client.get_running_rows(
-        "Programmes", annee=st.session_state.annee
+        "Programmes",
+        min_annee=min(st.session_state.annee, st.session_state.indicateurs.annee),
+        max_annee=max(st.session_state.annee, st.session_state.indicateurs.annee),
     )
     # Application des modifications
     for _, modif_per_year in df_programmes.iterrows():
@@ -146,7 +148,9 @@ def apply_constructions() -> None:
     """
     # Récupération des constructions en cours dans SQL
     df_constructions = st.session_state.sql_client.get_running_rows(
-        "Constructions", annee=st.session_state.annee
+        "Constructions",
+        min_annee=min(st.session_state.annee, st.session_state.indicateurs.annee),
+        max_annee=max(st.session_state.annee, st.session_state.indicateurs.annee),
     )
     def get_nb(annee):
         if st.session_state.annee <= modif[FIN]:

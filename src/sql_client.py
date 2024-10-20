@@ -1,4 +1,5 @@
 from typing import List
+import pandas as pd
 
 import streamlit as st
 from sqlalchemy.sql import text
@@ -25,11 +26,11 @@ class ClientSQL:
         df_results = self.connection.query(query, ttl=1)
         return df_results.drop(columns="equipe")
 
-    def get_running_rows(self, table, annee=int):
+    def get_running_rows(self, table, min_annee: int, max_annee: int) -> pd.DataFrame:
         """
         Récupération des lignes en cours
         """
-        query = f'SELECT * FROM `{table}` WHERE `equipe` = "{self.equipe}" AND `debut` >= {annee} AND `fin` >= {annee-1};'
+        query = f'SELECT * FROM `{table}` WHERE `equipe` = "{self.equipe}" AND `debut` >= {max_annee} AND `fin` >= {min_annee-1};'
         return self.connection.query(query, ttl=1).drop(columns="equipe")
 
     def get_last_value(self, table):

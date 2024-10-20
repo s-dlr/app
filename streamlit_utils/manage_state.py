@@ -144,15 +144,15 @@ def apply_constructions() -> None:
     Mise à jour des indicateurs à partir des programmes en cours
     """
     # Récupération des programmes en cours dans SQL
-    df_constructions = st.session_state.sql_client.get_table("Constructions")
+    df_constructions = st.session_state.sql_client.get_running_rows("Constructions")
 
     def get_nb(annee):
         if st.session_state.annee <= modif[FIN]:
             nb_years = st.session_state.annee - annee
-            nb_unites_ajoutes = nb_years * st.session_state[modif[NOM]].unite_par_an
+            nb_unites_ajoutes = nb_years * st.session_state[modif[OBJET]].unite_par_an
         elif st.session_state.annee == modif[FIN] + 1:
             nb_unites_construites = (annee - modif[DEBUT]) * st.session_state[
-                modif[NOM]
+                modif[OBJET]
             ].unite_par_an
             nb_unites_ajoutes = modif[NOMBRE_UNITE] - nb_unites_construites
         return nb_unites_ajoutes

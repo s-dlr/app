@@ -53,19 +53,19 @@ NOMBRE_UNITE = "nombre_unites"
 
 # Fichiers
 PROCHAINES_ARBORESCENCE = {
-    "Programme exemple": "Programme FIA",
-    "Programme FIA": None,
+    "Drone d'attaque et de surveillance": "Fusil individuel",
+    "Fusil individuel": None,
 }
 ARBORESCENCES = {
-    "Programme exemple": f"{DATA_DIR}/arborescences/arborescence_exemple.csv",
-    "Programme FIA": f"{DATA_DIR}/arborescences/arborescence_FIA.csv",
+    "Drone d'attaque et de surveillance": f"{DATA_DIR}/arborescences/arborescence_MALE.csv",
+    "Fusil individuel": f"{DATA_DIR}/arborescences/arborescence_FIA.csv",
 }
 FICHIERS_OBJETS = {
-    "Programme exemple": f"{DATA_DIR}/objets/objets_exemple.csv",
-    "Programme FIA": f"{DATA_DIR}/objets/objets_FIA.csv",
+    "Drone d'attaque et de surveillance": f"{DATA_DIR}/objets/objets_MALE.csv",
+    "Fusil individuel": f"{DATA_DIR}/objets/objets_FIA.csv",
 }
 FICHIERS_PROGRAMMES = {
-    "Programme exemple": f"{DATA_DIR}/programmes/programmes_exemple.csv",
-    "Programme FIA": f"{DATA_DIR}/programmes/programmes_FIA.csv",
+    "Drone d'attaque et de surveillance": f"{DATA_DIR}/programmes/programmes_MALE.csv",
+    "Fusil individuel": f"{DATA_DIR}/programmes/programmes_FIA.csv",
 }
 IMAGE_DIR = f"{DATA_DIR}/images/"

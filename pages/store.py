@@ -19,7 +19,7 @@ def buy_unit():
     if df_constructions.shape[0] > 0:
         construction_en_cours = df_constructions.iloc[0].to_dict()
     else:
-        construction_en_cours = {DEBUT: st.session_state.anne, NOMBRE_UNITE: 0}
+        construction_en_cours = {DEBUT: st.session_state.annee, NOMBRE_UNITE: 0}
     # Concaténer les constructions
     total_nb_constructions = (
         construction_en_cours.get(NOMBRE_UNITE) + st.session_state.nb_unites

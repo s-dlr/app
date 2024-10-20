@@ -17,7 +17,7 @@ class ClientSQL:
         return self.get_table("Etat").shape[0] > 0
 
     def get_table(self, table):
-        query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}';"
+        query = f'SELECT * FROM `{table}` WHERE `equipe` = "{self.equipe}";'
         df_results = self.connection.query(query, ttl=1)
         return df_results.drop(columns="equipe")
 
@@ -29,17 +29,17 @@ class ClientSQL:
         """
         Récupération des lignes en cours
         """
-        query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}' AND `debut` >= '{annee}' AND `fin` >= '{annee-1}';"
+        query = f'SELECT * FROM `{table}` WHERE `equipe` = "{self.equipe}" AND `debut` >= {annee} AND `fin` >= {annee-1};'
         return self.connection.query(query, ttl=1).drop(columns="equipe")
 
     def get_last_value(self, table):
         """
         Récupère la valeur la plus à jour d'une table (date la plus récente)
         """
-        query_max_anee = (
-            f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe = '{self.equipe}'"
+        query_max_annee = (
+            f'SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe = "{self.equipe}"'
         )
-        query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe = '{self.equipe}';"
+        query = f'SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_annee}) AND x.equipe = "{self.equipe}";'
         return self.connection.query(query, ttl=1).drop(columns="equipe")
 
     def execute_query(self, queries: List[str]):
@@ -52,7 +52,7 @@ class ClientSQL:
         """
         Efface les lignes associées à l'équipe dans la table
         """
-        query = f"DELETE FROM `{table}` WHERE equipe = '{self.equipe}';"
+        query = f'DELETE FROM `{table}` WHERE equipe = "{self.equipe}";'
         self.execute_query([query])
 
     def insert_row(self, table: str, value_dict: dict, replace: bool = True):
@@ -64,6 +64,6 @@ class ClientSQL:
         else:
             command = "INSERT"
         columns_list_str = ", ".join([f"`{k}`" for k in value_dict.keys()])
-        values_list_str = ", ".join([f"'{v}'" for v in value_dict.values()])
-        query = f"{command} INTO `{table}`(`equipe`, {columns_list_str}) VALUES ('{self.equipe}', {values_list_str});"
+        values_list_str = ", ".join([f'"{v}"' for v in value_dict.values()])
+        query = f'{command} INTO `{table}`(`equipe`, {columns_list_str}) VALUES ("{self.equipe}", {values_list_str});'
         self.execute_query([query])

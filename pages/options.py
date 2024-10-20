@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 
 from streamlit_utils.display_functions import *
 from streamlit_utils.manage_state import *

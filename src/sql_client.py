@@ -7,7 +7,9 @@ from sqlalchemy.sql import text
 class ClientSQL:
 
     def __init__(self, connection_name: str, equipe: str) -> None:
-        self.connection = st.connection(connection_name, autocommit=True, ttl=1)
+        self.connection = st.connection(
+            connection_name, autocommit=True, ttl=1.0, max_entries=1
+        )
         self.equipe = equipe
 
     def check_team_exists(self):

@@ -11,7 +11,7 @@ def buy_unit():
     Achat d'un certain nombre d'unités
     """
     objet = st.session_state[st.session_state.selected_objet]
-    # Vérification su une construction est déjà lancées
+    # Vérification si une construction est déjà lancées
     query = f"""
     SELECT * FROM `Constructions`
     WHERE `equipe` = '{st.session_state.equipe}' AND `objet` = '{objet.nom}' AND `fin` < {st.session_state.annee};"""
@@ -19,6 +19,9 @@ def buy_unit():
     if df_constructions.shape[0] > 0:
         construction_en_cours = df_constructions.iloc[0].to_dict()
     else:
+        # Application du cout fixe
+        cout_fixe = Modification(cout_fixe=objet.cout_fixe)
+        st.session_state.indicateurs.apply_modification(cout_fixe)
         construction_en_cours = {DEBUT: st.session_state.annee, NOMBRE_UNITE: 0}
     # Concaténer les constructions
     total_nb_constructions = (

@@ -5,17 +5,31 @@ from src.data.objet import Construction
 from streamlit_utils.display_functions import *
 from streamlit_utils.navigation import *
 
+
 def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
     objet = st.session_state[st.session_state.selected_objet]
-    duree_construction = math.ceil(st.session_state.nb_unites / objet.unite_par_an)
+    # Vérification su une construction est déjà lancées
+    query = f"""
+    SELECT * FROM `Constructions`
+    WHERE `equipe` = '{st.session_state.equipe}' AND `objet` = '{objet.nom}' AND `fin` < {st.session_state.annee};"""
+    df_constructions = st.session_state.sql_client.get_custom_query(query)
+    if df_constructions.shape[0] > 0:
+        construction_en_cours = df_constructions.iloc[0].to_dict()
+    else:
+        construction_en_cours = {DEBUT: st.session_state.anne, NOMBRE_UNITE: 0}
+    # Concaténer les constructions
+    total_nb_constructions = (
+        construction_en_cours.get(NOMBRE_UNITE) + st.session_state.nb_unites
+    )
+    duree_construction = math.ceil(total_nb_constructions / objet.unite_par_an)
     construction = Construction(
         objet=objet.nom,
-        debut=st.session_state.annee,
-        fin=st.session_state.annee + duree_construction - 1,
-        nombre_unites=st.session_state.nb_unites,
+        debut=construction_en_cours.get(ANNEE),
+        fin=construction_en_cours.get(ANNEE) + duree_construction - 1,
+        nombre_unites=total_nb_constructions,
     )
     construction.send_to_sql(st.session_state.sql_client)
 

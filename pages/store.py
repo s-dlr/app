@@ -61,9 +61,6 @@ if "equipe" in st.session_state:
         # Contexte et question
         st.title("Achat d'unités")
         st.write("Vous pouvez choisir des unités à acheter")
-        st.markdown(
-            f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**"
-        )
         if "selected_objet" not in st.session_state:
             st.session_state["selected_objet"] = None
         select_objets = st.selectbox(
@@ -82,8 +79,10 @@ if "equipe" in st.session_state:
             st.header(f"Caractéristiques de {st.session_state.selected_objet}")
             display_objet(st.session_state[st.session_state.selected_objet].to_dict())
             st.divider()
-
             # Slider
+            st.markdown(
+                f"**Combien de {st.session_state.selected_objet} souhaitez vous acheter ?**"
+            )
             min_nb_unit = 0
             max_nb_unit = st.session_state[st.session_state.selected_objet].max_nb_utile
             slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1, key="nb_unites")

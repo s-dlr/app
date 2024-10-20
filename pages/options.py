@@ -85,7 +85,7 @@ else:
 
         # Radio button for options
         if "select_option" not in st.session_state:
-            st.session_state["select_option"] = False
+            st.session_state["select_option"] = list_options[0].texte_option
         st.radio(
             label="Choix",
             options=[opt.texte_option for opt in list_options],
@@ -112,7 +112,9 @@ else:
                 # Programme
                 if option.programme:
                     st.markdown(f":blue[{PROGRAMME_DESC}]")
-                    display_programme(st.session_state[option.programme].to_dict())
+                    display_programme(
+                        st.session_state["programme " + option.programme].to_dict()
+                    )
 
         # Bouton validation
         st.button(

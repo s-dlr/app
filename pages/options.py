@@ -136,6 +136,6 @@ else:
             )
         else:
             st.header("Fin du jeu")
-        st.page_link(
-            "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
-        )
+    st.page_link(
+        "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
+    )

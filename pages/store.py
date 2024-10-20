@@ -109,14 +109,8 @@ if "equipe" in st.session_state:
         st.page_link("pages/options.py", label="Continuer", icon=":material/settings:")
     else:
         if st.session_state.prochaine_arborescence:
-            def button_action():
-                load_next_arborescence(st.session_state.prochaine_arborescence)
-            st.button(
-                label="Commencer un autre programme",
-                icon=":material/settings:",
-                type="secondary",
-                on_click=button_action,
-            )
+            load_next_arborescence(st.session_state.prochaine_arborescence)
+            st.page_link("pages/options.py", label="Continuer", icon=":material/settings:")
         else:
             st.write("Fin du jeu")
 

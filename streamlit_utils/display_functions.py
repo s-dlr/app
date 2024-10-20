@@ -47,7 +47,8 @@ def display_objet(objet_dict: dict):
 def display_programme(programme_dict: dict):
     st.dataframe(pd.DataFrame([programme_dict]))
 
+
 def display_annee():
     # TODO adapter en fonction des dates des arborecences
-    percent_game = (st.session_state.annee - 1990) / (2024 - 1990)
+    percent_game = (st.session_state.annee - 1995) / (2050 - 1995)
     st.progress(percent_game, text=str(f"Année {st.session_state.annee}"))

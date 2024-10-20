@@ -27,8 +27,8 @@ def buy_unit():
     duree_construction = math.ceil(total_nb_constructions / objet.unite_par_an)
     construction = Construction(
         objet=objet.nom,
-        debut=construction_en_cours.get(ANNEE),
-        fin=construction_en_cours.get(ANNEE) + duree_construction - 1,
+        debut=construction_en_cours.get(DEBUT),
+        fin=construction_en_cours.get(DEBUT) + duree_construction - 1,
         nombre_unites=total_nb_constructions,
     )
     construction.send_to_sql(st.session_state.sql_client)

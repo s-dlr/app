@@ -7,9 +7,7 @@ from sqlalchemy.sql import text
 class ClientSQL:
 
     def __init__(self, connection_name: str, equipe: str) -> None:
-        self.connection = st.connection(
-            connection_name, autocommit=True, ttl=1.0, max_entries=1
-        )
+        self.connection = st.connection(connection_name, autocommit=True, ttl=1)
         self.equipe = equipe
 
     def check_team_exists(self):
@@ -20,7 +18,7 @@ class ClientSQL:
 
     def get_table(self, table):
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}';"
-        df_results = self.connection.query(query)
+        df_results = self.connection.query(query, ttl=1)
         return df_results.drop(columns="equipe")
 
     def get_running_rows(self, table, annee=int):
@@ -28,7 +26,7 @@ class ClientSQL:
         Récupération des lignes en cours
         """
         query = f"SELECT * FROM `{table}` WHERE `equipe` = '{self.equipe}' AND `debut` >= '{annee}' AND `fin` >= '{annee-1}';"
-        return self.connection.query(query).drop(columns="equipe")
+        return self.connection.query(query, ttl=1).drop(columns="equipe")
 
     def get_last_value(self, table):
         """
@@ -38,7 +36,7 @@ class ClientSQL:
             f"SELECT MAX(y.annee) FROM `{table}` y WHERE y.equipe = '{self.equipe}'"
         )
         query = f"SELECT x.* FROM `{table}` x WHERE x.annee = ({query_max_anee}) AND x.equipe = '{self.equipe}';"
-        return self.connection.query(query).drop(columns="equipe")
+        return self.connection.query(query, ttl=1).drop(columns="equipe")
 
     def execute_query(self, queries: List[str]):
         with self.connection.session as session:

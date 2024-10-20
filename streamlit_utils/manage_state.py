@@ -123,16 +123,19 @@ def apply_programmes() -> None:
     )
     # Application des modifications
     for _, modif_per_year in df_programmes.iterrows():
+        modif_year_dict = modif_per_year.to_dict()
         # Indicateurs
         nb_years = st.session_state.annee - st.session_state.indicateurs.annee
         modif = {
-            key: nb_years * value for key, value in modif_per_year.to_dict().items()
+            key: nb_years * modif_year_dict.get(key, 0)
+            for key in [COUT, NIVEAU_TECHNO, EUROPEANISATION]
         }
         modification_indicateurs = Modification(**modif)
         # Armées
         nb_years = st.session_state.annee - st.session_state.armee.annee
         modif = {
-            key: nb_years * value for key, value in modif_per_year.to_dict().items()
+            key: nb_years * modif_year_dict.get(key, 0)
+            for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]
         }
         modification_armee = Modification(**modif)
         st.session_state.armee.apply_modification(modification_armee)
@@ -143,7 +146,7 @@ def apply_constructions() -> None:
     """
     Mise à jour des indicateurs à partir des programmes en cours
     """
-    # Récupération des programmes en cours dans SQL
+    # Récupération des constructions en cours dans SQL
     df_constructions = st.session_state.sql_client.get_running_rows(
         "Constructions", annee=st.session_state.annee
     )
@@ -160,18 +163,22 @@ def apply_constructions() -> None:
 
     # Application des modifications
     for _, modif in df_constructions.iterrows():
+        objet_dict = st.session_state[modif[OBJET]].to_dict()
         # Indicateurs
         nb_unites_ajoutes = get_nb(st.session_state.indicateurs.annee)
         modif = {
-            key: nb_unites_ajoutes * value for key, value in modif.to_dict().items()
+            key: nb_unites_ajoutes * objet_dict.get(key, 0)
+            for key in [COUT_UNITAIRE, NIVEAU_TECHNO, EUROPEANISATION]
         }
         modification_indicateurs = Modification(**modif)
         # Armées
         nb_unites_ajoutes = get_nb(st.session_state.armee.annee)
         modif = {
-            key: nb_unites_ajoutes * value for key, value in modif.to_dict().items()
+            key: nb_unites_ajoutes * objet_dict.get(key, 0)
+            for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]
         }
         modification_armee = Modification(**modif)
+        # Apply modifications
         st.session_state.armee.apply_modification(modification_armee)
         st.session_state.indicateurs.apply_modification(modification_indicateurs)
 

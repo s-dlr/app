@@ -22,6 +22,7 @@ def buy_unit():
         # Application du cout fixe
         cout_fixe = Modification(cout_fixe=objet.cout_fixe)
         st.session_state.indicateurs.apply_modification(cout_fixe)
+        st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         construction_en_cours = {DEBUT: st.session_state.annee, NOMBRE_UNITE: 0}
     # Concaténer les constructions
     total_nb_constructions = (
@@ -35,7 +36,6 @@ def buy_unit():
         nombre_unites=total_nb_constructions,
     )
     construction.send_to_sql(st.session_state.sql_client)
-
 
 st.set_page_config(
     page_title="Achat de matériel",

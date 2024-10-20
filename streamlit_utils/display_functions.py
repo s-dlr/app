@@ -2,6 +2,7 @@
 Fonctions pour afficher des données
 """
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 
 from src.variables import *
@@ -41,6 +42,14 @@ def display_metrics(effets_dict: dict):
 
 
 def display_objet(objet_dict: dict):
+    fig = px.box(
+        [
+            objet_dict[COUT_UNITAIRE],
+            objet_dict[COUT_UNITAIRE] - objet_dict[STD_COUT],
+            objet_dict[COUT_UNITAIRE] + objet_dict[STD_COUT],
+        ]
+    )
+    st.plotly_chart(fig)
     st.dataframe(pd.DataFrame([objet_dict]))
 
 

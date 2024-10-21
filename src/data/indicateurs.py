@@ -41,10 +41,10 @@ class Armee(AbstractClass):
     Indicateurs armées
     """
 
-    terre: int = 0
-    mer: int = 0
-    air: int = 0
-    rens: int = 0
+    terre: float = 0
+    mer: float = 0
+    air: float = 0
+    rens: float = 0
     annee: int = 2000
 
     @staticmethod

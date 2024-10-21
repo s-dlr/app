@@ -115,7 +115,15 @@ if st.session_state.arborescence:
             #     display_programme(
             #         st.session_state["programme " + option.programme].to_dict()
             #     )
-    
+
+    # Bouton validation
+    st.button(
+        type="primary",
+        label="VALIDER",
+        use_container_width=True,
+        on_click=next_step,
+        disabled=(st.session_state.select_option is None),
+    )
     st.page_link(
         "pages/store.py",
         label="Acheter des unités",

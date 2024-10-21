@@ -133,7 +133,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         fig.update_layout(
             showlegend=False,
             title=dict(
-                text="Achats en cours",
+                text="Programmes en cours",
                 font=dict(size=20),
             ),
         )

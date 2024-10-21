@@ -121,20 +121,18 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
     fig = go.Figure()
 
     if grid:
-        fig.add_trace(get_indicateur(TERRE, 0, 0))
-        fig.add_trace(get_indicateur(MER, 1, 0))
-        fig.add_trace(get_indicateur(AIR, 0, 1))
-        fig.add_trace(get_indicateur(RENS, 1, 1))
+        for i, armee in enumerate([TERRE, AIR, MER, RENS]):
+            if values.get(armee, 0) > 0:
+                fig.add_trace(get_indicateur(armee, i // 2, i % 2))
 
         fig.update_layout(
             grid={"rows": 2, "columns": 2, "pattern": "independent"},
             margin=dict(l=50, r=50),
         )
     else:
-        fig.add_trace(get_indicateur(TERRE, 0, 0))
-        fig.add_trace(get_indicateur(MER, 1, 0))
-        fig.add_trace(get_indicateur(AIR, 2, 0))
-        fig.add_trace(get_indicateur(RENS, 3, 0))
+        for i, armee in enumerate([TERRE, AIR, MER, RENS]):
+            if values.get(armee, 0) > 0:
+                fig.add_trace(get_indicateur(armee, i, 0))
 
         fig.update_layout(
             grid={"rows": 4, "columns": 1, "pattern": "independent"},

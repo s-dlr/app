@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from src.variables import *
-from streamlit_utils import display_functions
+from streamlit_utils.display_functions import *
 
 st.set_page_config(
     page_title="Dashboard", page_icon="🏠", layout="wide", initial_sidebar_state="collapsed"

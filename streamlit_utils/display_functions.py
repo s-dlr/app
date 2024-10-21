@@ -130,13 +130,15 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
             margin=dict(l=50, r=50),
         )
     else:
+        n_plots = 0
         for i, armee in enumerate([TERRE, AIR, MER, RENS]):
             if values.get(armee, 0) > 0:
                 fig.add_trace(get_indicateur(armee, i, 0))
+                n_plots += 1
 
         fig.update_layout(
             grid={"rows": 4, "columns": 1, "pattern": "independent"},
             showlegend=True,
-            height=300,
+            height=50 * n_plots,
         )
     return fig

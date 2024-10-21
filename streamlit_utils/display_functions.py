@@ -78,7 +78,7 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
             value=objet_dict.get(compteur, 0) + modification_objet.get(compteur, 0),
             delta=modification_objet.get(compteur, 0),
         )
-    columns[0].write(f"+-{objet_dict[STD_COUT]}")
+    columns[0].write(f"+-{objet_dict[STD_COUT]}€")
     # Bonus armées
     value_dict = {
         key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
@@ -108,6 +108,44 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
         Vous pourrez acheter jusqu'à **{unite_an}** unités par an à partir de l'année **{disponibilié}**
         """
     )
+
+
+def display_objet_store(objet_dict: dict, modification_objet: dict = {}, key: str = ""):
+    # Prix
+    columns = st.columns(2)
+    for i, compteur in enumerate([COUT_UNITAIRE, COUT_FIXE]):
+        columns[i].metric(
+            label=LABELS[compteur],
+            value=objet_dict.get(compteur, 0) + modification_objet.get(compteur, 0),
+            delta=modification_objet.get(compteur, 0),
+        )
+    # Bonus armées
+    value_dict = {
+        key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
+    }
+    modification_dict = {
+        key: modification_objet.get(f"bonus_{key}", 0)
+        for key in [AIR, MER, TERRE, RENS]
+    }
+    fig = display_gauges_armees(
+        values=value_dict, modifications=modification_dict, grid=True
+    )
+    fig.update_layout(
+        title=dict(
+            text="Apport de chaque unité sur vos armées",
+            font=dict(size=16, color="#333fff"),
+        ),
+        showlegend=True,
+    )
+    st.plotly_chart(fig, key=key)
+    # Production
+    unite_an = objet_dict.get(UNITE_PAR_AN, 0) + modification_objet.get(UNITE_PAR_AN, 0)
+    st.markdown(
+        f"""
+        :blue[Cadence de production]: **{unite_an}** unités par an
+        """
+    )
+
 
 def display_programme(programme_dict: dict):
     st.dataframe(pd.DataFrame([programme_dict]))

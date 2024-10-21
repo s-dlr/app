@@ -77,7 +77,9 @@ if "equipe" in st.session_state:
         if st.session_state.selected_objet:
             # Caractéristiques de l'objet courant
             st.header(f"Caractéristiques de {st.session_state.selected_objet}")
-            display_objet(st.session_state[st.session_state.selected_objet].to_dict())
+            display_objet_store(
+                st.session_state[st.session_state.selected_objet].to_dict()
+            )
             st.divider()
             # Slider
             st.markdown(

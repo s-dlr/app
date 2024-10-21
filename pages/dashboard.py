@@ -28,11 +28,11 @@ QUERY_DEPENDANCE = """
 """
 QUERY_PROGRAMMES = """
     SELECT equipe, nom, debut, fin, cout FROM Programmes
-    WHERE Programmes.debut IS NOT NULL;
+    WHERE Programmes.debut IS NOT NULL AND Programmes.debut != 0;
 """
 QUERY_CONSTRUCTIONS = """
     SELECT equipe, objet, debut, fin, nombre_unites FROM Constructions
-    WHERE Constructions.debut IS NOT NULL;
+    WHERE Constructions.debut IS NOT NULL AND Constructions.debut != 0;
 """
 
 # Connexion
@@ -105,10 +105,18 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
             niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
         )
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
+        # Constructions
+        df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
+        df_constructions_equipe[OBJET] = df_constructions_equipe[OBJET].str.capitalize()
+        fig = px.timeline(df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET)
+        fig.update_yaxes(autorange="reversed", showlegend=False)
+        col.plotly_chart(
+            fig, use_container_width=True, key=f"constructions_{equipe}"
+        ) 
         # Programmes
         df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
         df_programmes_equipe[NOM] = df_programmes_equipe[NOM].str.capitalize()
-        fig = px.timeline(df_programmes_equipe, x_start=DEBUT, x_end=FIN, y=NOM)
+        fig = px.timeline(df_programmes_equipe, x_start=DEBUT, x_end=FIN, y=NOM, color=NOM)
         fig.update_yaxes(autorange="reversed")
         col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
         # Dépendances

@@ -32,9 +32,9 @@ LABELS: dict = {
 
 DRAPEAUX = {
     "France": "https://cdn.countryflags.com/thumbs/france/flag-400.png",
-    "Allemagne": "https://www.flaticon.com/free-icon/germany_555613",
-    "Angleterre": ":flag-gb:",
-    "Italie": ":flag-it:",
+    "Allemagne": "https://cdn.countryflags.com/thumbs/germany/flag-400.png",
+    "Angleterre": "https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png",
+    "Italie": "https://cdn.countryflags.com/thumbs/italy/flag-400.png",
 }
 
 

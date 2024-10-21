@@ -76,13 +76,20 @@ if display_equipes is not None:
             col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
 
             col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
-            pays_dependance_equipe = df_dependances_chart[df_dependances_chart[EQUIPE] == equipe][DEPENDANCE_EXPORT].values
+            pays_dependance_equipe = df_dependances_chart[
+                df_dependances_chart[EQUIPE] == equipe
+            ][DEPENDANCE_EXPORT].unique()
             # col.markdown(
             #     " ".join(
             #         [DRAPEAUX.get(pays.strip(), "") for pays in pays_dependance_equipe]
             #     )
             # )
-            col.image(DRAPEAUX["France"], width=20)
+            images_drapeaux = [
+                DRAPEAUX.get(pays)
+                for pays in pays_dependance_equipe
+                if DRAPEAUX.get(pays) is not None
+            ]
+            col.image(images_drapeaux, width=30)
 
 """
 # Add histogram data

@@ -107,7 +107,6 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
         # Constructions
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
-        df_constructions_equipe[OBJET] = df_constructions_equipe[OBJET].str.capitalize()
         fig = px.timeline(df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET)
         fig.update_layout(showlegend=False)
         fig.update_yaxes(autorange="reversed")

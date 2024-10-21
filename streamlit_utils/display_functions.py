@@ -100,13 +100,11 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     )
     st.plotly_chart(fig, key=key)
     # Production
-    columns = st.columns(2)
-    for i, compteur in enumerate([ANNEE, UNITE_PAR_AN]):
-        columns[i].metric(
-            label=LABELS[compteur],
-            value=objet_dict.get(compteur, 0) + modification_objet.get(compteur, 0),
-            delta=modification_objet.get(compteur, 0),
-        )
+    unite_an = objet_dict.get(UNITE_PAR_AN, 0) + modification_objet.get(UNITE_PAR_AN, 0)
+    disponibilié = objet_dict.get(ANNEE, 0) + modification_objet.get(ANNEE, 0)
+    st.write(
+        f"Vous pourrez acheter jusqu'à {unite_an} unités par an à parir de l'année {disponibilié}"
+    )
 
 def display_programme(programme_dict: dict):
     st.dataframe(pd.DataFrame([programme_dict]))

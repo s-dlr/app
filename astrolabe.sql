@@ -87,7 +87,7 @@ CREATE TABLE `Objets` (
   `dependance_export` text DEFAULT NULL,
   `niveau_techno` float DEFAULT NULL,
   `annee` int(11) NOT NULL COMMENT 'Année à partir de laquelle il est possible d''acheter l''objet',
-  `demande_armee` int(11) NOT NULL COMMENT 'Nombre d''unités demandées par l''armée'
+  `min_nb_utile` int(11) NOT NULL COMMENT 'Nombre d''unités demandées par l''armée'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

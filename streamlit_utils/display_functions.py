@@ -36,7 +36,12 @@ DRAPEAUX = {
     "Angleterre": "https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png",
     "Italie": "https://cdn.countryflags.com/thumbs/italy/flag-400.png",
 }
-
+COLOR_MAP = {
+    AIR: "#30b7d3",
+    TERRE: "#59883a",
+    MER: "#333fff",
+    RENS: "#ff3a00",
+}
 
 def display_metrics(effets_dict: dict):
     """
@@ -79,12 +84,6 @@ def display_gauges_armees(values):
     """
     Grid gauges
     """
-    color_map = {
-        AIR: "#30b7d3",
-        TERRE: "#59883a",
-        MER: "#333fff",
-        RENS: "#ff3a00",
-    }
     fig = go.Figure()
 
     fig.add_trace(
@@ -92,7 +91,7 @@ def display_gauges_armees(values):
             value=values[TERRE],
             mode="gauge+number",
             title=LABELS[TERRE],
-            gauge={"bar": {"color": color_map[TERRE]}},
+            gauge={"bar": {"color": COLOR_MAP[TERRE]}},
             domain={"row": 0, "column": 0},
         )
     )
@@ -101,7 +100,7 @@ def display_gauges_armees(values):
             value=values[MER],
             mode="gauge+number",
             title=LABELS[MER],
-            gauge={"bar": {"color": color_map[MER]}},
+            gauge={"bar": {"color": COLOR_MAP[MER]}},
             domain={"row": 0, "column": 1},
         )
     )
@@ -110,7 +109,7 @@ def display_gauges_armees(values):
             value=values[AIR],
             mode="gauge+number",
             title=LABELS[AIR],
-            gauge={"bar": {"color": color_map[AIR]}},
+            gauge={"bar": {"color": COLOR_MAP[AIR]}},
             domain={"row": 1, "column": 0},
         )
     )
@@ -119,7 +118,7 @@ def display_gauges_armees(values):
             value=values[RENS],
             mode="gauge+number",
             title=LABELS[RENS],
-            gauge={"bar": {"color": color_map[RENS]}},
+            gauge={"bar": {"color": COLOR_MAP[RENS]}},
             domain={"row": 1, "column": 1},
         )
     )

@@ -7,7 +7,7 @@ from streamlit_utils.display_functions import *
 
 st.set_page_config(
     page_title="Dashboard",
-    page_icon=":information_source:",
+    page_icon=":material/dataset:",
     layout="wide",
     initial_sidebar_state="collapsed",
 )

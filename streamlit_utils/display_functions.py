@@ -70,7 +70,7 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     st.markdown(f":blue[{objet_dict[NOM]}]")
     # Prix
     columns = st.columns(2)
-    for i, compteur in enumerate(COUT_UNITAIRE, COUT_FIXE):
+    for i, compteur in enumerate([COUT_UNITAIRE, COUT_FIXE]):
         columns[i].metric(
             label=LABELS[compteur],
             value=objet_dict.get(compteur, 0) + modification_dict.get(compteur, 0),

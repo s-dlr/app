@@ -110,26 +110,19 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     )
 
 
-def display_objet_store(objet_dict: dict, modification_objet: dict = {}, key: str = ""):
+def display_objet_store(objet_dict: dict, key: str = ""):
     # Prix
     columns = st.columns(2)
     for i, compteur in enumerate([COUT_UNITAIRE, COUT_FIXE]):
         columns[i].metric(
             label=LABELS[compteur],
-            value=objet_dict.get(compteur, 0) + modification_objet.get(compteur, 0),
-            delta=modification_objet.get(compteur, 0),
+            value=objet_dict.get(compteur, 0),
         )
     # Bonus armées
     value_dict = {
         key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
     }
-    modification_dict = {
-        key: modification_objet.get(f"bonus_{key}", 0)
-        for key in [AIR, MER, TERRE, RENS]
-    }
-    fig = display_gauges_armees(
-        values=value_dict, modifications=modification_dict, grid=True
-    )
+    fig = display_gauges_armees(values=value_dict, grid=True)
     fig.update_layout(
         title=dict(
             text="Apport de chaque unité sur vos armées",
@@ -139,7 +132,7 @@ def display_objet_store(objet_dict: dict, modification_objet: dict = {}, key: st
     )
     st.plotly_chart(fig, key=key)
     # Production
-    unite_an = objet_dict.get(UNITE_PAR_AN, 0) + modification_objet.get(UNITE_PAR_AN, 0)
+    unite_an = objet_dict.get(UNITE_PAR_AN, 0)
     st.markdown(
         f"""
         :blue[Cadence de production]: **{unite_an}** unités par an

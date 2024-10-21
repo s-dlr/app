@@ -19,7 +19,7 @@ def init_objets(fichier_objets) -> None:
     df_objets = pd.read_csv(
         fichier_objets,
         sep=";",
-        dtype={  
+        dtype={
             NOM: str,
             COUT_UNITAIRE: float,
             STD_COUT: float,
@@ -34,8 +34,8 @@ def init_objets(fichier_objets) -> None:
             DEPENDANCE_EXPORT: str,
             NIVEAU_TECHNO: float,
             ANNEE: int,
-            DEMANDE_ARMEE: int
-        }
+            MIN_NB_UTILE: int,
+        },
     )
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())

@@ -1,4 +1,4 @@
-nom;cout_unitaire;std_cout;cout_fixe;bonus_terre;bonus_mer;bonus_air;bonus_rens;max_nb_utile;unite_par_an;budget;dependance_export;niveau_techno;demande_armee;annee
+nom;cout_unitaire;std_cout;cout_fixe;bonus_terre;bonus_mer;bonus_air;bonus_rens;max_nb_utile;unite_par_an;budget;dependance_export;niveau_techno;min_nb_utile;annee
 HK-416F;1200;0;0;13;1;0;0;100000;10000;1;;0;100000;2014
 ARX-160;1300;0;0;10;1;0;0;100000;10000;0;;0;100000;2014
 VHS-2;1100;0;0;12;1;0;0;100000;10000;0;;0;100000;2014

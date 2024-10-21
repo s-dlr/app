@@ -83,7 +83,7 @@ if "equipe" in st.session_state:
             st.markdown(
                 f"**Combien de {st.session_state.selected_objet} souhaitez vous acheter ?**"
             )
-            min_nb_unit = 0
+            min_nb_unit = st.session_state[st.session_state.selected_objet].min_nb_utile
             max_nb_unit = st.session_state[st.session_state.selected_objet].max_nb_utile
             slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1, key="nb_unites")
 

@@ -69,7 +69,7 @@ def display_metrics(effets_dict: dict):
 
 
 def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""):
-    st.markdown(f":blue[{objet_dict[NOM]}]")
+    st.subheader(f":blue[{objet_dict[NOM]}]")
     # Prix
     columns = st.columns(2)
     for i, compteur in enumerate([COUT_UNITAIRE, COUT_FIXE]):
@@ -102,8 +102,11 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     # Production
     unite_an = objet_dict.get(UNITE_PAR_AN, 0) + modification_objet.get(UNITE_PAR_AN, 0)
     disponibilié = objet_dict.get(ANNEE, 0) + modification_objet.get(ANNEE, 0)
-    st.write(
-        f"Vous pourrez acheter jusqu'à {unite_an} unités par an à parir de l'année {disponibilié}"
+    st.markdown(
+        f"""
+        :blue[Production]
+        Vous pourrez acheter jusqu'à **{unite_an}** unités par an à partir de l'année **{disponibilié}**
+        """
     )
 
 def display_programme(programme_dict: dict):

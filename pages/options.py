@@ -103,7 +103,7 @@ else:
                 # Effet immédiat
                 effets_immediat_dict = option.effet_immediat.to_dict()
                 if len(effets_immediat_dict) > 0:
-                    st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
+                    st.subheader(f":blue[{EFFET_IMMEDIAT_DESC}]")
                     display_metrics(effets_immediat_dict)
                 # Objet
                 if option.objet:

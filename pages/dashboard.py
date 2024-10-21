@@ -54,7 +54,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
             domain={"x": [0, 1], "y": [0, 1]},
         )
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
 
 """
 # Add histogram data

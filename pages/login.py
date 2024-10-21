@@ -26,9 +26,6 @@ def init_team_in_db() -> None:
     df_etat_equipe = st.session_state.sql_client.get_table("Etat")
     if df_etat_equipe.shape[0] > 0:
         etat_equipe = df_etat_equipe.iloc[0].to_dict()
-        st.success(
-            f"Chargement du jeu là où vous vous étiez arrêtés ({etat_equipe[ARBORESCENCE]}, question {etat_equipe[QUESTION]})"
-        )
         get_indicateurs_from_sql()
         return etat_equipe
     else:
@@ -37,7 +34,6 @@ def init_team_in_db() -> None:
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-        push_etat_to_sql(list(ARBORESCENCES.keys())[0], 1)
         return {ARBORESCENCE: list(ARBORESCENCES.keys())[0], QUESTION: 1}
 
 # Affichage

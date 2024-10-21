@@ -1,5 +1,4 @@
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
+from datetime import datetime
 import streamlit as st
 
 from src.variables import *
@@ -107,7 +106,15 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
         # Constructions
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
-        fig = px.timeline(df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET)
+        df_constructions_equipe[DEBUT] = df_constructions_equipe[DEBUT].apply(
+            lambda x: datetime(year=x)
+        )
+        df_constructions_equipe[FIN] = pd.to_datetime(
+            df_constructions_equipe[FIN]
+        ).apply(lambda x: datetime(year=x))
+        fig = px.timeline(
+            df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET
+        )
         fig.update_layout(showlegend=False)
         fig.update_yaxes(autorange="reversed")
         col.plotly_chart(

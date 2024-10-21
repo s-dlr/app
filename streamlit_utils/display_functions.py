@@ -119,5 +119,6 @@ def display_gauges_armees(values):
 
     fig.update_layout(
         grid={"rows": 2, "columns": 2, "pattern": "independent"},
+        margin=dict(l=50, r=50, t=20, b=20)
     )
     return fig

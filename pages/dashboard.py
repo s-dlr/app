@@ -60,7 +60,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         fig = display_gauges_armees(
             niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
         )
-        col.plotly_chart(fig, use_container_width=False, key=f"gauge_terre_{equipe}")
+        col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
 
 """
 # Add histogram data

@@ -43,10 +43,17 @@ COUT = "cout"
 DEBUT = "debut"
 FIN = "fin"
 DUREE = "duree"
+
 # Compteurs
 EUROPEANISATION = "europeanisation"
 BUDGET = "budget"
 NIVEAU_TECHNO = "niveau_techno"
+
+# Armées
+TERRE = "terre"
+AIR = "air"
+MER = "mer"
+RENS = "rens"
 
 # Variable
 NOMBRE_UNITE = "nombre_unites"

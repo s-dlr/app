@@ -54,9 +54,8 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_equipe = df_armees[df_armees[EQUIPE] == equipe]
         niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
         col.subheader(equipe)
-        fig = display_gauges(
-            niveaux_armee[["terre", "air", "mer", "rens"]],
-            ["Armée de terre", "Armée de l'air", "Marine", "Renseignement"],
+        fig = display_gauges_armees(
+            niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
         )
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
 

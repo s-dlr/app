@@ -24,6 +24,10 @@ LABELS: dict = {
     BONUS_MER: "Bonus mer",
     BONUS_RENS: "Bonus renseignement",
     BONUS_TERRE: "Bonus terre",
+    AIR: "Armée de l'air",
+    TERRE: "Armée de terre",
+    MER: "Marine",
+    RENS: "Renseignement"
 }
 
 
@@ -64,41 +68,51 @@ def display_annee():
     percent_game = (st.session_state.annee - 1995) / (2050 - 1995)
     st.progress(percent_game, text=str(f"Année {st.session_state.annee}"))
 
-def display_gauges(values, titles):
+def display_gauges_armees(values):
     """
     Grid gauges
     """
+    color_map = {
+        AIR: "#30b7d3",
+        TERRE: "#59883a",
+        MER: "#333fff",
+        RENS: "#ff3a00",
+    }
     fig = go.Figure()
 
     fig.add_trace(
         go.Indicator(
-            value=values[0],
+            value=values[TERRE],
             mode="gauge+number",
-            title=titles[0],
+            title=LABELS[TERRE],
+            gauge={"bar": {"color": color_map[TERRE]}},
             domain={"row": 0, "column": 0},
         )
     )
     fig.add_trace(
         go.Indicator(
-            value=values[1],
+            value=values[MER],
             mode="gauge+number",
-            title=titles[1],
+            title=LABELS[MER],
+            gauge={"bar": {"color": color_map[MER]}},
             domain={"row": 0, "column": 1},
         )
     )
     fig.add_trace(
         go.Indicator(
-            value=values[2],
+            value=values[AIR],
             mode="gauge+number",
-            title=titles[2],
+            title=LABELS[AIR],
+            gauge={"bar": {"color": color_map[AIR]}},
             domain={"row": 1, "column": 0},
         )
     )
     fig.add_trace(
         go.Indicator(
-            value=values[3],
+            value=values[RENS],
             mode="gauge+number",
-            title=titles[3],
+            title=LABELS[RENS],
+            gauge={"bar": {"color": color_map[RENS]}},
             domain={"row": 1, "column": 1},
         )
     )

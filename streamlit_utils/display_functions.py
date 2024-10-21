@@ -73,7 +73,7 @@ def display_objet(objet_dict: dict, modification_objet: dict, key: str = ""):
         for key in [AIR, MER, TERRE, RENS]
     }
     fig = display_gauges_armees(
-        values=value_dict, modifications=modification_dict, shape="bullet", grid=True
+        values=value_dict, modifications=modification_dict, shape="bullet", grid=False
     )
     st.plotly_chart(fig, key=key)
     st.dataframe(pd.DataFrame([objet_dict]))

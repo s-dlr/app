@@ -107,7 +107,6 @@ else:
                     display_metrics(effets_immediat_dict)
                 # Objet
                 if option.objet:
-                    st.markdown(f":blue[{OBJET_DESC}]")
                     display_objet(
                         st.session_state[option.objet].to_dict(),
                         modification_objet=option.modification_objet.to_dict(),

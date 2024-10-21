@@ -65,6 +65,7 @@ def display_metrics(effets_dict: dict):
 
 
 def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""):
+    st.markdown(f":blue[{objet_dict[NOM]}]")
     # Bonus armées
     value_dict = {
         key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
@@ -79,7 +80,8 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     fig.update_layout(
         height=300,
         title=dict(
-            text="Bonus par unité sur vos armées", font=dict(size=12, color="#333fff")
+            text="Apport de chaque unité sur vos armées",
+            font=dict(size=12, color="#333fff"),
         ),
     )
     st.plotly_chart(fig, key=key)
@@ -123,6 +125,7 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
             gauge=gauge_arg,
             domain={"row": i, "column": j},
         )
+        indicateur.update_traces(name=LABELS["bonus_" + armee])
         return indicateur
 
     fig = go.Figure()
@@ -141,6 +144,6 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
             if values.get(armee, 0) > 0:
                 fig.add_trace(get_indicateur(armee, i, 0))
         fig.update_layout(
-            grid={"rows": 4, "columns": 1, "pattern": "independent"}, showlegend=True
+            grid={"rows": 4, "columns": 1, "pattern": "independent"}, showlegend=False
         )
     return fig

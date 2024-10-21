@@ -4,6 +4,10 @@ import streamlit as st
 
 from src.variables import *
 
+st.set_page_config(
+    page_title="Dashboard", page_icon="🏠", layout="wide", initial_sidebar_state="collapsed"
+)
+
 # Requêtes
 QUERY_INDICATEURS = f'SELECT * FROM `Indicateurs`'
 QUERY_ARMEES = f"SELECT * FROM `Armee`"
@@ -45,7 +49,7 @@ df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
 # data_chart = df_armees.sort_values()
 # st.bar_chart(df_armees.pi)
 for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
-     with col.container(boreder=True):
+     with col.container(border=True):
         col.subheader(equipe)
         fig = go.Figure(
             go.Indicator(

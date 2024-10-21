@@ -102,7 +102,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
         col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
         fig = display_gauges_armees(
-            niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
+            niveaux_armee[["terre", "air", "mer", "rens"]].to_dict(), grid=True
         )
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
         # Constructions

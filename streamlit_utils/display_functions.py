@@ -59,15 +59,11 @@ def display_metrics(effets_dict: dict):
         i += 1
 
 
-def display_objet(objet_dict: dict, key: str = ""):
-    # fig = px.box(
-    #     [
-    #         objet_dict[COUT_UNITAIRE],
-    #         objet_dict[COUT_UNITAIRE] - objet_dict[STD_COUT],
-    #         objet_dict[COUT_UNITAIRE] + objet_dict[STD_COUT],
-    #     ]
-    # )
-    # st.plotly_chart(fig, key=key)
+def display_objet(objet_dict: dict, modification_objet: dict, key: str = ""):
+    fig = display_gauges_armees(
+        values=objet_dict, modifications=modification_objet, shape="bullet", grid=True
+    )
+    st.plotly_chart(fig, key=key)
     st.dataframe(pd.DataFrame([objet_dict]))
 
 
@@ -80,51 +76,56 @@ def display_annee():
     percent_game = (st.session_state.annee - 1995) / (2050 - 1995)
     st.progress(percent_game, text=str(f"Année {st.session_state.annee}"))
 
-def display_gauges_armees(values):
+
+def display_gauges_armees(values, modifications: dict = None, shape=None, grid=False):
     """
     Grid gauges
     """
+    if modifications is not None:
+        mode = "number+gauge+delta"
+    else:
+        mode = "number+gauge"
+    gauge_arg = {"axis": {"visible": False}, "bar": {}}
+    if shape is not None:
+        gauge_arg["shape"] = shape
+
+    def get_indicateur(armee, i, j):
+        gauge_arg["bar"]["color"] = COLOR_MAP[armee]
+        if modifications:
+            reference = {"reference": values[armee]}
+            values[armee] += modifications.get(armee, 0)
+        else:
+            reference = {}
+        indicateur = go.Indicator(
+            value=values[armee],
+            mode=mode,
+            title=LABELS[armee],
+            delta=reference,
+            gauge=gauge_arg,
+            domain={"row": i, "column": j},
+        )
+        return indicateur
+
     fig = go.Figure()
 
-    fig.add_trace(
-        go.Indicator(
-            value=values[TERRE],
-            mode="gauge+number",
-            title=LABELS[TERRE],
-            gauge={"bar": {"color": COLOR_MAP[TERRE]}},
-            domain={"row": 0, "column": 0},
-        )
-    )
-    fig.add_trace(
-        go.Indicator(
-            value=values[MER],
-            mode="gauge+number",
-            title=LABELS[MER],
-            gauge={"bar": {"color": COLOR_MAP[MER]}},
-            domain={"row": 0, "column": 1},
-        )
-    )
-    fig.add_trace(
-        go.Indicator(
-            value=values[AIR],
-            mode="gauge+number",
-            title=LABELS[AIR],
-            gauge={"bar": {"color": COLOR_MAP[AIR]}},
-            domain={"row": 1, "column": 0},
-        )
-    )
-    fig.add_trace(
-        go.Indicator(
-            value=values[RENS],
-            mode="gauge+number",
-            title=LABELS[RENS],
-            gauge={"bar": {"color": COLOR_MAP[RENS]}},
-            domain={"row": 1, "column": 1},
-        )
-    )
+    if grid:
+        fig.add_trace(get_indicateur(TERRE, 0, 0))
+        fig.add_trace(get_indicateur(MER, 1, 0))
+        fig.add_trace(get_indicateur(AIR, 0, 1))
+        fig.add_trace(get_indicateur(RENS, 1, 1))
 
-    fig.update_layout(
-        grid={"rows": 2, "columns": 2, "pattern": "independent"},
-        margin=dict(l=50, r=50)
-    )
+        fig.update_layout(
+            grid={"rows": 2, "columns": 2, "pattern": "independent"},
+            margin=dict(l=50, r=50),
+        )
+    else:
+        fig.add_trace(get_indicateur(TERRE, 0, 0))
+        fig.add_trace(get_indicateur(MER, 1, 0))
+        fig.add_trace(get_indicateur(AIR, 2, 0))
+        fig.add_trace(get_indicateur(RENS, 3, 0))
+
+        fig.update_layout(
+            grid={"rows": 4, "columns": 1, "pattern": "independent"},
+            margin=dict(l=50, r=50),
+        )
     return fig

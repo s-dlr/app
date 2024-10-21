@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
+import re
 import streamlit as st
 
 from src.variables import *
@@ -43,6 +44,10 @@ COLOR_MAP = {
     RENS: "#ff3a00",
 }
 
+###############
+#   Fonction  #
+###############
+
 def display_metrics(effets_dict: dict):
     """
     Affiche des métriques
@@ -60,6 +65,14 @@ def display_metrics(effets_dict: dict):
 
 
 def display_objet(objet_dict: dict, modification_objet: dict, key: str = ""):
+    objet_dict = {
+        re.findall(r"bonus_([a-zA-Z]*)", key)[0]: value
+        for key, value in objet_dict.items()
+    }
+    modification_objet = {
+        re.findall(r"bonus_([a-zA-Z]*)", key)[0]: value
+        for key, value in modification_objet.items()
+    }
     fig = display_gauges_armees(
         values=objet_dict, modifications=modification_objet, shape="bullet", grid=True
     )

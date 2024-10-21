@@ -76,7 +76,7 @@ if display_equipes is not None:
             col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
 
             col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
-            pays_dependance_equipe = df_dependances_chart[df_dependances_chart[EQUIPE] == equipe][DEPENDANCE_EXPORT].values()
+            pays_dependance_equipe = df_dependances_chart[df_dependances_chart[EQUIPE] == equipe][DEPENDANCE_EXPORT].values
             line_pays = ''
             for pays in pays_dependance_equipe:
                 line_pays += DRAPEAUX.get(pays.strip(), "")

@@ -15,7 +15,13 @@ st.set_page_config(
 # Requêtes
 QUERY_INDICATEURS = f'SELECT * FROM `Indicateurs`'
 QUERY_ARMEES = f"SELECT * FROM `Armee`"
-
+QUERY_DEPENDANCE = """
+    SELECT UNIQUE equipe, dependance_export FROM Objets
+    WHERE Objets.nom IN (SELECT objet FROM Constructions)
+    UNION
+    SELECT UNIQUE equipe, dependance_export FROM Programmes
+    WHERE Programmes.debut IS NOT NULL AND dependance_export!=0;
+"""
 # Connexion
 dashboard_connection = st.connection("astrolabedb", autocommit=True, ttl=1)
 
@@ -48,19 +54,33 @@ with col2:
     )
 st.divider()
 
-# Niveaux armées
-df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
-# data_chart = df_armees.sort_values()
-# st.bar_chart(df_armees.pi)
-for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
-    with col.container(border=True):
-        df_equipe = df_armees[df_armees[EQUIPE] == equipe]
-        niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
-        col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
-        fig = display_gauges_armees(
-            niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
-        )
-        col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
+if display_equipes is not None:
+    # Niveaux armées
+    df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
+
+    # Dépendances
+    df_dependances = dashboard_connection.query(QUERY_DEPENDANCE, ttl=5)
+    df_dependances_chart = df_dependances.copy()
+    df_dependances_chart[DEPENDANCE_EXPORT] = df_dependances_chart[DEPENDANCE_EXPORT].apply(lambda x: x.split(","))
+    df_dependances_chart = df_dependances_chart.explode(DEPENDANCE_EXPORT)
+
+    # Affichage
+    for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
+        with col.container(border=True):
+            df_equipe = df_armees[df_armees[EQUIPE] == equipe]
+            niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
+            col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
+            fig = display_gauges_armees(
+                niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
+            )
+            col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
+
+            col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
+            pays_dependance_equipe = df_dependances_chart[df_dependances_chart[EQUIPE] == equipe][DEPENDANCE_EXPORT].values()
+            line_pays = ''
+            for pays in pays_dependance_equipe:
+                line_pays += DRAPEAUX.get(pays.strip(), "")
+            st.write(line_pays)
 
 """
 # Add histogram data

@@ -30,6 +30,13 @@ LABELS: dict = {
     RENS: "Renseignement"
 }
 
+DRAPEAUX = {
+    "France": ":flag-fr:",
+    "Allemagne": ":flag-ge:",
+    "Angleterre": ":flag-gb:",
+    "Italie": ":flag-it:",
+}
+
 
 def display_metrics(effets_dict: dict):
     """

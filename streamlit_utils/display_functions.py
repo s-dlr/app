@@ -138,6 +138,6 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
 
         fig.update_layout(
             grid={"rows": 4, "columns": 1, "pattern": "independent"},
-            margin=dict(l=50, r=50),
+            margin=dict(l=5, r=5),
         )
     return fig

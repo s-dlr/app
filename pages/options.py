@@ -82,7 +82,7 @@ if st.session_state.arborescence:
 
     # Radio button for options
     if "select_option" not in st.session_state:
-        st.session_state["select_option"] = False
+        st.session_state["select_option"] = list_options[0].texte_option
     st.radio(
         label="Choix",
         options=[opt.texte_option for opt in list_options],
@@ -91,41 +91,31 @@ if st.session_state.arborescence:
         key="select_option",
     )
 
-    # Radio button for options
-    if "select_option" not in st.session_state:
-        st.session_state["select_option"] = list_options[0].texte_option
-        st.radio(
-            label="Choix",
-            options=[opt.texte_option for opt in list_options],
-            index=None,
-            label_visibility="collapsed",
-            key="select_option",
-        )
-
-        # Affichage des données correspondant à chaque option
-        columns = st.columns(len(list_options))
-        for option, col in zip(list_options, columns):
-            with col.container(
-                border=(st.session_state.select_option == option.texte_option)
-            ):
-                # Effet immédiat
-                effets_immediat_dict = option.effet_immediat.to_dict()
-                if len(effets_immediat_dict) > 0:
-                    st.subheader(f":blue[{EFFET_IMMEDIAT_DESC}]")
-                    display_metrics(effets_immediat_dict)
-                # Objet
-                if option.objet:
-                    display_objet(
-                        st.session_state[option.objet].to_dict(),
-                        modification_objet=option.modification_objet.to_dict(),
-                        key=f"objet_{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
-                    )
-                # Programme
-                # if option.programme:
-                #     st.markdown(f":blue[{PROGRAMME_DESC}]")
-                #     display_programme(
-                #         st.session_state["programme " + option.programme].to_dict()
-                #     )
+    # Affichage des données correspondant à chaque option
+    columns = st.columns(len(list_options))
+    for option, col in zip(list_options, columns):
+        with col.container(
+            border=(st.session_state.select_option == option.texte_option)
+        ):
+            # Effet immédiat
+            effets_immediat_dict = option.effet_immediat.to_dict()
+            if len(effets_immediat_dict) > 0:
+                st.subheader(f":blue[{EFFET_IMMEDIAT_DESC}]")
+                display_metrics(effets_immediat_dict)
+            # Objet
+            if option.objet:
+                display_objet(
+                    st.session_state[option.objet].to_dict(),
+                    modification_objet=option.modification_objet.to_dict(),
+                    key=f"objet_{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
+                )
+            # Programme
+            # if option.programme:
+            #     st.markdown(f":blue[{PROGRAMME_DESC}]")
+            #     display_programme(
+            #         st.session_state["programme " + option.programme].to_dict()
+            #     )
+    
     st.page_link(
         "pages/store.py",
         label="Acheter des unités",

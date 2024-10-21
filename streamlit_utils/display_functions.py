@@ -111,7 +111,7 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
         indicateur = go.Indicator(
             value=values[armee],
             mode=mode,
-            title=LABELS[armee],
+            title=LABELS["bonus_" + armee],
             delta=reference,
             gauge=gauge_arg,
             domain={"row": i, "column": j},
@@ -138,6 +138,5 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
 
         fig.update_layout(
             grid={"rows": 4, "columns": 1, "pattern": "independent"},
-            margin=dict(l=5, r=5),
         )
     return fig

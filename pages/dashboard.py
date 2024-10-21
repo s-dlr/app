@@ -79,13 +79,8 @@ if display_equipes is not None:
             pays_dependance_equipe = df_dependances_chart[
                 df_dependances_chart[EQUIPE] == equipe
             ][DEPENDANCE_EXPORT].unique()
-            # col.markdown(
-            #     " ".join(
-            #         [DRAPEAUX.get(pays.strip(), "") for pays in pays_dependance_equipe]
-            #     )
-            # )
             images_drapeaux = [
-                DRAPEAUX.get(pays)
+                DRAPEAUX.get(pays.strip())
                 for pays in pays_dependance_equipe
                 if DRAPEAUX.get(pays) is not None
             ]

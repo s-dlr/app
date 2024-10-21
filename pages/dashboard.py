@@ -17,6 +17,7 @@ display_equipes = st.multiselect(
     'Equipes',
     df_indicateurs[EQUIPE].unique()
 )
+st.divider()
 
 # Courbes indicateurs
 col1, col2 = st.columns(2)
@@ -36,6 +37,21 @@ with col2:
         x=ANNEE,
         y=NIVEAU_TECHNO,
         color=EQUIPE,
+    )
+st.divider()
+
+# Niveaux armées
+df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
+data_chart = df_armees.sort_values()
+# st.bar_chart(df_armees.pi)
+for equipe, col in zip(display_equipes, st.columns(display_equipes)):
+    fig = go.Figure(
+        go.Indicator(
+            mode="gauge+number",
+            value=df_armees[df_armees[EQUIPE] == equipe]["terre"].iloc[0],
+            title={"text": "Armée de terre"},
+            domain={"x": [0, 1], "y": [0, 1]},
+        )
     )
 
 # Lien vers les autres pages

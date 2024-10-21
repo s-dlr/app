@@ -1,9 +1,12 @@
-from src.variables import *
-
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 import streamlit as st
+
+from src.variables import *
 
 # Requêtes
 QUERY_INDICATEURS = f'SELECT * FROM `Indicateurs`'
+QUERY_ARMEES = f"SELECT * FROM `Armees`"
 
 # Connexion
 dashboard_connection = st.connection("astrolabedb", autocommit=True, ttl=1)
@@ -15,8 +18,25 @@ display_equipes = st.multiselect(
     df_indicateurs[EQUIPE].unique()
 )
 
-# Courbes budget
-st.line_chart(df_indicateurs[df_indicateurs[EQUIPE].isin(display_equipes)], x=ANNEE, y=BUDGET, color=EQUIPE)
+# Courbes indicateurs
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown(f":blue[Evolution des budgets]")
+    st.line_chart(
+        df_indicateurs[df_indicateurs[EQUIPE].isin(display_equipes)],
+        x=ANNEE,
+        y=BUDGET,
+        color=EQUIPE,
+    )
+
+with col2:
+    st.markdown(f":blue[Evolution des niveau technologiques]")
+    st.line_chart(
+        df_indicateurs[df_indicateurs[EQUIPE].isin(display_equipes)],
+        x=ANNEE,
+        y=NIVEAU_TECHNO,
+        color=EQUIPE,
+    )
 
 # Lien vers les autres pages
 st.page_link(

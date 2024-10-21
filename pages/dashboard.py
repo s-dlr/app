@@ -82,8 +82,8 @@ if display_equipes is not None:
                     [DRAPEAUX.get(pays.strip(), "") for pays in pays_dependance_equipe]
                 )
             )
-            col.mardown(":flag-fr:")
-            col.mardown(":fr:")
+            col.markdown(":flag-fr:")
+            col.markdown(":fr:")
 
 """
 # Add histogram data

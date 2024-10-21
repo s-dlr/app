@@ -104,7 +104,7 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     disponibilié = objet_dict.get(ANNEE, 0) + modification_objet.get(ANNEE, 0)
     st.markdown(
         f"""
-        :blue[Production]
+        :blue[Production]:\n
         Vous pourrez acheter jusqu'à **{unite_an}** unités par an à partir de l'année **{disponibilié}**
         """
     )

@@ -107,11 +107,11 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         # Constructions
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
         df_constructions_equipe[DEBUT] = df_constructions_equipe[DEBUT].apply(
-            lambda x: datetime(year=x)
+            lambda x: datetime(year=x, month=1, day=1)
         )
-        df_constructions_equipe[FIN] = pd.to_datetime(
-            df_constructions_equipe[FIN]
-        ).apply(lambda x: datetime(year=x))
+        df_constructions_equipe[FIN] = df_constructions_equipe[FIN].apply(
+            lambda x: datetime(year=x, month=1, day=1)
+        )
         fig = px.timeline(
             df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET
         )

@@ -83,6 +83,7 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
             text="Apport de chaque unité sur vos armées",
             font=dict(size=12, color="#333fff"),
         ),
+        showlegend=True,
     )
     st.plotly_chart(fig, key=key)
     st.dataframe(pd.DataFrame([objet_dict]))
@@ -142,7 +143,5 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
         for i, armee in enumerate([TERRE, AIR, MER, RENS]):
             if values.get(armee, 0) > 0:
                 fig.add_trace(get_indicateur(armee, i, 0))
-        fig.update_layout(
-            grid={"rows": 4, "columns": 1, "pattern": "independent"}, showlegend=False
-        )
+        fig.update_layout(grid={"rows": 4, "columns": 1, "pattern": "independent"})
     return fig

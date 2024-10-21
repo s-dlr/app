@@ -10,7 +10,7 @@ dashboard_connection = st.connection("astrolabedb", autocommit=True, ttl=1)
 
 # Equipes disponibles
 df_indicateurs = dashboard_connection.query(QUERY_INDICATEURS, ttl=5)
-st.multi_select(
+st.multiselect(
     'Equipes',
     df_indicateurs[EQUIPE].unique()
 )

@@ -44,11 +44,12 @@ st.divider()
 df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
 # data_chart = df_armees.sort_values()
 # st.bar_chart(df_armees.pi)
-for equipe, col in zip(display_equipes, st.columns(display_equipes)):
+for i, col in enumerate(st.columns(display_equipes)):
+    st.subheader(display_equipes[i])
     fig = go.Figure(
         go.Indicator(
             mode="gauge+number",
-            value=df_armees[df_armees[EQUIPE] == equipe]["terre"].iloc[0],
+            value=df_armees[df_armees[EQUIPE] == display_equipes[i]]["terre"].iloc[0],
             title={"text": "Armée de terre"},
             domain={"x": [0, 1], "y": [0, 1]},
         )

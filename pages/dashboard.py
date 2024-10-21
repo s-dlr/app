@@ -77,11 +77,13 @@ if display_equipes is not None:
 
             col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
             pays_dependance_equipe = df_dependances_chart[df_dependances_chart[EQUIPE] == equipe][DEPENDANCE_EXPORT].values
-            st.markdown(
+            col.markdown(
                 " ".join(
                     [DRAPEAUX.get(pays.strip(), "") for pays in pays_dependance_equipe]
                 )
             )
+            col.mardown(":flag-fr:")
+            col.mardown(":fr:")
 
 """
 # Add histogram data

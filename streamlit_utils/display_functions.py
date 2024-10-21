@@ -78,7 +78,9 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     )
     fig.update_layout(
         height=300,
-        title=dict(text="Bonus par unité sur vos armées", font=dict(size=10)),
+        title=dict(
+            text="Bonus par unité sur vos armées", font=dict(size=12, color="blue")
+        ),
     )
     st.plotly_chart(fig, key=key)
     st.dataframe(pd.DataFrame([objet_dict]))

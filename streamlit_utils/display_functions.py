@@ -65,16 +65,15 @@ def display_metrics(effets_dict: dict):
 
 
 def display_objet(objet_dict: dict, modification_objet: dict, key: str = ""):
-    objet_dict = {
-        re.findall(r"bonus_([a-zA-Z]*)", key)[0]: value
-        for key, value in objet_dict.items()
+    value_dict = {
+        key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
     }
-    modification_objet = {
-        re.findall(r"bonus_([a-zA-Z]*)", key)[0]: value
-        for key, value in modification_objet.items()
+    modification_dict = {
+        key: modification_objet.get(f"bonus_{key}", 0)
+        for key in [AIR, MER, TERRE, RENS]
     }
     fig = display_gauges_armees(
-        values=objet_dict, modifications=modification_objet, shape="bullet", grid=True
+        values=value_dict, modifications=modification_dict, shape="bullet", grid=True
     )
     st.plotly_chart(fig, key=key)
     st.dataframe(pd.DataFrame([objet_dict]))

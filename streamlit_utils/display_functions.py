@@ -125,7 +125,6 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
             gauge=gauge_arg,
             domain={"row": i, "column": j},
         )
-        indicateur.update_traces(name=LABELS["bonus_" + armee])
         return indicateur
 
     fig = go.Figure()

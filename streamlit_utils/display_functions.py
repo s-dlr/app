@@ -74,7 +74,7 @@ def display_gauges(values, titles):
         go.Indicator(
             value=values[0],
             mode="gauge+number",
-            title=titles[0]
+            title=titles[0],
             domain={"row": 0, "column": 0},
         )
     )
@@ -82,7 +82,7 @@ def display_gauges(values, titles):
         go.Indicator(
             value=values[1],
             mode="gauge+number",
-            title=titles[1]
+            title=titles[1],
             domain={"row": 0, "column": 1},
         )
     )
@@ -90,7 +90,7 @@ def display_gauges(values, titles):
         go.Indicator(
             value=values[2],
             mode="gauge+number",
-            title=titles[2]
+            title=titles[2],
             domain={"row": 1, "column": 0},
         )
     )
@@ -98,7 +98,7 @@ def display_gauges(values, titles):
         go.Indicator(
             value=values[3],
             mode="gauge+number",
-            title=titles[3]
+            title=titles[3],
             domain={"row": 1, "column": 1},
         )
     )

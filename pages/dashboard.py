@@ -45,16 +45,17 @@ df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
 # data_chart = df_armees.sort_values()
 # st.bar_chart(df_armees.pi)
 for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
-    st.subheader(equipe)
-    fig = go.Figure(
-        go.Indicator(
-            mode="gauge+number",
-            value=df_armees[df_armees[EQUIPE] == equipe]["terre"].iloc[0],
-            title={"text": "Armée de terre"},
-            domain={"x": [0, 1], "y": [0, 1]},
+     with col.container(boreder=True):
+        col.subheader(equipe)
+        fig = go.Figure(
+            go.Indicator(
+                mode="gauge+number",
+                value=df_armees[df_armees[EQUIPE] == equipe]["terre"].iloc[0],
+                title={"text": "Armée de terre"},
+                domain={"x": [0, 1], "y": [0, 1]},
+            )
         )
-    )
-    st.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
+        col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
 
 """
 # Add histogram data

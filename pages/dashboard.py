@@ -12,9 +12,13 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+########################################################
+################         SQL      ######################
+########################################################
+
 # Requêtes
-QUERY_INDICATEURS = f'SELECT * FROM `Indicateurs`'
-QUERY_ARMEES = f"SELECT * FROM `Armee`"
+QUERY_INDICATEURS = "SELECT * FROM `Indicateurs`"
+QUERY_ARMEES = "SELECT * FROM `Armee`"
 QUERY_DEPENDANCE = """
     SELECT UNIQUE equipe, dependance_export FROM Objets
     WHERE Objets.nom IN (SELECT objet FROM Constructions)
@@ -22,16 +26,48 @@ QUERY_DEPENDANCE = """
     SELECT UNIQUE equipe, dependance_export FROM Programmes
     WHERE Programmes.debut IS NOT NULL AND dependance_export!=0;
 """
+QUERY_PROGRAMMES = """
+    SELECT equipe, nom, debut, fin, cout FROM Programmes
+    WHERE Programmes.debut IS NOT NULL;
+"""
+QUERY_CONSTRUCTIONS = """
+    SELECT equipe, objet, debut, fin, nombre_unites FROM Constructions
+    WHERE Constructions.debut IS NOT NULL;
+"""
+
 # Connexion
 dashboard_connection = st.connection("astrolabedb", autocommit=True, ttl=1)
 
-# Equipes disponibles
+
+########################################################
+################       Equipes    ######################
+########################################################
+
 df_indicateurs = dashboard_connection.query(QUERY_INDICATEURS, ttl=5)
 display_equipes = st.multiselect(
     'Equipes',
     df_indicateurs[EQUIPE].unique()
 )
 st.divider()
+
+
+########################################################
+################     Tables SQL   ######################
+########################################################
+
+# Données
+df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
+df_dependances = dashboard_connection.query(QUERY_DEPENDANCE, ttl=5)
+df_dependances[DEPENDANCE_EXPORT] = df_dependances[DEPENDANCE_EXPORT].apply(
+    lambda x: x.split(",")
+)
+df_dependances = df_dependances.explode(DEPENDANCE_EXPORT)
+df_programmes = dashboard_connection.query(QUERY_PROGRAMMES, ttl=5)
+df_constructions = dashboard_connection.query(QUERY_CONSTRUCTIONS, ttl=5)
+
+########################################################
+##############     Indicateurs macro   #################
+########################################################
 
 # Courbes indicateurs
 col1, col2 = st.columns(2)
@@ -54,37 +90,47 @@ with col2:
     )
 st.divider()
 
-if display_equipes is not None:
-    # Niveaux armées
-    df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
+########################################################
+##############     Détail par équipe   #################
+########################################################
 
-    # Dépendances
-    df_dependances = dashboard_connection.query(QUERY_DEPENDANCE, ttl=5)
-    df_dependances_chart = df_dependances.copy()
-    df_dependances_chart[DEPENDANCE_EXPORT] = df_dependances_chart[DEPENDANCE_EXPORT].apply(lambda x: x.split(","))
-    df_dependances_chart = df_dependances_chart.explode(DEPENDANCE_EXPORT)
-
-    # Affichage
-    for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
-        with col.container(border=True):
-            df_equipe = df_armees[df_armees[EQUIPE] == equipe]
-            niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
-            col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
-            fig = display_gauges_armees(
-                niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
-            )
-            col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
-
-            col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
-            pays_dependance_equipe = df_dependances_chart[
-                df_dependances_chart[EQUIPE] == equipe
-            ][DEPENDANCE_EXPORT].str.strip().unique()
-            images_drapeaux = [
-                DRAPEAUX.get(pays)
-                for pays in pays_dependance_equipe
-                if DRAPEAUX.get(pays) is not None
-            ]
-            col.image(images_drapeaux, width=30, use_column_width=True)
+# Affichage
+for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
+    with col.container(border=True):
+        # Compteurs armées
+        df_equipe = df_armees[df_armees[EQUIPE] == equipe]
+        niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
+        col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
+        fig = display_gauges_armees(
+            niveaux_armee[["terre", "air", "mer", "rens"]].to_dict()
+        )
+        col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
+        # Programmes
+        df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
+        df_programmes_equipe[NOM] = df_programmes_equipe[NOM].str.capitalize()
+        fig = px.timeline(df_programmes_equipe, x_start=DEBUT, x_end=FIN, y=NOM)
+        fig.update_yaxes(autorange="reversed")
+        col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
+        # Dépendances
+        col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
+        pays_dependance_equipe = (
+            df_dependances[df_dependances[EQUIPE] == equipe][DEPENDANCE_EXPORT]
+            .str.strip()
+            .unique()
+        )
+        images_drapeaux = [
+            DRAPEAUX.get(pays)
+            for pays in pays_dependance_equipe
+            if DRAPEAUX.get(pays) is not None
+        ]
+        df_indicateurs_equipe = df_indicateurs[df_indicateurs[EQUIPE] == equipe]
+        col.metric(
+            label=LABELS[EUROPEANISATION],
+            value=df_indicateurs_equipe.iloc[df_indicateurs_equipe[ANNEE].armax()][
+                EUROPEANISATION
+            ],
+        )
+        col.image(images_drapeaux, width=30)
 
 """
 # Add histogram data

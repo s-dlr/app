@@ -42,7 +42,7 @@ st.divider()
 
 # Niveaux armées
 df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
-data_chart = df_armees.sort_values()
+# data_chart = df_armees.sort_values()
 # st.bar_chart(df_armees.pi)
 for equipe, col in zip(display_equipes, st.columns(display_equipes)):
     fig = go.Figure(

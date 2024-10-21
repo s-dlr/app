@@ -77,11 +77,11 @@ if display_equipes is not None:
 
             col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
             pays_dependance_equipe = df_dependances_chart[df_dependances_chart[EQUIPE] == equipe][DEPENDANCE_EXPORT].values
-            col.markdown(
-                " ".join(
-                    [DRAPEAUX.get(pays.strip(), "") for pays in pays_dependance_equipe]
-                )
-            )
+            # col.markdown(
+            #     " ".join(
+            #         [DRAPEAUX.get(pays.strip(), "") for pays in pays_dependance_equipe]
+            #     )
+            # )
             col.image(DRAPEAUX["France"])
 
 """

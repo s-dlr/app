@@ -16,7 +16,7 @@ from src.variables import *
 
 OBJET_DESC: str = "Objet concerné"
 PROGRAMME_DESC: str = "Programme concerné"
-EFFET_IMMEDIAT_DESC: str = "Effets immédiats sur vos compteurs"
+EFFET_IMMEDIAT_DESC: str = "Effets immédiats"
 LABELS: dict = {
     EUROPEANISATION: "Européanisation",
     NIVEAU_TECHNO: "Niveau technologique",

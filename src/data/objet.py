@@ -10,10 +10,10 @@ class Objet(AbstractClass):
     cout_unitaire: float = 0.0
     std_cout: float = 0.0
     cout_fixe: float = 0.0
-    bonus_terre: int = 0
-    bonus_mer: int = 0
-    bonus_air: int = 0
-    bonus_rens: int = 0
+    bonus_terre: float = 0
+    bonus_mer: float = 0
+    bonus_air: float = 0
+    bonus_rens: float = 0
     max_nb_utile: int = 0
     unite_par_an: float = 0.0
     budget: float = 0.0

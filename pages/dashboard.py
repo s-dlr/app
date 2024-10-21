@@ -6,7 +6,7 @@ from src.variables import *
 
 # Requêtes
 QUERY_INDICATEURS = f'SELECT * FROM `Indicateurs`'
-QUERY_ARMEES = f"SELECT * FROM `Armees`"
+QUERY_ARMEES = f"SELECT * FROM `Armee`"
 
 # Connexion
 dashboard_connection = st.connection("astrolabedb", autocommit=True, ttl=1)

@@ -3,6 +3,8 @@ Fonctions pour afficher des données
 """
 import pandas as pd
 import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 import streamlit as st
 
 from src.variables import *
@@ -61,3 +63,47 @@ def display_annee():
     # TODO adapter en fonction des dates des arborecences
     percent_game = (st.session_state.annee - 1995) / (2050 - 1995)
     st.progress(percent_game, text=str(f"Année {st.session_state.annee}"))
+
+def display_gauges(values, titles):
+    """
+    Grid gauges
+    """
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Indicator(
+            value=values[0],
+            mode="gauge+number",
+            title=titles[0]
+            domain={"row": 0, "column": 0},
+        )
+    )
+    fig.add_trace(
+        go.Indicator(
+            value=values[1],
+            mode="gauge+number",
+            title=titles[1]
+            domain={"row": 0, "column": 1},
+        )
+    )
+    fig.add_trace(
+        go.Indicator(
+            value=values[2],
+            mode="gauge+number",
+            title=titles[2]
+            domain={"row": 1, "column": 0},
+        )
+    )
+    fig.add_trace(
+        go.Indicator(
+            value=values[3],
+            mode="gauge+number",
+            title=titles[3]
+            domain={"row": 1, "column": 1},
+        )
+    )
+
+    fig.update_layout(
+        grid={"rows": 2, "columns": 2, "pattern": "independent"},
+    )
+    return fig

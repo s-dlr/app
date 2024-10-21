@@ -112,7 +112,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         fig.update_yaxes(autorange="reversed")
         col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
         # Dépendances
-        col.markdown(f":blue[Dépendances de {equipe} en {df_equipe[ANNEE].max()}]")
+        col.markdown(f":blue[Dépendances de {equipe} en {df_indicateurs[ANNEE].max()}]")
         pays_dependance_equipe = (
             df_dependances[df_dependances[EQUIPE] == equipe][DEPENDANCE_EXPORT]
             .str.strip()
@@ -126,7 +126,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_indicateurs_equipe = df_indicateurs[df_indicateurs[EQUIPE] == equipe]
         col.metric(
             label=LABELS[EUROPEANISATION],
-            value=df_indicateurs_equipe.iloc[df_indicateurs_equipe[ANNEE].armax()][
+            value=df_indicateurs_equipe.iloc[df_indicateurs_equipe[ANNEE].argmax()][
                 EUROPEANISATION
             ],
         )

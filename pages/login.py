@@ -23,15 +23,22 @@ def init_team_in_db() -> None:
     st.session_state["sql_client"] = ClientSQL(
         connection_name="astrolabedb", equipe=st.session_state.equipe
     )
-    if st.session_state.sql_client.check_team_exists():
+    df_etat_equipe = st.session_state.sql_client.get_table("Etat")
+    if df_etat_equipe.shape[0] > 0:
+        etat_equipe = df_etat_equipe.iloc[0].to_dict()
+        st.success(
+            f"Chargement du jeu là où vous vous étiez arrêtés ({etat_equipe[ARBORESCENCE]}, question {etat_equipe[QUESTION]})"
+        )
         get_indicateurs_from_sql()
+        return etat_equipe
     else:
         st.session_state["annee"] = 2000
         st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-
+        push_etat_to_sql(list(ARBORESCENCES.keys())[0], 1)
+        return {ARBORESCENCE: list(ARBORESCENCES.keys())[0], QUESTION: 1}
 
 # Affichage
 st.header("Choix du nom de l'équipe")
@@ -42,10 +49,3 @@ if st.button("Log in", type="primary"):
     init_team_in_db()
     st.session_state["arborescence"] = False
     st.switch_page("pages/load_data.py")
-    # load_next_arborescence()
-    # init_team_in_db()
-    # init_objets()
-    # if st.session_state.arborescence.type_question == CHOIX_OPTION:
-    #     st.switch_page("pages/options.py")
-    # elif st.session_state.arborescence.type_question == CHOIX_NOMBRE_UNITE:
-    #     st.switch_page("pages/buy.py")

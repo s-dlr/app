@@ -46,8 +46,10 @@ def next_step():
         st.session_state.arborescence.load_data(next_question)
         st.session_state.annee = st.session_state.arborescence.question.annee
         update_indicateurs()
+        push_etat_to_sql(st.session_state.arborescence.arborescence, next_question)
     else:
         st.session_state.arborescence = False
+        push_etat_to_sql(st.session_state.prochaine_arborescence, 1)
 
 
 st.set_page_config(
@@ -89,33 +91,45 @@ if st.session_state.arborescence:
         key="select_option",
     )
 
-    # Affichage des données correspondant à chaque option
-    columns = st.columns(len(list_options))
-    for option, col in zip(list_options, columns):
-        with col.container(
-            border=(st.session_state.select_option == option.texte_option)
-        ):
-            # Effet immédiat
-            effets_immediat_dict = option.effet_immediat.to_dict()
-            if len(effets_immediat_dict) > 0:
-                st.markdown(f":blue[{EFFET_IMMEDIAT_DESC}]")
-                display_metrics(effets_immediat_dict)
-            # Objet
-            if option.objet:
-                st.markdown(f":blue[{OBJET_DESC}]")
-                display_objet(st.session_state[option.objet].to_dict())
-            # Programme
-            if option.programme:
-                st.markdown(f":blue[{PROGRAMME_DESC}]")
-                display_programme(st.session_state[option.programme].to_dict())
+    # Radio button for options
+    if "select_option" not in st.session_state:
+        st.session_state["select_option"] = list_options[0].texte_option
+        st.radio(
+            label="Choix",
+            options=[opt.texte_option for opt in list_options],
+            index=None,
+            label_visibility="collapsed",
+            key="select_option",
+        )
 
-    # Bouton validation
-    st.button(
-        type="primary",
-        label="VALIDER",
-        use_container_width=True,
-        on_click=next_step,
-        disabled=(st.session_state.select_option is None),
+        # Affichage des données correspondant à chaque option
+        columns = st.columns(len(list_options))
+        for option, col in zip(list_options, columns):
+            with col.container(
+                border=(st.session_state.select_option == option.texte_option)
+            ):
+                # Effet immédiat
+                effets_immediat_dict = option.effet_immediat.to_dict()
+                if len(effets_immediat_dict) > 0:
+                    st.subheader(f":blue[{EFFET_IMMEDIAT_DESC}]")
+                    display_metrics(effets_immediat_dict)
+                # Objet
+                if option.objet:
+                    display_objet(
+                        st.session_state[option.objet].to_dict(),
+                        modification_objet=option.modification_objet.to_dict(),
+                        key=f"objet_{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
+                    )
+                # Programme
+                # if option.programme:
+                #     st.markdown(f":blue[{PROGRAMME_DESC}]")
+                #     display_programme(
+                #         st.session_state["programme " + option.programme].to_dict()
+                #     )
+    st.page_link(
+        "pages/store.py",
+        label="Acheter des unités",
+        icon=":material/shopping_cart:",
     )
 
 else:
@@ -134,3 +148,5 @@ else:
     else:
         st.write("Aucune partie en cours. Connectez vous d'abord.")
         st.page_link("pages/login.py", label="Se connecter", icon="🏠")
+
+st.page_link("pages/dashboard.py", label="Dashboard", icon=":material/dataset:")

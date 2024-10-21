@@ -8,7 +8,7 @@ from src.variables import *
 @dataclass
 class QuestionOptions:
     contexte_question: str
-    num_question: str
+    num_question: int
     texte_question: str
     annee: int
     image: str = ""

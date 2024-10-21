@@ -11,7 +11,7 @@ from src.data.modification import Modification
 from src.variables import *
 
 
-def init_objets(fichier_objets=FICHIERS_OBJETS["Programme exemple"]) -> None:
+def init_objets(fichier_objets) -> None:
     """
     Récupération des objets
     """
@@ -19,7 +19,7 @@ def init_objets(fichier_objets=FICHIERS_OBJETS["Programme exemple"]) -> None:
     df_objets = pd.read_csv(
         fichier_objets,
         sep=";",
-        dtype={  
+        dtype={
             NOM: str,
             COUT_UNITAIRE: float,
             STD_COUT: float,
@@ -34,8 +34,8 @@ def init_objets(fichier_objets=FICHIERS_OBJETS["Programme exemple"]) -> None:
             DEPENDANCE_EXPORT: str,
             NIVEAU_TECHNO: float,
             ANNEE: int,
-            DEMANDE_ARMEE: int
-        }
+            MIN_NB_UTILE: int,
+        },
     )
     for _, row in df_objets.iterrows():
         new_objet = Objet(**row.to_dict())
@@ -45,7 +45,7 @@ def init_objets(fichier_objets=FICHIERS_OBJETS["Programme exemple"]) -> None:
             new_objet.send_to_sql(st.session_state.sql_client)
 
 def init_programmes(
-    fichier_programmes=FICHIERS_PROGRAMMES["Programme exemple"],
+    fichier_programmes,
 ) -> None:
     """
     Récupération des objets
@@ -119,35 +119,39 @@ def apply_programmes() -> None:
     """
     # Récupération des programmes en cours dans SQL
     df_programmes = st.session_state.sql_client.get_running_rows(
-        "Programmes", annee=st.session_state.annee
+        "Programmes",
+        min_annee=min(st.session_state.annee, st.session_state.indicateurs.annee),
+        max_annee=max(st.session_state.annee, st.session_state.indicateurs.annee),
     )
     # Application des modifications
     for _, modif_per_year in df_programmes.iterrows():
+        modif_year_dict = modif_per_year.to_dict()
         # Indicateurs
         nb_years = st.session_state.annee - st.session_state.indicateurs.annee
-        modif = {
-            key: nb_years * value for key, value in modif_per_year.to_dict().items()
+        modification_indicateurs = {
+            key: nb_years * modif_year_dict.get(key, 0)
+            for key in [COUT, NIVEAU_TECHNO, EUROPEANISATION]
         }
-        modification_indicateurs = Modification(**modif)
         # Armées
         nb_years = st.session_state.annee - st.session_state.armee.annee
-        modif = {
-            key: nb_years * value for key, value in modif_per_year.to_dict().items()
+        modification_armee = {
+            key: nb_years * modif_year_dict.get(key, 0)
+            for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]
         }
-        modification_armee = Modification(**modif)
-        st.session_state.armee.apply_modification(modification_armee)
-        st.session_state.indicateurs.apply_modification(modification_indicateurs)
+        st.session_state.armee.apply_modification_dict(modification_armee)
+        st.session_state.indicateurs.apply_modification_dict(modification_indicateurs)
 
 
 def apply_constructions() -> None:
     """
     Mise à jour des indicateurs à partir des programmes en cours
     """
-    # Récupération des programmes en cours dans SQL
+    # Récupération des constructions en cours dans SQL
     df_constructions = st.session_state.sql_client.get_running_rows(
-        "Constructions", annee=st.session_state.annee
+        "Constructions",
+        min_annee=min(st.session_state.annee, st.session_state.indicateurs.annee),
+        max_annee=max(st.session_state.annee, st.session_state.indicateurs.annee),
     )
-
     def get_nb(annee):
         if st.session_state.annee <= modif[FIN]:
             nb_years = st.session_state.annee - annee
@@ -161,20 +165,23 @@ def apply_constructions() -> None:
 
     # Application des modifications
     for _, modif in df_constructions.iterrows():
+        objet_dict = st.session_state[modif[OBJET]].to_dict()
         # Indicateurs
         nb_unites_ajoutes = get_nb(st.session_state.indicateurs.annee)
-        modif = {
-            key: nb_unites_ajoutes * value for key, value in modif.to_dict().items()
+        modification_indicateurs = {
+            key: nb_unites_ajoutes * objet_dict.get(key, 0)
+            for key in [COUT_UNITAIRE, NIVEAU_TECHNO, EUROPEANISATION]
         }
-        modification_indicateurs = Modification(**modif)
         # Armées
         nb_unites_ajoutes = get_nb(st.session_state.armee.annee)
-        modif = {
-            key: nb_unites_ajoutes * value for key, value in modif.to_dict().items()
+        modification_armee = {
+            key: nb_unites_ajoutes * objet_dict.get(key, 0)
+            for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]
         }
-        modification_armee = Modification(**modif)
-        st.session_state.armee.apply_modification(modification_armee)
-        st.session_state.indicateurs.apply_modification(modification_indicateurs)
+        # Apply modifications
+        st.session_state.armee.apply_modification_dict(modification_armee)
+        st.session_state.indicateurs.apply_modification_dict(modification_indicateurs)
+
 
 def update_indicateurs() -> None:
     """
@@ -206,3 +213,10 @@ def get_objets_disponibles():
     df_objets = st.session_state.sql_client.get_table("Objets")
     df_objets_disponibles = df_objets[df_objets[ANNEE].astype(int) <= st.session_state.annee]
     return list(df_objets_disponibles[NOM].unique())
+
+def push_etat_to_sql(arborescence, question):
+    etat_courant = {
+        ARBORESCENCE: arborescence,
+        QUESTION: question,
+    }
+    st.session_state.sql_client.insert_row(table=ETAT, value_dict=etat_courant, replace=True)

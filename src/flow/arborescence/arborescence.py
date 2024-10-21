@@ -8,6 +8,7 @@ from src.variables import *
 @dataclass
 class Arborescence:
     arborescence: str = "test"
+    num_question: int = 1
 
     def __post_init__(self) -> None:
         self.df_arborescence = pd.read_csv(
@@ -33,7 +34,7 @@ class Arborescence:
         )
         self.arborescence = "Programme test"
         self.df_arborescence.fillna("", inplace=True)
-        self.load_data(num_question=1)
+        self.load_data(num_question=self.num_question)
 
     def load_data(self, num_question: int = 1) -> None:
         """

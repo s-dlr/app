@@ -29,6 +29,7 @@ class Indicateurs(AbstractClass):
         """
         if attribute_name in [COUT_FIXE, COUT_UNITAIRE, COUT]:
             attribute_name = BUDGET
+            increment = - increment
         elif attribute_name in self.__dataclass_fields__.keys():
             current_value = getattr(self, attribute_name)
             setattr(self, attribute_name, current_value + increment)

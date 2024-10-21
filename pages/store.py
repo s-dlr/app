@@ -11,14 +11,19 @@ def buy_unit():
     Achat d'un certain nombre d'unités
     """
     objet = st.session_state[st.session_state.selected_objet]
-    # Vérification su une construction est déjà lancées
+    # Vérification si une construction est déjà lancées
     query = f"""
     SELECT * FROM `Constructions`
-    WHERE `equipe` = '{st.session_state.equipe}' AND `objet` = '{objet.nom}' AND `fin` < {st.session_state.annee};"""
+    WHERE `equipe` = "{st.session_state.equipe}" AND `objet` = "{objet.nom}" AND `fin` < {st.session_state.annee};"""
     df_constructions = st.session_state.sql_client.get_custom_query(query)
     if df_constructions.shape[0] > 0:
         construction_en_cours = df_constructions.iloc[0].to_dict()
     else:
+        # Application du cout fixe
+        st.session_state.indicateurs.apply_modification_dict(
+            {COUT_FIXE: objet.cout_fixe}
+        )
+        st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         construction_en_cours = {DEBUT: st.session_state.annee, NOMBRE_UNITE: 0}
     # Concaténer les constructions
     total_nb_constructions = (
@@ -32,7 +37,6 @@ def buy_unit():
         nombre_unites=total_nb_constructions,
     )
     construction.send_to_sql(st.session_state.sql_client)
-
 
 st.set_page_config(
     page_title="Achat de matériel",
@@ -57,9 +61,6 @@ if "equipe" in st.session_state:
         # Contexte et question
         st.title("Achat d'unités")
         st.write("Vous pouvez choisir des unités à acheter")
-        st.markdown(
-            f"**Combien de {st.session_state.objet.nom} souhaitez vous acheter ?**"
-        )
         if "selected_objet" not in st.session_state:
             st.session_state["selected_objet"] = None
         select_objets = st.selectbox(
@@ -76,10 +77,14 @@ if "equipe" in st.session_state:
         if st.session_state.selected_objet:
             # Caractéristiques de l'objet courant
             st.header(f"Caractéristiques de {st.session_state.selected_objet}")
-            display_objet(st.session_state[st.session_state.selected_objet].to_dict())
+            display_objet_store(
+                st.session_state[st.session_state.selected_objet].to_dict()
+            )
             st.divider()
-
             # Slider
+            st.markdown(
+                f"**Combien de {st.session_state.selected_objet} souhaitez vous acheter ?**"
+            )
             min_nb_unit = st.session_state[st.session_state.selected_objet].min_nb_utile
             max_nb_unit = st.session_state[st.session_state.selected_objet].max_nb_utile
             slider_unites = st.slider("Nombre d'unités", min_nb_unit, max_nb_unit, 1, key="nb_unites")
@@ -113,3 +118,5 @@ if "equipe" in st.session_state:
 else:
     st.write("Aucune partie en cours. Connectez vous d'abord.")
     st.page_link("pages/login.py", label="Se connecter", icon="🏠")
+
+st.page_link("pages/dashboard.py", label="Dashboard", icon=":material/dataset:")

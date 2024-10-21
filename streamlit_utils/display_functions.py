@@ -64,7 +64,7 @@ def display_metrics(effets_dict: dict):
         i += 1
 
 
-def display_objet(objet_dict: dict, modification_objet: dict, key: str = ""):
+def display_objet(objet_dict: dict, modification_objet: dict=None, key: str = ""):
     value_dict = {
         key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
     }

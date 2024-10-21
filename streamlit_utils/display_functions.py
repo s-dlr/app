@@ -31,6 +31,8 @@ LABELS: dict = {
     RENS: "Renseignement",
     COUT_UNITAIRE: "Coût unitaire",
     COUT_FIXE: "Coût fixe",
+    ANNEE: "Année de disponibilité",
+    UNITE_PAR_AN: "Cadence de production (unité/an)",
 }
 
 DRAPEAUX = {
@@ -73,8 +75,8 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     for i, compteur in enumerate([COUT_UNITAIRE, COUT_FIXE]):
         columns[i].metric(
             label=LABELS[compteur],
-            value=objet_dict.get(compteur, 0) + modification_dict.get(compteur, 0),
-            delta=modification_dict.get(compteur, 0),
+            value=objet_dict.get(compteur, 0) + modification_objet.get(compteur, 0),
+            delta=modification_objet.get(compteur, 0),
         )
     columns[0].write(f"+-{objet_dict[STD_COUT]}")
     # Bonus armées
@@ -98,11 +100,13 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
     )
     st.plotly_chart(fig, key=key)
     # Production
-    st.write(
-        f"Cadence de production/achat maximale : {objet_dict[UNITE_PAR_AN]} unités par an"
-    )
-    st.write(f"Disponible à partir de : {objet_dict[ANNEE]}")
-
+    columns = st.columns(2)
+    for i, compteur in enumerate([ANNEE, UNITE_PAR_AN]):
+        columns[i].metric(
+            label=LABELS[compteur],
+            value=objet_dict.get(compteur, 0) + modification_objet.get(compteur, 0),
+            delta=modification_objet.get(compteur, 0),
+        )
 
 def display_programme(programme_dict: dict):
     st.dataframe(pd.DataFrame([programme_dict]))

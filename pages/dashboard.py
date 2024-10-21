@@ -109,7 +109,8 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
         df_constructions_equipe[OBJET] = df_constructions_equipe[OBJET].str.capitalize()
         fig = px.timeline(df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET)
-        fig.update_yaxes(autorange="reversed", showlegend=False)
+        fig.update_layout(showlegend=False)
+        fig.update_yaxes(autorange="reversed")
         col.plotly_chart(
             fig, use_container_width=True, key=f"constructions_{equipe}"
         ) 
@@ -117,6 +118,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
         df_programmes_equipe[NOM] = df_programmes_equipe[NOM].str.capitalize()
         fig = px.timeline(df_programmes_equipe, x_start=DEBUT, x_end=FIN, y=NOM, color=NOM)
+        fig.update_layout(showlegend=False)
         fig.update_yaxes(autorange="reversed")
         col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
         # Dépendances

@@ -28,7 +28,9 @@ LABELS: dict = {
     AIR: "Armée de l'air",
     TERRE: "Armée de terre",
     MER: "Marine",
-    RENS: "Renseignement"
+    RENS: "Renseignement",
+    COUT_UNITAIRE: "Coût unitaire",
+    COUT_FIXE: "Coût fixe",
 }
 
 DRAPEAUX = {
@@ -66,6 +68,15 @@ def display_metrics(effets_dict: dict):
 
 def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""):
     st.markdown(f":blue[{objet_dict[NOM]}]")
+    # Prix
+    columns = st.columns(2)
+    for i, compteur in enumerate(COUT_UNITAIRE, COUT_FIXE):
+        columns[i].metric(
+            label=LABELS[compteur],
+            value=objet_dict.get(compteur, 0) + modification_dict.get(compteur, 0),
+            delta=modification_dict.get(compteur, 0),
+        )
+    columns[0].write(f"+-{objet_dict[STD_COUT]}")
     # Bonus armées
     value_dict = {
         key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
@@ -86,7 +97,11 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
         showlegend=True,
     )
     st.plotly_chart(fig, key=key)
-    st.dataframe(pd.DataFrame([objet_dict]))
+    # Production
+    st.write(
+        f"Cadence de production/achat maximale : {objet_dict[UNITE_PAR_AN]} unités par an"
+    )
+    st.write(f"Disponible à partir de : {objet_dict[ANNEE]}")
 
 
 def display_programme(programme_dict: dict):

@@ -84,7 +84,7 @@ if display_equipes is not None:
                 for pays in pays_dependance_equipe
                 if DRAPEAUX.get(pays) is not None
             ]
-            col.image(images_drapeaux, width=30)
+            col.image(images_drapeaux, width=30, use_column_width=True)
 
 """
 # Add histogram data

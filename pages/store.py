@@ -116,3 +116,5 @@ if "equipe" in st.session_state:
 else:
     st.write("Aucune partie en cours. Connectez vous d'abord.")
     st.page_link("pages/login.py", label="Se connecter", icon="🏠")
+
+st.page_link("pages/dashboard.py", label="Dashboard")

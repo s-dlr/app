@@ -144,3 +144,7 @@ else:
     st.page_link(
         "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
     )
+
+st.page_link(
+    "pages/dashboard.py", label="Dashboard"
+)

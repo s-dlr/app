@@ -82,7 +82,7 @@ if display_equipes is not None:
             #         [DRAPEAUX.get(pays.strip(), "") for pays in pays_dependance_equipe]
             #     )
             # )
-            col.image(DRAPEAUX["France"], widht=20)
+            col.image(DRAPEAUX["France"], width=20)
 
 """
 # Add histogram data

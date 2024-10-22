@@ -18,12 +18,12 @@ st.set_page_config(
 
 def delete_team_in_db(equipe) -> None:
     queries_delete = [
-        f'DELETE FROM `Indicateurs` WHERE equipe={equipe};'
-        f'DELETE FROM `Armee` WHERE equipe={equipe};'
-        f'DELETE FROM `Constructions` WHERE equipe={equipe};'
-        f'DELETE FROM `Programmes` WHERE equipe={equipe};'
-        f'DELETE FROM `Objets` WHERE equipe={equipe};'
-        f'DELETE FROM `Etat` WHERE equipe={equipe};    '
+        f'DELETE FROM `Indicateurs` WHERE equipe = "{equipe}";'
+        f'DELETE FROM `Armee` WHERE equipe = "{equipe}";'
+        f'DELETE FROM `Constructions` WHERE equipe = "{equipe}";'
+        f'DELETE FROM `Programmes` WHERE equipe = "{equipe}";'
+        f'DELETE FROM `Objets` WHERE equipe = "{equipe}";'
+        f'DELETE FROM `Etat` WHERE equipe = "{equipe}";    '
     ]
     connection = st.connection("astrolabedb", autocommit=True, ttl=1)
     with connection.session as session:

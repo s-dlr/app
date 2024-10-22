@@ -192,6 +192,7 @@ def update_indicateurs() -> None:
     get_indicateurs_from_sql()
     # Appliquer les programmes et les constructions en cours
     if st.session_state.annee > st.session_state.indicateurs.annee:
+        st.success("Apply constructions anf programmes")
         # Application des couts des programmes et des constructions
         apply_programmes()
         apply_constructions()

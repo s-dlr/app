@@ -52,6 +52,7 @@ display_equipes = st.multiselect(
 df_last_info_equipe = df_indicateurs.sort_values(ANNEE, ascending=True)
 df_last_info_equipe = df_indicateurs.drop_duplicates(EQUIPE, keep="last")
 df_annee_equipe = df_last_info_equipe[[ANNEE, EQUIPE]].set_index(EQUIPE)
+st.write(df_last_info_equipe)
 st.divider()
 
 

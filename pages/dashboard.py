@@ -71,6 +71,7 @@ df_dependances[DEPENDANCE_EXPORT] = df_dependances[DEPENDANCE_EXPORT].apply(
 df_dependances = df_dependances.explode(DEPENDANCE_EXPORT)
 df_programmes = dashboard_connection.query(QUERY_PROGRAMMES, ttl=5)
 df_constructions = dashboard_connection.query(QUERY_CONSTRUCTIONS, ttl=5)
+st.write(df_last_info_armee)
 
 ########################################################
 ##############     Indicateurs macro   #################
@@ -109,11 +110,11 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         annee_equipe = df_annee_equipe.loc[equipe][0]
         col.subheader(f":blue[{equipe} - Année {annee_equipe}]")
         # Compteurs armées
-        niveaux_armee = df_last_info_armee[df_last_info_armee[EQUIPE]==equipe].iloc[0]
-        col.markdown(f":blue[Armée]")
-        fig = display_gauges_armees(
-            niveaux_armee[["terre", "air", "mer", "rens"]].to_dict(), grid=True
+        niveaux_armee = df_last_info_armee[df_last_info_armee[EQUIPE] == equipe].drop(
+            columns=[ANNEE, EQUIPE]
         )
+        col.markdown(f":blue[Armée]")
+        fig = display_gauges_armees(niveaux_armee.iloc[0].to_dict(), grid=True)
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
         # Constructions
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]

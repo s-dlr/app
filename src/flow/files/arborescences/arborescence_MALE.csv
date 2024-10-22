@@ -23,7 +23,7 @@ Le résultat attendu de l'étude que le programme soit moins coûteux que le pro
 - Achat sur étagère américain (Reaper). 
 - Developpement d'un programme court Franco-israëlien. 
 - Etude préliminaire de 2 ans sur la faisabilité d'un programme de drone MALE européen. Ceci est une étude de faisabilité, non le début d'un programme.
-- Rester sur le système intérimaire israëlien";Quelle option souhaitez vous choisir ?;;D;Rester sur le système intérimaire israëlien. Ce dernier devenant obsolète vous perdez alors 100 de Bonus Terre et 10 de bonus de renseignement.;0;;"bonus_terre:-100
+- Rester sur le système intérimaire israëlien";Quelle option souhaitez vous choisir ?;;D;Rester sur le système intérimaire israëlien. Ce dernier devenant obsolète vous perdez alors 100 de Bonus Terre et 10 de bonus de renseignement.;0;;"terre:-100
 bonus_rens:-10";;;;;
 2;2011;Combien d'appareils achetez-vous sur étagère ?;Combien ?;;A;Plus de 20;3;;;;cout_unitaire:-7;Reaper;Reaper;
 2;2011;Combien d'appareils achetez-vous sur étagère ?;Combien ?;;B;De 10 à 20;3;;;;cout_unitaire:+0;Reaper;Reaper;
@@ -137,7 +137,7 @@ Point de vue industriel, les retombées sont partagées entre les pays, et sont 
 A : achat sur étagère américain (Reaper). 
 B: Developpement d'un programme court Franco-israëlien. 
 C: Developpement d'un programme Européen sur la base des résultats de l'étude
-D: Rester sur le système intérimaire israëlien";Quelles suites donner à l'Etude ?;;D;Rester sur le système intérimaire israëlien. Ce dernier devenant obsolète vous perdez alors 100 de Bonus Terre et 10 de bonus de renseignement.;0;;"bonus_terre:-100
+D: Rester sur le système intérimaire israëlien";Quelles suites donner à l'Etude ?;;D;Rester sur le système intérimaire israëlien. Ce dernier devenant obsolète vous perdez alors 100 de Bonus Terre et 10 de bonus de renseignement.;0;;"terre:-100
 bonus_rens:-10";;;;Etude_eurodrone;
 12;2011;"Le partage industriel est proportionel au financement des états. Cependant, une commande minimale de 100 drones est necessaire pour la viabilité du programme, sans quoi le coût du drone à l'unité exploserait. L'Italie s'est positionné pour  25 drones et l'Allemagne pour 35.
 Plusieurs options s'offrent à vous : 

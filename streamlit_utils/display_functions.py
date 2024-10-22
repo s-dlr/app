@@ -241,7 +241,7 @@ def display_timeline(df, annee_courante, col_avancement=None):
     df[FIN] = df[FIN].apply(lambda x: datetime(year=x, month=1, day=1))
     df[ANNEE] = annee_courante
     df["Pourcentage d'avancement"] = (annee_courante - df[DEBUT]) / (
-        annee_courante - df[DEBUT]
+        df[FIN] - df[DEBUT]
     )
     hover_template = {"Pourcentage d'avancement": ":.1%", ANNEE: True}
     if col_avancement:

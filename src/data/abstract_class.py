@@ -32,19 +32,23 @@ class AbstractClass:
         if len(modification_dict) == 0:
             return False
         else:
+            updated = False
             for key, value in modification_dict.items():
-                self.update(key, value)
-            return True
+                updated = update | self.update(key, value):
+            return updated
 
-    def update(self, attribute_name: str, increment: T.Union[str, float]) -> None:
+    def update(self, attribute_name: str, increment: T.Union[str, float]) -> bool:
         """
         incrémente la valeur d'un attribut de l'objet
         """
         if attribute_name == "dependance_export":
             self.dependance_export = ",".join([self.dependance_export, increment])
-        elif attribute_name in self.__dataclass_fields__.keys():
+            return True
+        elif attribute_name in self.__dataclass_fields__.keys() and increment != 0:
             current_value = getattr(self, attribute_name)
             setattr(self, attribute_name, current_value + increment)
+            return True
+        return False
 
     def send_to_sql(self, sql_client: ClientSQL, replace=True) -> None:
         sql_client.insert_row(

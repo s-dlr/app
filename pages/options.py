@@ -93,7 +93,6 @@ else:
             label_visibility="collapsed",
             key="select_option",
         )
-
         # Affichage des données correspondant à chaque option
         columns = st.columns(len(list_options))
         for option, col in zip(list_options, columns):
@@ -113,11 +112,12 @@ else:
                         key=f"objet_{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
                     )
                 # Programme
-                # if option.programme:
-                #     st.markdown(f":blue[{PROGRAMME_DESC}]")
-                #     display_programme(
-                #         st.session_state[option.programme].to_dict()
-                #     )
+                if option.programme:
+                    display_programme(
+                        st.session_state["programme " + option.programme].to_dict(),
+                        modification_programme=option.modification_programme.to_dict(),
+                        key=f"programme_{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
+                    )
 
         # Bouton validation
         st.button(

@@ -40,7 +40,11 @@ def next_step():
     next_question = st.session_state.arborescence.get_next_question(
         st.session_state.select_option
     )
-    if next_question != 0:
+    question_pause_satellite = (
+        st.session_state.arborescence.question.num_question == 6
+        and st.session_state.arborescence.arborescence == "Satellites"
+    )
+    if next_question != 0 and not question_pause_satellite:
         st.session_state.arborescence.load_data(next_question)
         st.session_state.annee = st.session_state.arborescence.question.annee
         update_indicateurs()

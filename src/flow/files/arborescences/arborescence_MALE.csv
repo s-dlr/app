@@ -6,7 +6,7 @@ Le resultat attendu de l'etude que le programme soit moins couteux que le progra
 1;2011;Pour equiper la France en drone MALE, 4 options s'offrent aÂ  vous : ;Quelle option souhaitez vous choisir ?;;D;Rester sur le systeme interimaire israelien, ce dernier devenant obsolete.;0;;;;;;;
 2;2011;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;A;Plus de 20;3;;;;"cout_unitaire:-7
 min_nb_utile:+20";Reaper;Achat Reaper;
-2;2011;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;B;De 10 a  20;3;;;;min_nb_utile:+10;Reaper;Achat Reaper;
+2;2011;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;B;De 10 a 20;3;;;;min_nb_utile:+10;Reaper;Achat Reaper;
 2;2011;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;C;Moins de 10;3;;;;cout_unitaire:+10;Reaper;Achat Reaper;
 3;2011;Quand souhiatez-vous les recevoir ? Vous avez l'opportunite d'etaler plus la livraison pour baisser les couts d'importation de ces drones, ou de les augmenter en payant le prix adequat.;Quand ?;REAPER.jpg;A;"Augmentation de la cadence de livraison de +2 unites par an
 Le cout unitaire augmente de 15M/unite";4;;;;"cout_unitaire:+15
@@ -262,7 +262,7 @@ Le gouvernement FranÃ§ais peut renegocier ces partages avec le gouvernement Isra
 ";Combien ?;DAROK.jpg;A;moins de 10;9;;;;"cout_unitaire:+25
 budget:-3";DAROK;Drone MALE franco-israelien;
 28;2013;"Combien d'appareils acheterez-vous  ? 
-";Combien ?;DAROK.jpg;B;de 11 a  20;9;;;;min_nb_utile:+11;DAROK;Drone MALE franco-israelien;
+";Combien ?;DAROK.jpg;B;de 11 a 20;9;;;;min_nb_utile:+11;DAROK;Drone MALE franco-israelien;
 28;2013;"Combien d'appareils acheterez-vous  ? 
 ";Combien ?;DAROK.jpg;C;plus de 21;9;;;;"cout_unitaire:-10
 budget:+5

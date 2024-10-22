@@ -1,0 +1,5 @@
+nom;cout;std_cout;bonus_terre;bonus_mer;bonus_air;bonus_rens;budget;dependance_export;niveau_techno;duree
+satellite;0;5;0;0;0;0;0;Suède, Belgique, Espagne, Autriche;6;0
+pleiade_neo_next;65;5;0;0;0;0;0;;6;6
+donnees_US;20;0;0;0;0;0;0;US;0;20
+satellite_radar;100;10;0;0;0;0;0;;6;17

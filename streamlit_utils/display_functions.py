@@ -237,7 +237,7 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
 
 def display_timeline(df, annee_courante, color, col_avancement=None):
     df[ANNEE] = annee_courante
-    df["Pourcentage d'avancement"] = (annee_courante - df[DEBUT]) / (
+    df["Pourcentage d'avancement"] = (max(annee_courante, df[FIN]) - df[DEBUT]) / (
         df[FIN] - df[DEBUT]
     )
     hover_template = {"Pourcentage d'avancement": ":.1%", ANNEE: True}

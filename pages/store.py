@@ -10,6 +10,8 @@ def buy_unit():
     """
     Achat d'un certain nombre d'unités
     """
+    st.session_state["loading"] = True
+
     objet = st.session_state[st.session_state.selected_objet]
     # Vérification si une construction est déjà lancées
     query = f"""
@@ -38,6 +40,7 @@ def buy_unit():
         nombre_unites=total_nb_constructions,
     )
     construction.send_to_sql(st.session_state.sql_client)
+    st.session_state["loading"] = False
 
 st.set_page_config(
     page_title="Achat de matériel",
@@ -102,7 +105,7 @@ if "equipe" in st.session_state:
                 label="ACHETER",
                 use_container_width=True,
                 on_click=buy_unit,
-                disabled=False,
+                disabled=st.session_state["loading"],
             ):
                 st.success(
                     f"Vous avez commandé {st.session_state.nb_unites} {st.session_state.selected_objet}s"
@@ -115,6 +118,16 @@ if "equipe" in st.session_state:
 
 else:
     st.write("Aucune partie en cours. Connectez vous d'abord.")
-    st.page_link("pages/login.py", label="Se connecter", icon="🏠")
+    st.page_link(
+        "pages/login.py",
+        label="Se connecter",
+        icon="🏠",
+        disabled=st.session_state["loading"],
+    )
 
-st.page_link("pages/dashboard.py", label="Dashboard", icon=":material/dataset:")
+st.page_link(
+    "pages/dashboard.py",
+    label="Dashboard",
+    icon=":material/dataset:",
+    disabled=st.session_state["loading"],
+)

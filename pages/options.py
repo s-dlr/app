@@ -12,6 +12,7 @@ def next_step():
     Seuls les effets immédiats ont un caractère définitif
     Les autres modifications ne sont pas envoyés à SQL
     """
+    st.session_state["loading"] = True
     selected_option = st.session_state.arborescence.question.get_option_by_text(
         st.session_state.select_option
     )
@@ -47,6 +48,7 @@ def next_step():
     else:
         st.session_state.arborescence = False
         push_etat_to_sql(st.session_state.prochaine_arborescence, 1)
+    st.session_state["loading"] = False
 
 st.set_page_config(
     page_title="Définition des besoins",
@@ -74,7 +76,6 @@ if "equipe" not in st.session_state:
 else:
 
     if st.session_state.arborescence:
-
         # Contexte et question
         st.title(st.session_state.arborescence.arborescence)
         if (
@@ -164,7 +165,9 @@ else:
         if st.session_state.prochaine_arborescence:
             st.header("Fin du programme")
             def button_action():
+                st.session_state["loading"] = True
                 load_next_arborescence(st.session_state.prochaine_arborescence)
+                st.session_state["loading"] = False
             st.button(
                 label="Commencer un autre programme",
                 icon=":material/settings:",
@@ -176,7 +179,15 @@ else:
             st.write("Vous pouvez encore acheter des unités si vous le souhaitez")
 
     st.page_link(
-        "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
+        "pages/store.py",
+        label="Acheter des unités",
+        icon=":material/shopping_cart:",
+        disabled=st.session_state["loading"],
     )
 
-st.page_link("pages/dashboard.py", label="Dashboard", icon=":material/dataset:")
+st.page_link(
+    "pages/dashboard.py",
+    label="Dashboard",
+    icon=":material/dataset:",
+    disabled=st.session_state["loading"],
+)

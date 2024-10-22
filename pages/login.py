@@ -71,4 +71,5 @@ if login:
         prochaine_arborescence=etat_equipe[ARBORESCENCE],
         num_question=etat_equipe[QUESTION],
     )
+    st.session_state["loading"] = False
     st.switch_page("pages/options.py")

@@ -22,10 +22,10 @@ def next_step():
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
     # Application des modification au programme
     if selected_option.programme:
-        programme_option = st.session_state["programme " + selected_option.programme]
+        programme_option = st.session_state["programme " + option.programme]
         if programme_option.apply_modification(selected_option.modification_programme):
             programme_option.send_to_sql(st.session_state.sql_client)
-        if 'launch_programme' in selected_option.commandes:
+        if "launch_programme" in selected_option.commandes:
             launch_programme(programme_option.nom)
     # Application des modifications à l'objet
     if selected_option.objet:

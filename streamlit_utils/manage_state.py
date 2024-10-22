@@ -83,8 +83,9 @@ def get_programmes_from_sql() -> None:
     Récupère les objets de l'équipe dans la base SQL
     Si l'objet existe déjà dans le sessin_state, il est écrasé
     """
-    df_objets = st.session_state.sql_client.get_table("Programmes")
-    for _, row in df_objets.iterrows():
+    df_programmes = st.session_state.sql_client.get_table("Programmes")
+    for _, row in df_programmes.iterrows():
+        row[NOM] = row[NOM].replace("programme ", "")
         new_programme = Programme(**row.to_dict())
         st.session_state[row[NOM]] = new_programme
 

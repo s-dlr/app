@@ -31,6 +31,7 @@ LABELS: dict = {
     RENS: "Renseignement",
     COUT_UNITAIRE: "Coût unitaire",
     COUT_FIXE: "Coût fixe",
+    COUT: "Coût du programme par année",
     ANNEE: "Année de disponibilité",
     UNITE_PAR_AN: "Cadence de production (unité/an)",
     DUREE: "Durée du programme",
@@ -177,10 +178,6 @@ def display_objet_store(objet_dict: dict, key: str = ""):
         :blue[Cadence de production]: **{unite_an}** unités par an
         """
     )
-
-
-def display_programme(programme_dict: dict):
-    st.dataframe(pd.DataFrame([programme_dict]))
 
 
 def display_annee():

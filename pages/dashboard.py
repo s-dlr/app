@@ -42,6 +42,7 @@ dashboard_connection = st.connection("astrolabedb", autocommit=True, ttl=1)
 ################       Equipes    ######################
 ########################################################
 
+df_indicateurs = dashboard_connection.query(QUERY_INDICATEURS, ttl=5)
 if st.button("Refresh"):
     df_indicateurs = dashboard_connection.query(QUERY_INDICATEURS, ttl=5)
 display_equipes = st.multiselect(

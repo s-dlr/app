@@ -31,6 +31,7 @@ LABELS: dict = {
     RENS: "Renseignement",
     COUT_UNITAIRE: "Coût unitaire",
     COUT_FIXE: "Coût fixe",
+    COUT: "Coût du programme par année",
     ANNEE: "Année de disponibilité",
     UNITE_PAR_AN: "Cadence de production (unité/an)",
     DUREE: "Durée du programme",

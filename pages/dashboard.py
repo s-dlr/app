@@ -62,7 +62,7 @@ st.divider()
 
 # Données
 df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
-df_last_info_armee = df_indicateurs.sort_values(ANNEE, ascending=True)
+df_last_info_armee = df_armees.sort_values(ANNEE, ascending=True)
 df_last_info_armee = df_last_info_armee.drop_duplicates(EQUIPE, keep="last")
 df_dependances = dashboard_connection.query(QUERY_DEPENDANCE, ttl=5)
 df_dependances[DEPENDANCE_EXPORT] = df_dependances[DEPENDANCE_EXPORT].apply(

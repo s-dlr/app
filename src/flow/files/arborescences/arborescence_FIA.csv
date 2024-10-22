@@ -1,0 +1,44 @@
+num_question;annee;contexte_question;texte_question;image;numero_option;texte_option;prochaine_question;prerequis;effet_immediat;modification_programme;modification_objet;objet;programme;commandes
+1;2014;"Un appel d'offre a été formulé à l'echelle européenne, conformément à la réglementation pour les marchés de plus de 100 000€. Pour assurer la perennité de cette production, l'appel d'offre a ajouté deux conditions :
+- Chiffre d'affaire du fournisseur superieur à 80M€
+- Prix unitaire du fusil inférieur à 800€
+- Ces deux clauses, implémentées par la DGA pour assurer la pérénnité des fournitures de fusil d'assault individuel ont conduit à l'exclusion du seul manufacturier Français, Verney-Caron, qui présente un chiffre d'affaire de 20M€, trop faible pour satisfaire la condition 1. De plus, il ne dispose pas d'une production suffisante pour baisser le coût unitaire du fusil sous 800€(condition 2) . Interpellé par l'assemblée Nationale sur ce sujet à plusieurs reprise, le gouvernement doit choisir de maintenir ou de relancer son appel d'offre. Reprendre l'appel d'offre 1 pour le modifier pourrait conduire les industriels positionnés sur l'appel d'offre 1 à porter plainte pour favoritisme, et mener à des amendes importantes.
+Maintenir l'appel d'offre 1 conduit à une exclusion de toute candidature française.";Souhaitez-vous modifier l'appel d'offre initial excluant Verney-Caron  ?;FIA.jpg;A;Non, je conserve l'appel d'offre initial;2;;;;;;;
+1;2014;"Un appel d'offre a été formulé à l'echelle européenne, conformément à la réglementation pour les marchés de plus de 100 000€. Pour assurer la perennité de cette production, l'appel d'offre a ajouté deux conditions :
+- Chiffre d'affaire du fournisseur superieur à 80M€
+- Prix unitaire du fusil inférieur à 800€
+- Ces deux clauses, implémentées par la DGA pour assurer la pérénnité des fournitures de fusil d'assault individuel ont conduit à l'exclusion du seul manufacturier Français, Verney-Caron, qui présente un chiffre d'affaire de 20M€, trop faible pour satisfaire la condition 1. De plus, il ne dispose pas d'une production suffisante pour baisser le coût unitaire du fusil sous 800€(condition 2) . Interpellé par l'assemblée Nationale sur ce sujet à plusieurs reprise, le gouvernement doit choisir de maintenir ou de relancer son appel d'offre. Reprendre l'appel d'offre 1 pour le modifier pourrait conduire les industriels positionnés sur l'appel d'offre 1 à porter plainte pour favoritisme, et mener à des amendes importantes.
+Maintenir l'appel d'offre 1 conduit à une exclusion de toute candidature française.";Souhaitez-vous modifier l'appel d'offre initial excluant Verney-Caron  ?;FIA.jpg;B;Oui, je reviens sur mon appel d'offre initial pour le modifier et donner la chance à Verney-Caron de concourir;3;;europeanisation : -3;;;;;
+2;2014;"L'appel d'offre est maintenu. Les candidats sont les suivants : 
+A : Une version low-cost du HK 416, la version normale étant déjà utilisée avec satisfaction par le GIGN et les forces spéciales françaises. En outre, HK se fournit en acier français
+B: l'ARX 10 de Beretta qui équipe l'armée de Terre italienne
+C: le VHS2 croate, qui ressemble fortement au FAMAS";Quel fusil souhaitez-vous selectionner ?;FIA.jpg;A;Le HK-416 F, une version low-cost dérivée de celle du GIGN;0;;europeanisation : +5;;annee:-1000;1000 HK-416F;;
+2;2014;"L'appel d'offre est maintenu. Les candidats sont les suivants : 
+A : Une version low-cost du HK 416, la version normale étant déjà utilisée avec satisfaction par le GIGN et les forces spéciales françaises
+B: l'ARX 10 de Beretta qui équipe l'armée de Terre italienne
+C: le VHS2 croate, qui ressemble fortement au FAMAS";Quel fusil souhaitez-vous selectionner ?;FIA.jpg;B;L'ARX160 de l'armée italienne;0;;europeanisation : +5;;annee:-1000;1000 ARX-160;;
+2;2014;"L'appel d'offre est maintenu. Les candidats sont les suivants : 
+A : Une version low-cost du HK 416, la version normale étant déjà utilisée avec satisfaction par le GIGN et les forces spéciales françaises
+B: l'ARX 10 de Beretta qui équipe l'armée de Terre italienne
+C: le VHS2 croate, qui ressemble fortement au FAMAS";Quel fusil souhaitez-vous selectionner ?;FIA.jpg;C;Le VHS2 croate;0;;europeanisation : +5;;annee:-1000;1000 VHS-2;;
+3;2014;"Vous choisissez de modifier les termes des clauses de l'appel d'offre.
+Les Croates, se sentant les  car ils avaient pr sent  un candidat comp titifs, font appel de cette altération de la concurrence et demande une enquête. Si le résultat de cette enquête leur est favorable, l'état français devra soit selectionner le croate, soit l'indemniser.
+En parallèle les autres concurrent adaptent leurs offres au nouvelles clauses : 
+- A : HK présente la version utilisée avec satisfaction par le GIGN pour les armées françaises.En outre, HK se fournit en acier français.
+- B : Beretta propose un modèle de l'ARX10 amélioré (notamment au niveau des matériaux, avec des conséquences directes sur sa portée et sa précision)
+- C : Cerney-Caron présentent leur modèle de fusil d'Assaut";Quel fusil souhaitez-vous selectionner ?;FIA.jpg;A;Le HK 416 A du GIGN;0;;europeanisation : +5;;annee:-1000;1000 HK-416A;;
+3;2014;"Vous choisissez de modifier les termes des clauses de l'appel d'offre.
+Les Croates, se sentant les  car ils avaient pr sent  un candidat comp titifs, font appel de cette altération de la concurrence et demande une enquête. Si le résultat de cette enquête leur est favorable, l'état français devra soit selectionner le croate, soit l'indemniser.
+En parallèle les autres concurrent adaptent leurs offres au nouvelles clauses : 
+- A : HK présente la version utilisée avec satisfaction par le GIGN pour les armées françaises.En outre, HK se fournit en acier français.
+- B : Beretta propose un modèle de l'ARX10 amélioré (notamment au niveau des matériaux, avec des conséquences directes sur sa portée et sa précision)
+- C : Cerney-Caron présentent leur modèle de fusil d'Assaut";Quel fusil souhaitez-vous selectionner ?;FIA.jpg;B;L'ARX200, une version améliorée de l'arme de l'armée italienne;0;;europeanisation : +5;;annee:-1000;1000 ARX-200;;
+3;2014;"Vous choisissez de modifier les termes des clauses de l'appel d'offre.
+Les Croates, se sentant les  car ils avaient pr sent  un candidat comp titifs, font appel de cette altération de la concurrence et demande une enquête. Si le résultat de cette enquête leur est favorable, l'état français devra soit selectionner le croate, soit l'indemniser.
+En parallèle les autres concurrent adaptent leurs offres au nouvelles clauses : 
+- A : HK présente la version utilisée avec satisfaction par le GIGN pour les armées françaises.En outre, HK se fournit en acier français.
+- B : Beretta propose un modèle de l'ARX10 amélioré (notamment au niveau des matériaux, avec des conséquences directes sur sa portée et sa précision)
+- C : Cerney-Caron présentent leur modèle de fusil d'Assaut";Quel fusil souhaitez-vous selectionner ?;FIA.jpg;C;Le VCD 15 du français Verney-Caron;4;;;;annee:-1000;1000 VCD-15;;
+4;2014;2 mois plus tard, l'enquête montre que le retrait de votre appel avait effectivement pour but de fausser la concurrence pour favoriser un industriel Français, au détriment des règles de compétition européenne. Vous devez donc reselectionner le concurrent croate, ou l'indemniser;Quel arrangement négociez-vous suite au résultat de l'enquête ? ;FIA.jpg;A;Vous selectionnez le candidat croate et rompez votre contrat avec Verney-Caron, quevous indemnisez légèrement (5M€) pour rupture de contrat (cela correspond aux différents coûts liés au début de mise en place de la production et des embauches qui ont été effectué depuis la signature du contrat.;0;;budget : -5;;;;;
+4;2014;2 mois plus tard, l'enquête montre que le retrait de votre appel avait effectivement pour but de fausser la concurrence pour favoriser un industriel Français, au détriment des règles de compétition européenne. Vous devez donc reselectionner le concurrent croate, ou l'indemniser;Quel arrangement négociez-vous suite au résultat de l'enquête ? ;FIA.jpg;B;Vous indemnisez le croate pour cette rupture de compétition (20M€) et poursuivez votre contrat avec Verney-Caron;0;;"budget : -20
+europeanisation : -3";;;;;

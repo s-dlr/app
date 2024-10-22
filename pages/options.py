@@ -159,16 +159,27 @@ else:
             on_click=next_step,
             disabled=(st.session_state.select_option is None),
         )
+        st.page_link(
+            "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
+        )
+        st.page_link("pages/dashboard.py", label="Dashboard", icon=":material/dataset:")
 
     else :
         if st.session_state.prochaine_arborescence:
             st.header("Fin du programme")
-            load_next_arborescence(st.session_state.prochaine_arborescence)
+            def button_action():
+                load_next_arborescence(st.session_state.prochaine_arborescence)
+            st.button(
+                label="Commencer un autre programme",
+                icon=":material/settings:",
+                type="secondary",
+                on_click=button_action,
+            )
         else:
             st.title("Fin du jeu")
             st.write("Vous pouvez encore acheter des unités si vous le souhaitez")
-    st.page_link(
-        "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
-    )
+            st.page_link(
+                "pages/store.py", label="Acheter des unités", icon=":material/shopping_cart:"
+            )
 
-st.page_link("pages/dashboard.py", label="Dashboard", icon=":material/dataset:")
+        st.page_link("pages/dashboard.py", label="Dashboard", icon=":material/dataset:")

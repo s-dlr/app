@@ -32,7 +32,7 @@ def init_team_in_db() -> None:
         get_indicateurs_from_sql()
         return etat_equipe
     else:
-        st.session_state["annee"] = 2000
+        st.session_state["annee"] = 1990
         st.session_state["indicateurs"] = Indicateurs(annee=st.session_state.annee)
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)

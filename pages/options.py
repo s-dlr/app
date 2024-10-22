@@ -111,7 +111,12 @@ else:
                 effets_immediat_dict = option.effet_immediat.to_dict()
                 if len(effets_immediat_dict) > 0:
                     st.subheader(f":blue[{EFFET_IMMEDIAT_DESC}]")
-                    display_metrics(effets_immediat_dict)
+                    display_metrics(
+                        {
+                            key: effets_immediat_dict.get(key, 0)
+                            for key in [EUROPEANISATION, BUDGET, NIVEAU_TECHNO]
+                        }
+                    )
                     modification_dict = {
                         key: effets_immediat_dict.get(f"bonus_{key}", 0)
                         for key in [AIR, MER, TERRE, RENS]

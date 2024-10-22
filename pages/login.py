@@ -4,6 +4,7 @@ sys.path.append(".")
 
 import pandas as pd
 import streamlit as st
+from sqlalchemy.sql import text
 
 from src.data.indicateurs import *
 from streamlit_utils.manage_state import *
@@ -15,6 +16,20 @@ st.set_page_config(
     page_title="Login", page_icon="🏠", layout="wide", initial_sidebar_state="collapsed"
 )
 
+def delete_team_in_db(equipe) -> None:
+    queries_delete = [
+        f'DELETE FROM `Indicateurs` WHERE equipe={equipe};'
+        f'DELETE FROM `Armee` WHERE equipe={equipe};'
+        f'DELETE FROM `Constructions` WHERE equipe={equipe};'
+        f'DELETE FROM `Programmes` WHERE equipe={equipe};'
+        f'DELETE FROM `Objets` WHERE equipe={equipe};'
+        f'DELETE FROM `Etat` WHERE equipe={equipe};    '
+    ]
+    connection = st.connection("astrolabedb", autocommit=True, ttl=1)
+    with connection.session as session:
+        for query in queries_delete:
+            session.execute(text(query))
+        session.commit()
 
 def init_team_in_db() -> None:
     """
@@ -44,8 +59,13 @@ def init_team_in_db() -> None:
 st.header("Choix du nom de l'équipe")
 team = st.text_input("équipe", "astrolabe")
 
-if st.button("Log in", type="primary"):
+login = st.button("Log in", type="primary")
+delete_equipe = st.checkbox("Recommencer depuis le début")
+
+if login:
     st.session_state["equipe"] = team
+    if delete_equipe:
+        delete_equipe(team)
     etat_equipe = init_team_in_db()
     load_next_arborescence(
         prochaine_arborescence=etat_equipe[ARBORESCENCE],

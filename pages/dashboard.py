@@ -101,9 +101,9 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
     with col.container(border=True):
         annee_equipe = df_annee_equipe.loc[equipe]
         # Compteurs armées
-        df_equipe = df_armees[df_armees[EQUIPE] == equipe]
-        niveaux_armee = df_equipe[df_equipe[ANNEE] == annee_equipe]
-        col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
+        df_armee_equipe = df_armees[df_armees[EQUIPE] == equipe]
+        niveaux_armee = df_armee_equipe[df_armee_equipe[ANNEE] == annee_equipe].iloc[0]
+        col.markdown(f":blue[Armée de {equipe} en {df_armee_equipe[ANNEE].max()}]")
         fig = display_gauges_armees(
             niveaux_armee[["terre", "air", "mer", "rens"]].to_dict(), grid=True
         )

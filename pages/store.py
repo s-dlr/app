@@ -111,14 +111,7 @@ if "equipe" in st.session_state:
     else:
         st.header("Vous n'avez aucun objet disponible à l'achat")
 
-    if st.session_state.arborescence:
-        st.page_link("pages/options.py", label="Continuer", icon=":material/settings:")
-    else:
-        if st.session_state.prochaine_arborescence:
-            load_next_arborescence(st.session_state.prochaine_arborescence)
-            st.page_link("pages/options.py", label="Continuer", icon=":material/settings:")
-        else:
-            st.write("Fin du jeu")
+    st.page_link("pages/options.py", label="Continuer", icon=":material/settings:")
 
 else:
     st.write("Aucune partie en cours. Connectez vous d'abord.")

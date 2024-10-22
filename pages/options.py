@@ -163,14 +163,7 @@ else:
     else :
         if st.session_state.prochaine_arborescence:
             st.header("Fin du programme")
-            def button_action():
-                load_next_arborescence(st.session_state.prochaine_arborescence)
-            st.button(
-                label="Commencer un autre programme",
-                icon=":material/settings:",
-                type="secondary",
-                on_click=button_action,
-            )
+            load_next_arborescence(st.session_state.prochaine_arborescence)
         else:
             st.title("Fin du jeu")
             st.write("Vous pouvez encore acheter des unités si vous le souhaitez")

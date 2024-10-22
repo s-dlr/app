@@ -236,7 +236,7 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
     return fig
 
 
-def display_timeline(df, annee_courante, col_avancement=None):
+def display_timeline(df, annee_courante, color, col_avancement=None):
     df[ANNEE] = annee_courante
     df["Pourcentage d'avancement"] = (annee_courante - df[DEBUT]) / (
         df[FIN] - df[DEBUT]
@@ -256,8 +256,8 @@ def display_timeline(df, annee_courante, col_avancement=None):
         df,
         x_start=DEBUT,
         x_end=FIN,
-        y=OBJET,
-        color=OBJET,
+        y=color,
+        color=color,
         hover_data=hover_template,
     )
     fig.update_yaxes(autorange="reversed")

@@ -117,7 +117,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         fig = display_timeline(
             df_constructions_equipe,
             annee_courante=annee_equipe,
-            color=OBJET
+            color=OBJET,
             col_avancement=NOMBRE_UNITE,
         )
         fig.update_layout(

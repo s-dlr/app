@@ -35,7 +35,6 @@ def next_step():
             objet_option.send_to_sql(st.session_state.sql_client)
         # Objet courant utilsé pour le prochain achat
         st.session_state["objet"] = objet_option
-        # TODO envoi de l'objet au store
     # Passage à la prochaine question
     if "select_option" not in st.session_state:
         st.session_state["select_option"] = None

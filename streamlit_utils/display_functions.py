@@ -261,3 +261,4 @@ def display_timeline(df, annee_courante, col_avancement=None):
         hover_data=hover_template,
     )
     fig.update_yaxes(autorange="reversed")
+    return fig

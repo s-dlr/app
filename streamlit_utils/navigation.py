@@ -19,7 +19,7 @@ def load_next_arborescence(prochaine_arborescence, num_question=1):
         prochaine_arborescence
     )
     # Création des objets de l'arborescence
-    init_objets(FICHIERS_OBJETS[prochaine_arborescence])
-    init_programmes(FICHIERS_PROGRAMMES[prochaine_arborescence])
+    # init_objets(FICHIERS_OBJETS[prochaine_arborescence])
+    # init_programmes(FICHIERS_PROGRAMMES[prochaine_arborescence])
     # Mise à jour des objets depuis SQL
     update_indicateurs()

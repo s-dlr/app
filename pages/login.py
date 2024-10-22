@@ -37,7 +37,7 @@ def init_team_in_db() -> None:
         st.session_state["armee"] = Armee(annee=st.session_state.annee)
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-        push_etat_to_sql(list(ARBORESCENCES.keys())[0], 1)
+        # push_etat_to_sql(list(ARBORESCENCES.keys())[0], 1)
         return {ARBORESCENCE: list(ARBORESCENCES.keys())[0], QUESTION: 1}
 
 # Affichage
@@ -47,8 +47,8 @@ team = st.text_input("équipe", "astrolabe")
 if st.button("Log in", type="primary"):
     st.session_state["equipe"] = team
     etat_equipe = init_team_in_db()
-    load_next_arborescence(
-        prochaine_arborescence=etat_equipe[ARBORESCENCE],
-        num_question=etat_equipe[QUESTION],
-    )
-    st.switch_page("pages/options.py")
+    # load_next_arborescence(
+    #     prochaine_arborescence=etat_equipe[ARBORESCENCE],
+    #     num_question=etat_equipe[QUESTION],
+    # )
+    st.switch_page("pages/load_data.py")

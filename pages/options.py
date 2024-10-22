@@ -57,6 +57,11 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+
+def option_key():
+    return f"{option_key()}"
+
+
 # Timeline
 if "annee" in st.session_state:
     display_annee()
@@ -99,24 +104,43 @@ else:
             with col.container(
                 border=(st.session_state.select_option == option.texte_option)
             ):
-                # Effet immédiat
+                # Effets immédiats indicateurs et atmées
                 effets_immediat_dict = option.effet_immediat.to_dict()
                 if len(effets_immediat_dict) > 0:
                     st.subheader(f":blue[{EFFET_IMMEDIAT_DESC}]")
                     display_metrics(effets_immediat_dict)
+                    modification_dict = {
+                        key: effets_immediat_dict.get(f"bonus_{key}", 0)
+                        for key in [AIR, MER, TERRE, RENS]
+                    }
+                    if len(modification_dict) > 0:
+                        fig = display_gauges_armees(
+                            values=st.session_state.armee,
+                            modifications=modification_dict,
+                            grid=True,
+                        )
+                        fig.update_layout(
+                            height=300,
+                            title=dict(
+                                text="Apport de chaque unité sur vos armées",
+                                font=dict(size=12, color="#333fff"),
+                            ),
+                            showlegend=True,
+                        )
+                        st.plotly_chart(fig, key=f"gauge_armee_{option_key()}")
                 # Objet
                 if option.objet:
                     display_objet(
                         st.session_state[option.objet].to_dict(),
                         modification_objet=option.modification_objet.to_dict(),
-                        key=f"objet_{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
+                        key=f"objet_{option_key()}",
                     )
                 # Programme
                 if option.programme:
                     display_programme(
                         st.session_state["programme " + option.programme].to_dict(),
                         modification_programme=option.modification_programme.to_dict(),
-                        key=f"programme_{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{option.numero_option}",
+                        key=f"programme_{option_key()}",
                     )
 
         # Bouton validation

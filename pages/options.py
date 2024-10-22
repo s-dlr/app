@@ -18,9 +18,6 @@ def next_step():
     # Application des effets immédiats
     if st.session_state.indicateurs.apply_modification(selected_option.effet_immediat):
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
-        st.success(
-            f"Application des effets immédiats {selected_option.effet_immediat.to_dict()}sur les indicateurs"
-        )
     if st.session_state.armee.apply_modification(selected_option.effet_immediat):
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
     # Application des modification au programme

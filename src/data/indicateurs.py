@@ -23,7 +23,7 @@ class Indicateurs(AbstractClass):
     def get_table():
         return "Indicateurs"
 
-    def update(self, attribute_name: str, increment: T.Union[str, float]) -> None:
+    def update(self, attribute_name: str, increment: T.Union[str, float]) -> bool:
         """
         incrémente la valeur d'un attribut de l'objet
         """
@@ -53,7 +53,7 @@ class Armee(AbstractClass):
     def get_table():
         return "Armee"
 
-    def update(self, attribute_name: str, increment: float):
+    def update(self, attribute_name: str, increment: float) -> bool:
         """
         incrémente la valeur d'un attribut de l'objet
         """

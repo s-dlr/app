@@ -60,11 +60,11 @@ class ClientSQL:
         """
         Ecrit les indicateurs dans la base SQL
         """
-        if replace:
-            command = "REPLACE"
-        else:
-            command = "INSERT"
         columns_list_str = ", ".join([f"`{k}`" for k in value_dict.keys()])
         values_list_str = ", ".join([f'"{v}"' for v in value_dict.values()])
-        query = f'{command} INTO `{table}`(`equipe`, {columns_list_str}) VALUES ("{self.equipe}", {values_list_str});'
+        query = f'INSERT INTO `{table}`(`equipe`, {columns_list_str}) VALUES ("{self.equipe}", {values_list_str})'
+        if replace:
+            query = query + " ON DUPLICATE KEY UPDATE;"
+        else:
+            query = query + ";"
         self.execute_query([query])

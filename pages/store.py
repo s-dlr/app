@@ -14,7 +14,8 @@ def buy_unit():
     # Vérification si une construction est déjà lancées
     query = f"""
     SELECT * FROM `Constructions`
-    WHERE `equipe` = "{st.session_state.equipe}" AND `objet` = "{objet.nom}" AND `fin` < {st.session_state.annee};"""
+    WHERE `equipe` = "{st.session_state.equipe}" AND `objet` = "{objet.nom}" AND `fin` < {st.session_state.annee};
+    """
     df_constructions = st.session_state.sql_client.get_custom_query(query)
     if df_constructions.shape[0] > 0:
         construction_en_cours = df_constructions.iloc[0].to_dict()

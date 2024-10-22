@@ -16,7 +16,7 @@ class Indicateurs(AbstractClass):
 
     budget: float = 0.0
     europeanisation: float = 0.0
-    niveau_techno: float = 10.0
+    niveau_techno: float = 0.0
     annee: int = 2000
 
     @staticmethod

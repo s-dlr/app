@@ -11,8 +11,9 @@ class Arborescence:
     num_question: int = 1
 
     def __post_init__(self) -> None:
-        self.df_arborescence = pd.read_csv(self.arborescence, sep=";")
-        self.df_arborescence = self.df_arborescence.astype(
+        self.df_arborescence = pd.read_csv(
+            self.arborescence,
+            sep=";",
             dtype={
                 NUM_QUESTION: int,
                 ANNEE: int,

@@ -109,7 +109,8 @@ else:
         for option, col in zip(list_options, columns):
             with col.container(
                 border=(st.session_state.select_option == option.texte_option)
-            ):
+            ): 
+                st.header(f"Option {option.numero_option}")
                 # Effets immédiats indicateurs et atmées
                 effets_immediat_dict = option.effet_immediat.to_dict()
                 if len(effets_immediat_dict) > 0:

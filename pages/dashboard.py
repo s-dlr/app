@@ -99,9 +99,10 @@ st.divider()
 # Affichage
 for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
     with col.container(border=True):
+        annee_equipe = df_annee_equipe.loc[equipe]
         # Compteurs armées
         df_equipe = df_armees[df_armees[EQUIPE] == equipe]
-        niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
+        niveaux_armee = df_equipe[df_equipe[ANNEE] == annee_equipe]
         col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
         fig = display_gauges_armees(
             niveaux_armee[["terre", "air", "mer", "rens"]].to_dict(), grid=True
@@ -111,7 +112,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
         fig = display_timeline(
             df_constructions_equipe,
-            annee_courante=df_annee_equipe.loc[EQUIPE],
+            annee_courante=annee_equipe,
             col_avancement=NOMBRE_UNITE,
         )
         fig.update_layout(
@@ -128,7 +129,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
         fig = display_timeline(
             df_programmes_equipe,
-            annee_courante=df_annee_equipe.loc[EQUIPE],
+            annee_courante=annee_equipe,
             col_avancement=NOMBRE_UNITE,
         )
         fig.update_layout(
@@ -141,7 +142,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         fig.update_yaxes(autorange="reversed")
         col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
         # Dépendances
-        col.markdown(f":blue[Dépendances de {equipe} en {df_indicateurs[ANNEE].max()}]")
+        col.markdown(f":blue[Dépendances de {equipe} en {annee_equipe}]")
         pays_dependance_equipe = (
             df_dependances[df_dependances[EQUIPE] == equipe][DEPENDANCE_EXPORT]
             .str.strip()
@@ -155,9 +156,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_indicateurs_equipe = df_indicateurs[df_indicateurs[EQUIPE] == equipe]
         col.metric(
             label=LABELS[EUROPEANISATION],
-            value=df_indicateurs_equipe.iloc[df_indicateurs_equipe[ANNEE].argmax()][
-                EUROPEANISATION
-            ],
+            value=df_last_info_equipe[EUROPEANISATION].iloc[0],
         )
         col.image(images_drapeaux, width=30)
 

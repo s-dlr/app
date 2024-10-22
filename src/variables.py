@@ -60,23 +60,31 @@ NOMBRE_UNITE = "nombre_unites"
 
 # Fichiers
 PROCHAINES_ARBORESCENCE = {
+    "Satellites phase 1": "Drone d'attaque et de surveillance",
     "Drone d'attaque et de surveillance": "Fusil individuel",
     "Fusil individuel": "Dissuasion nucléaire",
-    "Dissuasion nucléaire": None
+    "Dissuasion nucléaire": "Satellites phase 2",
+    "Satellites phase 2": None,
 }
 ARBORESCENCES = {
+    "Satellites phase 1": f"{DATA_DIR}/arborescences/arborescence_satellite.csv",
     "Drone d'attaque et de surveillance": f"{DATA_DIR}/arborescences/arborescence_MALE.csv",
     "Fusil individuel": f"{DATA_DIR}/arborescences/arborescence_FIA.csv",
-    "Dissuasion nucléaire" : f"{DATA_DIR}/arborescences/arborescence_DIS.csv",
+    "Dissuasion nucléaire": f"{DATA_DIR}/arborescences/arborescence_DIS.csv",
+    "Satellites phase 2": f"{DATA_DIR}/arborescences/arborescence_satellite.csv",
 }
 FICHIERS_OBJETS = {
+    "Satellites phase 1": f"{DATA_DIR}/objets/objets_satellite.csv",
     "Drone d'attaque et de surveillance": f"{DATA_DIR}/objets/objets_MALE.csv",
     "Fusil individuel": f"{DATA_DIR}/objets/objets_FIA.csv",
     "Dissuasion nucléaire": f"{DATA_DIR}/objets/objets_DIS.csv",
+    "Satellites phase 2": f"{DATA_DIR}/objets/objets_satellite.csv",
 }
 FICHIERS_PROGRAMMES = {
+    "Satellites phase 1": f"{DATA_DIR}/programmes/programmes_satellite.csv",
     "Drone d'attaque et de surveillance": f"{DATA_DIR}/programmes/programmes_MALE.csv",
     "Fusil individuel": f"{DATA_DIR}/programmes/programmes_FIA.csv",
     "Dissuasion nucléaire": f"{DATA_DIR}/programmes/programmes_DIS.csv",
+    "Satellites phase 2": f"{DATA_DIR}/programmes/programmes_satellite.csv",
 }
 IMAGE_DIR = f"{DATA_DIR}/images/"

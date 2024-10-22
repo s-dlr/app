@@ -42,7 +42,7 @@ def next_step():
     )
     question_pause_satellite = (
         st.session_state.arborescence.question.num_question == 6
-        and st.session_state.arborescence.arborescence == "Satellites"
+        and st.session_state.arborescence.arborescence == "Satellites phase 1"
     )
     if next_question != 0 and not question_pause_satellite:
         st.session_state.arborescence.load_data(next_question)
@@ -52,6 +52,8 @@ def next_step():
     else:
         st.session_state.arborescence = False
         push_etat_to_sql(st.session_state.prochaine_arborescence, 1)
+        if question_pause_satellite:
+            push_etat_satellite_2(next_question)
     st.session_state["loading"] = False
 
 st.set_page_config(

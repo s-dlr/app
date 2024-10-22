@@ -58,8 +58,8 @@ st.set_page_config(
 )
 
 
-def option_key():
-    return f"{option_key()}"
+def option_key(number):
+    return f"{st.session_state.arborescence.arborescence}_{st.session_state.arborescence.question.num_question}_{number}"
 
 
 # Timeline
@@ -76,6 +76,7 @@ if "equipe" not in st.session_state:
 else:
 
     if st.session_state.arborescence:
+        nb_chart = 0
 
         # Contexte et question
         st.title(st.session_state.arborescence.arborescence)
@@ -130,20 +131,22 @@ else:
                             ),
                             showlegend=True,
                         )
-                        st.plotly_chart(fig, key=f"gauge_armee_{option_key()}")
+                        st.plotly_chart(
+                            fig, key=f"gauge_armee_{option_key(option.numero_option)}"
+                        )
                 # Objet
                 if option.objet:
                     display_objet(
                         st.session_state[option.objet].to_dict(),
                         modification_objet=option.modification_objet.to_dict(),
-                        key=f"objet_{option_key()}",
+                        key=f"objet_{option_key(option.numero_option)}",
                     )
                 # Programme
                 if option.programme:
                     display_programme(
                         st.session_state["programme " + option.programme].to_dict(),
                         modification_programme=option.modification_programme.to_dict(),
-                        key=f"programme_{option_key()}",
+                        key=f"programme_{option_key(option.numero_option)}",
                     )
 
         # Bouton validation

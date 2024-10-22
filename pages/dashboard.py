@@ -49,7 +49,7 @@ display_equipes = st.multiselect(
 )
 df_last_info_equipe = df_indicateurs.sort_values(ANNEE, ascending=True)
 df_last_info_equipe = df_indicateurs.drop_duplicates(EQUIPE, keep="last")
-df_annee_equipe = df_indicateurs[[ANNEE, EQUIPE]].set_index(EQUIPE)
+df_annee_equipe = df_last_info_equipe[[ANNEE, EQUIPE]].set_index(EQUIPE)
 st.divider()
 
 
@@ -70,6 +70,8 @@ df_constructions = dashboard_connection.query(QUERY_CONSTRUCTIONS, ttl=5)
 ########################################################
 ##############     Indicateurs macro   #################
 ########################################################
+
+st.subheader(f":blue[Evolution des indicateurs des équipes]")
 
 # Courbes indicateurs
 col1, col2 = st.columns(2)
@@ -100,11 +102,12 @@ st.divider()
 for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
     with col.container(border=True):
         annee_equipe = df_annee_equipe.loc[equipe]
+        col.subheader(f":blue[{equipe} - Année {annee_equipe}]")
         # Compteurs armées
         niveaux_armee = df_armees[
             (df_armees[EQUIPE] == equipe) & (df_armees[ANNEE] == annee_equipe)
         ].iloc[0]
-        col.markdown(f":blue[Armée de {equipe} en {annee_equipe}]")
+        col.markdown(f":blue[Armée]")
         fig = display_gauges_armees(
             niveaux_armee[["terre", "air", "mer", "rens"]].to_dict(), grid=True
         )
@@ -143,7 +146,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         fig.update_yaxes(autorange="reversed")
         col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
         # Dépendances
-        col.markdown(f":blue[Dépendances de {equipe} en {annee_equipe}]")
+        col.markdown(f":blue[Dépendances]")
         pays_dependance_equipe = (
             df_dependances[df_dependances[EQUIPE] == equipe][DEPENDANCE_EXPORT]
             .str.strip()

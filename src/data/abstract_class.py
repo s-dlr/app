@@ -22,7 +22,7 @@ class AbstractClass:
         Renvoie un booléen indiquant si une modification a eu lieu
         """
         modification_dict = modification.to_dict()
-        self.apply_modification_dict(modification_dict)
+        return self.apply_modification_dict(modification_dict)
 
     def apply_modification_dict(self, modification_dict: dict) -> bool:
         """

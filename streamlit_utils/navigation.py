@@ -10,16 +10,23 @@ from src.flow.arborescence.arborescence import Arborescence
 def get_etat_satellite_2():
     query = f'SELECT * FROM `Etat` WHERE `equipe` = "{st.session_state.equipe}_satellite_2";'
     connection = st.session_state.sql_client.connection
-    return connection.query(query, ttl=1)["question"].iloc[0]
+    etat_satellite = connection.query(query, ttl=1)
+    if len(etat_satellite) > 0:
+        return etat_satellite["question"].iloc[0]
+    else:
+        return None
 
 def push_etat_satellite_2(next_question):
     query = f'INSERT INTO `Etat`(`equipe`, `arborescence`, `question`) VALUES ("{st.session_state.equipe}_satellite_2","","{next_question}")'
     st.session_state.sql_client.execute_query([query])
 
 def load_next_arborescence(prochaine_arborescence, num_question=1):
-    # Prochain programme
+    # Cas particulier des satellites
     if prochaine_arborescence == "Satellites phase 2":
         num_question = get_etat_satellite_2()
+        if num_question is None:
+            prochaine_arborescence = PROCHAINES_ARBORESCENCE.get(prochaine_arborescence)
+    # Chargement du prochain programme
     st.session_state["arborescence"] = Arborescence(
         arborescence=prochaine_arborescence, num_question=num_question
     )

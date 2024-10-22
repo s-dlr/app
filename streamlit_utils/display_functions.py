@@ -222,7 +222,7 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
 
     if grid:
         for i, armee in enumerate([TERRE, AIR, MER, RENS]):
-            if values.get(armee, 0) > 0:
+            if values.get(armee, 0) > 0 or shape is None:
                 fig.add_trace(get_indicateur(armee, i // 2, i % 2))
 
         fig.update_layout(

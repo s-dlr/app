@@ -34,7 +34,7 @@ class AbstractClass:
         else:
             updated = False
             for key, value in modification_dict.items():
-                updated = update | self.update(key, value):
+                updated = updated | self.update(key, value)
             return updated
 
     def update(self, attribute_name: str, increment: T.Union[str, float]) -> bool:

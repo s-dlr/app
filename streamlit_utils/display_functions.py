@@ -70,7 +70,6 @@ def display_metrics(effets_dict: dict):
             delta=effet,
         )
         i += 1
-    # TODO version armee
 
 def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""):
     st.subheader(f":blue[{objet_dict[NOM]}]")

@@ -237,8 +237,6 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
 
 
 def display_timeline(df, annee_courante, col_avancement=None):
-    df[DEBUT] = df[DEBUT].apply(lambda x: datetime(year=x, month=1, day=1))
-    df[FIN] = df[FIN].apply(lambda x: datetime(year=x, month=1, day=1))
     df[ANNEE] = annee_courante
     df["Pourcentage d'avancement"] = (annee_courante - df[DEBUT]) / (
         df[FIN] - df[DEBUT]
@@ -252,6 +250,8 @@ def display_timeline(df, annee_courante, col_avancement=None):
             axis=1,
         )
         hover_template[LABELS[col_avancement]] = True
+    df[DEBUT] = df[DEBUT].apply(lambda x: datetime(year=x, month=1, day=1))
+    df[FIN] = df[FIN].apply(lambda x: datetime(year=x, month=1, day=1))
     fig = px.timeline(
         df,
         x_start=DEBUT,

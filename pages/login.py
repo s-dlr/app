@@ -65,7 +65,7 @@ delete_equipe = st.checkbox("Recommencer depuis le début")
 if login:
     st.session_state["equipe"] = team
     if delete_equipe:
-        delete_equipe(team)
+        delete_team_in_db(team)
     etat_equipe = init_team_in_db()
     load_next_arborescence(
         prochaine_arborescence=etat_equipe[ARBORESCENCE],

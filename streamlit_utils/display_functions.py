@@ -246,8 +246,10 @@ def display_timeline(df, annee_courante, col_avancement=None):
     hover_template = {"Pourcentage d'avancement": ":.1%", ANNEE: True}
     if col_avancement:
         df[LABELS[col_avancement]] = df.apply(
-            lambda x: f'{int(x["Pourcentage d'avancement"] * x[col_avancement])} / {x[col_avancement]}',
-            axis=1
+            lambda x: str(x["Pourcentage d'avancement"] * x[col_avancement])
+            + "/"
+            + str(x[col_avancement]),
+            axis=1,
         )
         hover_template[LABELS[col_avancement]] = True
     fig = px.timeline(

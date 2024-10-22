@@ -33,6 +33,7 @@ LABELS: dict = {
     COUT_FIXE: "Coût fixe",
     ANNEE: "Année de disponibilité",
     UNITE_PAR_AN: "Cadence de production (unité/an)",
+    DUREE: "Durée du programme",
 }
 
 DRAPEAUX = {
@@ -66,7 +67,7 @@ def display_metrics(effets_dict: dict):
             delta=effet,
         )
         i += 1
-
+    # TODO version armee
 
 def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""):
     st.subheader(f":blue[{objet_dict[NOM]}]")
@@ -79,6 +80,15 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
             delta=modification_objet.get(compteur, 0),
         )
     columns[0].write(f"+-{objet_dict[STD_COUT]}€")
+    # Effet sur les indicateurs
+    modifications_indicateurs = {
+        key: modification_objet.get(key)
+        for key in [EUROPEANISATION, NIVEAU_TECHNO, BUDGET]
+        if key in modification_objet.keys()
+    }
+    if len(modifications_indicateurs) > 0:
+        st.subheader(f":blue[Effet par unité sur les compteurs]")
+        display_metrics(modifications_indicateurs)
     # Bonus armées
     value_dict = {
         key: objet_dict.get(f"bonus_{key}", 0) for key in [AIR, MER, TERRE, RENS]
@@ -108,6 +118,35 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
         Vous pourrez acheter jusqu'à **{unite_an}** unités par an à partir de l'année **{disponibilié}**
         """
     )
+
+
+def display_programme(
+    programme_dict: dict, modification_programme: dict = {}, key: str = ""
+):
+    st.subheader(f":blue[{programme_dict[NOM]}]")
+    # Prix
+    st.metric(
+        label=LABELS[COUT],
+        value=programme_dict.get(COUT, 0) + modification_programme.get(COUT, 0),
+        delta=modification_programme.get(COUT, 0),
+    )
+    st.write(f"+-{programme_dict[STD_COUT]}€")
+    st.metric(
+        label=LABELS[DUREE],
+        value=programme_dict.get(DUREE, 0) + modification_programme.get(DUREE, 0),
+        delta=modification_programme.get(DUREE, 0),
+    )
+    # Effet sur les indicateurs
+    modifications_indicateurs = {
+        key: modification_programme.get(key)
+        for key in [EUROPEANISATION, NIVEAU_TECHNO, BUDGET]
+        if key in modification_programme.keys()
+    }
+    if len(modifications_indicateurs) > 0:
+        st.subheader(f":blue[Effet par an sur les compteurs]")
+        display_metrics(modifications_indicateurs)
+    # Bonus armées
+    # TODO
 
 
 def display_objet_store(objet_dict: dict, key: str = ""):

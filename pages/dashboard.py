@@ -49,10 +49,10 @@ display_equipes = st.multiselect(
     'Equipes',
     df_indicateurs[EQUIPE].unique()
 )
-df_last_info_equipe = df_indicateurs.sort_values(ANNEE, ascending=True)
-df_last_info_equipe = df_indicateurs.drop_duplicates(EQUIPE, keep="last")
-df_annee_equipe = df_last_info_equipe[[ANNEE, EQUIPE]].set_index(EQUIPE)
-st.write(df_last_info_equipe)
+df_last_info = df_indicateurs.sort_values(ANNEE, ascending=True)
+df_last_info = df_last_info.drop_duplicates(EQUIPE, keep="last")
+df_annee_equipe = df_last_info[[ANNEE, EQUIPE]].set_index(EQUIPE)
+st.write(df_last_info)
 st.divider()
 
 
@@ -62,6 +62,8 @@ st.divider()
 
 # Données
 df_armees = dashboard_connection.query(QUERY_ARMEES, ttl=5)
+df_last_info_armee = df_indicateurs.sort_values(ANNEE, ascending=True)
+df_last_info_armee = df_last_info_armee.drop_duplicates(EQUIPE, keep="last")
 df_dependances = dashboard_connection.query(QUERY_DEPENDANCE, ttl=5)
 df_dependances[DEPENDANCE_EXPORT] = df_dependances[DEPENDANCE_EXPORT].apply(
     lambda x: x.split(",")
@@ -107,9 +109,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         annee_equipe = df_annee_equipe.loc[equipe][0]
         col.subheader(f":blue[{equipe} - Année {annee_equipe}]")
         # Compteurs armées
-        niveaux_armee = df_armees[
-            (df_armees[EQUIPE] == equipe) & (df_armees[ANNEE] == annee_equipe)
-        ].iloc[0]
+        niveaux_armee = df_last_info_armee[df_last_info_armee[EQUIPE]==equipe].iloc[0]
         col.markdown(f":blue[Armée]")
         fig = display_gauges_armees(
             niveaux_armee[["terre", "air", "mer", "rens"]].to_dict(), grid=True
@@ -158,10 +158,9 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
             for pays in pays_dependance_equipe
             if DRAPEAUX.get(pays) is not None
         ]
-        df_indicateurs_equipe = df_indicateurs[df_indicateurs[EQUIPE] == equipe]
         col.metric(
             label=LABELS[EUROPEANISATION],
-            value=df_last_info_equipe[EUROPEANISATION].iloc[0],
+            value=df_last_info[df_last_info[EQUIPE] == equipe][EUROPEANISATION].iloc[0],
         )
         col.image(images_drapeaux, width=30)
 

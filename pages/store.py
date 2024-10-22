@@ -63,7 +63,7 @@ if "equipe" in st.session_state:
         st.title("Achat d'unités")
         st.write("Vous pouvez choisir des unités à acheter")
         if "selected_objet" not in st.session_state:
-            st.session_state["selected_objet"] = None
+            st.session_state["selected_objet"] = list_objets_disponibles[0]
         select_objets = st.selectbox(
             "Quel objet souhaitez vous acheter ?",
             options=list_objets_disponibles,

@@ -1,299 +1,274 @@
 num_question;annee;contexte_question;texte_question;image;numero_option;texte_option;prochaine_question;prerequis;effet_immediat;modification_programme;modification_objet;objet;programme;commandes
-1;2011;"Pour équiper la France en drone MALE, 3 options s'offrent à vous : 
-- Achat sur étagère américain (Reaper). 
-- Developpement d'un programme court Franco-israëlien. 
-- Etude préliminaire de 2 ans sur la faisabilité d'un programme de drone MALE européen. Ceci est une étude de faisabilité, non le début d'un programme.
-- Rester sur le système intérimaire israëlien";Quelle option souhaitez vous choisir ?;;A;"Achat sur étagère du drone Reaper américain. Solution la plus rapide pour combler le besoin, et déjà choisie par nombre de pays.
-En revanche, aucune garantie de navigabilité (preuve que l'aeronef ne va pas tomber inopin ment sur des civils ou militaires)";2;;;;;;;
-1;2011;"Pour équiper la France en drone MALE, 3 options s'offrent à vous : 
-- Achat sur étagère américain (Reaper). 
-- Developpement d'un programme court Franco-israëlien. 
-- Etude préliminaire de 2 ans sur la faisabilité d'un programme de drone MALE européen. Ceci est une étude de faisabilité, non le début d'un programme.
-- Rester sur le système intérimaire israëlien";Quelle option souhaitez vous choisir ?;;B;Programme Franco-israëlien DAROK : IAI (Israël) et Dassault (France) proposent de reprendre le design d'un drone israëlien déjà existant, de l'adapter au besoin français. Solution permettant un transfert technologique vers la France, mais plus lente et plus coûteuse;7;niveau_techno:50;;;;;;
-1;2011;"Pour équiper la France en drone MALE, 3 options s'offrent à vous : 
-- Achat sur étagère américain (Reaper). 
-- Developpement d'un programme court Franco-israëlien. 
-- Etude préliminaire de 2 ans sur la faisabilité d'un programme de drone MALE européen. Ceci est une étude de faisabilité, non le début d'un programme.
-- Rester sur le système intérimaire israëlien";Quelle option souhaitez vous choisir ?;;C;"Malgré les démonstrateurs de Dassaut et EADS, vous n'avez pas la compétence technologique nécessaire pour vous lancer d'emblée dans un programme. Vous proposez donc à vos partenaires Européens (France, Espagne, Italie et Allemagne) une étude préliminaire de 2 ans, dans le but de savoir à l'issue :
-- si ces industriels sont capables de réaliser un drone MALE
-- quelles seront ces caractéristiques
-- quels seront les coûts et temps neessaires pour un programme en coopération associé
-Le résultat attendu de l'étude que le programme soit moins coûteux que le programme franco-israëlien (car financé à 4) que le programme franco-israëlien (B), mais plus long à mettre en place, et avec une probabilité d'échec faible mais non nulle";10;europeanisation:25;europeanisation:+10;;;;;
-1;2011;"Pour équiper la France en drone MALE, 3 options s'offrent à vous : 
-- Achat sur étagère américain (Reaper). 
-- Developpement d'un programme court Franco-israëlien. 
-- Etude préliminaire de 2 ans sur la faisabilité d'un programme de drone MALE européen. Ceci est une étude de faisabilité, non le début d'un programme.
-- Rester sur le système intérimaire israëlien";Quelle option souhaitez vous choisir ?;;D;Rester sur le système intérimaire israëlien. Ce dernier devenant obsolète vous perdez alors 100 de Bonus Terre et 10 de bonus de renseignement.;0;;"terre:-100
-bonus_rens:-10";;;;;
-2;2011;Combien d'appareils achetez-vous sur étagère ?;Combien ?;;A;Plus de 20;3;;;;cout_unitaire:-7;Reaper;Reaper;
-2;2011;Combien d'appareils achetez-vous sur étagère ?;Combien ?;;B;De 10 à 20;3;;;;cout_unitaire:+0;Reaper;Reaper;
-2;2011;Combien d'appareils achetez-vous sur étagère ?;Combien ?;;C;Moins de 10;3;;;;cout_unitaire:+10;Reaper;Reaper;
-3;2011;Quand souhiatez-vous les recevoir ? VOus avez l'opportunité d'étaler plus la livraison pour baisser les coûts d'importation de ces drones, ou de les augmenter en payant le prix adéquat.;Quand ?;;A;"Augmentation de la cadence de livraison de +2 unités par an
-Le coût unitaire augmente de 15M/unité";4;;;;"cout_unitaire:+15
-unite_par_an:+2";Reaper;Reaper;
-3;2011;Quand souhiatez-vous les recevoir ? VOus avez l'opportunité d'étaler plus la livraison pour baisser les coûts d'importation de ces drones, ou de les augmenter en payant le prix adéquat.;Quand ?;;B;Maintien de la cadence de livraison annoncée, maintien du prix annoncé;4;;;;;Reaper;Reaper;
-3;2011;Quand souhiatez-vous les recevoir ? VOus avez l'opportunité d'étaler plus la livraison pour baisser les coûts d'importation de ces drones, ou de les augmenter en payant le prix adéquat.;Quand ?;;C;"Consentement à une baisse de la cadence de livraison de -2 unités par an
-Coût unitaire réduie de 10M/unité";4;;;;"cout_unitaire:-10
-unite_par_an:-2";Reaper;Reaper;
-4;2011;"Ces drones sont des drones armés. Quelles armes choisissez-vous pour ces drones : 
-A: Armes US sur étagères
-B : Adaptation de munition françaises pour l'appareil";;;A;Armes US sur étagères. Cette solution vous permet de disposer de la pleine capacité de l'appareil dès sa livraison, à moindre coûts.;5;;;;;Reaper;Reaper;
-4;2011;"Ces drones sont des drones armés. Quelles armes choisissez-vous pour ces drones : 
-A: Armes US sur étagères
-B : Adaptation de munition françaises pour l'appareil";;;B;"Adaptation de munition françaises pour l'appareil
-Cette solution est plus chère, plus longue (rajoute deux ans au délai du programme et coûte 50M). En revanche elle incrémente votre technologie et votre PIB à chaque unité livrée (on la considère livrée avec ses munitions)";6;;;"duree:+2
-cout:+50
-niveau_techno:+5";budget:+1;Reaper;Reaper;
-5;2011;"Quelle quantité de munition sur étagère estimez-vous necessaire ?
-A : logique de stocks 
-B :logique de flux tendus";Quelle logique pour vos munitions ?;;A;"Logique de stock
-Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela génère des coûts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitué en permanence.";0;;;;cout_unitaire:+5;Reaper;Reaper;launch_programme
-5;2011;"Quelle quantité de munition sur étagère estimez-vous necessaire ?
-A : logique de stocks 
-B :logique de flux tendus";Quelle logique pour vos munitions ?;;B;"Logique de flux tendus
-Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;Reaper;Reaper;launch_programme
-6;2011;"Quelle quantité de munition adaptées estimez-vous necessaire ?
-A : logique de stocks 
-B :logique de flux tendus";Quelle logique pour vos munitions ?;;A;"Logique de stock
-Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela génère des coûts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitué en permanence";0;;;;"cout_unitaire:+7
-budget:+4";Reaper;Reaper;launch_programme
-6;2011;"Quelle quantité de munition adaptées estimez-vous necessaire ?
-A : logique de stocks 
-B :logique de flux tendus";Quelle logique pour vos munitions ?;;B;"Logique de flux tendus
-Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;Reaper;Reaper;launch_programme
-7;2011;"Le programme DAROK est un programme de transfert technologique d'IAI (Israël) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingénieurie réparti en 65/35 en faveur d'IAI. 
-Le gouvernement Français peut renégocier ces partages avec le gouvernement Israëlien, et repercuter les résultats des négociations aux industriels selon les termes suivants :
-A : Augmenter la part de Dassault à 40 (partage total : 60/40)
-B : Augmenter la part de Dassault à 45 (partage total : 55/45)
-C: Conserver le partage actuel";Quel partage industriel entre Dassault (France) et IAI (Israël) ?;;A;"Augmenter la part de Dassault à 40 (partage total : 60/40)
-Cette solution augmente l'incrément technologique (+5), et augmente le coût du programme pour la France de 5% (50M)";8;;;"cout:+50
-niveau_techno:+5";;DAROK;DAROK;
-7;2011;"Le programme DAROK est un programme de transfert technologique d'IAI (Israël) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingénieurie réparti en 65/35 en faveur d'IAI. 
-Le gouvernement Français peut renégocier ces partages avec le gouvernement Israëlien, et repercuter les résultats des négociations aux industriels selon les termes suivants :
-A : Augmenter la part de Dassault à 40 (partage total : 60/40)
-B : Augmenter la part de Dassault à 45 (partage total : 55/45)
-C: Conserver le partage actuel";Quel partage industriel entre Dassault (France) et IAI (Israël) ?;;B;"Augmenter la part de Dassault à 45 (partage total : 55/45)
-Cette solution augmente l'incrément technologique (+12), et augmente le coût du programme pour la France de 10%  (100M)";8;;;"cout:+100
-niveau_techno:+12";;DAROK;DAROK;
-7;2011;"Le programme DAROK est un programme de transfert technologique d'IAI (Israël) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingénieurie réparti en 65/35 en faveur d'IAI. 
-Le gouvernement Français peut renégocier ces partages avec le gouvernement Israëlien, et repercuter les résultats des négociations aux industriels selon les termes suivants :
-A : Augmenter la part de Dassault à 40 (partage total : 60/40)
-B : Augmenter la part de Dassault à 45 (partage total : 55/45)
-C: Conserver le partage actuel";Quel partage industriel entre Dassault (France) et IAI (Israël) ?;;C;Conserver le partage actuel;8;;;;;DAROK;DAROK;
-8;2011;"Combien d'appareils achetez-vous sur étagère ? 
-Chaque unité acheté baissera le prix unitaire de l'aeronef de 0,7M
-Chaque unité augmentera l'incrément du budget de défense lié au programme de 3M par aeronefs";Combien ?;;A;moins de 10;9;;;;"cout_unitaire:+25
-budget:-3";DAROK;DAROK;
-8;2011;"Combien d'appareils achetez-vous sur étagère ? 
-Chaque unité acheté baissera le prix unitaire de l'aeronef de 0,7M
-Chaque unité augmentera l'incrément du budget de défense lié au programme de 3M par aeronefs";²;;B;11 à 20;9;;;;;DAROK;DAROK;
-8;2011;"Combien d'appareils achetez-vous sur étagère ? 
-Chaque unité acheté baissera le prix unitaire de l'aeronef de 0,7M
-Chaque unité augmentera l'incrément du budget de défense lié au programme de 3M par aeronefs";²;;C;plus de 21;9;;;;"cout_unitaire:-10
-budget:+5";DAROK;DAROK;
-9;2011;"Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions préexistantes d'hélicoptères, évitant des coûts d'adaptation ou de design supplémentaires. Cependant, l'approvisionnement de ces munitions peut être pensé suivant deux logiques :
-A : logique de flux tendus
-B : logique de stocks";Quelle logique pour vos munitions ?;;A;"Logique de flux tendus
-Vous achetez en permanence le juste necessaire pour le besoin actuel.
-Coût : 40M/an
-Incrément de budget défense : 1M";0;;budget:-40;;budget:+2;DAROK;DAROK;launch_programme
-9;2011;"Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions préexistantes d'hélicoptères, évitant des coûts d'adaptation ou de design supplémentaires. Cependant, l'approvisionnement de ces munitions peut être pensé suivant deux logiques :
-A : logique de flux tendus
-B : logique de stocks";Quelle logique pour vos munitions ?;;B;"Logique de stock
-Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela génère des coûts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitué en permanence
-Coût 80M/an
-ncrément de budget défense : 4";0;;budget:-80;;budget:+4;DAROK;DAROK;launch_programme
-10;2011;"Cette étude préliminaire avec l'Allemagne l'Espagne et l'Italie doit être partagée entre les différents industriels participants : 
-EADS Allemagne, Dassault (France) et Leonardo (Italie). L'Allemagne a proposé d'augmenter sa participation de 10% pour obtenir le lead de l'étude pour EADS. Vous pouvez donc : 
-A : Contester le lead de ces travaux en surencherissant à 10%
-B : Consentir au lead d'EADS qui est proposé par l'Allemagne";Quel leadership pour l'étude préliminaire ?;;A;"Contester le lead de ces travaux en surencherissant à 10%
-Le coûrt de l'étude de votre côté est augmenté de 10%.
-En retour vous beneficiez d'une augmentation de 15% de l'incrément technologique de l'étude";11;;;"cout:+10
-niveau_techno:+3";;;Etude_eurodrone;
-10;2011;"Cette étude préliminaire avec l'Allemagne l'Espagne et l'Italie doit être partagée entre les différents industriels participants : 
-EADS Allemagne, Dassault (France) et Leonardo (Italie). L'Allemagne a proposé d'augmenter sa participation de 10% pour obtenir le lead de l'étude pour EADS. Vous pouvez donc : 
-A : Contester le lead de ces travaux en surencherissant à 10%
-B : Consentir au lead d'EADS qui est proposé par l'Allemagne";Quel leadership pour l'étude préliminaire ?;;B;"Consentir au lead d'EADS qui est proposé par l'Allemagne
-Le coût de l'étude de votre côté est réduit de 5%. ";11;;;cout:-5;;;Etude_eurodrone;
-11;2011;"Deux ans plus tard vous bénéficiez des résultats de l'étude préliminaires. Il est à noter que l'Espagne s'est montrée interessée par l'étude préliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
-A : achat sur étagère américain (Reaper). 
-B: Developpement d'un programme court Franco-israëlien. 
-C: Developpement d'un programme Européen sur la base des résultats de l'étude
-D: Rester sur le système intérimaire israëlien";Quelles suites donner à l'Etude ?;;A;"Achat sur étagère du drone Reaper américain. Solution la plus rapide pour combler le besoin, et déjà choisie par nombre de pays.
-";2;;europeanisation:-15;;;;Etude_eurodrone;
-11;2011;"Deux ans plus tard vous bénéficiez des résultats de l'étude préliminaires. Il est à noter que l'Espagne s'est montrée interessée par l'étude préliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
-A : achat sur étagère américain (Reaper). 
-B: Developpement d'un programme court Franco-israëlien. 
-C: Developpement d'un programme Européen sur la base des résultats de l'étude
-D: Rester sur le système intérimaire israëlien";Quelles suites donner à l'Etude ?;;B;Programme Franco-israëlien DAROK : IAI (Israël) et Dassault (France) proposent de reprendre le design d'un drone d'IAI, de l'adapter au besoin français. Solution permettant un transfert technologique vers la France, mais plus lente et plus coûteuse;7;;europeanisation:-20;;;;Etude_eurodrone;
-11;2011;"Deux ans plus tard vous bénéficiez des résultats de l'étude préliminaires. Il est à noter que l'Espagne s'est montrée interessée par l'étude préliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
-A : achat sur étagère américain (Reaper). 
-B: Developpement d'un programme court Franco-israëlien. 
-C: Developpement d'un programme Européen sur la base des résultats de l'étude
-D: Rester sur le système intérimaire israëlien";Quelles suites donner à l'Etude ?;;C;"Developpement d'un programme Européen sur la base des résultats de l'étude
-Cette solution apparaît comme moins chère, mais plus longue et un peu plus incertaines. Le programme pourrait être rejoint par d'autres partenaires en cours de route, augmentant le délai mais diminuant les coûts. 
-Point de vue industriel, les retombées sont partagées entre les pays, et sont donc moins importantes que pour le programme Franco-Israëlien. ";12;;europeanisation:+25;;;;Etude_eurodrone;
-11;2011;"Deux ans plus tard vous bénéficiez des résultats de l'étude préliminaires. Il est à noter que l'Espagne s'est montrée interessée par l'étude préliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
-A : achat sur étagère américain (Reaper). 
-B: Developpement d'un programme court Franco-israëlien. 
-C: Developpement d'un programme Européen sur la base des résultats de l'étude
-D: Rester sur le système intérimaire israëlien";Quelles suites donner à l'Etude ?;;D;Rester sur le système intérimaire israëlien. Ce dernier devenant obsolète vous perdez alors 100 de Bonus Terre et 10 de bonus de renseignement.;0;;"terre:-100
-bonus_rens:-10";;;;Etude_eurodrone;
-12;2011;"Le partage industriel est proportionel au financement des états. Cependant, une commande minimale de 100 drones est necessaire pour la viabilité du programme, sans quoi le coût du drone à l'unité exploserait. L'Italie s'est positionné pour  25 drones et l'Allemagne pour 35.
-Plusieurs options s'offrent à vous : 
-A:  En commander 40 pour compléter la commande. Cette commande importante (la plus élevée) vous assure le leadership du programme, maximisant les retombées technologiques. Vous pourrez tenter de vendre (à perte) vos drones excédentaires dans un second temps.
-B : Négocier avec vos partenaires pour qu'ils commandent davantage de drones, pour répartir les unités excédentaires (30Italie, 30 France, 40 Allemagne).
-C : Quitter le programme et revenir au choix précédent";Comment partager la commande nécessaire au lancement du programme ?;;A;"Commander 40 pour compléter la commande. Cette commande importante (la plus élevée) vous assure le leadership du programme, maximisant les retombées  technologiques et budgetaires. Votre influence est également plus grande sur le programme, pouvant potentiellement lever des verrous export de vos partenaires dans le futur. Vous pourrez tenter de vendre (à perte) vos drones excédentaires dans un second temps.
-Double l'incrément technologique
-Double l'incrément de budget de défense par unité  française produite";13;;;niveau_techno:+100;budget:+6;Eurodrone;Eurodrone;
-12;2011;"Le partage industriel est proportionel au financement des états. Cependant, une commande minimale de 100 drones est necessaire pour la viabilité du programme, sans quoi le coût du drone à l'unité exploserait. L'Italie s'est positionné pour  25 drones et l'Allemagne pour 35.
-Plusieurs options s'offrent à vous : 
-A:  En commander 40 pour compléter la commande. Cette commande importante (la plus élevée) vous assure le leadership du programme, maximisant les retombées technologiques. Vous pourrez tenter de vendre (à perte) vos drones excédentaires dans un second temps.
-B : Négocier avec vos partenaires pour qu'ils commandent davantage de drones, pour répartir les unités excédentaires (30Italie, 30 France, 40 Allemagne).
-C : Quitter le programme et revenir au choix précédent";Comment partager la commande nécessaire au lancement du programme ?;;B;"Négocier avec vos partenaires pour qu'ils commandent davantage de drones, pour répartir les unités excédentaires (30Italie, 30 France, 40 Allemagne). L'Allemagne bénificera donc du leadershipe du programme et maximisera ses retombées économiques (technologiques et budgetaires).
-Rajoute 1 an de délai dans le programme";14;;;duree:+1;;Eurodrone;Eurodrone;
-12;2011;"Le partage industriel est proportionel au financement des états. Cependant, une commande minimale de 100 drones est necessaire pour la viabilité du programme, sans quoi le coût du drone à l'unité exploserait. L'Italie s'est positionné pour  25 drones et l'Allemagne pour 35.
-Plusieurs options s'offrent à vous : 
-A:  En commander 40 pour compléter la commande. Cette commande importante (la plus élevée) vous assure le leadership du programme, maximisant les retombées technologiques. Vous pourrez tenter de vendre (à perte) vos drones excédentaires dans un second temps.
-B : Négocier avec vos partenaires pour qu'ils commandent davantage de drones, pour répartir les unités excédentaires (30Italie, 30 France, 40 Allemagne).
-C : Quitter le programme et revenir au choix précédent";Comment partager la commande nécessaire au lancement du programme ?;;C;"Quitter le programme et revenir au choix précédent
-Vous perdez immédiatement 25 points d'europeanisation";11;;europeanisation:-25;;;Eurodrone;Eurodrone;
-13;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Refuser l'intégration de l'Espagne alors qu'elle était bien accueillie par l'Allemagne et l'Italie
-B : Intégrer l'Espagne et conserver votre commande et votre leadership
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Acceptez-vous l'intégration de l'Espagne au programme;;A;"Refuser l'intégration de l'Espagne alors qu'elle était bien accueillie par l'Allemagne et l'Italie.
-Vous perdez immédiatement 10 points d'Europeanisation. 
-Les autres aspects du programme restent inchangés";16;;europeanisation:-10;;;Eurodrone;Eurodrone;
-13;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Refuser l'intégration de l'Espagne alors qu'elle était bien accueillie par l'Allemagne et l'Italie
-B : Intégrer l'Espagne et conserver votre commande et votre leadership
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Acceptez-vous l'intégration de l'Espagne au programme;;B;"Réduit le coût du programme de 15% (100M) et l'incertitude sur le coût (-50M)
-Les economies d'échelles grâce aux 125 drones permettent également de réduire le coût unitaire du drone de 10% (10M)
-Votre incrément technologique est reduit de 12% (-24)
-";16;;;"cout:-100
-std_cout:-50
-niveau_techno:-24";cout_unitaire:-10;Eurodrone;Eurodrone;
-13;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Refuser l'intégration de l'Espagne alors qu'elle était bien accueillie par l'Allemagne et l'Italie
-B : Intégrer l'Espagne et conserver votre commande et votre leadership
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Acceptez-vous l'intégration de l'Espagne au programme;;C;"Réduit le coût du programme de 15% (-100M)
-Les economies d'échelles grâce aux 125 drones permettent également de réduire le coût unitaire du drone de 5%
-En revanche, en réduisant votre commande à 25, l'Allemagne devient leader du programme, et le gateau technologique est partagé en plus de part.
-Votre incrément technologique est donc réduit de 50%
-Votre incrément de budget de défense par unité française produite est divisé par 2 (retour à situation de non leadership)";16;;;"cout:-100
-std_cout:-50
-niveau_techno:-100";cout_unitaire:-5;Eurodrone;Eurodrone;
-13;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Refuser l'intégration de l'Espagne alors qu'elle était bien accueillie par l'Allemagne et l'Italie
-B : Intégrer l'Espagne et conserver votre commande et votre leadership
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Acceptez-vous l'intégration de l'Espagne au programme;;D;"Réduit le coût du programme de 15% (-100M)
-En revanche, en réduisant votre commande l'Allemagne devient leader du programme, et votre part du gateau technologique est la plus petite.
-Votre incrément technologique est donc divisé par 2 (perte de leadership), et sera diminué encore suivant la valeur de la réduction de commande (prochaine étape).
-Votre incrément de budget de défense par unité française produite est divisé par 2 (retour à situation de non leadership)";15;;;"cout:-100
-std_cout:-50
-niveau_techno:-100";budget:-6;Eurodrone;Eurodrone;
-14;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Demander le refus de l'intégration de l'Espagne (elle est bien accueillie par l'Allemagne, leader du programme, et l'Italie)
-B : Intégrer l'Espagne et conserver votre commande
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Vous opposez-vous l'intégration de l'Espagne au programme;;A;Demander le refus de l'intégration de l'Espagne, malgré la volonté allemande de les intégrer, réduisant de  votre indice d'européanisation;17;;europeanisation:-10;;;Eurodrone;Eurodrone;
-14;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Demander le refus de l'intégration de l'Espagne (elle est bien accueillie par l'Allemagne, leader du programme, et l'Italie)
-B : Intégrer l'Espagne et conserver votre commande
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Acceptez-vous l'intégration de l'Espagne au programme;;B;" Intégrer l'Espagne et conserver votre commande
-Réduit le coût du programme de 15%
-Les economies d'échelles grâce aux 125 drones permettent également de réduire le coût unitaire du drone de 10%
-Votre incrément technologique est reduit de 20%
-";16;;;"cout:-80
-std_cout:-40
-niveau_techno:-20";cout_unitaire:-10;Eurodrone;Eurodrone;
-14;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Demander le refus de l'intégration de l'Espagne (elle est bien accueillie par l'Allemagne, leader du programme, et l'Italie)
-B : Intégrer l'Espagne et conserver votre commande
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Acceptez-vous l'intégration de l'Espagne au programme;;C;" Intégrer l'Espagne et réduire votre commande à 25
-Réduit le coût du programme de 15%
-Les economies d'échelles grâce aux 120 drones permettent également de réduire le coût unitaire du drone de 5%
-En revanche, en réduisant votre commande à 25, votre part du gateau technologique est plus petit, d'autant qu'il est partagé en plus de part.
-Votre incrément technologique est donc réduit de 25%";16;;;"cout:-80
-std_cout:-40
-niveau_techno:-25";cout_unitaire:-5;Eurodrone;Eurodrone;
-14;2011;"Pendant les négociation de partage industriel entre les états, l'Espagne a confirmé son intérêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement réduire davantage les coûts du programme. En revanche, cela diminue vos retombées technologiques.
-Plusieurs options s'offrent alors à vous : 
-A : Demander le refus de l'intégration de l'Espagne (elle est bien accueillie par l'Allemagne, leader du programme, et l'Italie)
-B : Intégrer l'Espagne et conserver votre commande
-C : Intégrer l'Espagne et réduire votre commande à 25
-D : Intégrer l'Espagne et réduire votre commande";Acceptez-vous l'intégration de l'Espagne au programme;;D;"Réduit le coût du programme de 15%
-En revanche, en réduisant votre commande votre part du gateau technologique est plus petit, d'autant qu'il est partagé en plus de part.
-Sa valeur sera déterminée à la prochaine étape en fonction du niveau de réduction de commande.";15;;;"cout:-80
-std_cout:-40";;Eurodrone;Eurodrone;
-17;2011;"L'Allemagne, leader sur le programme et soutenue par l'Italie vous contraigne à accepter l'Espagne à bord du programme. 
-Ces négociations difficiles rajoutent 1 an à la durée du programme.";Les négociations prennent une année supplémentaire;;A;"Pas de décision, vous subussez le consensus des deux autres partis
-L'Espagne est donc intégrée avec les conséquences suivantes : 
-Augmentation de la durée du programme d'un an
-Réduit le coût du programme de 15%
-Les economies d'échelles grâce aux 125 drones permettent également de réduire le coût unitaire du drone de 10%
-Votre incrément technologique est reduit de 20%
-";14;;;"duree:+1
-cout:-80
-std_cout:-40
-niveau_techno:-20";cout_unitaire:-10;Eurodrone;Eurodrone;
-15;2011;"Reduction de la commande de drone
-Combien de drones voulez-vous acheter (multiple de 5)? 
-A : 20 drones
-B : 15 drones
-C : 10 drones
-";Combien ?;;A;"Achat de 20 unités
-Réduction de 30% de votre incrément technologique";16;;;niveau_techno:-30;;Eurodrone;Eurodrone;
-15;2011;"Reduction de la commande de drone
-Combien de drones voulez-vous acheter (multiple de 5)? 
-A : 20 drones
-B : 15 drones
-C : 10 drones
-";Combien ?;;B;"Achat de 15 unités
-Réduction de 35% de votre incrément technologique";16;;;niveau_techno:-35;;Eurodrone;Eurodrone;
-15;2011;"Reduction de la commande de drone
-Combien de drones voulez-vous acheter (multiple de 5)? 
-A : 20 drones
-B : 15 drones
-C : 10 drones
-";Combien ?;;C;"Achat de 10 unités
-Vous n'êtes plus considéré comme un participant majeur du programme et perdez donc la réalisation de parties stratégiques du drone.
-Réduction de 50% de votre gain technologique";16;;;niveau_techno:-50;;Eurodrone;Eurodrone;
-16;2011;"Vous avez l'opportunité de réduire de 10M le coût du drone à l'unité en utilisant du materiel classé ITAR, c'est-à-dire classé comme ""utiles à la confection de materiel de guerre"" par les Etats-Unis
-Cela vous évite des travaux de design notamment sur des pièces à faibles valeurs ajoutées et n'ampute pas votre progression technologique. En revanche, cela crée une dépendance aux composants américains, qui leur permet en outre d'interdire un export s'ils sont vos concurrent ou s'ils n'apprécie pas le pays que vous prospectiez. 
-Vous avez donc deux possibilités : 
+1;2011;Pour equiper la France en drone MALE, 4 options s'offrent a  vous : ;Quelle option souhaitez vous choisir ?;MALE.jpg;A;Achat sur etagere du drone Reaper americain. Solution la plus rapide pour combler le besoin, et deja  choisie par nombre de pays.;2;;;;;Reaper;Achat Reaper;
+1;2011;Pour equiper la France en drone MALE, 4 options s'offrent a  vous : ;Quelle option souhaitez vous choisir ?;;B;Programme Franco-israelien DAROK : IAI (Israel) et Dassault (France) proposent de reprendre le design d'un drone israelien deja  existant, de l'adapter au besoin français. Solution permettant un transfert technologique vers la France, mais plus lente et plus couteuse;7;niveau_techno:5;europeanisation:-5;;;DAROK;Drone MALE franco-israelien;
+1;2011;Pour equiper la France en drone MALE, 4 options s'offrent a  vous : ;Quelle option souhaitez vous choisir ?;;C;"Malgre les demonstrateurs de Dassaut et EADS, vous n'avez pas la competence technologique necessaire pour vous lancer d'emblee dans un programme. Vous proposez donc a  vos partenaires Europeens (France, Italie et Allemagne) une etude preliminaire de 2 ans, dans le but de savoir a  l'issue si ces industriels sont capables de realiser un drone MALE et quels seront les couts et temps neessaires pour un programme en cooperation associe
+Le resultat attendu de l'etude que le programme soit moins couteux que le programme franco-israelien (car finance a  3) que le programme franco-israelien (B), mais plus long a  mettre en place, et avec une probabilite d'echec faible mais non nulle";10;niveau_techno:5;europeanisation:+10;;;;Etude_eurodrone;
+1;2011;Pour equiper la France en drone MALE, 4 options s'offrent a  vous : ;Quelle option souhaitez vous choisir ?;;D;Rester sur le systeme interimaire israelien, ce dernier devenant obsolete.;0;;;;;;;
+2;2011;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;A;Plus de 20;3;;;;"cout_unitaire:-7
+min_nb_utile:+20";Reaper;Achat Reaper;
+2;2011;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;B;De 10 a� 20;3;;;;min_nb_utile:+10;Reaper;Achat Reaper;
+2;2011;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;C;Moins de 10;3;;;;cout_unitaire:+10;Reaper;Achat Reaper;
+3;2011;Quand souhiatez-vous les recevoir ? Vous avez l'opportunite d'etaler plus la livraison pour baisser les couts d'importation de ces drones, ou de les augmenter en payant le prix adequat.;Quand ?;REAPER.jpg;A;"Augmentation de la cadence de livraison de +2 unites par an
+Le cout unitaire augmente de 15M/unite";4;;;;"cout_unitaire:+15
+unite_par_an:+2";Reaper;Achat Reaper;
+3;2011;Quand souhiatez-vous les recevoir ? Vous avez l'opportunite d'etaler plus la livraison pour baisser les couts d'importation de ces drones, ou de les augmenter en payant le prix adequat.;Quand ?;REAPER.jpg;B;Maintien de la cadence de livraison annoncee, maintien du prix annonce;4;;;;;Reaper;Achat Reaper;
+3;2011;Quand souhiatez-vous les recevoir ? Vous avez l'opportunite d'etaler plus la livraison pour baisser les couts d'importation de ces drones, ou de les augmenter en payant le prix adequat.;Quand ?;REAPER.jpg;C;"Consentement a  une baisse de la cadence de livraison de -2 unites par an
+Cout unitaire reduie de 10M/unite";4;;;;"cout_unitaire:-10
+unite_par_an:-2";Reaper;Achat Reaper;
+4;2011;"Ces drones sont des drones armes. Quelles armes choisissez-vous pour ces drones : 
+";Quelles munitions ?;;A;Armes US sur etageres. Cette solution vous permet de disposer de la pleine capacite de l'appareil des sa livraison, a  moindre couts.;5;;;;;Reaper;Achat Reaper;
+4;2011;"Ces drones sont des drones armes. Quelles armes choisissez-vous pour ces drones : 
+";Quelles munitions ?;;B;"Adaptation de munition françaises pour l'appareil
+Cette solution est plus chere, plus longue (rajoute deux ans au delai du programme et coute 50M). En revanche elle incremente votre technologie et votre budget de defense a  chaque unite livree (on la considere livree avec ses munitions)";6;;;"duree:+2
+niveau_techno:+1";"cout_unitaire:+4
+budget:+1";Reaper;Achat Reaper;
+5;2011;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;A;"Logique de stock
+Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela genere des couts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitue en permanence.";0;;;;cout_unitaire:+5;Reaper;Achat Reaper;launch_programme
+5;2011;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;B;"Logique de flux tendus
+Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;Reaper;Achat Reaper;launch_programme
+6;2011;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;A;"Logique de stock
+Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela genere des couts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitue en permanence";0;;;;"cout_unitaire:+7
+budget:+1";Reaper;Achat Reaper;launch_programme
+6;2011;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;B;"Logique de flux tendus
+Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;Reaper;Achat Reaper;launch_programme
+7;2011;"Le programme DAROK est un programme de transfert technologique d'IAI (Israel) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingenieurie reparti en 65/35 en faveur d'IAI. 
+Le gouvernement Français peut renegocier ces partages avec le gouvernement Israelien, et repercuter les resultats des negociations aux industriels selon les termes suivants.";Quel partage industriel entre Dassault (France) et IAI (Israel) ?;DAROK.jpg;A;"Augmenter la part de Dassault a  40 (partage total : 60/40)
+Cette solution augmente l'increment technologique et augmente le cout du programme pour la France de 5% (10M/an)";8;;;"cout:+10
+niveau_techno:+1";;DAROK;Drone MALE franco-israelien;
+7;2011;"Le programme DAROK est un programme de transfert technologique d'IAI (Israel) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingenieurie reparti en 65/35 en faveur d'IAI. 
+Le gouvernement Français peut renegocier ces partages avec le gouvernement Israelien, et repercuter les resultats des negociations aux industriels selon les termes suivants.";Quel partage industriel entre Dassault (France) et IAI (Israel) ?;DAROK.jpg;B;"Augmenter la part de Dassault a  45 (partage total : 55/45)
+Cette solution augmente l'increment technologique et augmente le cout du programme pour la France de 10%  (50M/an)";8;;;"cout:+20
+niveau_techno:+2";;DAROK;Drone MALE franco-israelien;
+7;2011;"Le programme DAROK est un programme de transfert technologique d'IAI (Israel) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingenieurie reparti en 65/35 en faveur d'IAI. 
+Le gouvernement Français peut renegocier ces partages avec le gouvernement Israelien, et repercuter les resultats des negociations aux industriels selon les termes suivants.";Quel partage industriel entre Dassault (France) et IAI (Israel) ?;DAROK.jpg;C;Conserver le partage actuel;8;;;;;DAROK;Drone MALE franco-israelien;
+8;2011;"Combien d'appareils acheterez-vous  ? 
+";Combien ?;DAROK.jpg;A;moins de 10;9;;;;"cout_unitaire:+25
+budget:-3";DAROK;Drone MALE franco-israelien;
+8;2011;"Combien d'appareils acheterez-vous  ? 
+";Combien ?;DAROK.jpg;B;de 11 a 20;9;;;;min_nb_utile:+11;DAROK;Drone MALE franco-israelien;
+8;2011;"Combien d'appareils acheterez-vous  ? 
+";Combien ?;DAROK.jpg;C;plus de 21;9;;;;"cout_unitaire:-10
+budget:+5
+min_nb_utile:+21";DAROK;Drone MALE franco-israelien;
+9;2011;Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions preexistantes d'helicopteres, evitant des couts d'adaptation ou de design supplementaires. Cependant, l'approvisionnement de ces munitions peut être pense suivant deux logiques.;Quelle logique pour vos munitions ?;;A;"Logique de flux tendus
+Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;DAROK;Drone MALE franco-israelien;launch_programme
+9;2011;Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions preexistantes d'helicopteres, evitant des couts d'adaptation ou de design supplementaires. Cependant, l'approvisionnement de ces munitions peut être pense suivant deux logiques.;Quelle logique pour vos munitions ?;;B;"Logique de stock
+Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela genere des couts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitue en permanence";0;;;;"budget:+2
+cout_unitaire:+5";DAROK;Drone MALE franco-israelien;launch_programme
+10;2011;"Cette etude preliminaire avec l'Allemagne  et l'Italie doit être partagee entre les differents industriels participants : 
+EADS Allemagne, Dassault (France) et Leonardo (Italie). L'Allemagne propose un partage de 40% Allemagne(EADS, qui prend le lead du programme), 30% pour la France (Dassault) et 30% pour l'Italie (Leonardo).";Quel leadership pour l'etude preliminaire ?;EURODRONE.jpg;A;"Contester le lead de ces travaux en surencherissant a  sur votre participation dans l'etude, afin d'obtenir le lead pour la France (Dassault)
+Le cout de l'etude de votre cote est augmente de 15M
+En retour vous beneficiez d'une augmentation de l'increment technologique de l'etude";11;;;"cout:+15
+niveau_techno:+1";;;Etude_eurodrone;
+10;2011;"Cette etude preliminaire avec l'Allemagne  et l'Italie doit être partagee entre les differents industriels participants : 
+EADS Allemagne, Dassault (France) et Leonardo (Italie). L'Allemagne propose un partage de 40% Allemagne(EADS, qui prend le lead du programme), 30% pour la France (Dassault) et 30% pour l'Italie (Leonardo).";Quel leadership pour l'etude preliminaire ?;EURODRONE.jpg;B;"Consentir au lead d'EADS qui est propose par l'Allemagne
+Le cout de l'etude de votre cote est reduit de 10M";11;;;cout:-10;;;Etude_eurodrone;
+11;2013;"Deux ans plus tard vous beneficiez des resultats de l'etude preliminaires. Il est a  noter que l'Espagne s'est montree interessee par l'etude preliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
+A : achat sur etagere americain (Reaper). 
+B: Developpement d'un programme court Franco-israelien. 
+C: Developpement d'un programme Europeen sur la base des resultats de l'etude
+D: Rester sur le systeme interimaire israelien";Quelles suites donner a  l'Etude ?;;A;"Achat sur etagere du drone Reaper americain. Solution la plus rapide pour combler le besoin, et deja  choisie par nombre de pays.
+";22;;europeanisation:-12;;;Reaper;Achat Reaper;
+11;2013;"Deux ans plus tard vous beneficiez des resultats de l'etude preliminaires. Il est a  noter que l'Espagne s'est montree interessee par l'etude preliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
+A : achat sur etagere americain (Reaper). 
+B: Developpement d'un programme court Franco-israelien. 
+C: Developpement d'un programme Europeen sur la base des resultats de l'etude
+D: Rester sur le systeme interimaire israelien";Quelles suites donner a  l'Etude ?;;B;Programme Franco-israelien DAROK : IAI (Israel) et Dassault (France) proposent de reprendre le design d'un drone d'IAI, de l'adapter au besoin français. Solution permettant un transfert technologique vers la France, mais plus lente qu'un achat sur etagere et plus couteuse qu'un programme commun;27;;europeanisation:-15;;;DAROK;Drone MALE franco-israelien;
+11;2013;"Deux ans plus tard vous beneficiez des resultats de l'etude preliminaires. Il est a  noter que l'Espagne s'est montree interessee par l'etude preliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
+A : achat sur etagere americain (Reaper). 
+B: Developpement d'un programme court Franco-israelien. 
+C: Developpement d'un programme Europeen sur la base des resultats de l'etude
+D: Rester sur le systeme interimaire israelien";Quelles suites donner a  l'Etude ?;;C;"Developpement d'un programme Europeen sur la base des resultats de l'etude
+Cette solution apparait comme moins chere, mais plus longue et un peu plus incertaines. Le programme pourrait être rejoint par d'autres partenaires en cours de route, augmentant le delai mais diminuant les couts. 
+Point de vue industriel, les retombees sont partagees entre les pays, et sont donc moins importantes que pour le programme Franco-Israelien. ";12;;europeanisation:+10;;;Eurodrone;Etude_eurodrone;
+11;2013;"Deux ans plus tard vous beneficiez des resultats de l'etude preliminaires. Il est a  noter que l'Espagne s'est montree interessee par l'etude preliminaire. Vous avez  de nouveau le choix entre les solutions suivantes : 
+A : achat sur etagere americain (Reaper). 
+B: Developpement d'un programme court Franco-israelien. 
+C: Developpement d'un programme Europeen sur la base des resultats de l'etude
+D: Rester sur le systeme interimaire israelien";Quelles suites donner a  l'Etude ?;;D;Rester sur le systeme interimaire israelien, ce dernier devenant obsolete.;0;;;;;;;
+12;2013;"Le partage industriel est proportionel au financement des etats. Cependant, une commande minimale de 100 drones est necessaire pour la viabilite du programme, sans quoi le cout du drone a  l'unite exploserait. L'Italie s'est positionne pour  25 drones et l'Allemagne pour 35.
+Plusieurs options s'offrent a  vous : 
+A:  En commander 40 pour completer la commande. Cette commande importante (la plus elevee) vous assure le leadership du programme, maximisant les retombees technologiques. Vous pourrez tenter de vendre (a  perte) vos drones excedentaires dans un second temps.
+B : Negocier avec vos partenaires pour qu'ils commandent davantage de drones, pour repartir les unites excedentaires (30Italie, 30 France, 40 Allemagne).
+C : Quitter le programme et revenir au choix precedent";Comment partager la commande necessaire au lancement du programme ?;EURODRONE.jpg;A;"Commander 40 pour completer la commande. Cette commande importante (la plus elevee) vous assure le leadership du programme, maximisant les retombees  technologiques et budgetaires. Votre influence est egalement plus grande sur le programme, pouvant potentiellement lever des verrous export de vos partenaires dans le futur. Vous pourrez tenter de vendre (a  perte) vos drones excedentaires dans un second temps.
+Augmente l'increment technologique
+Augmente l'increment de budget de defense par unite  française produite";13;;;niveau_techno:+2;"budget:+1
+min_nb_utile: +40";Eurodrone;Drone Europeen;
+12;2013;"Le partage industriel est proportionel au financement des etats. Cependant, une commande minimale de 100 drones est necessaire pour la viabilite du programme, sans quoi le cout du drone a  l'unite exploserait. L'Italie s'est positionne pour  25 drones et l'Allemagne pour 35.
+Plusieurs options s'offrent a  vous : 
+A:  En commander 40 pour completer la commande. Cette commande importante (la plus elevee) vous assure le leadership du programme, maximisant les retombees technologiques. Vous pourrez tenter de vendre (a  perte) vos drones excedentaires dans un second temps.
+B : Negocier avec vos partenaires pour qu'ils commandent davantage de drones, pour repartir les unites excedentaires (30Italie, 30 France, 40 Allemagne).
+C : Quitter le programme et revenir au choix precedent";Comment partager la commande necessaire au lancement du programme ?;EURODRONE.jpg;B;"Negocier avec vos partenaires pour qu'ils commandent davantage de drones, pour repartir les unites excedentaires (30Italie, 30 France, 40 Allemagne). L'Allemagne benificera donc du leadershipe du programme et maximisera ses retombees economiques (technologiques et budgetaires).
+Rajoute 1 an de delai dans le programme";14;;;duree:+1;min_nb_utile: +30;Eurodrone;Drone Europeen;
+12;2013;"Le partage industriel est proportionel au financement des etats. Cependant, une commande minimale de 100 drones est necessaire pour la viabilite du programme, sans quoi le cout du drone a  l'unite exploserait. L'Italie s'est positionne pour  25 drones et l'Allemagne pour 35.
+Plusieurs options s'offrent a  vous : 
+A:  En commander 40 pour completer la commande. Cette commande importante (la plus elevee) vous assure le leadership du programme, maximisant les retombees technologiques. Vous pourrez tenter de vendre (a  perte) vos drones excedentaires dans un second temps.
+B : Negocier avec vos partenaires pour qu'ils commandent davantage de drones, pour repartir les unites excedentaires (30Italie, 30 France, 40 Allemagne).
+C : Quitter le programme et revenir au choix precedent";Comment partager la commande necessaire au lancement du programme ?;;C;Quitter le programme et revenir au choix precedent;11;;europeanisation:-25;;;;;
+13;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+Plusieurs options s'offrent alors a  vous : 
+A : Refuser l'integration de l'Espagne alors qu'elle etait bien accueillie par l'Allemagne et l'Italie
+B : Integrer l'Espagne et conserver votre commande et votre leadership
+C : Integrer l'Espagne et reduire votre commande a  25
+D : Integrer l'Espagne et reduire votre commande";Acceptez-vous l'integration de l'Espagne au programme;EURODRONE.jpg;A;"Refuser l'integration de l'Espagne alors qu'elle etait bien accueillie par l'Allemagne et l'Italie.
+Les autres aspects du programme restent inchanges";16;;europeanisation:-5;;;Eurodrone;Drone Europeen;
+13;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+Plusieurs options s'offrent alors a  vous : 
+A : Refuser l'integration de l'Espagne alors qu'elle etait bien accueillie par l'Allemagne et l'Italie
+B : Integrer l'Espagne et conserver votre commande et votre leadership
+C : Integrer l'Espagne et reduire votre commande a  25
+D : Integrer l'Espagne et reduire votre commande";Acceptez-vous l'integration de l'Espagne au programme;EURODRONE.jpg;B;"Reduit le cout du programme de 10M/an
+Les economies d'echelles gra¢ce aux 125 drones permettent egalement de reduire le cout unitaire du drone de 10M
+Votre increment technologique est reduit
+";16;;;"cout:-10
+niveau_techno:-1";cout_unitaire:-10;Eurodrone;Drone Europeen;
+13;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+Plusieurs options s'offrent alors a  vous : 
+A : Refuser l'integration de l'Espagne alors qu'elle etait bien accueillie par l'Allemagne et l'Italie
+B : Integrer l'Espagne et conserver votre commande et votre leadership
+C : Integrer l'Espagne et reduire votre commande a  25
+D : Integrer l'Espagne et reduire votre commande davantage";Acceptez-vous l'integration de l'Espagne au programme;EURODRONE.jpg;C;"Reduit le cout du programme de 10M/an
+Les economies d'echelles gra¢ce aux 125 drones permettent egalement de reduire le cout unitaire du drone de 5M
+En revanche, en reduisant votre commande a  25, l'Allemagne devient leader du programme, et le gateau technologique est partage en plus de part.
+Votre increment technologique est donc reduit, ainsi que votre increment de budget de defense par unite française produite";16;;;"cout:-10
+niveau_techno:-1";cout_unitaire:-5;Eurodrone;Drone Europeen;
+13;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+Plusieurs options s'offrent alors a  vous : 
+A : Refuser l'integration de l'Espagne alors qu'elle etait bien accueillie par l'Allemagne et l'Italie
+B : Integrer l'Espagne et conserver votre commande et votre leadership
+C : Integrer l'Espagne et reduire votre commande a  25
+D : Integrer l'Espagne et reduire votre commande";Acceptez-vous l'integration de l'Espagne au programme;EURODRONE.jpg;D;"Reduit le cout du programme de 10M/an
+En revanche, en reduisant votre commande l'Allemagne devient leader du programme, et votre part du gateau technologique est la plus petite.
+Votre increment technologique est donc divise par 2 (perte de leadership), et sera diminue encore suivant la valeur de la reduction de commande (prochaine etape).
+Votre increment de budget de defense par unite française produite est divise par 2 (retour a  situation de non leadership)";15;;;cout:-10;;Eurodrone;Drone Europeen;
+14;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+";Acceptez-vous l'integration de l'Espagne au programme ?;EURODRONE.jpg;A;Demander le refus de l'integration de l'Espagne, malgre la volonte allemande de les integrer, reduisant de  votre indice d'europeanisation;17;;europeanisation:-5;;;Eurodrone;Drone Europeen;
+14;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+Plusieurs options s'offrent alors a  vous : 
+A : Demander le refus de l'integration de l'Espagne (elle est bien accueillie par l'Allemagne, leader du programme, et l'Italie)
+B : Integrer l'Espagne et conserver votre commande
+C : Integrer l'Espagne et reduire votre commande a  25
+D : Integrer l'Espagne et reduire votre commande";Acceptez-vous l'integration de l'Espagne au programme ?;EURODRONE.jpg;B;" Integrer l'Espagne et conserver votre commande
+Reduit le cout du programme de 8M/an
+Les economies d'echelles gra¢ce aux 125 drones permettent egalement de reduire le cout unitaire du drone de 10M
+Votre increment technologique est reduit
+";16;;;"cout:-8
+niveau_techno:-0.5";cout_unitaire:-10;Eurodrone;Drone Europeen;
+14;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+Plusieurs options s'offrent alors a  vous : 
+A : Demander le refus de l'integration de l'Espagne (elle est bien accueillie par l'Allemagne, leader du programme, et l'Italie)
+B : Integrer l'Espagne et conserver votre commande
+C : Integrer l'Espagne et reduire votre commande a  25
+D : Integrer l'Espagne et reduire votre commande";Acceptez-vous l'integration de l'Espagne au programme ?;EURODRONE.jpg;C;" Integrer l'Espagne et en profiter pour reduire votre commande a  25
+ unites
+Reduit le cout du programme de 8M/an
+Les economies d'echelles gra¢ce aux 120 drones permettent egalement de reduire le cout unitaire du drone de 5M
+En revanche, en reduisant votre commande a  25, votre part du gateau technologique est plus petit, d'autant qu'il est partage en plus de part.
+Votre increment technologique est donc reduit de 25%";16;;;"cout:-8
+niveau_techno:-1";"min_nb_utile: -15
+cout_unitaire:-5";Eurodrone;Drone Europeen;
+14;2013;"Pendant les negociation de partage industriel entre les etats, l'Espagne a confirme son interêt pour le programme et souhaite le rejoindre, en commandant 25 drones. Cela peut potentiellement reduire davantage les couts du programme. En revanche, cela diminue vos retombees technologiques.
+Plusieurs options s'offrent alors a  vous : 
+A : Demander le refus de l'integration de l'Espagne (elle est bien accueillie par l'Allemagne, leader du programme, et l'Italie)
+B : Integrer l'Espagne et conserver votre commande
+C : Integrer l'Espagne et reduire votre commande a  25
+D : Integrer l'Espagne et reduire votre commande";Acceptez-vous l'integration de l'Espagne au programme ?;EURODRONE.jpg;D;" Integrer l'Espagne et en profiter pour reduire votre commande a  25 sous unites. Reduit le cout du programme de 8M/an
+En revanche, en reduisant votre commande votre part du gateau technologique est plus petit, d'autant qu'il est partage en plus de part.
+Sa valeur sera determinee a  la prochaine etape en fonction du niveau de reduction de commande.";15;;;cout:-8;;Eurodrone;Drone Europeen;
+17;2013;"L'Allemagne, leader sur le programme et soutenue par l'Italie vous contraigne a  accepter l'Espagne a  bord du programme. 
+Ces negociations difficiles rajoutent 1 an a  la duree du programme.";Les negociations prennent une annee supplementaire;EURODRONE.jpg;A;"Pas de decision, vous subussez le consensus des deux autres partis
+L'Espagne est donc integree avec les consequences suivantes : 
+Augmentation de la duree du programme d'un an
+Reduit le cout du programme de 8M/an Les economies d'echelles gra¢ce aux 125 drones permettent egalement de reduire le cout unitaire du drone de 10M
+Votre increment technologique est reduit
+";16;;;"duree:+1
+cout:-8
+niveau_techno:-0.5";cout_unitaire:-10;Eurodrone;Drone Europeen;
+15;2013;"Reduction de la commande de drone
+";A combien voulez-vous reduire votre commande ?;EURODRONE.jpg;A;"Achat d'au moins 16 unites
+Reduction de 30% de votre increment technologique";16;;;niveau_techno:-1;min_nb_utile:24;Eurodrone;Drone Europeen;
+15;2013;"Reduction de la commande de drone
+";A combien voulez-vous reduire votre commande ?;EURODRONE.jpg;B;"Achat de moins de 16 unites
+Vous n'êtes plus considere comme un participant majeur du programme et perdez donc la realisation de parties strategiques du drone.
+Reduction de 50% de votre gain technologique";16;;;niveau_techno:-2;min_nb_utile: -40;Eurodrone;Drone Europeen;
+16;2013;"Vous avez l'opportunite de reduire de 10M le cout du drone a  l'unite en utilisant du materiel classe ITAR, c'est-a -dire classe comme ""utiles a  la confection de materiel de guerre"" par les Etats-Unis
+Cela vous evite des travaux de design notamment sur des pieces a  faibles valeurs ajoutees et n'ampute pas votre progression technologique. En revanche, cela cree une dependance aux composants americains, qui leur permet en outre d'interdire un export s'ils sont vos concurrent ou s'ils n'apprecie pas le pays que vous prospectiez. 
+Vous avez donc deux possibilites : 
 A : Accepter l'usage de materiel ITAR
-B : Interdire l'usage de materiel ITAR";Acceptez-vous de vous soumettre au contrôle export américain pour diminuer les coûts ?;;A;"Accepter l'usage de materiel ITAR
-Réduction de 10M du coût de l'appareil
-Ajout d'une dépendance US aux dépendance exports";18;;;cout:-10;dependance_export:Allemagne,Italie,Espagne,Etats-Unis;Eurodrone;Eurodrone;
-16;2011;"Vous avez l'opportunité de réduire de 10M le coût du drone à l'unité en utilisant du materiel classé ITAR, c'est-à-dire classé comme ""utiles à la confection de materiel de guerre"" par les Etats-Unis
-Cela vous évite des travaux de design notamment sur des pièces à faibles valeurs ajoutées et n'ampute pas votre progression technologique. En revanche, cela crée une dépendance aux composants américains, qui leur permet en outre d'interdire un export s'ils sont vos concurrent ou s'ils n'apprécie pas le pays que vous prospectiez. 
-Vous avez donc deux possibilités : 
+B : Interdire l'usage de materiel ITAR";Acceptez-vous de vous soumettre au controle export americain pour diminuer les couts ?;EURODRONE.jpg;A;"Accepter l'usage de materiel ITAR
+Reduction de 10M du cout de l'appareil
+Ajout d'une dependance US aux dependance exports";18;;;;cout_unitaire:-10;Eurodrone;Drone Europeen;
+16;2013;"Vous avez l'opportunite de reduire de 10M le cout du drone a  l'unite en utilisant du materiel classe ITAR, c'est-a -dire classe comme ""utiles a  la confection de materiel de guerre"" par les Etats-Unis
+Cela vous evite des travaux de design notamment sur des pieces a  faibles valeurs ajoutees et n'ampute pas votre progression technologique. En revanche, cela cree une dependance aux composants americains, qui leur permet en outre d'interdire un export s'ils sont vos concurrent ou s'ils n'apprecie pas le pays que vous prospectiez. 
+Vous avez donc deux possibilites : 
 A : Accepter l'usage de materiel ITAR
-B : Interdire l'usage de materiel ITAR";Acceptez-vous de vous soumettre au contrôle export américain pour diminuer les coûts ?;;B;"Interdire l'usage de materiel ITAR
-Le programme reste inchangé";18;;;;dependance_export:Allemagne,Italie,Espagne;Eurodrone;Eurodrone;
-18;2011;"Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions préexistantes d'hélicoptères, évitant des coûts d'adaptation ou de design supplémentaires. Cependant, l'approvisionnement de ces munitions peut être pensé suivant deux logiques :
+B : Interdire l'usage de materiel ITAR";Acceptez-vous de vous soumettre au controle export americain pour diminuer les couts ?;EURODRONE.jpg;B;"Interdire l'usage de materiel ITAR
+Le programme reste inchange";18;;;;;Eurodrone;Drone Europeen;
+18;2013;"Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions preexistantes d'helicopteres, evitant des couts d'adaptation ou de design supplementaires. Cependant, l'approvisionnement de ces munitions peut être pense suivant deux logiques :
 A : logique de flux tendus
-B : logique de stocks";Quelle logique pour vos munitions ?;;A;"Logique de flux tendus
-Vous achetez en permanence le juste necessaire pour le besoin actuel.
-Coût : 40M/an
-Incrément de budget défense : 1M";0;;budget:-40;;budget:+2;Eurodrone;DAROK;launch_programme
-18;2011;"Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions préexistantes d'hélicoptères, évitant des coûts d'adaptation ou de design supplémentaires. Cependant, l'approvisionnement de ces munitions peut être pensé suivant deux logiques :
+B : logique de stocks";Quelle logique pour vos munitions ?;EURODRONE.jpg;A;"Logique de flux tendus
+Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;Eurodrone;Drone Europeen;launch_programme
+18;2013;"Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions preexistantes d'helicopteres, evitant des couts d'adaptation ou de design supplementaires. Cependant, l'approvisionnement de ces munitions peut être pense suivant deux logiques :
 A : logique de flux tendus
-B : logique de stocks";Quelle logique pour vos munitions ?;;B;"Logique de stock
-Vous constituez un stock de munitions pour votre aeronefs, en cas de - Achat sur étagère américain (Reaper). . Cependant, cela génère des coûts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitué en permanence
-Coût 80M/an
-ncrément de budget défense : 4";0;;budget:-80;;budget:+4;Eurodrone;DAROK;launch_programme
+B : logique de stocks";Quelle logique pour vos munitions ?;EURODRONE.jpg;B;"Logique de stock
+Vous constituez un stock de munitions pour votre aeronefs, en cas de besoin. Cela revient a une agmentation du cout unitaire de l'appareil.";0;;;;"budget:+1
+cout_unitaire: +3";Eurodrone;Drone Europeen;launch_programme
+22;2013;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;A;Plus de 20;3;;;;"cout_unitaire:-7
+min_nb_utile:+20";Reaper;Achat Reaper;
+22;2013;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;B;De 10 a 20;3;;;;min_nb_utile:+10;Reaper;Achat Reaper;
+22;2013;Combien d'appareils achetez-vous sur etagere ?;Combien ?;REAPER.jpg;C;Moins de 10;3;;;;cout_unitaire:+10;Reaper;Achat Reaper;
+23;2013;Quand souhiatez-vous les recevoir ? Vous avez l'opportunite d'etaler plus la livraison pour baisser les couts d'importation de ces drones, ou de les augmenter en payant le prix adequat.;Quand ?;REAPER.jpg;A;"Augmentation de la cadence de livraison de +2 unites par an
+Le cout unitaire augmente de 15M/unite";4;;;;"cout_unitaire:+15
+unite_par_an:+2";Reaper;Achat Reaper;
+23;2013;Quand souhiatez-vous les recevoir ? Vous avez l'opportunite d'etaler plus la livraison pour baisser les couts d'importation de ces drones, ou de les augmenter en payant le prix adequat.;Quand ?;REAPER.jpg;B;Maintien de la cadence de livraison annoncee, maintien du prix annonce;4;;;;;Reaper;Achat Reaper;
+23;2013;Quand souhiatez-vous les recevoir ? Vous avez l'opportunite d'etaler plus la livraison pour baisser les couts d'importation de ces drones, ou de les augmenter en payant le prix adequat.;Quand ?;REAPER.jpg;C;"Consentement a  une baisse de la cadence de livraison de -2 unites par an
+Cout unitaire reduie de 10M/unite";4;;;;"cout_unitaire:-10
+unite_par_an:-2";Reaper;Achat Reaper;
+24;2013;"Ces drones sont des drones armes. Quelles armes choisissez-vous pour ces drones : 
+";Quelles munitions ?;;A;Armes US sur etageres. Cette solution vous permet de disposer de la pleine capacite de l'appareil des sa livraison, a  moindre couts.;5;;;;;Reaper;Achat Reaper;
+24;2013;"Ces drones sont des drones armes. Quelles armes choisissez-vous pour ces drones : 
+";Quelles munitions ?;;B;"Adaptation de munition françaises pour l'appareil
+Cette solution est plus chere, plus longue (rajoute deux ans au delai du programme et coute 50M). En revanche elle incremente votre technologie et votre budget de defense a  chaque unite livree (on la considere livree avec ses munitions)";6;;;"duree:+2
+niveau_techno:+1";"cout_unitaire:+4
+budget:+1";Reaper;Achat Reaper;
+25;2013;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;A;"Logique de stock
+Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela genere des couts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitue en permanence.";0;;;;cout_unitaire:+5;Reaper;Achat Reaper;launch_programme
+25;2013;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;B;"Logique de flux tendus
+Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;Reaper;Achat Reaper;launch_programme
+26;2013;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;A;"Logique de stock
+Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela genere des couts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitue en permanence";0;;;;"cout_unitaire:+7
+budget:+1";Reaper;Achat Reaper;launch_programme
+26;2013;"Quelle quantite de munition sur etagere estimez-vous necessaire ?
+";Quelle logique pour vos munitions ?;;B;"Logique de flux tendus
+Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;Reaper;Achat Reaper;launch_programme
+27;2013;"Le programme DAROK est un programme de transfert technologique d'IAI (Israel) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingenieurie reparti en 65/35 en faveur d'IAI. 
+Le gouvernement Français peut renegocier ces partages avec le gouvernement Israelien, et repercuter les resultats des negociations aux industriels selon les termes suivants.";Quel partage industriel entre Dassault (France) et IAI (Israel) ?;DAROK.jpg;A;"Augmenter la part de Dassault a  40 (partage total : 60/40)
+Cette solution augmente l'increment technologique (+5), et augmente le cout du programme pour la France de 5% (50M)";8;;;"cout:+10
+niveau_techno:+1";;DAROK;Drone MALE franco-israelien;
+27;2013;"Le programme DAROK est un programme de transfert technologique d'IAI (Israel) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingenieurie reparti en 65/35 en faveur d'IAI. 
+Le gouvernement Français peut renegocier ces partages avec le gouvernement Israelien, et repercuter les resultats des negociations aux industriels selon les termes suivants.";Quel partage industriel entre Dassault (France) et IAI (Israel) ?;DAROK.jpg;B;"Augmenter la part de Dassault a  45 (partage total : 55/45)
+Cette solution augmente l'increment technologique (+12), et augmente le cout du programme pour la France de 10%  (100M)";8;;;"cout:+20
+niveau_techno:+2";;DAROK;Drone MALE franco-israelien;
+27;2013;"Le programme DAROK est un programme de transfert technologique d'IAI (Israel) vers Dassault (France). IAI sera donc leader sur ces travaux avec un partage des travaux d'ingenieurie reparti en 65/35 en faveur d'IAI. 
+Le gouvernement Français peut renegocier ces partages avec le gouvernement Israelien, et repercuter les resultats des negociations aux industriels selon les termes suivants.";Quel partage industriel entre Dassault (France) et IAI (Israel) ?;DAROK.jpg;C;Conserver le partage actuel;8;;;;;DAROK;Drone MALE franco-israelien;
+28;2013;"Combien d'appareils acheterez-vous  ? 
+";Combien ?;DAROK.jpg;A;moins de 10;9;;;;"cout_unitaire:+25
+budget:-3";DAROK;Drone MALE franco-israelien;
+28;2013;"Combien d'appareils acheterez-vous  ? 
+";Combien ?;DAROK.jpg;B;de 11 a� 20;9;;;;min_nb_utile:+11;DAROK;Drone MALE franco-israelien;
+28;2013;"Combien d'appareils acheterez-vous  ? 
+";Combien ?;DAROK.jpg;C;plus de 21;9;;;;"cout_unitaire:-10
+budget:+5
+min_nb_utile:+21";DAROK;Drone MALE franco-israelien;
+29;2013;Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions preexistantes d'helicopteres, evitant des couts d'adaptation ou de design supplementaires. Cependant, l'approvisionnement de ces munitions peut être pense suivant deux logiques.;Quelle logique pour vos munitions ?;;A;"Logique de flux tendus
+Vous achetez en permanence le juste necessaire pour le besoin actuel.";0;;;;;DAROK;Drone MALE franco-israelien;launch_programme
+29;2013;Developpant le programme pour vos propres besoin, vous pouvez utiliser des munitions preexistantes d'helicopteres, evitant des couts d'adaptation ou de design supplementaires. Cependant, l'approvisionnement de ces munitions peut être pense suivant deux logiques.;Quelle logique pour vos munitions ?;;B;"Logique de stock
+Vous constituez un stock de munitions pour votre aeronefs, en cas de conflit. Cependant, cela genere des couts importants, car vos munutions expirent tous les 3ans, et que ce stock doit être reconsitue en permanence";0;;;;"budget:+2
+cout_unitaire:+5";DAROK;Drone MALE franco-israelien;launch_programme

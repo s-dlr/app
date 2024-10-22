@@ -122,10 +122,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         )
         fig.update_layout(
             showlegend=False,
-            title=dict(
-                text="Achats en cours",
-                font=dict(size=20),
-            ),
+            title=dict(text="Achats en cours", font=dict(size=20, color="#4287f5")),
         )
         col.plotly_chart(
             fig, use_container_width=True, key=f"constructions_{equipe}"
@@ -141,7 +138,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
             showlegend=False,
             title=dict(
                 text="Programmes en cours",
-                font=dict(size=20),
+                font=dict(size=20, color="#4287f5"),
             ),
         )
         fig.update_yaxes(autorange="reversed")

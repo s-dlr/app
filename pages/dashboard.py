@@ -47,6 +47,9 @@ display_equipes = st.multiselect(
     'Equipes',
     df_indicateurs[EQUIPE].unique()
 )
+df_last_info_equipe = df_indicateurs.sort_values(ANNEE, ascending=True)
+df_last_info_equipe = df_indicateurs.drop_duplicates(EQUIPE, keep="last")
+df_annee_equipe = df_indicateurs[[ANNEE, EQUIPE]].set_index(EQUIPE)
 st.divider()
 
 
@@ -106,14 +109,10 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
         # Constructions
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
-        df_constructions_equipe[DEBUT] = df_constructions_equipe[DEBUT].apply(
-            lambda x: datetime(year=x, month=1, day=1)
-        )
-        df_constructions_equipe[FIN] = df_constructions_equipe[FIN].apply(
-            lambda x: datetime(year=x, month=1, day=1)
-        )
-        fig = px.timeline(
-            df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET
+        fig = display_timeline(
+            df_constructions_equipe,
+            annee_courante=df_annee_equipe.loc[EQUIPE],
+            col_avancement=NOMBRE_UNITE,
         )
         fig.update_layout(
             showlegend=False,
@@ -122,20 +121,16 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
                 font=dict(size=20),
             ),
         )
-        fig.update_yaxes(autorange="reversed")
         col.plotly_chart(
             fig, use_container_width=True, key=f"constructions_{equipe}"
         ) 
         # Programmes
         df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
-        df_programmes_equipe[DEBUT] = df_programmes_equipe[DEBUT].apply(
-            lambda x: datetime(year=x, month=1, day=1)
+        fig = display_timeline(
+            df_programmes_equipe,
+            annee_courante=df_annee_equipe.loc[EQUIPE],
+            col_avancement=NOMBRE_UNITE,
         )
-        df_programmes_equipe[FIN] = df_programmes_equipe[FIN].apply(
-            lambda x: datetime(year=x, month=1, day=1)
-        )
-        df_programmes_equipe[NOM] = df_programmes_equipe[NOM].str.capitalize()
-        fig = px.timeline(df_programmes_equipe, x_start=DEBUT, x_end=FIN, y=NOM, color=NOM)
         fig.update_layout(
             showlegend=False,
             title=dict(

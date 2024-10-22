@@ -2,13 +2,10 @@
 Fonctions pour afficher des données
 """
 from datetime import datetime
-
 import numpy as np
-import pandas as pd
 import plotly.express as px
-from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-import re
+
 import streamlit as st
 
 from src.variables import *

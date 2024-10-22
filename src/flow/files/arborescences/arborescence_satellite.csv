@@ -27,15 +27,15 @@ duree:+15";;;satellite;launch_programme
 duree:+12";;;satellite;launch_programme
 6;2006;"On peut choisir de développer un satellite militaire uniquement ou de développer un programme mixte civilo-militaire. Le programme militaire coûterait 700 millions; plus 300 millions par satellite; lancement prévu vers 2018. Le programme civilo-militaire - développé et largement autofinancé par Airbus - coûterait 500 millions (plus 150 millions par satellite) mais demande de partager l'utilisation des satellites avec le CNES (Centre National d'Etudes Spatiales; organisme civil). Lancement prévu vers 2021.";Développer un satellite uniquement militaire ou utiliser un satellite mixte ? Et combien en construire ?;;D;"Deux satellites militaires CSO (composante spatiale optique); pesant 3500 kg chacun; pour un prix total de 1.3 milliard";9;;;"cout:+108
 duree:+12";;;satellite;launch_programme
-7;2018;Le 19 décembre 2018 CSO est lancé par Soyouz (un lanceur russe) en orbite héliosynchrone à 800km.;Le lancement est un succès;;A;Ouf;14;;bonus_rens:+60;;;;;
-9;2018;Le 19 décembre 2018 CSO est lancé par Soyouz (un lanceur russe) en orbite héliosynchrone à 800km.;Le lancement est un succès;;A;Ouf;10;;bonus_rens:+60;;;;;
-10;2020;Le 29 décembre 2020 CSO est lancé par Soyouz en orbite basse à 480km.;Le lancement est un succès;;A;Ouf;14;;bonus_rens:+40;;;;;
-11;2021;Le 29 avril 2021 les deux satellites Pléiade Néo 3&4 sont tirés de Kourou;Le lancement est un succès;;A;Ouf;0;;bonus_rens:+40;;;;;
-12;2021;Le 29 avril 2021 les deux premiers satellites Pléiade Néo 3&4 sont tirés de Kourou;Le lancement est un succès;;A;Ouf;13;;bonus_rens:+40;;;;;
+7;2018;Le 19 décembre 2018 CSO est lancé par Soyouz (un lanceur russe) en orbite héliosynchrone à 800km.;Le lancement est un succès;;A;Ouf;14;;rens:+60;;;;;
+9;2018;Le 19 décembre 2018 CSO est lancé par Soyouz (un lanceur russe) en orbite héliosynchrone à 800km.;Le lancement est un succès;;A;Ouf;10;;rens:+60;;;;;
+10;2020;Le 29 décembre 2020 CSO est lancé par Soyouz en orbite basse à 480km.;Le lancement est un succès;;A;Ouf;14;;rens:+40;;;;;
+11;2021;Le 29 avril 2021 les deux satellites Pléiade Néo 3&4 sont tirés de Kourou;Le lancement est un succès;;A;Ouf;0;;rens:+40;;;;;
+12;2021;Le 29 avril 2021 les deux premiers satellites Pléiade Néo 3&4 sont tirés de Kourou;Le lancement est un succès;;A;Ouf;13;;rens:+40;;;;;
 13;2022;Le 21 décembre 2022 les deux satellites suivant Pléiades Néo 5&6 sont lancés par la fusé Véga-C. C'est un échec : la fusé présente une défaillance et les satellites sont perdus.;Est-ce qu'on les remplace ?;;A;Non;0;;;;;;;
 13;2022;Le 21 décembre 2022 les deux satellites suivant Pléiades Néo 5&6 sont lancés par la fusé Véga-C. C'est un échec : la fusé présente une défaillance et les satellites sont perdus.;Est-ce qu'on les remplace ?;;B;On les refait à l'identique;0;;"budget:-300
 niveau_techno:+5
-bonus_rens:+40";;;;;
+rens:+40";;;;;
 13;2022;Le 21 décembre 2022 les deux satellites suivant Pléiades Néo 5&6 sont lancés par la fusé Véga-C. C'est un échec : la fusé présente une défaillance et les satellites sont perdus.;Est-ce qu'on les remplace ?;;C;"On se lance dans la nouvelle génération de satellites nouvelle génération; Pléiade Néo Next.";0;;"budget:-400
 niveau_techno:+10
 bonus_rens:+50";;;;pleiade_neo_next;launch_programme

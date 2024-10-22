@@ -128,6 +128,12 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         ) 
         # Programmes
         df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
+        df_programmes_equipe[DEBUT] = df_programmes_equipe[DEBUT].apply(
+            lambda x: datetime(year=x, month=1, day=1)
+        )
+        df_programmes_equipe[FIN] = df_programmes_equipe[FIN].apply(
+            lambda x: datetime(year=x, month=1, day=1)
+        )
         df_programmes_equipe[NOM] = df_programmes_equipe[NOM].str.capitalize()
         fig = px.timeline(df_programmes_equipe, x_start=DEBUT, x_end=FIN, y=NOM, color=NOM)
         fig.update_layout(

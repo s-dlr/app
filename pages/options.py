@@ -119,7 +119,7 @@ else:
                     }
                     if len(modification_dict) > 0:
                         fig = display_gauges_armees(
-                            values=st.session_state.armee,
+                            values=st.session_state.armee.to_dict(),
                             modifications=modification_dict,
                             grid=True,
                         )

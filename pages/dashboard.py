@@ -101,8 +101,8 @@ st.divider()
 # Affichage
 for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
     with col.container(border=True):
-        annee_equipe = df_annee_equipe.loc[equipe]
-        col.subheader(f":blue[{equipe} - Année {annee_equipe}]")
+        annee_equipe = df_annee_equipe.loc[equipe][0]
+        col.subheader(f":blue[{equipe} - {annee_equipe}]")
         # Compteurs armées
         niveaux_armee = df_armees[
             (df_armees[EQUIPE] == equipe) & (df_armees[ANNEE] == annee_equipe)

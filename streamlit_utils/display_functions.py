@@ -1,6 +1,7 @@
 """
 Fonctions pour afficher des données
 """
+from datetime import datetime
 import pandas as pd
 import plotly.express as px
 from plotly.subplots import make_subplots
@@ -35,6 +36,7 @@ LABELS: dict = {
     ANNEE: "Année de disponibilité",
     UNITE_PAR_AN: "Cadence de production (unité/an)",
     DUREE: "Durée du programme",
+    NOMBRE_UNITE: "Nombre d'unités",
 }
 
 DRAPEAUX = {
@@ -231,4 +233,32 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
             if values.get(armee, 0) > 0:
                 fig.add_trace(get_indicateur(armee, i, 0))
         fig.update_layout(grid={"rows": 4, "columns": 1, "pattern": "independent"})
+    return fig
+
+
+def display_timeline(df, annee_courante, color, col_avancement=None):
+    df[ANNEE] = annee_courante
+    df["Pourcentage d'avancement"] = (annee_courante - df[DEBUT]) / (
+        df[FIN] - df[DEBUT]
+    )
+    hover_template = {"Pourcentage d'avancement": ":.1%", ANNEE: True}
+    if col_avancement:
+        df[LABELS[col_avancement]] = df.apply(
+            lambda x: str(x["Pourcentage d'avancement"] * x[col_avancement])
+            + "/"
+            + str(x[col_avancement]),
+            axis=1,
+        )
+        hover_template[LABELS[col_avancement]] = True
+    df[DEBUT] = df[DEBUT].apply(lambda x: datetime(year=x, month=1, day=1))
+    df[FIN] = df[FIN].apply(lambda x: datetime(year=x, month=1, day=1))
+    fig = px.timeline(
+        df,
+        x_start=DEBUT,
+        x_end=FIN,
+        y=color,
+        color=color,
+        hover_data=hover_template,
+    )
+    fig.update_yaxes(autorange="reversed")
     return fig

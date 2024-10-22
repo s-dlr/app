@@ -47,6 +47,9 @@ display_equipes = st.multiselect(
     'Equipes',
     df_indicateurs[EQUIPE].unique()
 )
+df_last_info_equipe = df_indicateurs.sort_values(ANNEE, ascending=True)
+df_last_info_equipe = df_indicateurs.drop_duplicates(EQUIPE, keep="last")
+df_annee_equipe = df_last_info_equipe[[ANNEE, EQUIPE]].set_index(EQUIPE)
 st.divider()
 
 
@@ -67,6 +70,8 @@ df_constructions = dashboard_connection.query(QUERY_CONSTRUCTIONS, ttl=5)
 ########################################################
 ##############     Indicateurs macro   #################
 ########################################################
+
+st.subheader(f":blue[Evolution des indicateurs des équipes]")
 
 # Courbes indicateurs
 col1, col2 = st.columns(2)
@@ -96,51 +101,50 @@ st.divider()
 # Affichage
 for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
     with col.container(border=True):
+        annee_equipe = df_annee_equipe.loc[equipe][0]
+        col.subheader(f":blue[{equipe} - Année {annee_equipe}]")
         # Compteurs armées
-        df_equipe = df_armees[df_armees[EQUIPE] == equipe]
-        niveaux_armee = df_equipe.iloc[df_equipe[ANNEE].argmax()]
-        col.markdown(f":blue[Armée de {equipe} en {df_equipe[ANNEE].max()}]")
+        niveaux_armee = df_armees[
+            (df_armees[EQUIPE] == equipe) & (df_armees[ANNEE] == annee_equipe)
+        ].iloc[0]
+        col.markdown(f":blue[Armée]")
         fig = display_gauges_armees(
             niveaux_armee[["terre", "air", "mer", "rens"]].to_dict(), grid=True
         )
         col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
         # Constructions
         df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
-        df_constructions_equipe[DEBUT] = df_constructions_equipe[DEBUT].apply(
-            lambda x: datetime(year=x, month=1, day=1)
-        )
-        df_constructions_equipe[FIN] = df_constructions_equipe[FIN].apply(
-            lambda x: datetime(year=x, month=1, day=1)
-        )
-        fig = px.timeline(
-            df_constructions_equipe, x_start=DEBUT, x_end=FIN, y=OBJET, color=OBJET
+        fig = display_timeline(
+            df_constructions_equipe,
+            annee_courante=annee_equipe,
+            color=OBJET,
+            col_avancement=NOMBRE_UNITE,
         )
         fig.update_layout(
             showlegend=False,
-            title=dict(
-                text="Achats en cours",
-                font=dict(size=20),
-            ),
+            title=dict(text="Achats en cours", font=dict(size=20, color="#4287f5")),
         )
-        fig.update_yaxes(autorange="reversed")
         col.plotly_chart(
             fig, use_container_width=True, key=f"constructions_{equipe}"
         ) 
         # Programmes
         df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
-        df_programmes_equipe[NOM] = df_programmes_equipe[NOM].str.capitalize()
-        fig = px.timeline(df_programmes_equipe, x_start=DEBUT, x_end=FIN, y=NOM, color=NOM)
+        fig = display_timeline(
+            df_programmes_equipe,
+            annee_courante=annee_equipe,
+            color=NOM
+        )
         fig.update_layout(
             showlegend=False,
             title=dict(
                 text="Programmes en cours",
-                font=dict(size=20),
+                font=dict(size=20, color="#4287f5"),
             ),
         )
         fig.update_yaxes(autorange="reversed")
         col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
         # Dépendances
-        col.markdown(f":blue[Dépendances de {equipe} en {df_indicateurs[ANNEE].max()}]")
+        col.markdown(f":blue[Dépendances]")
         pays_dependance_equipe = (
             df_dependances[df_dependances[EQUIPE] == equipe][DEPENDANCE_EXPORT]
             .str.strip()
@@ -154,9 +158,7 @@ for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
         df_indicateurs_equipe = df_indicateurs[df_indicateurs[EQUIPE] == equipe]
         col.metric(
             label=LABELS[EUROPEANISATION],
-            value=df_indicateurs_equipe.iloc[df_indicateurs_equipe[ANNEE].argmax()][
-                EUROPEANISATION
-            ],
+            value=df_last_info_equipe[EUROPEANISATION].iloc[0],
         )
         col.image(images_drapeaux, width=30)
 

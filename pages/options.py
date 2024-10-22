@@ -22,7 +22,7 @@ def next_step():
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
     # Application des modification au programme
     if selected_option.programme:
-        programme_option = st.session_state["programme " + option.programme]
+        programme_option = st.session_state["programme " + selected_option.programme]
         if programme_option.apply_modification(selected_option.modification_programme):
             programme_option.send_to_sql(st.session_state.sql_client)
         if "launch_programme" in selected_option.commandes:
@@ -34,7 +34,7 @@ def next_step():
         if objet_option.apply_modification(selected_option.modification_objet):
             objet_option.send_to_sql(st.session_state.sql_client)
         # Objet courant utilsé pour le prochain achat
-        st.session_state['objet'] = objet_option
+        st.session_state["objet"] = objet_option
     # Passage à la prochaine question
     if "select_option" not in st.session_state:
         st.session_state["select_option"] = None

@@ -125,7 +125,7 @@ def display_objet(objet_dict: dict, modification_objet: dict = {}, key: str = ""
 def display_programme(
     programme_dict: dict, modification_programme: dict = {}, key: str = ""
 ):
-    st.subheader(f":blue[{programme_dict[NOM]}]")
+    st.subheader(f":blue[{programme_dict[NOM].capitalize()}]")
     # Prix
     st.metric(
         label=LABELS[COUT],

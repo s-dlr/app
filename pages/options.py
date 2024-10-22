@@ -18,10 +18,11 @@ def next_step():
     # Application des effets immédiats
     if st.session_state.indicateurs.apply_modification(selected_option.effet_immediat):
         st.session_state.indicateurs.send_to_sql(st.session_state.sql_client)
-        st.success('Application des effets immédiats sur les indicateurs')
+        st.success(
+            f"Application des effets immédiats {selected_option.effet_immediat.to_dict()}sur les indicateurs"
+        )
     if st.session_state.armee.apply_modification(selected_option.effet_immediat):
         st.session_state.armee.send_to_sql(st.session_state.sql_client)
-        st.success('Application des effets immédiats sur les indicateurs')
     # Application des modification au programme
     if selected_option.programme:
         programme_option = st.session_state["programme " + selected_option.programme]

@@ -15,7 +15,6 @@ def init_objets(fichier_objets) -> None:
     """
     Récupération des objets
     """
-    get_objets_from_sql()
     # Objets en local
     df_objets = pd.read_csv(
         fichier_objets,
@@ -51,8 +50,6 @@ def init_programmes(
     """
     Récupération des objets
     """
-    # Programmes SQL
-    get_programmes_from_sql()
     # Programmes en local
     df_programmes = pd.read_csv(
         fichier_programmes,

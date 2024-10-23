@@ -46,6 +46,8 @@ def init_team_in_db() -> None:
             f"Chargement du jeu là où vous vous étiez arrêtés ({etat_equipe[ARBORESCENCE]}, question {etat_equipe[QUESTION]})"
         )
         get_indicateurs_from_sql()
+        get_objets_from_sql()
+        get_programmes_from_sql()
         return etat_equipe
     else:
         st.session_state["annee"] = 1998

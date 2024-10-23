@@ -23,7 +23,8 @@ def delete_team_in_db(equipe) -> None:
         f'DELETE FROM `Constructions` WHERE equipe = "{equipe}";'
         f'DELETE FROM `Programmes` WHERE equipe = "{equipe}";'
         f'DELETE FROM `Objets` WHERE equipe = "{equipe}";'
-        f'DELETE FROM `Etat` WHERE equipe = "{equipe}";    '
+        f'DELETE FROM `Etat` WHERE equipe = "{equipe}";'
+        f'DELETE FROM `Etat` WHERE equipe = "{equipe}_satellite_2";'
     ]
     connection = st.connection("astrolabedb", autocommit=True, ttl=1)
     with connection.session as session:

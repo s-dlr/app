@@ -12,7 +12,8 @@ o	Les deux pays pensent pouvoir se mettre d’accord sur la coque
 o	La France aimerait intégrer un nouveau type de radar intégré qu’est en train de développer un des fleurons de son industrie
 o	L’Italie au contraire, préfèrerait utiliser les systèmes classiques avec 2 matures
 o	La France a besoin d’une frégate d’escorte peu rapide alors que l’Italie a besoin d’un bâtiment plus fortement armé ce qui implique notamment une différence de système de propulsion
-Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;A;Poursuivre la coopération totale;0;;;;"cout_unitaire:+100
+Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;A;Poursuivre la coopération totale;0;;"europeanisation:0
+niveau_techno:0";;"cout_unitaire:+100
 annee:+4";FREMM;;
 2;2005;"Nous sommes maintenant en 2005. De premières études ont été menées et ont permis de faire apparaître les points de divergence et de convergence des deux nations :
 o	La France et l’Italie sont certains de souhaiter environ 10% des équipements en commun
@@ -40,7 +41,8 @@ o	Les deux pays pensent pouvoir se mettre d’accord sur la coque
 o	La France aimerait intégrer un nouveau type de radar intégré qu’est en train de développer un des fleurons de son industrie
 o	L’Italie au contraire, préfèrerait utiliser les systèmes classiques avec 2 matures
 o	La France a besoin d’une frégate d’escorte peu rapide alors que l’Italie a besoin d’un bâtiment plus fortement armé ce qui implique notamment une différence de système de propulsion
-Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;A;Maintenir la coopération légère;0;;;;"cout_unitaire:+100
+Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;A;Maintenir la coopération légère;0;;"europeanisation:0
+niveau_techno:0";;"cout_unitaire:+100
 annee:+3";FREMM;;
 3;2005;"Nous sommes maintenant en 2005. De premières études ont été menées et ont permis de faire apparaître les points de divergence et de convergence des deux nations :
 o	La France et l’Italie sont certains de souhaiter environ 10% des équipements en commun
@@ -52,4 +54,4 @@ Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux reta
 niveau_techno:+1";;"cout_unitaire:+165
 annee:+3";FREMM;;
 4;2005;Vos frégate remportent un appel d'offre au Maroc, qui en demande 2. Naval Group est disposé à les livrer, mais cela créera un retard de 2 ans sur la livraison de vos frégate, car le Maroc veut être livré prioritairement;Souhaitez-vous effectuer cette vente ?;;A;Confirmation de la vente de 2 frégates au Maroc;0;;budget:+800;;annee:+2;FREMM;;
-4;2005;Vos frégate remportent un appel d'offre au Maroc, qui en demande 2. Naval Group est disposé à les livrer, mais cela créera un retard de 2 ans sur la livraison de vos frégate, car le Maroc veut être livré prioritairement;Souhaitez-vous effectuer cette vente ?;;B;Annulation de la vente.;0;;;;;;;
+4;2005;Vos frégate remportent un appel d'offre au Maroc, qui en demande 2. Naval Group est disposé à les livrer, mais cela créera un retard de 2 ans sur la livraison de vos frégate, car le Maroc veut être livré prioritairement;Souhaitez-vous effectuer cette vente ?;;B;Annulation de la vente.;0;;budget:+0;;annee:0;FREMM;;

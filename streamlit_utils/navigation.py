@@ -27,9 +27,16 @@ def load_next_arborescence(prochaine_arborescence, num_question=1):
         if not num_question:
             prochaine_arborescence = PROCHAINES_ARBORESCENCE.get(prochaine_arborescence)
     # Chargement du prochain programme
-    st.session_state["arborescence"] = Arborescence(
-        arborescence=prochaine_arborescence, num_question=num_question
-    )
+    st.success(f"Chargement de {prochaine_arborescence}")
+    try:
+        st.session_state["arborescence"] = Arborescence(
+            arborescence=prochaine_arborescence, num_question=num_question
+        )
+    except:
+        prochaine_arborescence = PROCHAINES_ARBORESCENCE.get(prochaine_arborescence)
+        st.session_state["arborescence"] = Arborescence(
+            arborescence=prochaine_arborescence, num_question=num_question
+        )
     st.session_state["select_option"] = None
     st.session_state['annee'] =  int(st.session_state.arborescence.question.annee)
     st.session_state["prochaine_arborescence"] = PROCHAINES_ARBORESCENCE.get(

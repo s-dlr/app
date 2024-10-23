@@ -56,6 +56,9 @@ if "annee" in st.session_state:
 if "arborescence" not in st.session_state:
     st.session_state["arborescence"] = False
 
+if "loading" not in st.session_state:
+    st.session_state["loading"] = False
+
 if "equipe" in st.session_state:
 
     list_objets_disponibles = get_objets_disponibles()

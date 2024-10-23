@@ -72,6 +72,9 @@ def option_key(number):
 if "annee" in st.session_state:
     display_annee()
 
+if "loading" not in st.session_state:
+    st.session_state["loading"] = False
+
 if "arborescence" not in st.session_state:
     st.session_state["arborescence"] = False
 

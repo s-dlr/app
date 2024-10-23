@@ -52,7 +52,6 @@ display_equipes = st.multiselect(
 df_last_info = df_indicateurs.sort_values(ANNEE, ascending=True)
 df_last_info = df_last_info.drop_duplicates(EQUIPE, keep="last")
 df_annee_equipe = df_last_info[[ANNEE, EQUIPE]].set_index(EQUIPE)
-st.write(df_last_info)
 st.divider()
 
 
@@ -71,7 +70,6 @@ df_dependances[DEPENDANCE_EXPORT] = df_dependances[DEPENDANCE_EXPORT].apply(
 df_dependances = df_dependances.explode(DEPENDANCE_EXPORT)
 df_programmes = dashboard_connection.query(QUERY_PROGRAMMES, ttl=5)
 df_constructions = dashboard_connection.query(QUERY_CONSTRUCTIONS, ttl=5)
-st.write(df_last_info_armee)
 
 ########################################################
 ##############     Indicateurs macro   #################

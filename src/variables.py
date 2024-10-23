@@ -63,9 +63,9 @@ PROCHAINES_ARBORESCENCE = {
     "Frégate de lutte anti-sous-marine": "Satellites phase 1",
     "Satellites phase 1": "Drone d'attaque et de surveillance",
     "Drone d'attaque et de surveillance": "Fusil individuel",
-    "Fusil individuel": "Dissuasion nucléaire",
-    "Dissuasion nucléaire": "Satellites phase 2",
-    "Satellites phase 2": None,
+    "Fusil individuel": "Satellites phase 2",
+    "Satellites phase 2": "Dissuasion nucléaire",
+    "Dissuasion nucléaire": None,
 }
 ARBORESCENCES = {
     "Frégate de lutte anti-sous-marine": f"{DATA_DIR}/arborescences/arborescence_FREMM.csv",

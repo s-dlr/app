@@ -46,8 +46,7 @@ df_indicateurs = dashboard_connection.query(QUERY_INDICATEURS, ttl=5)
 if st.button("Refresh"):
     df_indicateurs = dashboard_connection.query(QUERY_INDICATEURS, ttl=5)
 display_equipes = st.multiselect(
-    'Equipes',
-    df_indicateurs[EQUIPE].unique()
+    label="Equipes", options=df_indicateurs[EQUIPE].unique(), default=[]
 )
 df_last_info = df_indicateurs.sort_values(ANNEE, ascending=True)
 df_last_info = df_last_info.drop_duplicates(EQUIPE, keep="last")
@@ -103,65 +102,66 @@ st.divider()
 ########################################################
 
 # Affichage
-for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
-    with col.container(border=True):
-        annee_equipe = df_annee_equipe.loc[equipe][0]
-        col.subheader(f":blue[{equipe} - Année {annee_equipe}]")
-        # Compteurs armées
-        niveaux_armee = df_last_info_armee[df_last_info_armee[EQUIPE] == equipe].drop(
-            columns=[ANNEE, EQUIPE]
-        )
-        col.markdown(f":blue[Armée]")
-        fig = display_gauges_armees(niveaux_armee.iloc[0].to_dict(), grid=True)
-        col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
-        # Constructions
-        df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
-        fig = display_timeline(
-            df_constructions_equipe,
-            annee_courante=annee_equipe,
-            color=OBJET,
-            col_avancement=NOMBRE_UNITE,
-        )
-        fig.update_layout(
-            showlegend=False,
-            title=dict(text="Achats en cours", font=dict(size=20, color="#4287f5")),
-        )
-        col.plotly_chart(
-            fig, use_container_width=True, key=f"constructions_{equipe}"
-        ) 
-        # Programmes
-        df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
-        fig = display_timeline(
-            df_programmes_equipe,
-            annee_courante=annee_equipe,
-            color=NOM
-        )
-        fig.update_layout(
-            showlegend=False,
-            title=dict(
-                text="Programmes en cours",
-                font=dict(size=20, color="#4287f5"),
-            ),
-        )
-        fig.update_yaxes(autorange="reversed")
-        col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
-        # Dépendances
-        col.markdown(f":blue[Dépendances]")
-        pays_dependance_equipe = (
-            df_dependances[df_dependances[EQUIPE] == equipe][DEPENDANCE_EXPORT]
-            .str.strip()
-            .unique()
-        )
-        images_drapeaux = [
-            DRAPEAUX.get(pays)
-            for pays in pays_dependance_equipe
-            if DRAPEAUX.get(pays) is not None
-        ]
-        col.metric(
-            label=LABELS[EUROPEANISATION],
-            value=df_last_info[df_last_info[EQUIPE] == equipe][EUROPEANISATION].iloc[0],
-        )
-        col.image(images_drapeaux, width=30)
+if len(display_equipes) > 0:
+    for equipe, col in zip(display_equipes, st.columns(len(display_equipes))):
+        with col.container(border=True):
+            annee_equipe = df_annee_equipe.loc[equipe][0]
+            col.subheader(f":blue[{equipe} - Année {annee_equipe}]")
+            # Compteurs armées
+            niveaux_armee = df_last_info_armee[df_last_info_armee[EQUIPE] == equipe].drop(
+                columns=[ANNEE, EQUIPE]
+            )
+            col.markdown(f":blue[Armée]")
+            fig = display_gauges_armees(niveaux_armee.iloc[0].to_dict(), grid=True)
+            col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
+            # Constructions
+            df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]
+            fig = display_timeline(
+                df_constructions_equipe,
+                annee_courante=annee_equipe,
+                color=OBJET,
+                col_avancement=NOMBRE_UNITE,
+            )
+            fig.update_layout(
+                showlegend=False,
+                title=dict(text="Achats en cours", font=dict(size=20, color="#4287f5")),
+            )
+            col.plotly_chart(
+                fig, use_container_width=True, key=f"constructions_{equipe}"
+            ) 
+            # Programmes
+            df_programmes_equipe = df_programmes[df_programmes[EQUIPE] == equipe]
+            fig = display_timeline(
+                df_programmes_equipe,
+                annee_courante=annee_equipe,
+                color=NOM
+            )
+            fig.update_layout(
+                showlegend=False,
+                title=dict(
+                    text="Programmes en cours",
+                    font=dict(size=20, color="#4287f5"),
+                ),
+            )
+            fig.update_yaxes(autorange="reversed")
+            col.plotly_chart(fig, use_container_width=True, key=f"programmes_{equipe}")
+            # Dépendances
+            col.markdown(f":blue[Dépendances]")
+            pays_dependance_equipe = (
+                df_dependances[df_dependances[EQUIPE] == equipe][DEPENDANCE_EXPORT]
+                .str.strip()
+                .unique()
+            )
+            images_drapeaux = [
+                DRAPEAUX.get(pays)
+                for pays in pays_dependance_equipe
+                if DRAPEAUX.get(pays) is not None
+            ]
+            col.metric(
+                label=LABELS[EUROPEANISATION],
+                value=df_last_info[df_last_info[EQUIPE] == equipe][EUROPEANISATION].iloc[0],
+            )
+            col.image(images_drapeaux, width=30)
 
 # Lien vers les autres pages
 st.page_link(

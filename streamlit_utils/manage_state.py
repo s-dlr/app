@@ -122,7 +122,7 @@ def apply_programmes() -> None:
     # Récupération des programmes en cours dans SQL
     df_programmes = st.session_state.sql_client.get_table("Programmes")
     df_running_programmes = df_programmes[
-        df_programmes[DEBUT] != 0 & df_programmes[FIN] != 0
+        (df_programmes[DEBUT] != 0) & (df_programmes[FIN] != 0)
     ]
     # Application des modifications
     for _, modif_per_year in df_running_programmes.iterrows():

@@ -4,6 +4,7 @@ Module indicateurs
 from dataclasses import dataclass
 import re
 import typing as T
+import streamlit as st
 
 from src.data.abstract_class import AbstractClass
 from src.variables import *
@@ -27,6 +28,7 @@ class Indicateurs(AbstractClass):
         """
         incrémente la valeur d'un attribut de l'objet
         """
+        st.success("update " + attribute_name)
         if attribute_name in [COUT_FIXE, COUT_UNITAIRE, COUT]:
             attribute_name = BUDGET
             increment = - increment

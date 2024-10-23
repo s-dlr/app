@@ -35,7 +35,7 @@ def load_next_arborescence(prochaine_arborescence, num_question=1):
     except:
         prochaine_arborescence = PROCHAINES_ARBORESCENCE.get(prochaine_arborescence)
         st.session_state["arborescence"] = Arborescence(
-            arborescence=prochaine_arborescence, num_question=num_question
+            arborescence=prochaine_arborescence, num_question=1
         )
     st.session_state["select_option"] = None
     st.session_state['annee'] =  int(st.session_state.arborescence.question.annee)

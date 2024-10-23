@@ -11,10 +11,10 @@ def get_etat_satellite_2():
     query = f'SELECT * FROM `Etat` WHERE `equipe` = "{st.session_state.equipe}_satellite_2";'
     connection = st.session_state.sql_client.connection
     etat_satellite = connection.query(query, ttl=1)
-    if len(etat_satellite) > 0:
+    if etat_satellite.shape[0] > 0:
         return etat_satellite["question"].iloc[0]
     else:
-        return None
+        return False
 
 def push_etat_satellite_2(next_question):
     query = f'INSERT INTO `Etat`(`equipe`, `arborescence`, `question`) VALUES ("{st.session_state.equipe}_satellite_2","","{next_question}")'
@@ -24,7 +24,7 @@ def load_next_arborescence(prochaine_arborescence, num_question=1):
     # Cas particulier des satellites
     if prochaine_arborescence == "Satellites phase 2":
         num_question = get_etat_satellite_2()
-        if num_question is None:
+        if not num_question:
             prochaine_arborescence = PROCHAINES_ARBORESCENCE.get(prochaine_arborescence)
     # Chargement du prochain programme
     st.session_state["arborescence"] = Arborescence(

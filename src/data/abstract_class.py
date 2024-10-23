@@ -36,7 +36,8 @@ class AbstractClass:
             updated = False
             for key, value in modification_dict.items():
                 st.success(key)
-                updated = updated or self.update(key, value)
+                updated_new = self.update(key, value)
+                updated = updated or updated_new
             return updated
 
     def update(self, attribute_name: str, increment: T.Union[str, float]) -> bool:

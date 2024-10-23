@@ -162,7 +162,7 @@ def apply_constructions() -> None:
     def get_nb(annee, modif):
         nb_years = min(st.session_state.annee, modif[FIN]) - annee
         # Prorata
-        if modif[FIN] >= st.session_state.anne:
+        if modif[FIN] >= st.session_state.annee:
             nb_unites_ajoutes = nb_years * st.session_state[modif[OBJET]].unite_par_an
         # Gestion des arrondis si la construction est finie
         else:

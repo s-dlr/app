@@ -122,7 +122,7 @@ def apply_programmes() -> None:
     # Récupération des programmes en cours dans SQL
     df_programmes = st.session_state.sql_client.get_table("Programmes")
     df_running_programmes = df_programmes[
-        (df_programmes[DEBUT] != 0) & (df_programmes[FIN] != 0)
+        (df_programmes[DEBUT] != 0) & (df_programmes[FIN] >= st.session_state.indicateurs.annee)
     ]
     # Application des modifications
     for _, modif_per_year in df_running_programmes.iterrows():
@@ -154,24 +154,26 @@ def apply_constructions() -> None:
     Mise à jour des indicateurs à partir des programmes en cours
     """
     # Récupération des constructions en cours dans SQL
-    df_constructions = st.session_state.sql_client.get_running_rows(
-        "Constructions",
-        min_annee=min(st.session_state.annee, st.session_state.indicateurs.annee),
-        max_annee=max(st.session_state.annee, st.session_state.indicateurs.annee),
-    )
-    def get_nb(annee):
-        if st.session_state.annee <= modif[FIN]:
-            nb_years = st.session_state.annee - annee
+    df_constructions = st.session_state.sql_client.get_table("Constructions")
+    df_running_constructions = df_constructions[
+        (df_constructions[DEBUT] != 0)
+        & (df_constructions[FIN] >= st.session_state.indicateurs.annee)
+    ]
+    def get_nb(annee, modif):
+        nb_years = min(st.session_state.annee, modif[FIN]) - annee
+        # Prorata
+        if modif[FIN] >= st.session_state.anne:
             nb_unites_ajoutes = nb_years * st.session_state[modif[OBJET]].unite_par_an
-        elif st.session_state.annee == modif[FIN] + 1:
-            nb_unites_construites = (annee - modif[DEBUT]) * st.session_state[
-                modif[OBJET]
-            ].unite_par_an
+        # Gestion des arrondis si la construction est finie
+        else:
+            nb_unites_construites = (
+                max(annee - modif[DEBUT], 0) * st.session_state[modif[OBJET]].unite_par_an
+            )
             nb_unites_ajoutes = modif[NOMBRE_UNITE] - nb_unites_construites
         return nb_unites_ajoutes
 
     # Application des modifications
-    for _, modif in df_constructions.iterrows():
+    for _, modif in df_running_constructions.iterrows():
         objet_dict = st.session_state[modif[OBJET]].to_dict()
         # Indicateurs
         nb_unites_ajoutes = get_nb(st.session_state.indicateurs.annee)
@@ -197,7 +199,6 @@ def update_indicateurs() -> None:
     get_indicateurs_from_sql()
     # Appliquer les programmes et les constructions en cours
     if st.session_state.annee > st.session_state.indicateurs.annee:
-        st.success("Apply constructions anf programmes")
         # Application des couts des programmes et des constructions
         apply_programmes()
         apply_constructions()

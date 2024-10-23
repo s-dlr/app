@@ -146,8 +146,6 @@ def display_programme(
     if len(modifications_indicateurs) > 0:
         st.subheader(f":blue[Effet par an sur les compteurs]")
         display_metrics(modifications_indicateurs)
-    # Bonus armées
-    # TODO
 
 
 def display_objet_store(objet_dict: dict, key: str = ""):

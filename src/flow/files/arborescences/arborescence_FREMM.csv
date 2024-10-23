@@ -1,0 +1,55 @@
+num_question;annee;contexte_question;texte_question;image;numero_option;texte_option;prochaine_question;prerequis;effet_immediat;modification_programme;modification_objet;objet;programme;commandes
+1;2002;"Pour remplacer les frégates de la classe précédente, conçues dans les années 70, la France prévoit la construction de nouvelle frégates anti-sous-marine. La doctrine française est d’avoir 26 frégates de premier rang pour répondre à ses besoins opérationnels. Cependant, restreinte dans son budget et ses équipages, la marine nationale prévoit donc l’achat de 17 de ces nouvelles frégates (11 dans un premier temps, 6 dans un second). Parmi ces 17 frégates, 2 seront spécialisées pour les actions contre la terre.EN parallèle, l’Italie a également lancé des études pour construire 10 à 12 frégates anti sous-marines. Les deux pays se rapprochent et constatent qu’ils ont un besoin similaire, en terme de taille, d'équipage et d'armement.  La France et l’Italie décident donc de collaborer pour ce programme.
+Il est à noter que dans les deux cas, la France estime pouvoir exporter quelques frégates à l’international. En revanche, dans le cas d’une coopération légère, elle sera en concurrence avec le version italienne.";Se pose la question de la forme que peut prendre cette coopération :;FREMM.jpg;A;La première option envisagée est une collaboration complète : la maîtrise d’œuvre serait confiée à un consortium d’industriels franco-italiens avec dans l’idée de réaliser un produit unique répondant aux exigences des 2 pays.;2;;"europeanisation:+10
+niveau_techno:+1";;"bonus_mer:-0.5
+cout_unitaire:+100";FREMM;;
+1;2002;"Pour remplacer les frégates de la classe précédente, conçues dans les années 70, la France prévoit la construction de nouvelle frégates anti-sous-marine (ASM). La doctrine française est d’avoir 26 frégates de premier rang pour répondre à ses besoins opérationnels. La marine nationale prévoit donc l’achat de 17 de ces nouvelles frégates (11 dans un premier temps). Parmi ces 17 frégates, 2 seront spécialisées pour les actions contre la terre (version AVT).L’Italie a également lancé des études pour construire 10 à 12 frégates anti sous-marines. Les deux pays se rapprochent et constatent qu’ils ont un besoin similaire, en terme de taille, d'équipage et d'armement.  La France et l’Italie décident donc de collaborer pour ce programme.
+Il est à noter que dans les deux cas, la France estime pouvoir exporter quelques frégates à l’international (indiquer exports précédents). En revanche, dans le cas d’une coopération légère, elle sera en concurrence avec le version Italienne";Se pose la question de la forme que peut prendre cette coopération :;FREMM.jpg;B;La deuxième option est une coopération légère : chaque pays confierait la maîtrise d’œuvre à son industriel national. Les deux pays réaliseraient une partie des études en commun, achèteraient une partie des équipements en commun mais construirait chacun un bateau adapté à leur besoin;3;;"europeanisation:+5
+niveau_techno:+3";;;FREMM;;
+2;2005;"Nous sommes maintenant en 2005. De premières études ont été menées et ont permis de faire apparaître les points de divergence et de convergence des deux nations :
+o	La France et l’Italie sont certains de souhaiter environ 10% des équipements en commun
+o	Les deux pays pensent pouvoir se mettre d’accord sur la coque
+o	La France aimerait intégrer un nouveau type de radar intégré qu’est en train de développer un des fleurons de son industrie
+o	L’Italie au contraire, préfèrerait utiliser les systèmes classiques avec 2 matures
+o	La France a besoin d’une frégate d’escorte peu rapide alors que l’Italie a besoin d’un bâtiment plus fortement armé ce qui implique notamment une différence de système de propulsion
+Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;A;Poursuivre la coopération totale;0;;;;"cout_unitaire:+100
+annee:+4";FREMM;;
+2;2005;"Nous sommes maintenant en 2005. De premières études ont été menées et ont permis de faire apparaître les points de divergence et de convergence des deux nations :
+o	La France et l’Italie sont certains de souhaiter environ 10% des équipements en commun
+o	Les deux pays pensent pouvoir se mettre d’accord sur la coque
+o	La France aimerait intégrer un nouveau type de radar intégré qu’est en train de développer un des fleurons de son industrie
+o	L’Italie au contraire, préfèrerait utiliser les systèmes classiques avec 2 matures
+o	La France a besoin d’une frégate d’escorte peu rapide alors que l’Italie a besoin d’un bâtiment plus fortement armé ce qui implique notamment une différence de système de propulsion
+Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;B;Passer en coopération légère;0;;"europeanisation:-5
+niveau_techno:+2";;"cout_unitaire:+0
+annee:+3
+bonus_mer:+0.5";FREMM;;
+2;2005;"Nous sommes maintenant en 2005. De premières études ont été menées et ont permis de faire apparaître les points de divergence et de convergence des deux nations :
+o	La France et l’Italie sont certains de souhaiter environ 10% des équipements en commun
+o	Les deux pays pensent pouvoir se mettre d’accord sur la coque
+o	La France aimerait intégrer un nouveau type de radar intégré qu’est en train de développer un des fleurons de son industrie
+o	L’Italie au contraire, préfèrerait utiliser les systèmes classiques avec 2 matures
+o	La France a besoin d’une frégate d’escorte peu rapide alors que l’Italie a besoin d’un bâtiment plus fortement armé ce qui implique notamment une différence de système de propulsion
+Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;C;Quitter la coopération et basculer en programme national;4;;"europeanisation:-12
+niveau_techno:+4";;"cout_unitaire:+65
+annee:+3
+bonus_mer:+0.5";FREMM;;
+3;2005;"Nous sommes maintenant en 2005. De premières études ont été menées et ont permis de faire apparaître les points de divergence et de convergence des deux nations :
+o	La France et l’Italie sont certains de souhaiter environ 10% des équipements en commun
+o	Les deux pays pensent pouvoir se mettre d’accord sur la coque
+o	La France aimerait intégrer un nouveau type de radar intégré qu’est en train de développer un des fleurons de son industrie
+o	L’Italie au contraire, préfèrerait utiliser les systèmes classiques avec 2 matures
+o	La France a besoin d’une frégate d’escorte peu rapide alors que l’Italie a besoin d’un bâtiment plus fortement armé ce qui implique notamment une différence de système de propulsion
+Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;A;Maintenir la coopération légère;0;;;;"cout_unitaire:+100
+annee:+3";FREMM;;
+3;2005;"Nous sommes maintenant en 2005. De premières études ont été menées et ont permis de faire apparaître les points de divergence et de convergence des deux nations :
+o	La France et l’Italie sont certains de souhaiter environ 10% des équipements en commun
+o	Les deux pays pensent pouvoir se mettre d’accord sur la coque
+o	La France aimerait intégrer un nouveau type de radar intégré qu’est en train de développer un des fleurons de son industrie
+o	L’Italie au contraire, préfèrerait utiliser les systèmes classiques avec 2 matures
+o	La France a besoin d’une frégate d’escorte peu rapide alors que l’Italie a besoin d’un bâtiment plus fortement armé ce qui implique notamment une différence de système de propulsion
+Par ailleurs, le programme a plus de 3 ans de retard. Ce retard est dû aux retards de financement et entraîne un surcout important. Avant le lancement définitif du programme, la France réévalue le format de sa coopération avec l’Italie :";Voulez-vous revoir les modalités de coopération avec l'Italie;FREMM.jpg;B;Quitter la coopération et basculer en programme national;4;;"europeanisation:-7
+niveau_techno:+1";;"cout_unitaire:+165
+annee:+3";FREMM;;
+4;2005;Vos frégate remportent un appel d'offre au Maroc, qui en demande 2. Naval Group est disposé à les livrer, mais cela créera un retard de 2 ans sur la livraison de vos frégate, car le Maroc veut être livré prioritairement;Souhaitez-vous effectuer cette vente ?;;A;Confirmation de la vente de 2 frégates au Maroc;0;;budget:+800;;annee:+2;FREMM;;
+4;2005;Vos frégate remportent un appel d'offre au Maroc, qui en demande 2. Naval Group est disposé à les livrer, mais cela créera un retard de 2 ans sur la livraison de vos frégate, car le Maroc veut être livré prioritairement;Souhaitez-vous effectuer cette vente ?;;B;Annulation de la vente.;0;;;;;;;

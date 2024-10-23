@@ -60,6 +60,7 @@ NOMBRE_UNITE = "nombre_unites"
 
 # Fichiers
 PROCHAINES_ARBORESCENCE = {
+    "Frégate de lutte anti-sous-marine": "Satellites phase 1",
     "Satellites phase 1": "Drone d'attaque et de surveillance",
     "Drone d'attaque et de surveillance": "Fusil individuel",
     "Fusil individuel": "Dissuasion nucléaire",
@@ -67,6 +68,7 @@ PROCHAINES_ARBORESCENCE = {
     "Satellites phase 2": None,
 }
 ARBORESCENCES = {
+    "Frégate de lutte anti-sous-marine": f"{DATA_DIR}/arborescences/arborescence_FREMM.csv",
     "Satellites phase 1": f"{DATA_DIR}/arborescences/arborescence_satellite.csv",
     "Drone d'attaque et de surveillance": f"{DATA_DIR}/arborescences/arborescence_MALE.csv",
     "Fusil individuel": f"{DATA_DIR}/arborescences/arborescence_FIA.csv",
@@ -74,6 +76,7 @@ ARBORESCENCES = {
     "Satellites phase 2": f"{DATA_DIR}/arborescences/arborescence_satellite.csv",
 }
 FICHIERS_OBJETS = {
+    "Frégate de lutte anti-sous-marine": f"{DATA_DIR}/arborescences/arborescence_FREMM.csv",
     "Satellites phase 1": f"{DATA_DIR}/objets/objets_satellite.csv",
     "Drone d'attaque et de surveillance": f"{DATA_DIR}/objets/objets_MALE.csv",
     "Fusil individuel": f"{DATA_DIR}/objets/objets_FIA.csv",
@@ -81,6 +84,7 @@ FICHIERS_OBJETS = {
     "Satellites phase 2": f"{DATA_DIR}/objets/objets_satellite.csv",
 }
 FICHIERS_PROGRAMMES = {
+    "Frégate de lutte anti-sous-marine": f"{DATA_DIR}/arborescences/arborescence_FREMM.csv",
     "Satellites phase 1": f"{DATA_DIR}/programmes/programmes_satellite.csv",
     "Drone d'attaque et de surveillance": f"{DATA_DIR}/programmes/programmes_MALE.csv",
     "Fusil individuel": f"{DATA_DIR}/programmes/programmes_FIA.csv",

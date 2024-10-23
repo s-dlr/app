@@ -65,7 +65,8 @@ PROCHAINES_ARBORESCENCE = {
     "Drone d'attaque et de surveillance": "Fusil individuel",
     "Fusil individuel": "Satellites phase 2",
     "Satellites phase 2": "Dissuasion nucléaire",
-    "Dissuasion nucléaire": None,
+    "Dissuasion nucléaire": "Radar aérien",
+    "Radar aérien": None,
 }
 ARBORESCENCES = {
     "Frégate de lutte anti-sous-marine": f"{DATA_DIR}/arborescences/arborescence_FREMM.csv",
@@ -74,6 +75,7 @@ ARBORESCENCES = {
     "Fusil individuel": f"{DATA_DIR}/arborescences/arborescence_FIA.csv",
     "Dissuasion nucléaire": f"{DATA_DIR}/arborescences/arborescence_DIS.csv",
     "Satellites phase 2": f"{DATA_DIR}/arborescences/arborescence_satellite.csv",
+    "Radar aérien": f"{DATA_DIR}/arborescences/arborescence_RADAR.csv",
 }
 FICHIERS_OBJETS = {
     "Frégate de lutte anti-sous-marine": f"{DATA_DIR}/objets/objets_FREMM.csv",
@@ -82,6 +84,7 @@ FICHIERS_OBJETS = {
     "Fusil individuel": f"{DATA_DIR}/objets/objets_FIA.csv",
     "Dissuasion nucléaire": f"{DATA_DIR}/objets/objets_DIS.csv",
     "Satellites phase 2": f"{DATA_DIR}/objets/objets_satellite.csv",
+    "Radar aérien": f"{DATA_DIR}/objets/objets_RADAR.csv",
 }
 FICHIERS_PROGRAMMES = {
     "Frégate de lutte anti-sous-marine": f"{DATA_DIR}/programmes/programmes_FREMM.csv",
@@ -90,5 +93,6 @@ FICHIERS_PROGRAMMES = {
     "Fusil individuel": f"{DATA_DIR}/programmes/programmes_FIA.csv",
     "Dissuasion nucléaire": f"{DATA_DIR}/programmes/programmes_DIS.csv",
     "Satellites phase 2": f"{DATA_DIR}/programmes/programmes_satellite.csv",
+    "Radar aérien": f"{DATA_DIR}/programmes/programmes_RADAR.csv",
 }
 IMAGE_DIR = f"{DATA_DIR}/images/"

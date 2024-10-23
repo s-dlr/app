@@ -182,8 +182,21 @@ else:
             )
         else:
             st.title("Fin du jeu")
-            st.write("Vous pouvez encore acheter des unités si vous le souhaitez")
-
+            st.write(
+                "Vous n'avez plus aucn choix à faire. Vous pouvez encore acheter des unités si vous le souhaitez. Cliquez esuite sur terminer le jeu"
+            )
+            # Bouton
+            if st.button(
+                type="primary",
+                label="Terminer",
+                use_container_width=True,
+                disabled=st.session_state["loading"],
+            ):
+                st.session_state.annee = 2050
+                update_indicateurs()
+                st.success(
+                    f"Vous pouvez regarder vos compteurs finaux dans le dashboard"
+                )
     st.page_link(
         "pages/store.py",
         label="Acheter des unités",

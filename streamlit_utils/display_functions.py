@@ -179,8 +179,7 @@ def display_objet_store(objet_dict: dict, key: str = ""):
 
 
 def display_annee():
-    # TODO adapter en fonction des dates des arborecences
-    percent_game = (st.session_state.annee - 1995) / (2050 - 1995)
+    percent_game = (st.session_state.annee - 1998) / (2050 - 1998)
     st.progress(percent_game, text=str(f"Année {st.session_state.annee}"))
 
 

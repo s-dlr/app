@@ -1,0 +1,4 @@
+﻿nom;cout_unitaire;std_cout;cout_fixe;bonus_terre;bonus_mer;bonus_air;bonus_rens;max_nb_utile;unite_par_an;budget;dependance_export;niveau_techno;annee;min_nb_utile
+hawkeye_E-2D;120;120;0;1;7;2;7;3;2;0;États-Unis;0;2024;2
+Oeil-de-faucon;100;100;0;1;7;2;7;3;1;10;;0;2032;2
+Auge-de-falco;100;100;0;1;7;2;7;3;1;10;Allemagne, Italie, Espagne;0;2034;2

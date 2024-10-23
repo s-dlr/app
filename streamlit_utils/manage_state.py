@@ -176,13 +176,13 @@ def apply_constructions() -> None:
     for _, modif in df_running_constructions.iterrows():
         objet_dict = st.session_state[modif[OBJET]].to_dict()
         # Indicateurs
-        nb_unites_ajoutes = get_nb(st.session_state.indicateurs.annee)
+        nb_unites_ajoutes = get_nb(st.session_state.indicateurs.annee, modif)
         modification_indicateurs = {
             key: nb_unites_ajoutes * objet_dict.get(key, 0)
             for key in [COUT_UNITAIRE, NIVEAU_TECHNO, EUROPEANISATION]
         }
         # Armées
-        nb_unites_ajoutes = get_nb(st.session_state.armee.annee)
+        nb_unites_ajoutes = get_nb(st.session_state.armee.annee, modif)
         modification_armee = {
             key: nb_unites_ajoutes * objet_dict.get(key, 0)
             for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]

@@ -135,6 +135,7 @@ else:
                             values=st.session_state.armee.to_dict(),
                             modifications=modification_dict,
                             grid=True,
+                            type="compteur"
                         )
                         fig.update_layout(
                             height=300,

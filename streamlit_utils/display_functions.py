@@ -183,7 +183,13 @@ def display_annee():
     st.progress(percent_game, text=str(f"Année {st.session_state.annee}"))
 
 
-def display_gauges_armees(values, modifications: dict = None, shape=None, grid=False):
+def display_gauges_armees(
+        values,
+        modifications: dict = None,
+        shape=None,
+        grid=False,
+        type='bonus'
+    ):
     """
     Grid gauges
     """
@@ -202,10 +208,13 @@ def display_gauges_armees(values, modifications: dict = None, shape=None, grid=F
             values[armee] += modifications.get(armee, 0)
         else:
             reference = {}
+        titre = (
+            LABELS["bonus_" + armee] if type == "bonus" else LABELS[armee]
+        )
         indicateur = go.Indicator(
             value=values[armee],
             mode=mode,
-            title=LABELS["bonus_" + armee],
+            title=titre,
             delta=reference,
             gauge=gauge_arg,
             domain={"row": i, "column": j},

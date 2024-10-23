@@ -120,22 +120,27 @@ def apply_programmes() -> None:
     Mise à jour des indicateurs à partir des programmes en cours
     """
     # Récupération des programmes en cours dans SQL
-    df_programmes = st.session_state.sql_client.get_running_rows(
-        "Programmes",
-        min_annee=min(st.session_state.annee, st.session_state.indicateurs.annee),
-        max_annee=max(st.session_state.annee, st.session_state.indicateurs.annee),
-    )
+    df_programmes = st.session_state.sql_client.get_table("Programmes")
+    df_running_programmes = df_programmes[
+        df_programmes[DEBUT] != 0 & df_programmes[FIN] != 0
+    ]
     # Application des modifications
-    for _, modif_per_year in df_programmes.iterrows():
+    for _, modif_per_year in df_running_programmes.iterrows():
         modif_year_dict = modif_per_year.to_dict()
         # Indicateurs
-        nb_years = st.session_state.annee - st.session_state.indicateurs.annee
+        nb_years = (
+            min(st.session_state.annee, modif_per_year[FIN])
+            - st.session_state.indicateurs.annee
+        )
         modification_indicateurs = {
             key: nb_years * modif_year_dict.get(key, 0)
             for key in [COUT, NIVEAU_TECHNO, EUROPEANISATION]
         }
         # Armées
-        nb_years = st.session_state.annee - st.session_state.armee.annee
+        nb_years = (
+            min(st.session_state.annee, modif_per_year[FIN])
+            - st.session_state.armee.annee
+        )
         modification_armee = {
             key: nb_years * modif_year_dict.get(key, 0)
             for key in [BONUS_AIR, BONUS_MER, BONUS_TERRE, BONUS_RENS]

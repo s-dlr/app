@@ -27,10 +27,12 @@ class Indicateurs(AbstractClass):
         """
         incrémente la valeur d'un attribut de l'objet
         """
+        st.success(attribute_name)
         if attribute_name in [COUT_FIXE, COUT_UNITAIRE, COUT]:
             attribute_name = BUDGET
             increment = - increment
         if attribute_name in self.__dataclass_fields__.keys() and increment !=0:
+            st.success("attribut défini")
             current_value = getattr(self, attribute_name)
             setattr(self, attribute_name, current_value + increment)
             return True

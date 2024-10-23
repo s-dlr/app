@@ -112,7 +112,9 @@ if len(display_equipes) > 0:
                 columns=[ANNEE, EQUIPE]
             )
             col.markdown(f":blue[Armée]")
-            fig = display_gauges_armees(niveaux_armee.iloc[0].to_dict(), grid=True)
+            fig = display_gauges_armees(
+                niveaux_armee.iloc[0].to_dict(), grid=True, type="compteur"
+            )
             col.plotly_chart(fig, use_container_width=True, key=f"gauge_terre_{equipe}")
             # Constructions
             df_constructions_equipe = df_constructions[df_constructions[EQUIPE] == equipe]

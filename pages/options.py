@@ -125,10 +125,6 @@ else:
                         )
                         fig.update_layout(
                             height=300,
-                            title=dict(
-                                text="Apport de chaque unité sur vos armées",
-                                font=dict(size=12, color="#333fff"),
-                            ),
                             showlegend=True,
                         )
                         st.plotly_chart(

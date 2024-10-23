@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import typing as T
+import streamlit as st
 
 from src.data.modification import Modification
 from src.sql_client import ClientSQL
@@ -34,6 +35,7 @@ class AbstractClass:
         else:
             updated = False
             for key, value in modification_dict.items():
+                st.success(key)
                 updated = updated or self.update(key, value)
             return updated
 

@@ -62,6 +62,9 @@ team = st.text_input("équipe", "astrolabe")
 login = st.button("Log in", type="primary")
 delete_equipe = st.checkbox("Recommencer depuis le début")
 
+if "loading" not in st.session_state:
+    st.session_state["loading"] = False
+
 if login:
     st.session_state["equipe"] = team
     if delete_equipe:
